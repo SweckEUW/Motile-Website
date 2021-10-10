@@ -10,7 +10,10 @@ function ThreeView(){
   useEffect(() => {
     // init engine
     let engine = new BABYLON.Engine(myRef.current, true);
-    
+    window.addEventListener("resize", () => {
+      engine.resize();
+    });
+
     // init scene
     let scene = new BABYLON.Scene(engine);
     scene.clearColor = BABYLON.Color3.White();

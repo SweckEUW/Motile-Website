@@ -12,7 +12,9 @@ You will need [Visual Studio Code](https://code.visualstudio.com/Download) insta
 
 Get the code by cloning this repository using git
 
+```
 git clone https://github.com/SweckEUW/Motile.git
+```
 
 Once downloaded, open the terminal in the project directory, and continue with:
 

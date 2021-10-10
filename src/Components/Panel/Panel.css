@@ -1,4 +1,5 @@
 .Panel{
+    display: none;
     position: absolute;
     right: 0;
     top: calc(50% - 250px);

@@ -4,12 +4,23 @@ import React, { useEffect } from 'react';
 
 function ThreeView(){
 
+  let myRef = React.useRef(null);
+
   useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
   
-    const renderer = new THREE.WebGLRenderer({canvas:this.refs.renderCanvas});
-  
+    const renderer = new THREE.WebGLRenderer({canvas: myRef.current});
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    
+    window.addEventListener( 'resize', onWindowResize, false );
+    function onWindowResize(){
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+
     const geometry = new THREE.BoxGeometry();
     const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
     const cube = new THREE.Mesh( geometry, material );
@@ -27,12 +38,11 @@ function ThreeView(){
     };
 
     animate();
-
-  }, []);
+  });
 
   return (
     <div className="ThreeView">
-      <canvas ref="renderCanvas"/>
+      <canvas className="tv-canvas" ref={myRef}/>
     </div>
   );
 

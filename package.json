@@ -2,10 +2,12 @@
   "name": "motile",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.22.0",
     "babylonjs": "^4.2.0",
     "babylonjs-loaders": "^4.2.0",
     "cors": "^2.8.5",
@@ -18,10 +20,10 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "serve": "concurrently --kill-others \"react-scripts start\" \"nodemon server/index.js\" \"start mongod --dbpath data\"",
-    "express": "nodemon server/index.js",
+    "serve": "concurrently --kill-others  \"react-scripts start\" \"nodemon Backend/server/server.js\" \"start mongod --dbpath=Backend/Database\"",
+    "express": "nodemon Backend/server/server.js",
     "react": "react-scripts start",
-    "mongodb": "start mongod --dbpath data",
+    "mongodb": "start mongod --dbpath=/Backend/Database",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

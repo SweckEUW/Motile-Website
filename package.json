@@ -20,10 +20,10 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "serve": "concurrently --kill-others  \"react-scripts start\" \"nodemon Backend/server/server.js\" \"start mongod --dbpath=Backend/Database\"",
+    "serve": "concurrently --kill-others  \"react-scripts start\" \"nodemon Backend/server/server.js\" \"start mongod --dbpath=Backend/Data\" ",
     "express": "nodemon Backend/server/server.js",
     "react": "react-scripts start",
-    "mongodb": "start mongod --dbpath=/Backend/Database",
+    "mongodb": "start mongod --dbpath=Backend/Data",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

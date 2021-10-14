@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 
 function ThreeView(){
 
-  let myRef = React.useRef(null);
+  let myRef = React.useRef(null)
 
   useEffect(() => {
     // init engine

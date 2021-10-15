@@ -8,6 +8,8 @@ You will need [git](https://git-scm.com/downloads) installed on your system.
 
 You will need [Visual Studio Code](https://code.visualstudio.com/Download) installed on your system.
 
+You will need [MongoDB](https://www.mongodb.com/try/download/community) installed on your system.
+
 ## Setup
 
 Get the code by cloning this repository using git
@@ -25,9 +27,4 @@ npm install
 ### Compiles and hot-reloads for development (Live Server)
 ```
 npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
 ```

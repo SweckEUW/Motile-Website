@@ -1,7 +1,7 @@
 import './App.css';
-// import ThreeView from './Components/ThreeView/ThreeView';
-import BabylonView from './Components/BabylonView/BabylonView';
-import Panel from './Components/Panel/Panel';
+// import ThreeView from './components/ThreeView/ThreeView';
+import BabylonView from './components/BabylonView/BabylonView';
+import Panel from './components/Panel/Panel';
 
 function App() {
   return (

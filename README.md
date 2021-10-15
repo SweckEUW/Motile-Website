@@ -9,10 +9,7 @@ You will need [git](https://git-scm.com/downloads) installed on your system.
 You will need [Visual Studio Code](https://code.visualstudio.com/Download) installed on your system.
 
 You will need [MongoDB](https://www.mongodb.com/try/download/community) installed on your system.
-+ Stop Mongodb server on Windows startup:
-```
-Search for services.msc in Windows and look for your "MongoDB Server (MongoDB)". Right click - properties - change start type to manually
-```
++ Stop Mongodb server on Windows startup:    *Search for services.msc in Windows and look for your "MongoDB Server (MongoDB)". Right click - properties - change start type to manually*
 
 
 ## Setup

@@ -9,6 +9,11 @@ You will need [git](https://git-scm.com/downloads) installed on your system.
 You will need [Visual Studio Code](https://code.visualstudio.com/Download) installed on your system.
 
 You will need [MongoDB](https://www.mongodb.com/try/download/community) installed on your system.
++ Stop Mongodb server on Windows startup:
+```
+Search for services.msc in Windows and look for your "MongoDB Server (MongoDB)". Right click - properties - change start type to manually
+```
+
 
 ## Setup
 
@@ -24,7 +29,7 @@ Once downloaded, open the terminal in the project directory, and continue with:
 npm install
 ```
 
-### Compiles and hot-reloads for development (Live Server)
+### Compiles and hot-reloads for development (Live Server) - Starts React,Nodejs,Mongodb
 ```
 npm run serve
 ```

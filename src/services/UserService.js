@@ -10,6 +10,10 @@ class UserService{
         return AxiosHelper.get('/Users?email='+email);
     }
 
+    login(email,password) {
+        return AxiosHelper.get('/Users?email='+email+'&password='+password);
+    }
+
     createUser(user) {
        return AxiosHelper.post('/Users', user)
     }

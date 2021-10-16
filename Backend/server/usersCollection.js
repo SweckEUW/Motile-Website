@@ -16,21 +16,18 @@ export default class usersCollection{
         }
     }
 
-
-    static async getAllUsers(request,response,next){
-        let userData = await users.find().toArray();
-        response.json(userData);
-    }
-
     static async getUser(request, response, next) {
         let email = request.query.email ? request.query.email : null;
+        let password = request.query.password ? request.query.password : null;
         let query;
         if(email)
             query = { "email": {$eq: email}}
-        
+        if(email && password)
+            query = {$and: [{password: "password"},{email: "email"}]}
+            
         let cursor = await users.find(query).toArray()
 
-        response.json(cursor);
+        response.json(password);
     }
 
     static async addUser(newUser) {

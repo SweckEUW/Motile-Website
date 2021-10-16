@@ -13,13 +13,18 @@ function Login(){
 
   function login(){
     let email = document.getElementById("login-email").value;
+    email = email ? email : " ";
     let pw = document.getElementById("login-pw").value;
+    pw = pw ? pw : " ";
 
-    UserService.getAllUsers().then(response => {
-      console.log(response.data)
-    })
-    
     // call to server to login
+    UserService.login(email,pw).then(response => {
+      console.log(response.data);
+      if(response.data[0])
+        setErrorMessage("Nutzer gefunden!")
+      else
+        setErrorMessage("Nutzer nicht gefunden!")
+    })
     
   }
 
@@ -33,16 +38,14 @@ function Login(){
         setErrorMessage("E-Mail bereits vergeben!")
       else {
         setErrorMessage("E-Mail nicht vergeben!")
-        UserService.createUser({email: name, password: pw}).then(response => {
+        
+        // call to server to create user
+        UserService.createUser({email: email, password: pw}).then(response => {
           console.log("Created User");
         });
       }
     });
 
-    
-
-    // call to server to create user
-    
   }
 
   function ErrorMessage() {

@@ -30,7 +30,9 @@ function Login(){
     // call to server if user name is taken
     UserService.validateEmail(email).then(response => {
       if(response.data[0])
-        setErrorMessage("E-Mail bereits vergeben")
+        setErrorMessage("E-Mail bereits vergeben!")
+      else
+      setErrorMessage("E-Mail nicht vergeben!")
     })
 
     // call to server to create user

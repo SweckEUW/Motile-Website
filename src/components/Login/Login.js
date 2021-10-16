@@ -13,38 +13,49 @@ function Login(){
 
   function login(){
     let email = document.getElementById("login-email").value;
-    email = email ? email : " ";
     let pw = document.getElementById("login-pw").value;
-    pw = pw ? pw : " ";
-
-    // call to server to login
-    UserService.login(email,pw).then(response => {
-      console.log(response.data);
-      if(response.data[0])
-        setErrorMessage("Nutzer gefunden!")
-      else
-        setErrorMessage("Nutzer nicht gefunden!")
-    })
+    
+    if(!email){
+      setErrorMessage("E-Mail fehlt!")
+    }else if(!pw){
+      setErrorMessage("Passwort fehlt!")
+    }else{
+      // call to server to login
+      UserService.login(email,pw).then(response => {
+        if(response.data[0])
+          setErrorMessage("Anmeldung erfolgreich!")
+        else
+          setErrorMessage("Nutzer nicht gefunden!")
+      })
+    }
     
   }
 
   function register(){
     let email = document.getElementById("register-email").value;
-    let pw = document.getElementById("register-pw").value;
+    let pw1 = document.getElementById("register-pw1").value;
+    let pw2 = document.getElementById("register-pw2").value;
     
-    // call to server if user name is taken
-    UserService.validateEmail(email).then(response => {
-      if(response.data[0])
-        setErrorMessage("E-Mail bereits vergeben!")
-      else {
-        setErrorMessage("E-Mail nicht vergeben!")
-        
-        // call to server to create user
-        UserService.createUser({email: email, password: pw}).then(response => {
-          console.log("Created User");
-        });
-      }
-    });
+    if(!email){
+      setErrorMessage("E-Mail fehlt!")
+    }else if(!pw1){
+      setErrorMessage("Passwort fehlt!")
+    }else if(pw1 !== pw2){
+      setErrorMessage("Passwörter stimmen nicht überein!")
+    }else{
+      // call to server if user name is taken
+      UserService.validateEmail(email).then(response => {
+        if(response.data[0])
+          setErrorMessage("E-Mail bereits vergeben!")
+        else {          
+          setErrorMessage("Registrierung erfolgreich!")
+          // call to server to create user
+          UserService.createUser({email: email, password: pw1}).then(response => {
+            setErrorMessage("Registrierung erfolgreich!")
+          });
+        }
+      });
+    }
 
   }
 
@@ -75,9 +86,9 @@ function Login(){
             <p className="li-form-title">E-Mail</p>
             <input id="register-email" className="li-form-input" type="text"/>
             <p className="li-form-title">Passwort</p>
-            <input id="register-pw" className="li-form-input" type="password"/>
+            <input id="register-pw1" className="li-form-input" type="password"/>
             <p className="li-form-title">Passwort wiederholen</p>
-            <input className="li-form-input" type="password"/>
+            <input id="register-pw2" className="li-form-input" type="password"/>
             <ErrorMessage/>
             <button className="li-form-button" onClick={() =>{register()}}>Regisrieren</button>
           </div>

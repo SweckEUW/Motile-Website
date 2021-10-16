@@ -1,4 +1,3 @@
-import axios from "axios";
 import AxiosHelper from "./AxiosHelper.js";
 
 class UserService{

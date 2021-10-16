@@ -1,14 +1,14 @@
 import './App.css';
-// import ThreeView from './components/ThreeView/ThreeView';
 import BabylonView from './components/BabylonView/BabylonView';
 import Panel from './components/Panel/Panel';
+import Login from './components/Login/Login';
 
 function App() {
   return (
     <div className="App">
-      {/* <ThreeView/> */}
       <BabylonView/>
       <Panel/>
+      <Login/>
     </div>
   );
 }

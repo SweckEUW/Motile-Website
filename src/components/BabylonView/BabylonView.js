@@ -3,7 +3,7 @@ import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
 import React, { useEffect } from 'react';
 
-function ThreeView(){
+function BabylonView(){
 
   let myRef = React.useRef(null)
 
@@ -53,4 +53,4 @@ function ThreeView(){
 
 }
 
-export default ThreeView;
+export default BabylonView;

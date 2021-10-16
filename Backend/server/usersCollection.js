@@ -1,7 +1,7 @@
 let users;
 
 export default class usersCollection{
-    static async retrieveUsers(conn){
+    static async retrieveUsersCollection(conn){
         if(users)
             return 
         
@@ -17,19 +17,20 @@ export default class usersCollection{
     }
 
 
-    static async getUsers(request,response,next){
+    static async getAllUsers(request,response,next){
         let userData = await users.find().toArray();
         response.json(userData);
     }
 
     static async getUser(request, response, next) {
-        let userData = await users.find().toArray();
-        // if (userData.find(user => user.email === email)) {
-        //     return user;
-        // } else{
-        //     return null;
-        // }
-        response.json(null);
+        let email = request.query.email ? request.query.email : null;
+        let query;
+        if(email)
+            query = { "email": {$eq: email}}
+        
+        let cursor = await users.find(query).toArray()
+
+        response.json(cursor);
     }
 
     static async addUser(newUser) {

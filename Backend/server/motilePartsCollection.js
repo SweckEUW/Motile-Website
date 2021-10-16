@@ -1,7 +1,7 @@
 let motilePartsCollection;
 
 export default class motileParts{
-    static async retrieveMotileParts(conn){
+    static async retrieveMotilePartsCollection(conn){
         if(motilePartsCollection)
             return 
         

@@ -1,7 +1,7 @@
 import express from "express"
 import cors from "cors"
 import mongodb from "mongodb"
-import MotileParts from "./motileParts.js"
+import MotileParts from "./motilePartsCollection.js"
 import Users from "./usersCollection.js"
 
 const app = express();
@@ -20,15 +20,15 @@ MongoClient.connect(
     process.exit(1);
 }).then(async client =>{
     console.log("Connected to Database")
-    await MotileParts.retrieveMotileParts(client);
-    await Users.retrieveUsers(client);
+    await MotileParts.retrieveMotilePartsCollection(client);
+    await Users.retrieveUsersCollection(client);
     app.listen(5000,() =>{
         console.log('Server started')
     });
 })
 
 app.get('/MotileParts', MotileParts.getMotileParts);
-app.get('/Users', Users.getUsers);
+app.get('/Users', Users.getUser);
 
 app.post('/Users', (req, res)=> {
    Users.addUser(req.body);

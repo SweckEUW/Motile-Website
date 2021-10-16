@@ -6,8 +6,8 @@ class UserService{
         return AxiosHelper.get('/Users');
     }
 
-    validateEmail() {
-        
+    validateEmail(email) {
+        return AxiosHelper.get('/Users?email='+email);
     }
 
     createUser(user) {

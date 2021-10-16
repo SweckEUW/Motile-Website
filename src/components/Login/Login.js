@@ -1,6 +1,7 @@
 import './Login.css';
 import { FaSignInAlt } from 'react-icons/fa';
 import React, {useState} from 'react';
+import UserService from '../../services/UserService'
 //import AxiosHelper from "./AxiosHelper.js";
 
 function Login(){
@@ -13,6 +14,10 @@ function Login(){
   function login(){
     let name = document.getElementById("login-name").value;
     let pw = document.getElementById("login-pw").value;
+
+    UserService.getAllUsers().then(response => {
+      console.log(response.data);
+    })
     
     // call to server to login
     // AxiosHelper.
@@ -36,7 +41,7 @@ function Login(){
           <div className="li-dialogue-container" onClick={(e) =>{e.stopPropagation()}}>
 
             <h1 className="li-title">Login</h1>
-            <p className="li-form-title">Username</p>
+            <p className="li-form-title">E-Mail</p>
             <input id="login-name" className="li-form-input" type="text"/>
             <p className="li-form-title">Passwort</p>
             <input id="login-pw" className="li-form-input" type="password"/>

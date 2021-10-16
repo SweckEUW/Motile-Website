@@ -1,20 +1,20 @@
 import AxiosHelper from "./AxiosHelper.js";
 
 class UserService{
-    getAllUsers(){
-        return AxiosHelper.get('/Users');
+    async getAllUsers(){
+        return await AxiosHelper.get('/Users');
     }
 
-    validateEmail(email) {
-        return AxiosHelper.get('/Users?email='+email);
+    async validateEmail(email) {
+        return await AxiosHelper.get('/Users?email='+email);
     }
 
-    login(email,password) {
-        return AxiosHelper.get('/Users?email='+email+'&password='+password);
+    async login(email,password) {
+        return await AxiosHelper.get('/Users?email='+email+'&password='+password);
     }
 
-    createUser(user) {
-       return AxiosHelper.post('/Users', user)
+    async createUser(user) {
+       return await AxiosHelper.post('/Users', user)
     }
 }
 

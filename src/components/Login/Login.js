@@ -11,7 +11,7 @@ function Login(){
     setLoginDialogueVisible(!loginDialogueVisible);
   }
 
-  function login(){
+  async function login(){
     let email = document.getElementById("login-email").value;
     let pw = document.getElementById("login-pw").value;
     
@@ -21,17 +21,13 @@ function Login(){
       setErrorMessage("Passwort fehlt!")
     }else{
       // call to server to login
-      UserService.login(email,pw).then(response => {
-        if(response.data[0])
-          setErrorMessage("Anmeldung erfolgreich!")
-        else
-          setErrorMessage("Nutzer nicht gefunden!")
-      })
+      let loginSuccessfull = await UserService.login(email,pw);
+      setErrorMessage(loginSuccessfull.data ? "Anmeldung erfolgreich!" : "Anmeldung nicht erfolgreich!")
     }
     
   }
 
-  function register(){
+  async function register(){
     let email = document.getElementById("register-email").value;
     let pw1 = document.getElementById("register-pw1").value;
     let pw2 = document.getElementById("register-pw2").value;
@@ -44,17 +40,15 @@ function Login(){
       setErrorMessage("Passwörter stimmen nicht überein!")
     }else{
       // call to server if user name is taken
-      UserService.validateEmail(email).then(response => {
-        if(response.data[0])
-          setErrorMessage("E-Mail bereits vergeben!")
-        else {          
-          setErrorMessage("Registrierung erfolgreich!")
-          // call to server to create user
-          UserService.createUser({email: email, password: pw1}).then(response => {
-            setErrorMessage("Registrierung erfolgreich!")
-          });
-        }
-      });
+      const userExcist = await UserService.validateEmail(email);
+      if(userExcist.data){
+        setErrorMessage("E-Mail bereits vergeben!")        
+      }else{
+        // call to server to create user
+        setErrorMessage("Registrierung erfolgreich!")
+        UserService.createUser({email: email, password: pw1})
+      } 
+
     }
 
   }

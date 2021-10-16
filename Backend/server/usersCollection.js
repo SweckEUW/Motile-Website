@@ -1,3 +1,5 @@
+import bcrypt from "bcrypt"
+
 let users;
 
 export default class usersCollection{
@@ -20,21 +22,28 @@ export default class usersCollection{
         let email = request.query.email != null ? request.query.email : null;
         let password = request.query.password != null ? request.query.password : null;
         
-        let query;
-        if(email)
-            query ={"email": {$eq: email}}
-        if(email && password)
-            query = {"email": {$eq: email} , "password": {$eq: password}}
-            
-        let cursor = await users.find(query).toArray()
+        if(email && password){
+            let user = await users.find({"email": {$eq: email}}).toArray();
+            if(user.length){
+                let validation = await bcrypt.compare(password,user[0].password);
+                response.json(validation ? true : false);
+            }else{
+                response.json(false);
+            }
+           
+        }
 
-        response.json(cursor);
+        else if(email){
+            let user = await users.find({"email": {$eq: email}}).toArray()
+            response.json(user.length ? true : false);
+        }
+        
     }
 
     static async addUser(newUser) {
-        users.insertOne(newUser, function(err, res) {
-            if (err) throw err;
-            console.log("user added");
-        });
+        let salt = await bcrypt.genSalt(10);
+        let hash = await bcrypt.hash(newUser.password,salt);
+        newUser.password = hash;
+        users.insert(newUser);
     }
 }

@@ -1,12 +1,20 @@
 .li-button{
     position: absolute;
-    top: 50px;
-    right: 50px;
+    top: 20px;
+    right: 20px;
     cursor: pointer;
+    background: rgba(177, 177, 177, 0.3);
+    transition: background .3s ease;
+    border-radius: 10px;
+    height: 50px;
+}
+.li-button:hover{
+    background: rgba(134, 134, 134, 0.7);
 }
 .li-button-icon{
     width: 30px;
     height: 30px;
+    padding: 10px;
 }
 .li-dialogue{
     top: 0;
@@ -21,7 +29,10 @@
 }
 .li-dialogue-container{
     background: white;
-    padding: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     border-radius: 10px;
     width: 600px;
 }
@@ -44,7 +55,7 @@
 }
 .li-form-title{
     text-align: left;
-    margin-bottom: 5px;
+    margin: 0px;
     font-size: 20px;
 }
 .li-form-button{

@@ -1,3 +1,4 @@
+import axios from "axios";
 import AxiosHelper from "./AxiosHelper.js";
 
 class UserService{
@@ -9,8 +10,8 @@ class UserService{
         
     }
 
-    createUser() {
-        
+    createUser(user) {
+       return AxiosHelper.post('/Users', user)
     }
 }
 

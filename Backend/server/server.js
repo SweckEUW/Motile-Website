@@ -30,4 +30,8 @@ MongoClient.connect(
 app.get('/MotileParts', MotileParts.getMotileParts);
 app.get('/Users', Users.getUsers);
 
+app.post('/Users', (req, res)=> {
+   Users.addUser(req.body);
+});
+
 export default app

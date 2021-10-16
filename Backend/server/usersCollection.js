@@ -31,4 +31,11 @@ export default class usersCollection{
         // }
         response.json(null);
     }
+
+    static async addUser(newUser) {
+        users.insertOne(newUser, function(err, res) {
+            if (err) throw err;
+            console.log("user added");
+        });
+    }
 }

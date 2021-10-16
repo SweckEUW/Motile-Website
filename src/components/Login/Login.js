@@ -29,7 +29,10 @@ function Login(){
     
     // call to server if user name is taken
 
-
+    UserService.createUser({email: name, password: pw}).then(response => {
+      console.log("Created User");
+    });
+    
     // call to server to create user
     // AxiosHelper.
   }

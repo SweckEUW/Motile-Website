@@ -29,6 +29,7 @@ MongoClient.connect(
 
 app.get('/MotileParts', MotileParts.getMotileParts);
 app.get('/Users', UsersCollection.getUser);
+app.get('/Verify', UsersCollection.verifyUser);
 
 app.post('/Users', (req, res)=> {
     UsersCollection.addUser(req.body);

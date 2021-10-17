@@ -14,7 +14,7 @@ class UserService{
     }
 
     async createUser(user) {
-       return await AxiosHelper.post('/Users', user)
+        return await AxiosHelper.post('/Users', user)
     }
 }
 

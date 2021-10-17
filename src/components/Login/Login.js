@@ -22,7 +22,10 @@ function Login(){
     }else{
       // call to server to login
       let loginSuccessfull = await UserService.login(email,pw);
-      setErrorMessage(loginSuccessfull.data ? "Anmeldung erfolgreich!" : "Anmeldung nicht erfolgreich!")
+      setErrorMessage(loginSuccessfull.data.message);
+      if(loginSuccessfull.data.success){
+        // TODO: do something after login successfull
+      } 
     }
     
   }
@@ -41,7 +44,7 @@ function Login(){
     }else{
       // call to server if user name is taken
       const userExcist = await UserService.validateEmail(email);
-      if(userExcist.data){
+      if(userExcist.data.success){
         setErrorMessage("E-Mail bereits vergeben!")        
       }else{
         // call to server to create user

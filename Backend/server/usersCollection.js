@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt"
-import nodemailer  from "nodemailer"
+import nodemailer from "nodemailer"
 
 let users;
 

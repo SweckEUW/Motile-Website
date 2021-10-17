@@ -52,7 +52,9 @@ export default class usersCollection{
         
     }
 
-    static async addUser(newUser) {
+    static async addUser(request,response) {
+        let newUser = request.body;
+
         // Hash password
         let salt = await bcrypt.genSalt(10);
         let hash = await bcrypt.hash(newUser.password,salt);
@@ -81,14 +83,18 @@ export default class usersCollection{
             to : newUser.email,
             subject : "Motile - E-Mail Bestätigen",
             html : "E-Mail verifizieren: <a href=" + link + ">" + link + "</a>"
-        }   
+        } 
         
-        transporter.sendMail(mailOptions, function(error, response){
-            error ? console.log(error) : console.log("E-Mail to "+newUser.email+" successfully send");
-        });
         
-        // Add User to Database
-        users.insertOne(newUser);
+        try {
+            await transporter.sendMail(mailOptions);
+            await users.insertOne(newUser);
+            response.json({success: true , message: 'Registrierung erfolgreich!'})
+            console.log("Registrierung erfolgreich!")
+        }catch (error) {
+            response.json({success: false , message: 'Registrierung nicht erfolgreich!'})
+            console.log("Registrierung nicht erfolgreich!")
+        }
     }
 
     static async verifyUser(request, response) {
@@ -99,7 +105,7 @@ export default class usersCollection{
             console.log(user[0].email+" Verified");
             response.send('<h1>E-Mail bestätigt: ' + user[0].email + '</h1>')
         }else{
-            console.log("No User found");
+            response.send('<h1>E-Mail nicht bestätigt: Kein Nutzer gefunden!</h1>')
         }
         
     }

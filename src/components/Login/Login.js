@@ -2,6 +2,7 @@ import './Login.css';
 import { FaSignInAlt } from 'react-icons/fa';
 import React, {useState} from 'react';
 import UserService from '../../services/UserService'
+import { CSSTransition } from 'react-transition-group';
 
 function Login(){
   const [loginDialogueVisible, setLoginDialogueVisible] = useState(false);
@@ -11,19 +12,26 @@ function Login(){
     setLoginDialogueVisible(!loginDialogueVisible);
   }
 
+  function changeErrorMessage(errorMessage){
+    setErrorMessage(errorMessage);
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 2000);
+  }
+
   async function login(){
     let email = document.getElementById("login-email").value;
     let pw = document.getElementById("login-pw").value;
     
     if(!email){
-      setErrorMessage("E-Mail fehlt!")
+      changeErrorMessage("E-Mail fehlt!")
     }else if(!pw){
-      setErrorMessage("Passwort fehlt!")
+      changeErrorMessage("Passwort fehlt!")
     }else{
       // call to server to login
-      let loginSuccessfull = await UserService.login(email,pw);
-      setErrorMessage(loginSuccessfull.data.message);
-      if(loginSuccessfull.data.success){
+      let loginResponse = await UserService.login(email,pw);
+      changeErrorMessage(loginResponse.data.message);
+      if(loginResponse.data.success){
         // TODO: do something after login successfull
       } 
     }
@@ -36,39 +44,34 @@ function Login(){
     let pw2 = document.getElementById("register-pw2").value;
     
     if(!email){
-      setErrorMessage("E-Mail fehlt!")
+      changeErrorMessage("E-Mail fehlt!")
     }else if(!pw1){
-      setErrorMessage("Passwort fehlt!")
+      changeErrorMessage("Passwort fehlt!")
     }else if(pw1 !== pw2){
-      setErrorMessage("Passwörter stimmen nicht überein!")
+      changeErrorMessage("Passwörter stimmen nicht überein!")
     }else{
       // call to server if user name is taken
       const userExcist = await UserService.validateEmail(email);
       if(userExcist.data.success){
-        setErrorMessage("E-Mail bereits vergeben!")        
+        changeErrorMessage("E-Mail bereits vergeben!")        
       }else{
         // call to server to create user
-        setErrorMessage("Registrierung erfolgreich!")
-        UserService.createUser({email: email, password: pw1})
+        let createUserResponse = await UserService.createUser({email: email, password: pw1})
+        changeErrorMessage(createUserResponse.data.message);
       } 
-
     }
-
   }
 
-  function ErrorMessage() {
-    if(errorMessage) 
-      return (
-        <div className="li-error">
-          <p>{errorMessage}</p>
-        </div>
-      )
-    return ""
-  }
+  return (
+    <div className="Login">
 
-  function LoginDialogue() {
-    if(loginDialogueVisible) 
-      return (
+      {/* Login Button */}
+      <div className="li-button" onClick={() =>{toggleLoginDialogue()}}>
+        <FaSignInAlt className="li-button-icon"/>
+      </div> 
+
+      {/* Login Dialogue */}
+      <CSSTransition in={loginDialogueVisible} classNames="fade" timeout={400} unmountOnExit>
         <div className="li-dialogue" onClick={() =>{toggleLoginDialogue()}}>
           <div className="li-dialogue-container" onClick={(e) =>{e.stopPropagation()}}>
 
@@ -86,20 +89,18 @@ function Login(){
             <input id="register-pw1" className="li-form-input" type="password"/>
             <p className="li-form-title">Passwort wiederholen</p>
             <input id="register-pw2" className="li-form-input" type="password"/>
-            <ErrorMessage/>
+
+            <CSSTransition in={errorMessage != null} classNames="fade" timeout={400} unmountOnExit>
+              <div className="li-error">
+                <p>{errorMessage}</p>
+              </div>
+            </CSSTransition>
+
             <button className="li-form-button" onClick={() =>{register()}}>Regisrieren</button>
           </div>
         </div>
-      )
-    return ""
-  }
+      </CSSTransition>
 
-  return (
-    <div className="Login">
-      <div className="li-button" onClick={() =>{toggleLoginDialogue()}}>
-        <FaSignInAlt className="li-button-icon"/>
-      </div>
-      <LoginDialogue/>
     </div>
   );
 

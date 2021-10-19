@@ -1,7 +1,7 @@
 import './Login.css';
 import { FaSignInAlt } from 'react-icons/fa';
 import React, {useState} from 'react';
-import UserService from '../../services/UserService'
+import ServerRequest from '../../services/ServerRequest'
 import { CSSTransition } from 'react-transition-group';
 
 function Login(){
@@ -29,13 +29,12 @@ function Login(){
       changeErrorMessage("Passwort fehlt!")
     }else{
       // call to server to login
-      let loginResponse = await UserService.login(email,pw);
+      let loginResponse = await ServerRequest.login(email,pw);
       changeErrorMessage(loginResponse.data.message);
       if(loginResponse.data.success){
         // TODO: do something after login successfull
       } 
     }
-    
   }
 
   async function register(){
@@ -51,12 +50,12 @@ function Login(){
       changeErrorMessage("Passwörter stimmen nicht überein!")
     }else{
       // call to server if user name is taken
-      const userExcist = await UserService.validateEmail(email);
+      const userExcist = await ServerRequest.validateEmail(email);
       if(userExcist.data.success){
         changeErrorMessage("E-Mail bereits vergeben!")        
       }else{
         // call to server to create user
-        let createUserResponse = await UserService.createUser({email: email, password: pw1})
+        let createUserResponse = await ServerRequest.createUser({email: email, password: pw1})
         changeErrorMessage(createUserResponse.data.message);
       } 
     }

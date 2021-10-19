@@ -17,7 +17,7 @@ export default class motileParts{
     }
 
 
-    static async getMotileParts(reques,response,next){
+    static async getMotileParts(request,response){
         let parts = await motilePartsCollection.find().toArray();
         response.json(parts.slice(0,10))
     }

@@ -1,20 +1,18 @@
 import './Panel.css';
 import React, {useState ,useEffect} from 'react';
-import MotileParts from '../../services/MotileParts';
+import ServerRequest from '../../services/ServerRequest';
 
 function Panel(){
   const [motileParts, setMotileParts] = useState([]);
 
   useEffect(() =>{ 
-    retrieveMotileParts();
+    getMotileParts();
   }, []);
 
-  const retrieveMotileParts = () =>{
-    MotileParts.getAll().then(response => {
-      setMotileParts(response.data)
-    })
+  async function getMotileParts(){
+    let motilePartsResponse = await ServerRequest.getAllMotileParts();
+    setMotileParts(motilePartsResponse.data)
   }
-
 
   return (
     <div className="Panel">

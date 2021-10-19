@@ -1,8 +1,9 @@
 import express from "express"
 import cors from "cors"
 import mongodb from "mongodb"
-import MotileParts from "./motilePartsCollection.js"
+import motilePartsCollection from "./motilePartsCollection.js"
 import UsersCollection from "./usersCollection.js"
+import BlenderJobs from "./blenderJobs.js"
 
 const app = express();
 
@@ -20,17 +21,18 @@ MongoClient.connect(
     process.exit(1);
 }).then(async client =>{
     console.log("Connected to Database")
-    await MotileParts.retrieveMotilePartsCollection(client);
+    await motilePartsCollection.retrieveMotilePartsCollection(client);
     await UsersCollection.retrieveUsersCollection(client);
     app.listen(5000,() =>{
         console.log('Server started')
     });
 })
 
-app.get('/MotileParts', MotileParts.getMotileParts);
+app.get('/MotileParts', motilePartsCollection.getMotileParts);
 app.get('/Users', UsersCollection.getUser);
 app.get('/Verify', UsersCollection.verifyUser);
 
+app.post('/Blender', BlenderJobs.render);
 app.post('/Users', UsersCollection.addUser);
 
 export default app

@@ -36,12 +36,23 @@
     border-radius: 10px;
     width: 600px;
 }
+
 .li-title{
     margin: 0;
 }
-.li-title:last-of-type{
+.li-register-container .li-title{
     margin-top: 50px;
 }
+
+.li-register-toggle {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.li-register-toggle:active {
+    color: lightblue;
+}
+
 .li-form-input{
     width: 100%;
     padding: 8px 12px;
@@ -53,18 +64,33 @@
     box-sizing: border-box;
     font-size: 15px;
 }
+
+.li-input-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .li-form-title{
     text-align: left;
     margin: 0px;
     font-size: 20px;
 }
+
+.li-input-err{
+    text-align: right;
+    margin: 0px;
+    font-size: 18px;
+    color:red;
+}
+
 .li-form-button{
     width: 100%;
     background-color: #761104;
     transition: background .3s ease;
     color: white;
     padding: 14px 20px;
-    margin: 20px 10px;
+    margin: 20px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;

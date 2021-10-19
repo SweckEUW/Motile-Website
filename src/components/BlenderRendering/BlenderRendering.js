@@ -26,7 +26,7 @@ function Login(){
     reader.onloadend = function() {
       setRenderingURL(reader.result);    
       setRenderingVisible(true); 
-    }        
+    }
 
   }
 

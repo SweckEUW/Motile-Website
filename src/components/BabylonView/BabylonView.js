@@ -20,7 +20,8 @@ function BabylonView(){
     // scene.debugLayer.show();
     
     // init camera
-    let camera = new BABYLON.ArcRotateCamera("Camera", 1,1 ,200,new BABYLON.Vector3(-40,80,0),scene); 
+    // let camera = new BABYLON.ArcRotateCamera("Camera", 1,1 ,200,new BABYLON.Vector3(-40,80,0),scene); 
+    let camera = new BABYLON.ArcRotateCamera("Camera", 1,1 ,200,new BABYLON.Vector3(0,0,0),scene); 
 		camera.attachControl(myRef.current);
 
     // init Light
@@ -32,9 +33,10 @@ function BabylonView(){
     });
 
     let phone;
-    var phoneTask = assetsManager.addMeshTask("", "", "","./models/Phone-complete.glb");
+    var phoneTask = assetsManager.addMeshTask("", "", "","./models/logomodul.glb");
     phoneTask.onSuccess = (task) => {     
      phone = task.loadedMeshes[0];
+     phone.scaling = new BABYLON.Vector3(1000,1000,1000);
      phone.name = "Phone";
     }
     assetsManager.load();

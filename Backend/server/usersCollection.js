@@ -32,15 +32,15 @@ export default class usersCollection{
                 let validation = await bcrypt.compare(password,user[0].password);
                 if(validation){
                     if(!user[0].active){
-                        response.json({success: false , message: 'E-Mail nicht bestätigt'})
+                        response.json({success: false , message: 'E-Mail wurde noch nicht bestätigt'})
                     }else{
                         response.json({success: true , message: 'Anmeldung erfolgreich'})
                     }
                 }else{
-                    response.json({success: false , message: 'Falsches Passwort!'})
+                    response.json({success: false , message: 'E-Mail und Passwort stimmen nicht überein'})
                 }
             }else{
-                response.json({success: false , message: 'Falsche E-Mail!'})
+                response.json({success: false , message: 'Kein Nutzer mit dieser E-Mail gefunden'})
             }
         }
         
@@ -92,6 +92,7 @@ export default class usersCollection{
             response.json({success: true , message: 'Registrierung erfolgreich!'})
             console.log("Registrierung erfolgreich!")
         }catch (error) {
+            console.log(error);
             response.json({success: false , message: 'Registrierung nicht erfolgreich!'})
             console.log("Registrierung nicht erfolgreich!")
         }

@@ -1,3 +1,4 @@
+/* Button */
 .li-button{
     position: absolute;
     top: 20px;
@@ -16,6 +17,8 @@
     height: 30px;
     padding: 10px;
 }
+
+/* Dialogue */
 .li-dialogue{
     top: 0;
     width: 100%;
@@ -34,25 +37,29 @@
     padding-top: 20px;
     padding-bottom: 20px;
     border-radius: 10px;
-    width: 600px;
+    width: 500px;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
 }
-
 .li-title{
     margin: 0;
 }
-.li-register-container .li-title{
-    margin-top: 50px;
+.li-login-container{
+    flex: 0 0 100%;
+    margin-right: 50px;
+    transition: margin .5s ease;
 }
-
+.li-register-container{
+    flex: 0 0 100%;
+}
 .li-register-toggle {
     text-decoration: underline;
     cursor: pointer;
 }
-
 .li-register-toggle:active {
     color: lightblue;
 }
-
 .li-form-input{
     width: 100%;
     padding: 8px 12px;
@@ -64,26 +71,22 @@
     box-sizing: border-box;
     font-size: 15px;
 }
-
 .li-input-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-
 .li-form-title{
     text-align: left;
     margin: 0px;
     font-size: 20px;
 }
-
 .li-input-err{
     text-align: right;
     margin: 0px;
     font-size: 18px;
     color:red;
 }
-
 .li-form-button{
     width: 100%;
     background-color: #761104;
@@ -95,7 +98,6 @@
     border-radius: 4px;
     cursor: pointer;
 }
-
 .li-form-button:hover{
     background-color: #300600;
 }
@@ -103,6 +105,8 @@
     color: red;
 }
 
+
+/* Transitions */
 .fade-enter {
     opacity: 0;
 }

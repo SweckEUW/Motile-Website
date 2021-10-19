@@ -24,6 +24,7 @@ function Login(){
 
   function toggleLoginDialogue(){
     setLoginDialogueVisible(!loginDialogueVisible);
+    togglePW2Err(false);
   }
 
   function changeErrorMessage(errorMessage){

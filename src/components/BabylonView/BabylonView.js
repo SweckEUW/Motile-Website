@@ -67,8 +67,9 @@ function BabylonView(){
     assetsManager.load();
 
     var skybox = BABYLON.Mesh.CreateBox("skyBox", 2000.0, scene);
-    var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+    var skyboxMaterial = new BABYLON.PBRMaterial("pbr", scene);
     skyboxMaterial.backFaceCulling = false;
+    skyboxMaterial.microSurface = 0.7;
     skyboxMaterial.disableLighting = true;
     skybox.material = skyboxMaterial;
     skybox.infiniteDistance = true;

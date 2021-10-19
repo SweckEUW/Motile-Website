@@ -10,7 +10,9 @@ export default class blenderJobs{
         let filename = fileURLToPath(import.meta.url);
         let dirname = path.dirname(filename);
         
-        nodeCmd.run('cd ' + config.blender.path + ' & blender -b ' + path.join(dirname,'Assets/Motile.blend') + ' -P ' + path.join(dirname,'Assets/RenderMotile.py') + ' -- ' + settings.x + " " + settings.y + " " + settings.z,
+        let exportPath = path.join(dirname,'Assets/render.jpg')
+
+        nodeCmd.run('cd ' + config.blender.path + ' & blender -b ' + path.join(dirname,'Assets/Motile.blend') + ' -P ' + path.join(dirname,'Assets/RenderMotile.py') + ' -- ' + exportPath + " "  + settings.x + " " + settings.y + " " + settings.z,
         function(err, data, stderr){
             if(data)
                 console.log(data);

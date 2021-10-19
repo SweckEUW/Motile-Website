@@ -18,7 +18,7 @@ function Login(){
     let response = await ServerRequest.requestBlenderRendering({
       x: 0,
       y: 0,
-      z: 50
+      z: 0
     });
     
     var reader = new FileReader();

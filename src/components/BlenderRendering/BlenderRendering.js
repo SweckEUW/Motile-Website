@@ -8,24 +8,28 @@ function Login(){
   const [dialogueVisible, setDialogueVisible] = useState(false);
   const [renderingURL, setRenderingURL] = useState(null);
   const [renderingVisible, setRenderingVisible] = useState(null);
+  const [loadingscreenVisible, setLoadingscreenVisible] = useState(false);
 
   function toggleDialogue(){
     setDialogueVisible(!dialogueVisible);
   }
 
   async function requestBlenderRendering(){
-
+    setLoadingscreenVisible(true);
     let response = await ServerRequest.requestBlenderRendering({
-      x: 0,
-      y: 0,
-      z: 0
+      x: document.getElementById("x").value,
+      y: document.getElementById("y").value,
+      z: document.getElementById("z").value
     });
+
+    console.log(response);
     
     var reader = new FileReader();
     reader.readAsDataURL(response.data); 
     reader.onloadend = function() {
       setRenderingURL(reader.result);    
       setRenderingVisible(true); 
+      setLoadingscreenVisible(false);
     }
 
   }
@@ -44,6 +48,20 @@ function Login(){
       <CSSTransition in={dialogueVisible} classNames="fade" timeout={400} unmountOnExit>
         <div className="br-dialogue" onClick={() =>{toggleDialogue()}}>
           <div className="br-dialogue-container" onClick={(e) =>{e.stopPropagation()}}>
+
+            <CSSTransition in={loadingscreenVisible} classNames="fade" timeout={400} unmountOnExit>
+              <div className="br-loadingscreen">
+                <svg className="br-animation" version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100 100">
+                  <path d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+                    <animateTransform attributeName="transform" attributeType="XML"  type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite" />
+                  </path>
+                </svg>
+              </div>
+            </CSSTransition>
+
+            X<input id="x" className="br-input" type="number" placeholder="0"/>
+            Y<input id="y" className="br-input" type="number" placeholder="0"/>
+            Z<input id="z" className="br-input" type="number" placeholder="0"/>
             <div className="br-dialogue-button" onClick={() =>{requestBlenderRendering()}}>Render</div>
             <div className="br-dialogue-rendering-container">
               <CSSTransition in={renderingVisible} classNames="fade" timeout={400} unmountOnExit>

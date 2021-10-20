@@ -38,7 +38,34 @@
     padding-top: 20px;
     padding-bottom: 20px;
     border-radius: 10px;
-    width: 800px;
+    width: 1200px;
+    height: 800px;
+    position: relative;
+}
+.br-loadingscreen{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.br-animation{
+    fill: #761104;
+    width: 200px;
+    height: 200px;
+    margin-top: 350px;
+}
+.br-input{
+    width: 25%;
+    padding: 8px 12px;
+    margin: 20px;
+    margin-left: 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 15px;
 }
 .br-dialogue-button{
     background-color: #761104;
@@ -51,9 +78,10 @@
     cursor: pointer;
 }
 .br-dialogue-rendering-container{
-    height: 500px;
+    height: calc(100% - 170px);
 }
 .br-dialogue-rendering{
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }

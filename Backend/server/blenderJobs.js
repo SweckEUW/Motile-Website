@@ -17,7 +17,7 @@ export default class blenderJobs{
         
         console.log("Start Blender rendering");
 
-        let blenderJob = exec((drive != "C:" ? drive : "") + 'cd ' + config.blender.path + ' & blender -b ' + path.join(dirname,'Assets/Motile.blend') + ' -P ' + path.join(dirname,'Assets/RenderMotile.py') + ' -- ' + exportPath + " "  + settings.x + " " + settings.y + " " + settings.z);
+        let blenderJob = exec((drive != "C:" ? drive : "") + 'cd ' + config.blender.path + ' & blender -b ' + path.join(dirname,'Assets/Motile.blend') + ' -P ' + path.join(dirname,'Assets/RenderMotile.py') + ' -- ' + exportPath + " "  + settings.x + " " + settings.y + " " + settings.z + " " + settings.rx + " " + settings.ry + " " + settings.rz);
 
         blenderJob.stdout.on('data', function (data) {
             console.log('stdout: ' + data.toString());

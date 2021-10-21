@@ -17,13 +17,14 @@ function Login(){
   async function requestBlenderRendering(){
     setLoadingscreenVisible(true);
     let response = await ServerRequest.requestBlenderRendering({
-      x: document.getElementById("x").value,
-      y: document.getElementById("y").value,
-      z: document.getElementById("z").value
+      x: document.getElementById("x").value ? document.getElementById("x").value : 0,
+      y: document.getElementById("y").value ? document.getElementById("y").value : 0,
+      z: document.getElementById("z").value ? document.getElementById("z").value : 0,
+      rx: document.getElementById("rx").value ? document.getElementById("rx").value : 0,
+      ry: document.getElementById("ry").value ? document.getElementById("ry").value : 0,
+      rz: document.getElementById("rz").value ? document.getElementById("rz").value : 0,
     });
 
-    console.log(response);
-    
     var reader = new FileReader();
     reader.readAsDataURL(response.data); 
     reader.onloadend = function() {
@@ -59,9 +60,18 @@ function Login(){
               </div>
             </CSSTransition>
 
-            X<input id="x" className="br-input" type="number" placeholder="0"/>
-            Y<input id="y" className="br-input" type="number" placeholder="0"/>
-            Z<input id="z" className="br-input" type="number" placeholder="0"/>
+            <div>
+              X<input id="x" className="br-input" type="number" placeholder="0"/>
+              Y<input id="y" className="br-input" type="number" placeholder="0"/>
+              Z<input id="z" className="br-input" type="number" placeholder="0"/>
+            </div>
+
+            <div>
+              RX<input id="rx" className="br-input" type="number" placeholder="0"/>
+              RY<input id="ry" className="br-input" type="number" placeholder="0"/>
+              RZ<input id="rz" className="br-input" type="number" placeholder="0"/>
+            </div>
+            
             <div className="br-dialogue-button" onClick={() =>{requestBlenderRendering()}}>Render</div>
             <div className="br-dialogue-rendering-container">
               <CSSTransition in={renderingVisible} classNames="fade" timeout={400} unmountOnExit>

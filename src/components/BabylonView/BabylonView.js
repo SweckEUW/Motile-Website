@@ -1,10 +1,13 @@
 import './BabylonView.css';
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Plate from './Plate';
+import Component from './Component';
+import ServerRequest from '../../services/ServerRequest';
 
 function BabylonView(){
-
+  const [motileParts, setMotileParts] = useState([]);
   let myRef = React.useRef(null)
 
   useEffect(() => {
@@ -32,37 +35,17 @@ function BabylonView(){
       console.log('Task failed', task.errorObject.message, task.errorObject.exception);
     });
 
+    getMotileParts();
+
+    motileParts.forEach((motilePart) => {
+      new Component(assetsManager, motilePart);
+    });
+
     // Loading Meshes
-    var plateTask = assetsManager.addMeshTask("", "", "","./models/plate.glb");
-    plateTask.onSuccess = (task) => {     
-     let plate = task.loadedMeshes[0];
-     plate.scaling = new BABYLON.Vector3(1000,1000,1000);
-     plate.name = "Plate";
-    }
-
-    var moduleLTask = assetsManager.addMeshTask("", "", "","./models/module-large.glb");
-    moduleLTask.onSuccess = (task) => {     
-     let moduleL = task.loadedMeshes[0];
-     moduleL.scaling = new BABYLON.Vector3(1000,1000,1000);
-     moduleL.position = new BABYLON.Vector3(1,2,-55);
-     moduleL.name = "moduleL";
-    }
-
-    var moduleSTask = assetsManager.addMeshTask("", "", "","./models/module-small.glb");
-    moduleSTask.onSuccess = (task) => {     
-     let moduleS = task.loadedMeshes[0];
-     moduleS.scaling = new BABYLON.Vector3(1000,1000,1000);
-     moduleS.position = new BABYLON.Vector3(0,2,0);
-     moduleS.name = "moduleS";
-    }
-
-    var moduleXLTask = assetsManager.addMeshTask("", "", "","./models/module-xlarge.glb");
-    moduleXLTask.onSuccess = (task) => {     
-     let moduleXL = task.loadedMeshes[0];
-     moduleXL.scaling = new BABYLON.Vector3(1000,1000,1000);
-     moduleXL.position = new BABYLON.Vector3(0,2,0);
-     moduleXL.name = "moduleXL";
-    }
+    const plate = new Plate(assetsManager, "Plate", new BABYLON.Vector3(1000,1000,1000));
+    // const moduleL = new Component(assetsManager, , new BABYLON.Vector3(1,2,-55));
+    // const moduleS = new Component(assetsManager, "./models/module-small.glb", "moduleS", new BABYLON.Vector3(1000,1000,1000), new BABYLON.Vector3(0, 2, 0));
+    // const moduleXL = new Component(assetsManager, "./models/module-xlarge.glb", "moduleXL", new BABYLON.Vector3(1000,1000,1000), new BABYLON.Vector3(0, 2, 0));
 
     assetsManager.load();
 
@@ -84,7 +67,12 @@ function BabylonView(){
       scene.render();
     });
   
-  });
+  }, []);
+
+  async function getMotileParts(){
+    let motilePartsResponse = await ServerRequest.getAllMotileParts();
+    setMotileParts(motilePartsResponse.data)
+  }
 
   return (
     <div className="BabylonView">

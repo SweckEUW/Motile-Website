@@ -4,6 +4,8 @@ import mongodb from "mongodb"
 import motilePartsCollection from "./motilePartsCollection.js"
 import UsersCollection from "./usersCollection.js"
 import BlenderJobs from "./blenderJobs.js"
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
 
@@ -34,5 +36,11 @@ app.get('/Verify', UsersCollection.verifyUser);
 
 app.post('/Blender', BlenderJobs.render);
 app.post('/Users', UsersCollection.addUser);
+
+// static assets
+let filename = fileURLToPath(import.meta.url);
+let dirname = path.dirname(filename);
+
+app.use(express.static(path.join(dirname, 'public')));
 
 export default app

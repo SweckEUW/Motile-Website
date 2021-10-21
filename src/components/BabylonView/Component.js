@@ -1,19 +1,22 @@
+import * as BABYLON from 'babylonjs';
+
 class Component {
     constructor(assetsManager, motilePart) {
         this.assetsManager = assetsManager;
-        console.log(motilePart);
-        // this.path = path;
-        // this.name = name;
-        //this.scale = scale;
+        
+        let data = motilePart["3DData"]
+        this.path = data.path;
+        this.name = motilePart.name;;
+        this.scale = data.scale;
 
-        //this.loadMesh();
+        this.loadMesh();
     }
 
     loadMesh() {
         let componentTask = this.assetsManager.addMeshTask("", "", "", this.path);
         componentTask.onSuccess = (task) => {     
             let component = task.loadedMeshes[0];
-            component.scaling = this.scale;
+            component.scaling = new BABYLON.Vector3(...this.scale);
             component.name = this.name;
         }    
     }

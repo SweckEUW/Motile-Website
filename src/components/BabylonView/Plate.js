@@ -1,7 +1,7 @@
 class Plate {
     constructor(assetsManager, name, scale) {
         this.assetsManager = assetsManager;
-        this.path = "./models/plate.glb";
+        this.path = "http://localhost:5000/babylon/plate.glb";
         this.name = name;
         this.scale = scale;
 

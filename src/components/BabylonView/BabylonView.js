@@ -1,12 +1,14 @@
 import './BabylonView.css';
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
-import React, { useEffect } from 'react';
+import React, {  useEffect } from 'react';
 import Plate from './Plate';
 import Component from './Component';
 import ServerRequest from '../../services/ServerRequest';
 
 function BabylonView(){
+  let motileParts = [];
+
   let myRef = React.useRef(null)
 
   useEffect(() => {
@@ -46,8 +48,15 @@ function BabylonView(){
     });
 
     loadMotileParts(scene);
-  
+    
+    document.addEventListener("spawnComponent", spawnComponent);
+
   }, []);
+
+  function spawnComponent(e){
+    let component = motileParts.find(part => part.name === e.detail.name); 
+    component.cloneMesh();
+  }
 
   async function loadMotileParts(scene){
     let assetsManager = new BABYLON.AssetsManager( scene );
@@ -57,7 +66,7 @@ function BabylonView(){
 
     let motilePartsResponse = await ServerRequest.getAllMotileParts();
     motilePartsResponse.data.forEach((motilePart) => {
-      new Component(assetsManager, motilePart);
+      motileParts.push(new Component(assetsManager, motilePart));
     });
     new Plate(assetsManager, "Plate", new BABYLON.Vector3(1000,1000,1000));
 

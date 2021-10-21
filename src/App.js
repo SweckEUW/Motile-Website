@@ -4,7 +4,6 @@ import Panel from './components/Panel/Panel';
 import Login from './components/Login/Login';
 import BlenderRendering from './components/BlenderRendering/BlenderRendering';
 
-
 function App() {
   return (
     <div className="App">

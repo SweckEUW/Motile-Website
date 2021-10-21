@@ -14,6 +14,10 @@ function Panel(){
     setMotileParts(motilePartsResponse.data)
   }
 
+  function sendSignal(name){
+    document.dispatchEvent(new CustomEvent("spawnComponent", {detail:{name: name}}));
+  }
+
   return (
     <div className="Panel">
       <h1>My Panel</h1>
@@ -24,6 +28,9 @@ function Panel(){
           )
         })}
       </div>
+      <div className="pa-button" onClick={() =>{sendSignal("moduleL")}}>ModuleL</div>
+      <div className="pa-button" onClick={() =>{sendSignal("moduleS")}}>ModuleS</div>
+      <div className="pa-button" onClick={() =>{sendSignal("moduleXL")}}>ModuleXL</div>
     </div>
   );
 }

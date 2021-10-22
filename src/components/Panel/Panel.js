@@ -28,9 +28,9 @@ function Panel(){
           )
         })}
       </div>
-      <div className="pa-button" onClick={() =>{sendSignal("moduleL")}}>ModuleL</div>
-      <div className="pa-button" onClick={() =>{sendSignal("moduleS")}}>ModuleS</div>
-      <div className="pa-button" onClick={() =>{sendSignal("moduleXL")}}>ModuleXL</div>
+      <div className="pa-button" onClick={() =>{sendSignal("moduleL")}}>Spawn ModuleL</div>
+      <div className="pa-button" onClick={() =>{sendSignal("moduleS")}}>Spawn ModuleS</div>
+      <div className="pa-button" onClick={() =>{sendSignal("moduleXL")}}>Spawn ModuleXL</div>
     </div>
   );
 }

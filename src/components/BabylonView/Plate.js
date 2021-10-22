@@ -1,19 +1,25 @@
+import * as BABYLON from 'babylonjs';
+
 class Plate {
-    constructor(assetsManager, name, scale) {
+    constructor(assetsManager, shadowGenerator) {
         this.assetsManager = assetsManager;
-        this.path = "http://localhost:5000/babylon/plate.glb";
-        this.name = name;
-        this.scale = scale;
+        this.shadowGenerator = shadowGenerator;
 
         this.loadMesh();
     }
 
     loadMesh() {
-        let plateTask = this.assetsManager.addMeshTask("", "", "", this.path);
+        let plateTask = this.assetsManager.addMeshTask("", "", "", "http://localhost:5000/babylon/plate.glb");
         plateTask.onSuccess = (task) => {     
             let plate = task.loadedMeshes[0];
-            plate.scaling = this.scale;
-            plate.name = this.name;
+            plate.scaling = new BABYLON.Vector3(1000,1000,1000);
+            plate.name = "Plate";
+            plate.getChildMeshes().forEach(mesh => {
+                mesh.receiveShadows = true;
+                this.shadowGenerator.getShadowMap().renderList.push(mesh);
+                mesh.isPickable = false;
+            });
+           
         }    
     }
 }

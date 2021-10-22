@@ -1,9 +1,11 @@
 import * as BABYLON from 'babylonjs';
 
 class Component {
-    constructor(assetsManager, motilePart) {
+    constructor(scene, assetsManager, shadowGenerator, motilePart) {
+        this.scene = scene;
         this.assetsManager = assetsManager;
-        
+        this.shadowGenerator = shadowGenerator;
+
         let data = motilePart["3DData"]
         this.path = data.path;
         this.name = motilePart.name;;
@@ -28,12 +30,45 @@ class Component {
         this.instances++;
         let parent = new BABYLON.TransformNode(this.name+"_"+this.instances);
         parent.position = new BABYLON.Vector3(-80,0,0);
+
+        var boxCollider = BABYLON.MeshBuilder.CreateBox("Collider", {height: 3, width: 47, depth: 38});
+        boxCollider.position.y = 1.5;
+        boxCollider.visibility = 0;
+        boxCollider.parent = parent;
+
         this.mesh.getChildMeshes().forEach(mesh => {
             let clone = mesh.createInstance(mesh.name+"_"+this.instances);
             clone.scaling = new BABYLON.Vector3(...this.scale);
             clone.parent = parent;
+            clone.sourceMesh.receiveShadows = true;
+            this.shadowGenerator.getShadowMap().renderList.push(clone);
         });
+
+        // Hover-over animation
+        var ease = new BABYLON.CubicEase();
+        boxCollider.actionManager = new BABYLON.ActionManager(this.scene);
+        boxCollider.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger,() => {  
+            BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30,8, parent.position.y, 3, 0, ease);
+        }));
+
+        boxCollider.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger,() => {
+            BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30,8, parent.position.y, 0, 0, ease);
+        }));
+
+        // Physics
+        // var boxCollider = BABYLON.MeshBuilder.CreateBox(this.mesh.name+"_Collider", {height: 3, width: 47, depth: 38});
+        // boxCollider.position.y = 1.5;
+        // boxCollider.isVisible = false;
+        // boxCollider.parent = parent;
+
+        // var physicsRoot = new BABYLON.Mesh("physicsRoot", this.scene);
+        // physicsRoot.addChild(parent);
+        // physicsRoot.position.y = 40;
+
+        // boxCollider.physicsImpostor = new BABYLON.PhysicsImpostor(boxCollider, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0.1 }, this.scene);
+        // physicsRoot.physicsImpostor = new BABYLON.PhysicsImpostor(physicsRoot, BABYLON.PhysicsImpostor.NoImpostor, { mass: 200 }, this.scene);
     }
+
 }
 
 export default Component;

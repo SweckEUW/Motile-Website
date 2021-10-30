@@ -9,7 +9,7 @@ class Plate {
     }
 
     loadMesh() {
-        let plateTask = this.assetsManager.addMeshTask("", "", "", "http://localhost:5000/babylon/plate.glb");
+        let plateTask = this.assetsManager.addMeshTask("", "", "", "http://localhost:5000/MotileParts/Models/plate.glb");
         plateTask.onSuccess = (task) => {     
             let plate = task.loadedMeshes[0];
             plate.scaling = new BABYLON.Vector3(1000,1000,1000);

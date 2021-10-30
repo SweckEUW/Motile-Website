@@ -9,8 +9,8 @@ import Head from './components/Home/Head';
 function App() {
   return (
     <div className="App">
-      <Login/>
-      <BlenderRendering/>
+      {/* <Login/> */}
+      {/* <BlenderRendering/> */}
       <Panel/>
       <BabylonView/>
     {/* <Navbar/>

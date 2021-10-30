@@ -2,8 +2,8 @@ import './BabylonView.css';
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
 import * as Materials from 'babylonjs-materials';
-import * as cannon from "cannon";
-import { CannonJSPlugin } from "babylonjs";
+// import * as cannon from "cannon";
+// import { CannonJSPlugin } from "babylonjs";
 import React, {  useEffect } from 'react';
 import Plate from './Plate';
 import Component from './Component';
@@ -32,7 +32,8 @@ function BabylonView(){
     // ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, friction: 0.5, restitution: 0.7 }, scene);
     
     // init camera
-    let camera = new BABYLON.ArcRotateCamera("Camera", 0.8, 1.1, 250,new BABYLON.Vector3(0,0,0),scene); 
+    let camera = new BABYLON.ArcRotateCamera("Camera", -1, 1, 300,new BABYLON.Vector3(20,0,50),scene); 
+    camera.fov = 0.8
 		camera.attachControl(myRef.current);
 
     // Set up Shadows

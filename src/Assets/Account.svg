@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <clipPath id="clip-Web_1920_1">
+      <rect width="32" height="32"/>
+    </clipPath>
+  </defs>
+  <g id="Web_1920_1" data-name="Web 1920 – 1" clip-path="url(#clip-Web_1920_1)">
+    <rect width="32" height="32" fill="#fff"/>
+    <g id="account_circle_black_24dp" transform="translate(-2.827 -2.827)">
+      <path id="Pfad_133" data-name="Pfad 133" d="M0,0H37.827V37.827H0Z" fill="none"/>
+      <path id="Pfad_134" data-name="Pfad 134" d="M17.761,2A15.761,15.761,0,1,0,33.522,17.761,15.767,15.767,0,0,0,17.761,2ZM9.991,27.659c.678-1.418,4.807-2.805,7.77-2.805s7.108,1.387,7.77,2.805a12.491,12.491,0,0,1-15.54,0Zm17.794-2.285C25.531,22.631,20.062,21.7,17.761,21.7s-7.77.93-10.024,3.672a12.609,12.609,0,1,1,20.048,0ZM17.761,8.3a5.516,5.516,0,1,0,5.516,5.516A5.5,5.5,0,0,0,17.761,8.3Zm0,7.881a2.364,2.364,0,1,1,2.364-2.364A2.361,2.361,0,0,1,17.761,16.185Z" transform="translate(1.152 1.152)"/>
+    </g>
+  </g>
+</svg>

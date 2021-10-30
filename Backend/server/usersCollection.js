@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt"
 import nodemailer from "nodemailer"
+import ConfigsCollection from "./configsCollection.js"; 
 
 let users;
 
@@ -84,7 +85,9 @@ export default class usersCollection{
             subject : "Motile - E-Mail Bestätigen",
             html : "E-Mail verifizieren: <a href=" + link + ">" + link + "</a>"
         } 
-        
+
+        //generate a configs collection for a new user
+        ConfigsCollection.addConfigsToUser(newUser);
         
         try {
             await transporter.sendMail(mailOptions);
@@ -108,6 +111,5 @@ export default class usersCollection{
         }else{
             response.send('<h1>E-Mail nicht bestätigt: Kein Nutzer gefunden!</h1>')
         }
-        
     }
 }

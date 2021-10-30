@@ -37,6 +37,7 @@ function Panel(){
     <div className="Panel">
       <div id="swiper-pagination"/>
 
+      {/* MotilePart Icons */}
       <div className="mp-icons">
         {motileParts.map((motilePart,index) =>{return(
           <div key={index} className="mp-icon">
@@ -44,17 +45,34 @@ function Panel(){
           </div>
         )})}
       </div>
-
+      
       <div id="mySwiper" className="swiper">
         <div className="swiper-wrapper">
+          {motileParts.map((motilePart,index) =>{return(
+            <div key={index} className="swiper-slide">
 
-        {motileParts.map((motilePart,index) =>{return(
-          <div key={index} className="swiper-slide">
-            <h1>{motilePart.name}</h1>
-            <div className="pa-button" onClick={() =>{sendSignal(motilePart.name)}}>{'Spawn ' + motilePart.name}</div>
-          </div>
-        )})}
+              {/* Info Panel */}
+              <div className="mp-info">
+                <div className="mp-info-left">
+                  <div className="mp-name">{motilePart.name}</div>
+                  <div className="mp-price">{motilePart.metaData.price}</div>
+                  {motilePart.metaData.colorways.map((colorway,index) =>{return(
+                    <div key={index} className="mp-dot" style={{background: colorway}}/>
+                  )})}
+                </div>
+                
+                <div className="mp-info-right">
+                  <img className="mp-thumbnail" src={motilePart.metaData.thumbnail} alt=""/>
+                </div>
+              </div>
 
+              <div className="mp-description">{motilePart.metaData.description}</div>
+
+              {/* Spawn Button */}
+              <div className="pa-button" onClick={() =>{sendSignal(motilePart.name)}}>Einbauen</div>
+        
+            </div>
+          )})}
         </div>
       </div>
     </div>

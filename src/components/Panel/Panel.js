@@ -40,7 +40,7 @@ function Panel(){
       <div className="mp-icons">
         {motileParts.map((motilePart,index) =>{return(
           <div key={index} className="mp-icon">
-            <img  className="mp-icon-img" src={motilePart.metaData.icon} alt=""/>
+            <img className="mp-icon-img" src={motilePart.metaData.icon} alt=""/>
           </div>
         )})}
       </div>

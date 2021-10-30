@@ -2,8 +2,9 @@
     position: absolute;
     right: 50px;
     top: 5%;
+    margin-top: 40px;
     width: 450px;
-    height: 90%;
+    height:calc(90% - 40px);
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
     background: white;
     overflow: hidden;

@@ -8,15 +8,15 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="nav-logo-container">
-                <img src={Logo} class="nav-img" alt="" />
+                <img src={Logo} className="nav-img" alt="" />
             </div>
             
             <div className="nav-links">
                 <div className="nav-shopping-cart">
-                    <img src={Cart} class="nav-img"  alt="" />
+                    <img src={Cart} className="nav-img"  alt="" />
                 </div>
                 <div className="nav-account">
-                    <img src={Account} class="nav-img"  alt="" />
+                    <img src={Account} className="nav-img"  alt="" />
                 </div>
             </div>
         </nav>

@@ -14,17 +14,22 @@
 .mp-icons{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .mp-icon{
     margin: 20px;
+    width: 30px;
     display: inline-block;
+    transition: .4s height ease, .4s opacity ease;
 }
 .mp-icon-img{
-    height: 20px;
+    height: 100%;
+    object-fit: contain;
 }
 
 .swiper{
     height: 100%;
+    z-index: 0 !important;
 }
 .mp-info{
     height: 200px;
@@ -59,14 +64,12 @@
     margin: auto 20px;
 }
 .mp-thumbnail{
-    
+    width: 100%;
 }
 .mp-description{
     margin-top: 20px;
 }
-
-
-.pa-button{
+.mp-button{
     background-color: #000000;
     transition: background .3s ease;
     color: white;

@@ -5,6 +5,11 @@ import Cart from '../../Assets/Cart.svg'
 import Account from '../../Assets/Account.svg'
 
 const Navbar = () => {
+
+    function toggleLoginDialogue(){
+        document.dispatchEvent(new CustomEvent("toggleLoginDialogue"));
+    }
+
     return (
         <nav className="navbar">
             <div className="nav-logo-container">
@@ -15,7 +20,7 @@ const Navbar = () => {
                 <div className="nav-shopping-cart">
                     <img src={Cart} className="nav-img"  alt="" />
                 </div>
-                <div className="nav-account">
+                <div className="nav-account" onClick={() =>{toggleLoginDialogue()}}>
                     <img src={Account} className="nav-img"  alt="" />
                 </div>
             </div>

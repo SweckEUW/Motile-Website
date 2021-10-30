@@ -7,18 +7,23 @@ import 'swiper/modules/pagination/pagination.min.css'
 
 function Panel(){
   const [motileParts, setMotileParts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() =>{ 
     getMotileParts();
     
     // Works only with Timeout?
     setTimeout(() => {
-      new Swiper('#mySwiper',{
+      let swiper = new Swiper('#mySwiper',{
         modules: [Pagination],
+        spaceBetween: 50,
         pagination: {
           el: '#swiper-pagination',
           clickable: true,
         },
+      });
+      swiper.on('slideChange', () => {
+        setCurrentPage(swiper.activeIndex);
       });
     }, 0);
 
@@ -40,7 +45,10 @@ function Panel(){
       {/* MotilePart Icons */}
       <div className="mp-icons">
         {motileParts.map((motilePart,index) =>{return(
-          <div key={index} className="mp-icon">
+          <div key={index} className="mp-icon" style={{
+            opacity: index == currentPage ? '1' : '0.5',
+            height: index == currentPage ? '30px' : '15px'
+          }}>
             <img className="mp-icon-img" src={motilePart.metaData.icon} alt=""/>
           </div>
         )})}
@@ -69,7 +77,7 @@ function Panel(){
               <div className="mp-description">{motilePart.metaData.description}</div>
 
               {/* Spawn Button */}
-              <div className="pa-button" onClick={() =>{sendSignal(motilePart.name)}}>Einbauen</div>
+              <div className="mp-button" onClick={() =>{sendSignal(motilePart.name)}}>Einbauen</div>
         
             </div>
           )})}

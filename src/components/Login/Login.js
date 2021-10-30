@@ -1,6 +1,5 @@
 import './Login.css';
-import { FaSignInAlt } from 'react-icons/fa';
-import React, {useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import ServerRequest from '../../services/ServerRequest'
 import { CSSTransition } from 'react-transition-group';
 
@@ -18,6 +17,10 @@ function Login(){
     registerPW1: null,
     registerPW2: null
   });
+
+  useEffect(() => {
+    document.addEventListener("toggleLoginDialogue", toggleLoginDialogue);
+  }, []);
 
   function toggleLoginDialogue(){
     setLoginDialogueVisible(!loginDialogueVisible);
@@ -83,12 +86,6 @@ function Login(){
 
   return (
     <div className="Login">
-
-      {/* Login/Register Button */}
-      <div className="li-button" onClick={() =>{toggleLoginDialogue()}}>
-        <FaSignInAlt className="li-button-icon"/>
-      </div> 
-
       {/* Login/Register Dialogue */}
       <CSSTransition in={loginDialogueVisible} classNames="fade" timeout={400} unmountOnExit>
         <div className="li-dialogue" onClick={() =>{toggleLoginDialogue()}}>

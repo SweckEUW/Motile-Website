@@ -1,6 +1,7 @@
 import './Panel.css';
 import React, {useState ,useEffect} from 'react';
 import ServerRequest from '../../services/ServerRequest';
+import ComponentSelector from '../ComponentSelector/ComponentSelector'
 import Swiper , { Pagination } from 'swiper';
 import 'swiper/swiper.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
@@ -19,8 +20,9 @@ function Panel(){
         spaceBetween: 50,
         pagination: {
           el: '#swiper-pagination',
-          clickable: true,
+          clickable: true
         },
+        observer: true
       });
       swiper.on('slideChange', () => {
         setCurrentPage(swiper.activeIndex);
@@ -46,15 +48,15 @@ function Panel(){
       <div className="mp-icons">
         {motileParts.map((motilePart,index) =>{return(
           <div key={index} className="mp-icon" style={{
-            opacity: index == currentPage ? '1' : '0.5',
-            height: index == currentPage ? '30px' : '15px'
+            opacity: index === currentPage ? '1' : '0.5',
+            height: index === currentPage ? '30px' : '15px'
           }}>
             <img className="mp-icon-img" src={motilePart.metaData.icon} alt=""/>
           </div>
         )})}
       </div>
       
-      <div id="mySwiper" className="swiper">
+      <div id="mySwiper" className="swiper"> 
         <div className="swiper-wrapper">
           {motileParts.map((motilePart,index) =>{return(
             <div key={index} className="swiper-slide">
@@ -66,7 +68,7 @@ function Panel(){
                   <div className="mp-price">{motilePart.metaData.price}</div>
                   {motilePart.metaData.colorways.map((colorway,index) =>{return(
                     <div key={index} className="mp-dot" style={{background: colorway}}/>
-                  )})}
+                  )})} 
                 </div>
                 
                 <div className="mp-info-right">
@@ -76,8 +78,13 @@ function Panel(){
 
               <div className="mp-description">{motilePart.metaData.description}</div>
 
+              {motilePart.metaData.options.map((option, index) => {
+                return <ComponentSelector key={option.name} type={option.type} options={option.selections} heading={option.name}/>
+              })}
+
               {/* Spawn Button */}
               <div className="mp-button" onClick={() =>{sendSignal(motilePart.name)}}>Einbauen</div>
+
         
             </div>
           )})}

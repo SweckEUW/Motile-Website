@@ -1,0 +1,25 @@
+ul {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    list-style-type: none;
+    width: 79%;
+    margin: 25px auto 0 auto;
+    padding: 0;
+}
+
+ul li {
+    padding-top: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    cursor: pointer;
+}
+
+ul li:hover {
+    background-color: black;
+    color: white;
+}

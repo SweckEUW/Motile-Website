@@ -113,14 +113,14 @@ function BabylonView(){
     let currentMesh, startingPoint;
     
     var getGroundPosition = function () {
-      var pickinfo = scene.pick(scene.pointerX, scene.pointerY, function (mesh) { return mesh == ground; });
+      var pickinfo = scene.pick(scene.pointerX, scene.pointerY, function (mesh) { return mesh === ground; });
       return pickinfo.hit ? pickinfo.pickedPoint: null
     }
 
 
     var onPointerDown = function (evt) {
       var pickInfo = scene.pick(scene.pointerX, scene.pointerY);
-      if(pickInfo.hit && pickInfo.pickedMesh.name != "SkyBox" && pickInfo.pickedMesh.name != "Ground"){
+      if(pickInfo.hit && pickInfo.pickedMesh.name !== "SkyBox" && pickInfo.pickedMesh.name !== "Ground"){
         currentMesh = pickInfo.pickedMesh.parent;
         startingPoint = getGroundPosition(evt);
 

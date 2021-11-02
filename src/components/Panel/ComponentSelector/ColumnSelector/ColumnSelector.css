@@ -2,11 +2,13 @@ ul {
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    grid-gap: 24px;
+    gap: 24px;
     list-style-type: none;
     width: 79%;
-    margin: 25px auto 0 auto;
+    margin: 0 auto 0 auto;
     padding: 0;
+    flex-direction: row;
 }
 
 ul li {

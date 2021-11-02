@@ -1,20 +1,39 @@
 .Panel{
     position: absolute;
-    right: 50px;
+    left: 50px;
     top: 5%;
     margin-top: 40px;
-    width: 400px;
+    width: 480px;
     height:calc(90% - 40px);
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
-    background: #EEEEEE;
     overflow: hidden;
-    border-radius: 20px;
-    padding: 20px;
+    border-radius: 24px;
 }
 .swiper{
     height: 100%;
     z-index: 0 !important;
 }
-#swiper-pagination{
-    display: block;
+#swiper-pagination {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    z-index: 9;
+    bottom: unset;
+}
+
+.columnSelector {
+    font-family: 'AvantGarde';
+}
+
+.mp-settings {
+    height: 600px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.mp-settings::-webkit-scrollbar {
+    display: none;
 }

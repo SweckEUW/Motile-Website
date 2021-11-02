@@ -6,7 +6,7 @@ function Overview(){
   return (
     <div className="Overview">
 
-      <p>Übersicht</p>
+      <h2>Übersicht</h2>
      
     </div>
   );

@@ -3,7 +3,21 @@ body{
   height: 100vh;
   margin: 0;
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@font-face {
+  font-family: AvantGarde;
+  src: url(/src/Assets/Fonts/ITCAvantGardeStd-Demi.otf);
+  font-weight: demi;
+  font-style: normal;
+}
+@font-face {
+  font-family: AvantGarde;
+  src: url(/src/Assets/Fonts/ITCAvantGardeStd-Md.otf);
+  font-weight: medium;
+  font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');

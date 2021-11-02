@@ -2,18 +2,37 @@
     margin-top: 40px;
 }
 
+h2 {
+    font-family: 'AvantGarde';
+    font-size: 20px;
+    font-weight: 600;
+}
+
 h3 {
-    width: 90%; 
     text-align: center; 
-    border-bottom: 0.8px solid #bbbbbb; 
+    border-bottom: 1px solid #bbbbbb; 
     line-height: 0.1em;
-    margin: 10px auto 20px; 
-    font-size: 16px;
+    margin: 10px auto 30px; 
+    font-size: 18px;
     font-weight: 200;
     color: #6F6F70
+}
+
+
+h4 {
+    font-family: 'AvantGarde';
+    font-size: 19px;
+    font-weight: 100;
+    line-height: 24px;
+    margin: 0;
+    margin-bottom: 24px;
 }
 
 h3 span {
     background:#eee; 
     padding: 0 15px; 
+}
+.swiper-slide {
+    background-color: #eee;
+    border-radius: 24px;
 }

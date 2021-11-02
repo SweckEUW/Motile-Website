@@ -1,5 +1,5 @@
 .BackConfiguration{
-    width: 100%;
+    padding: 24px;
 }
 .mp-icons{
     display: flex;
@@ -23,7 +23,7 @@
     z-index: 0 !important;
 }
 .mp-info{
-    height: 200px;
+    height: 216px;
     border-radius: 20px;
     background-color: white;
     display: flex;
@@ -35,13 +35,20 @@
     text-align: left;
     font-weight: bold;
 }
+
+.mp-info-left * {
+    font-family: 'AVANTGARDE';
+}
+
 .mp-name{
-    font-size: 50px;
+    font-size: 40px;
     margin-bottom: 5px;
 }
 .mp-price{
     font-size: 20px;
-    margin-bottom: 20px;
+    font-weight: 300;
+    margin-bottom: 20px
+;
 }
 .mp-dot{
     border-radius: 50%;
@@ -59,6 +66,7 @@
 }
 .mp-description{
     margin-top: 20px;
+    text-align: left;
 }
 .mp-button{
     background-color: #000000;

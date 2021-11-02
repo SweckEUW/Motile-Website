@@ -49,7 +49,7 @@ function FrontConfiguration(){
   return (
     <div className="FrontConfiguration">
 
-      <p>Frontseite</p>
+      <h2>Frontseite</h2>
 
       {/* MotilePart Icons */}
       <div className="mp-icons">
@@ -83,16 +83,16 @@ function FrontConfiguration(){
                   <img className="mp-thumbnail" src={motilePart.metaData.thumbnail} alt=""/>
                 </div>
               </div>
+              <div className="mp-settings">
+                <div className="mp-description">{motilePart.metaData.description}</div>
 
-              <div className="mp-description">{motilePart.metaData.description}</div>
+                {motilePart.metaData.options.map((option, index) => {
+                  return <ComponentSelector key={option.name} type={option.type} options={option.selections} heading={option.name}/>
+                })}
 
-              {motilePart.metaData.options.map((option, index) => {
-                return <ComponentSelector key={option.name} type={option.type} options={option.selections} heading={option.name}/>
-              })}
-
-              {/* Spawn Button */}
-              <div className="mp-button" onClick={() =>{sendSignal(motilePart.name)}}>Einbauen</div>
-
+                {/* Spawn Button */}
+                <div className="mp-button" onClick={() =>{sendSignal(motilePart.name)}}>Einbauen</div>
+              </div>
             </div>
           )})}
 

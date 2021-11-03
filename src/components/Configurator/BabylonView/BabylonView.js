@@ -32,8 +32,7 @@ function BabylonView(){
     // ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, friction: 0.5, restitution: 0.7 }, scene);
     
     // init camera
-    let camera = new BABYLON.ArcRotateCamera("Camera", -1, 1, 300,new BABYLON.Vector3(20,0,50),scene); 
-    camera.fov = 0.8
+    let camera = new BABYLON.ArcRotateCamera("Camera", -1, 1, 200,new BABYLON.Vector3(60,0,30),scene); 
 		camera.attachControl(myRef.current);
 
     // Set up Shadows

@@ -7,8 +7,9 @@
     align-items: center;
 }
 .mp-icon{
-    margin: 20px;
-    width: 30px;
+    margin: 24px;
+    width: 24px;
+    height: 24px;
     display: inline-block;
     cursor: pointer;
     /* transition: .4s height ease, .4s opacity ease; */

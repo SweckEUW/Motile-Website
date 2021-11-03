@@ -55,9 +55,10 @@ function BackConfiguration(){
         {motileParts.map((motilePart,index) =>{return(
           <div key={index} className="mp-icon" onClick={() =>{changeSwiperPage(index)}} style={{
             opacity: index === currentPage ? '1' : '0.5',
-            height: index === currentPage ? '30px' : '15px'
+            /*height:  index === currentPage ? '30px' : '15px'*/
           }}>
-            <img className="mp-icon-img" src={motilePart.metaData.icon} alt=""/>
+            <span class="material-icons">{motilePart.metaData.icon}</span>
+            {/*<img className="mp-icon-img" src={motilePart.metaData.icon} alt=""/>*/}
           </div>
         )})}
       </div>

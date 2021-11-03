@@ -3,6 +3,7 @@ import React from 'react'
 import Logo from '../../Assets/Logo.svg'
 import Cart from '../../Assets/Cart.svg'
 import Account from '../../Assets/Account.svg'
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
 
@@ -13,7 +14,9 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="nav-logo-container">
-                <img src={Logo} className="nav-img" alt="" />
+                <Link to="/">
+                    <img src={Logo} className="nav-img" alt="" />
+                </Link>
             </div>
             
             <div className="nav-links">

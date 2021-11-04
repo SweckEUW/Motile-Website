@@ -85,7 +85,7 @@ function BabylonView(){
     initDragAndDrop(scene,ground);
     
     document.addEventListener("spawnComponent", spawnComponent);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function spawnComponent(e){
@@ -95,6 +95,7 @@ function BabylonView(){
 
   async function loadMotileParts(scene,shadowGenerator){
     let assetsManager = new BABYLON.AssetsManager(scene);
+    assetsManager.useDefaultLoadingScreen = false;
     assetsManager.onTaskErrorObservable.add(function(task) {
       console.log('Task failed', task.errorObject.message, task.errorObject.exception);
     });

@@ -38,7 +38,7 @@ function BackConfiguration(){
 
   async function getMotileParts(){
     let motilePartsResponse = await ServerRequest.getAllMotileParts();
-    setMotileParts(motilePartsResponse.data.filter(part => part.side == "Back"))
+    setMotileParts(motilePartsResponse.data.filter(part => part.side === "Back"))
   }
 
   function sendSignal(name){
@@ -57,7 +57,7 @@ function BackConfiguration(){
             opacity: index === currentPage ? '1' : '0.5',
             /*height:  index === currentPage ? '30px' : '15px'*/
           }}>
-            <span class="material-icons">{motilePart.metaData.icon}</span>
+            <span className="material-icons">{motilePart.metaData.icon}</span>
             {/*<img className="mp-icon-img" src={motilePart.metaData.icon} alt=""/>*/}
           </div>
         )})}

@@ -20,6 +20,7 @@ function Login(){
 
   useEffect(() => {
     document.addEventListener("toggleLoginDialogue", toggleLoginDialogue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function toggleLoginDialogue(){

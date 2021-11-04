@@ -39,7 +39,7 @@ function FrontConfiguration(){
 
   async function getMotileParts(){
     let motilePartsResponse = await ServerRequest.getAllMotileParts();
-    setMotileParts(motilePartsResponse.data.filter(part => part.side == "Front"))
+    setMotileParts(motilePartsResponse.data.filter(part => part.side === "Front"))
   }
 
   function sendSignal(name){

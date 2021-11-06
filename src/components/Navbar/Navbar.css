@@ -6,13 +6,11 @@
     background-color: white;
     width: 100%;
 }
-
 .nav-logo-container {
     width: 8em;
     padding: 0.9em 0 0.45em 1.8em;
     cursor: pointer;
 }
-
 .nav-img {
     max-width: 100%;
     max-height: 100%;
@@ -24,14 +22,149 @@
     align-items: center;
     margin-right: 2.5em;
 }
-
-.nav-shopping-cart {
-    width: 20px;
+.nav-shopping{
     cursor: pointer;
-    margin-right: 2.8em;
+    font-size: 32px;
 }
-
 .nav-account{
-    width: 32px;
+    font-size: 32px;
+}
+.nav-account-container{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: 20px;
+    transition: background .4s ease;
+    margin-left: 20px;
+}
+.nav-account-container:hover{
+    background: rgb(202, 202, 202);
+}
+.nav-name{
+    margin-left: 10px;
+    line-height: 35px;
+}
+
+.nav-dropDown{
+    position: absolute;
+    top: 75px;
+    right: 1em;
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: left;
+}
+.nav-dropDown-links{
+    padding: 10px 10px;
+    background: #EEEEEE;
+}
+.nav-dropDown-link{
+    border-radius: 20px;
+    display: block;
+    padding: 8px 20px;
+    margin: 4px 0px;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    transition: .2s background ease;
     cursor: pointer;
 }
+.nav-dropDown-link:hover{
+    background: white;
+}
+.nav-dropDown-hr{
+    border-color: black;
+    width: 90%;
+}
+.nav-dropDown-icon{
+    margin-right: 20px;
+}
+.nav-user{
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    flex-direction: row;
+    background: white;
+    padding: 20px 30px;
+}
+.nav-user-img{
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+.nav-user-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.nav-user-name{
+    font-size: 40px;
+}
+.nav-user-email{
+    display: block;
+    font-size: 16px;
+}
+
+/* Transitions */
+.slide-down-enter{
+    max-height: 0;
+}
+.slide-down-enter-active{
+    max-height: 400px;
+    transition: max-height .4s ease;
+}
+.slide-down-exit{
+    max-height: 400px;
+}
+.slide-down-exit-active{
+    max-height: 0;
+    transition: max-height .4s ease;
+} 
+
+.slide-right-enter{
+    max-width: 0;
+}
+.slide-right-enter-active{
+    max-width: 800px;
+    transition: max-width .4s ease;
+}
+.slide-right-exit{
+    max-width: 800px;
+}
+.slide-right-exit-active{
+    max-width: 0;
+    transition: max-width .4s ease;
+} 
+
+
+/* Triangle CSS */
+.nav-dropDown-arrow {
+    margin-top: 10px;
+	margin-left: 80%;
+	background-color: white;
+}
+.nav-dropDown-arrow:before,
+.nav-dropDown-arrow:after {
+	content: '';
+	position: absolute;
+	background-color: inherit;
+}
+.nav-dropDown-arrow,
+.nav-dropDown-arrow:before,
+.nav-dropDown-arrow:after {
+	width:  20px;
+	height: 20px;
+	border-top-right-radius: 30%;
+}
+
+.nav-dropDown-arrow {
+	transform: rotate(-60deg) skewX(-30deg) scale(1,.866);
+}
+.nav-dropDown-arrow:before {
+	transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%);
+}
+.nav-dropDown-arrow:after {
+	transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
+}
+

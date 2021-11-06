@@ -34,16 +34,18 @@ MongoClient.connect(
 })
 
 app.get('/MotileParts', motilePartsCollection.getMotileParts);
-app.get('/Login', UsersCollection.login);
 app.get('/VerifyEmail', UsersCollection.verifyUser);
 
-app.post('/Blender', BlenderJobs.render);
+app.post('/Login', UsersCollection.login);
+app.post('/LoginJWT', Middleware.verifyJWT, UsersCollection.loginJWT);
 app.post('/Register', UsersCollection.addUser);
+app.post('/User/Configs', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
+app.post('/User/Data', Middleware.verifyJWT, UsersCollection.getUserData);
+app.post('/Blender', BlenderJobs.render);
 
-// static assets
+// static assets - public folder
 let filename = fileURLToPath(import.meta.url);
 let dirname = path.dirname(filename);
-
 app.use(express.static(path.join(dirname, 'public')));
 
 export default app

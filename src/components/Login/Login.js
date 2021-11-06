@@ -1,11 +1,13 @@
 import './Login.css';
-import React, {useEffect,useState} from 'react';
+import React, {useContext,useEffect,useState} from 'react';
 import ServerRequest from '../../services/ServerRequest'
-import { CSSTransition } from 'react-transition-group';
+import {CSSTransition} from 'react-transition-group';
+import {Context} from '../../Store'
 
 function Login(){
   const [loginDialogueVisible, setLoginDialogueVisible] = useState(false);
   const [showRegister, toggleRegister] = useState(false);
+  const [state, setState] = useContext(Context);
 
   const [errorMessageTree, setErrorMessageTree] = useState({
     loginError: null,
@@ -13,16 +15,27 @@ function Login(){
     loginPW: null,
 
     registerError: null,
+    registerName: null,
     registerEmail: null,
     registerPW1: null,
     registerPW2: null
   });
 
   useEffect(() => {
-    document.addEventListener("toggleLoginDialogue", toggleLoginDialogue);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    tryJWTLogin();
+  },[])
 
+  // Try logging in with jwt token
+  async function tryJWTLogin(){
+    let loginJWTResponse = await ServerRequest.loginJWT();
+    if(loginJWTResponse.data.success){
+      setState(prevState => ({...prevState,loggedIn: true}));
+      console.log(loginJWTResponse.data.message)
+    }
+     
+  }
+  
+  document.addEventListener("toggleLoginDialogue", toggleLoginDialogue);
   function toggleLoginDialogue(){
     setLoginDialogueVisible(!loginDialogueVisible);
   }
@@ -43,40 +56,51 @@ function Login(){
   async function login(){
     resetErrorMessageTree();
     let email = document.getElementById("login-email").value;
-    let pw = document.getElementById("login-pw").value;
+    let password = document.getElementById("login-pw").value;
     
-    if(!email){
+    if(!email)
       setErrorMessageTree(prevState => ({...prevState,loginEmail: 'Bitte eine E-Mail angeben'}));
-    }else if(!pw){
+    if(!password)
       setErrorMessageTree(prevState => ({...prevState,loginPW: 'Bitte ein Passwort angeben'}));
-    }else{
+    
+    if(email && password){
       // call to server to login
-      let loginResponse = await ServerRequest.login(email,pw);
+      let loginResponse = await ServerRequest.login({email,password});
       setErrorMessageTree(prevState => ({...prevState,loginError: loginResponse.data.message}));
       
       if(loginResponse.data.success){
-        // TODO: do something after login successfull
-        console.log(loginResponse.data);
-      } 
+        localStorage.setItem('token', loginResponse.data.token);
+        setState(prevState => ({...prevState,loggedIn: true}));
+        console.log(loginResponse.data.message)
+        setTimeout(() => {
+          setLoginDialogueVisible(false);
+        }, 1500);
+      }
+        
     }
   }
 
   async function register(){
     resetErrorMessageTree();
+    let name = document.getElementById("register-name").value;
     let email = document.getElementById("register-email").value;
     let pw1 = document.getElementById("register-pw1").value;
     let pw2 = document.getElementById("register-pw2").value;
     
-    if(!email){
+    if(!name)
+      setErrorMessageTree(prevState => ({...prevState,registerName: 'Bitte einem Namen angeben'}));
+    if(!email)
       setErrorMessageTree(prevState => ({...prevState,registerEmail: 'Bitte eine E-Mail angeben'}));
-    }else if(!pw1){
+    if(!pw1)
       setErrorMessageTree(prevState => ({...prevState,registerPW1: 'Bitte ein Passwort angeben'}));
-    }else if(pw1 !== pw2){
+    if(pw1 !== pw2)
       setErrorMessageTree(prevState => ({...prevState,registerPW2: 'Passwörter stimmen nicht überein'}));
-    }else{
-      // call to server to create user
-      let createUserResponse = await ServerRequest.createUser({email: email, password: pw1})
-      setErrorMessageTree(prevState => ({...prevState,registerError: createUserResponse.data.message}));   
+    
+    if(name && email && pw1 && pw1 == pw2){
+      // call to server to register
+      let registerResponse = await ServerRequest.register({name: name, email: email, password: pw1})
+      setErrorMessageTree(prevState => ({...prevState,registerError: registerResponse.data.message}));  
+      console.log(registerResponse.data.message) 
     }
   }
 
@@ -93,20 +117,22 @@ function Login(){
 
               <div className="li-input-info">
                 <p className="li-form-title">E-Mail</p>
-                { errorMessageTree.loginEmail != null ? <p className="li-input-err">{errorMessageTree.loginEmail}</p> : null }
+                <CSSTransition in={errorMessageTree.loginEmail != null} classNames="fade" timeout={400} unmountOnExit>
+                  <p className="li-input-err">{errorMessageTree.loginEmail}</p>
+                </CSSTransition>
               </div>
               <input id="login-email" className="li-form-input" type="text"/>
 
               <div className="li-input-info">
                 <p className="li-form-title">Passwort</p>
-                { errorMessageTree.loginPW ? <p className="li-input-err">{errorMessageTree.loginPW}</p> : null }
+                <CSSTransition in={errorMessageTree.loginPW != null} classNames="fade" timeout={400} unmountOnExit>
+                  <p className="li-input-err">{errorMessageTree.loginPW}</p>
+                </CSSTransition>
               </div>
               <input id="login-pw" className="li-form-input" type="password"/>
 
-              <CSSTransition in={errorMessageTree.loginError != null} classNames="fade" timeout={400} unmountOnExit>
-                <div className="li-error">
-                  <p>{errorMessageTree.loginError}</p>
-                </div>
+              <CSSTransition in={errorMessageTree.loginError != null} classNames="slide-up" timeout={400} unmountOnExit>
+                <div className="li-error">{errorMessageTree.loginError}</div>
               </CSSTransition>
 
               <button className="li-form-button" onClick={() =>{login()}}>Login</button>
@@ -119,27 +145,39 @@ function Login(){
               <h1 className="li-title">Registrieren</h1>
 
               <div className="li-input-info">
+                <p className="li-form-title">Name</p>
+                <CSSTransition in={errorMessageTree.registerName != null} classNames="fade" timeout={400} unmountOnExit>
+                  <p className="li-input-err">{errorMessageTree.registerName}</p>
+                </CSSTransition>
+              </div>  
+              <input id="register-name" className="li-form-input" type="text"/>
+
+              <div className="li-input-info">
                 <p className="li-form-title">E-Mail</p>
-                { errorMessageTree.registerEmail ? <p className="li-input-err">{errorMessageTree.registerEmail}</p> : null }
+                <CSSTransition in={errorMessageTree.registerEmail != null} classNames="fade" timeout={400} unmountOnExit>
+                  <p className="li-input-err">{errorMessageTree.registerEmail}</p>
+                </CSSTransition>
               </div>  
               <input id="register-email" className="li-form-input" type="text"/>
 
               <div className="li-input-info">
                 <p className="li-form-title">Passwort</p>
-                { errorMessageTree.registerPW1 ? <p className="li-input-err">{errorMessageTree.registerPW1}</p> : null }
+                <CSSTransition in={errorMessageTree.registerPW1 != null} classNames="fade" timeout={400} unmountOnExit>
+                  <p className="li-input-err">{errorMessageTree.registerPW1}</p>
+                </CSSTransition>
               </div>
               <input id="register-pw1" className="li-form-input" type="password"/>
 
               <div className="li-input-info">
                 <p className="li-form-title">Passwort wiederholen</p>
-                { errorMessageTree.registerPW2 ? <p className="li-input-err">{errorMessageTree.registerPW2}</p> : null }
+                <CSSTransition in={errorMessageTree.registerPW2 != null} classNames="fade" timeout={400} unmountOnExit>
+                  <p className="li-input-err">{errorMessageTree.registerPW2}</p>
+                </CSSTransition>
               </div>
               <input id="register-pw2" className="li-form-input" type="password"/>
 
-              <CSSTransition in={errorMessageTree.registerError != null} classNames="fade" timeout={400} unmountOnExit>
-                <div className="li-error">
-                  <p>{errorMessageTree.registerError}</p>
-                </div>
+              <CSSTransition in={errorMessageTree.registerError != null} classNames="slide-up" timeout={400} unmountOnExit>
+                <div className="li-error">{errorMessageTree.registerError}</div>
               </CSSTransition>
 
               <button className="li-form-button" onClick={() =>{register()}}>Registrieren</button>

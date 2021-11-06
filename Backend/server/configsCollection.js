@@ -1,4 +1,6 @@
 import { ObjectId } from "bson";
+import { response } from "express";
+import jwt from "jsonwebtoken"
 
 let configs;
 
@@ -23,30 +25,33 @@ export default class configsCollection {
         let template = await configs.insertOne({
             configs: []
         });
-        const id = template.insertedId.toHexString();
         
-        console.log("unique identifier", id);
-        user.configs = id;
-        this.addConfig(user, {
-            config_id: "324789",
+        user.configs = template.insertedId.toHexString();
+
+        await this.addConfig(user, {
             cpu: "Snapdragon 888+",
             camera: "C7 Anamorphic",
             dac: "Fiio K3 Pro",
             battery:"Motile XCharge Premium"
+        }),
+
+        await this.addConfig(user, {
+            cpu: "MediaTek Dimensity",
+            camera: "Pro",
+            dac: "Fiio K3 Pro",
+            battery:"3.500 mAh"
         }) 
     }
 
     static async addConfig(user, config) {
-        await configs.findOne({_id: ObjectId.createFromHexString(user.configs)}, async function (err, document){
-            if (err) {
-                console.log("Couldnt find the config collection for the respective user");
-            }
-
-            const updateDocument = {
-                $push: { "configs": config }
-            };
-
-            const result = await configs.updateOne(document, updateDocument);
-        });
+        let newConfig = await configs.find({"_id": {$eq: ObjectId.createFromHexString(user.configs)}}).toArray();
+        if(newConfig[0])
+            await configs.updateOne(newConfig[0], {$push: { "configs": config }});      
     }
+
+    static async getConfig(user) {
+        let config = await configs.find({"_id": {$eq: ObjectId.createFromHexString(user.configs)}}).toArray();
+        return config[0];
+    }
+
 }

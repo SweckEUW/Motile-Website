@@ -22,12 +22,12 @@ export default class usersCollection{
     }
 
     static async login(request, response) {
-        let email = request.query.email;
-        let password = request.query.password;
+        let email = request.body.email;
+        let password = request.body.password;
         
         // Look for user with same E-Mail
         let user = await users.find({"email": {$eq: email}}).toArray();
-        if(user.length){
+        if(user[0]){
             let validation = await bcrypt.compare(password,user[0].password);
             if(validation){
                 if(!user[0].active){
@@ -51,10 +51,21 @@ export default class usersCollection{
         }
     }
 
+    static async loginJWT(request, response) {
+        let decoded = jwt.decode(request.body.token);
+
+        // Look for user with same E-Mail
+        let user = await users.find({"email": {$eq: decoded.email}}).toArray();
+        if(user[0])
+            response.json({success: true , message: 'Nutzer gefunden, JWT-Token Anmeldung erfolgreich'})
+        else
+            response.json({success: false , message: 'Kein Nutzer mit dieser E-Mail gefunden'})
+    }
+
     static async addUser(request,response) {
         let newUser = request.body;
         let user = await users.find({"email": {$eq: newUser.email}}).toArray();
-        console.log(user);
+
         if(user[0]){
             console.log("Registrierung nicht erfolgreich!")
             response.json({success: false , message: 'Registrierung nicht erfolgreich, Nutzer existiert bereits!'})
@@ -114,6 +125,34 @@ export default class usersCollection{
             response.send('<h1>E-Mail bestätigt: ' + user[0].email + '</h1>')
         }else{
             response.send('<h1>E-Mail nicht bestätigt: Kein Nutzer gefunden!</h1>')
+        }
+    }
+
+    static async getUserData(request, response) {
+        let decoded = jwt.decode(request.body.token);
+
+        // Look for user with same E-Mail
+        let user = await users.find({"email": {$eq: decoded.email}}).toArray();
+        if(user[0])
+            response.json({success: true , userData: {name: user[0].name, email: user[0].email}})
+        else
+            response.json({success: false , message: 'Kein Nutzer mit dieser E-Mail gefunden'})
+    }
+
+    static async getConfigFromUser(request, response) {
+        let decoded = jwt.decode(request.body.token);
+
+        // Look for user with same E-Mail
+        let user = await users.find({"email": {$eq: decoded.email}}).toArray();
+        if(user[0]){
+            let config = await ConfigsCollection.getConfig(user[0]);
+            if(config){
+                response.json({success: true , message: 'Konfigurationen gefunden', configs: config})
+            }else{
+                response.json({success: false ,  message: 'Keine Konfigurationen gefunden'})
+            }
+        }else{
+            response.json({success: false , message: 'Kein Nutzer mit dieser E-Mail gefunden'})
         }
     }
 }

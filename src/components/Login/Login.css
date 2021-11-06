@@ -44,6 +44,7 @@
 }
 .li-title{
     margin: 0;
+    margin-bottom: 30px;
 }
 .li-login-container{
     flex: 0 0 100%;
@@ -120,4 +121,19 @@
 .fade-exit-active {
     opacity: 0;
     transition: opacity .4s;
+} 
+
+.slide-up-enter {
+    max-height: 0;
+}
+.slide-up-enter-active {
+    max-height: 200px;
+    transition: max-height .4s;
+}
+.slide-up-exit {
+    max-height: 200px;
+}
+.slide-up-exit-active {
+    max-height: 0px;
+    transition: max-height .4s;
 } 

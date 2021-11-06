@@ -7,6 +7,7 @@ import BlenderJobs from "./blenderJobs.js"
 import path from 'path';
 import { fileURLToPath } from 'url';
 import ConfigsCollection from "./configsCollection.js"
+import Middleware from "./middleware.js"
 
 const app = express();
 
@@ -33,11 +34,11 @@ MongoClient.connect(
 })
 
 app.get('/MotileParts', motilePartsCollection.getMotileParts);
-app.get('/Users', UsersCollection.getUser);
-app.get('/Verify', UsersCollection.verifyUser);
+app.get('/Login', UsersCollection.login);
+app.get('/VerifyEmail', UsersCollection.verifyUser);
 
 app.post('/Blender', BlenderJobs.render);
-app.post('/Users', UsersCollection.addUser);
+app.post('/Register', UsersCollection.addUser);
 
 // static assets
 let filename = fileURLToPath(import.meta.url);

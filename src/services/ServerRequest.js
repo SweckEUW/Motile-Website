@@ -6,21 +6,12 @@ class ServerRequest{
         return await AxiosHelper.get('/MotileParts');
     }
 
-    // Users
-    async getAllUsers(){
-        return await AxiosHelper.get('/Users');
-    }
-
-    async validateEmail(email) {
-        return await AxiosHelper.get('/Users?email='+email);
-    }
-
     async login(email,password) {
-        return await AxiosHelper.get('/Users?email='+email+'&password='+password);
+        return await AxiosHelper.get('/Login?email='+email+'&password='+password);
     }
 
     async createUser(user) {
-        return await AxiosHelper.post('/Users', user);
+        return await AxiosHelper.post('/Register', user);
     }
 
     // BlenderRendering

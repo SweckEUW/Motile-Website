@@ -56,6 +56,7 @@ function Login(){
       
       if(loginResponse.data.success){
         // TODO: do something after login successfull
+        console.log(loginResponse.data);
       } 
     }
   }
@@ -73,15 +74,9 @@ function Login(){
     }else if(pw1 !== pw2){
       setErrorMessageTree(prevState => ({...prevState,registerPW2: 'Passwörter stimmen nicht überein'}));
     }else{
-      // call to server if user name is taken
-      const userExcist = await ServerRequest.validateEmail(email);
-      if(userExcist.data.success){
-        setErrorMessageTree(prevState => ({...prevState,registerEmail: 'Die E-Mail wurde bereits registriert'}));     
-      }else{
-        // call to server to create user
-        let createUserResponse = await ServerRequest.createUser({email: email, password: pw1})
-        setErrorMessageTree(prevState => ({...prevState,registerError: createUserResponse.data.message}));   
-      } 
+      // call to server to create user
+      let createUserResponse = await ServerRequest.createUser({email: email, password: pw1})
+      setErrorMessageTree(prevState => ({...prevState,registerError: createUserResponse.data.message}));   
     }
   }
 

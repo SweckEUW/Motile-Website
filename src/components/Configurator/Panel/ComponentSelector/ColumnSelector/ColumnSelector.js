@@ -17,7 +17,7 @@ const ColumnSelector = (props) => {
 
         if (longest.length >= 6) {
             const val = longest.length - 6; 
-            return val * 10;
+            return val * 14;
         } 
 
         return 0;
@@ -27,7 +27,9 @@ const ColumnSelector = (props) => {
         <div className="columnSelector">
             <ul>
                 {options.map(item => (
-                    <li style={itemSize} key={item}>{item}</li>
+                    <li style={itemSize} key={item}>
+                        {item}
+                    </li>
                 ))}
             </ul>
         </div>

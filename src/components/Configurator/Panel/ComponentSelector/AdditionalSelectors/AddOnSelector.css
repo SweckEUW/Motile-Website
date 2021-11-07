@@ -1,0 +1,25 @@
+.opt-row {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.opt-btn {
+    margin: auto 0;
+}
+
+.opt-btn-build {
+    padding: 1px 30px;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 200;
+    text-align: center;
+    cursor: pointer;
+}
+
+.opt-btn-build:hover {
+    color: white;
+    background-color: black;
+}

@@ -5,6 +5,9 @@
     justify-content: space-between;
     background-color: white;
     width: 100%;
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.2));
+    z-index: 99;
+    user-select: none;
 }
 .nav-logo-container {
     width: 8em;

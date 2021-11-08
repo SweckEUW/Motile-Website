@@ -96,7 +96,7 @@ function Login(){
     if(pw1 !== pw2)
       setErrorMessageTree(prevState => ({...prevState,registerPW2: 'Passwörter stimmen nicht überein'}));
     
-    if(name && email && pw1 && pw1 == pw2){
+    if(name && email && pw1 && pw1 === pw2){
       // call to server to register
       let registerResponse = await ServerRequest.register({name: name, email: email, password: pw1})
       setErrorMessageTree(prevState => ({...prevState,registerError: registerResponse.data.message}));  

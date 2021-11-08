@@ -1,7 +1,6 @@
 import './Navbar.css'
 import React, {useContext,useEffect,useState} from 'react';
 import ServerRequest from '../../services/ServerRequest'
-import Logo from '../../Assets/Logo.svg'
 import {Link} from "react-router-dom";
 import {CSSTransition} from 'react-transition-group';
 import {Context} from '../../Store'
@@ -43,7 +42,7 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="nav-logo-container">
                 <Link to="/">
-                    <img src={Logo} className="nav-img" alt="" />
+                    <img src={process.env.PUBLIC_URL+'/Assets/Logo.svg'}  className="nav-img" alt="" />
                 </Link>
             </div>
             
@@ -61,7 +60,7 @@ const Navbar = () => {
                 <div className="nav-dropDown">
                     <div className="nav-dropDown-arrow"/>
                     <div className="nav-user">
-                        <img className="nav-user-img" src="https://t3.ftcdn.net/jpg/03/67/46/48/360_F_367464887_f0w1JrL8PddfuH3P2jSPlIGjKU2BI0rn.jpg" alt="" />
+                        <img className="nav-user-img" src={process.env.PUBLIC_URL+'/Assets/profile_placeholder.png'} alt="" />
                         <span className="nav-user-info">
                             <span className="nav-user-name">{userData ? userData.name : ''}</span>
                             <span className="nav-user-email">{userData ? userData.email : ''}</span>
@@ -69,15 +68,15 @@ const Navbar = () => {
                     </div>
 
                     <div className="nav-dropDown-links">             
-                        <Link to="/Konfigurationen" className="nav-dropDown-link" onClick={() =>{toggleDropDown()}}>
+                        <Link to="/Profil/Geräte" className="nav-dropDown-link" onClick={() =>{toggleDropDown()}}>
                             <span className="material-icons nav-dropDown-icon">smartphone</span>
                             Geräte
                         </Link>
-                        <Link to="/" className="nav-dropDown-link" onClick={() =>{toggleDropDown()}}>
+                        <Link to="/Profil/Bestellungen" className="nav-dropDown-link" onClick={() =>{toggleDropDown()}}>
                             <span className="material-icons nav-dropDown-icon">receipt_long</span>
                             Bestellungen
                         </Link>
-                        <Link to="/" className="nav-dropDown-link" onClick={() =>{toggleDropDown()}}>
+                        <Link to="/Profil/Einstellungen" className="nav-dropDown-link" onClick={() =>{toggleDropDown()}}>
                             <span className="material-icons nav-dropDown-icon">settings</span>
                             Einstellungen
                         </Link>

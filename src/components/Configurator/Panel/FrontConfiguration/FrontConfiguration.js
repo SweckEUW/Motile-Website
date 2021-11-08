@@ -54,12 +54,13 @@ function FrontConfiguration(){
       {/* MotilePart Icons */}
       <div className="mp-icons">
         {motileParts.map((motilePart,index) =>{return(
-          <div key={index} className="mp-icon" onClick={() =>{changeSwiperPage(index)}} style={{
-            opacity: index === currentPage ? '1' : '0.5',
-            height: index === currentPage ? '30px' : '15px'
+          <span key={index} className="mp-icon material-icons" onClick={() =>{changeSwiperPage(index)}} style={{
+            opacity: index === currentPage ? '1' : '0.3',
+            fontSize: index === currentPage ? '48px' : '24px',
+            margin: index === currentPage ? '12px' : '24px'
           }}>
-            <img className="mp-icon-img" src={motilePart.metaData.icon} alt=""/>
-          </div>
+            {motilePart.metaData.icon}
+          </span>
         )})}
       </div>
      

@@ -8,20 +8,22 @@
 }
 .mp-icon{
     margin: 24px;
-    width: 24px;
-    height: 24px;
     display: inline-block;
     cursor: pointer;
-    /* transition: .4s height ease, .4s opacity ease; */
+    user-select: none;
+    transition: .4s font-size ease, .4s opacity ease, .4s margin ease;
+}
+.mp-icon:hover {
+    opacity: 1!important;
 }
 .mp-icon-img{
     height: 100%;
     object-fit: contain;
 }
-
 .swiper{
     height: 100%;
     z-index: 0 !important;
+    border-radius: 24px;
 }
 .mp-info{
     height: 216px;

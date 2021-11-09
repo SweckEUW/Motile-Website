@@ -8,7 +8,7 @@ function Overview(){
 
       <h2>Übersicht</h2>
       <h1>Rüdiger<span className="material-icons">edit</span></h1>
-      <div class="box">
+      <div className="box">
         <h3><span>Rückseite</span></h3>        
         <h4><span className="material-icons">memory</span>Soc<span className="price">50€</span></h4>
         <h3><span>Vorderseite</span></h3>

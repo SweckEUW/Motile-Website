@@ -1,3 +1,21 @@
 .Overview{
     padding: 24px;
 }
+.box {
+    background: #fff;
+    border-radius: 24px;
+    padding: 24px;
+    text-align: left;
+}
+.box h3 span {
+    background: #fff;
+}
+
+h1 {
+    font-size: 40px;
+    font-family: 'AvantGarde';
+    font-weight: 600;
+}
+.price {
+    float: right;    
+}

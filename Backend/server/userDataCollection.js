@@ -23,8 +23,8 @@ export default class userDataCollection {
 
     static async addUserDataToUser(user) {
         let template = await userData.insertOne({
-            firstName: "",
-            lastName:"",
+            firstName: user.firstName,
+            lastName: user.lastName,
             profilePic:"",
             adress: {
                 street:"",
@@ -37,10 +37,14 @@ export default class userDataCollection {
         user.userData = template.insertedId.toHexString();
     }
 
-    static async addUserData(user, userDataObj) {
-        let newUserData = await userData.find({"_id": {$eq: ObjectId.createFromHexString(user.userData)}}).toArray();
-        if(newUserData[0])
-            await userData.updateOne(newUserData[0], {$push: { "userData": userDataObj }});      
+    static async modifyUserData(user, userDataObj) {
+        const filter = {"_id": {$eq: ObjectId.createFromHexString(user.userData)}};
+        const updateDoc = {
+            $set: {
+                ...userDataObj
+            }
+        }
+        const result = await userData.updateOne(filter, updateDoc);
     }
 
     static async getUserData(user) {

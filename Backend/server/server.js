@@ -7,6 +7,7 @@ import BlenderJobs from "./blenderJobs.js"
 import path from 'path';
 import { fileURLToPath } from 'url';
 import ConfigsCollection from "./configsCollection.js"
+import userDataCollection from "./userDataCollection.js"
 import Middleware from "./middleware.js"
 
 const app = express();
@@ -28,6 +29,7 @@ MongoClient.connect(
     await motilePartsCollection.retrieveMotilePartsCollection(client);
     await UsersCollection.retrieveUsersCollection(client);
     await ConfigsCollection.retrieveConfigsCollection(client);
+    await userDataCollection.retrieveUserDataCollection(client);
     app.listen(5000,() =>{
         console.log('Server started')
     });

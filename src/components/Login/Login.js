@@ -15,7 +15,8 @@ function Login(){
     loginPW: null,
 
     registerError: null,
-    registerName: null,
+    registerFirstName: null,
+    registerLastName: null,
     registerEmail: null,
     registerPW1: null,
     registerPW2: null
@@ -82,13 +83,16 @@ function Login(){
 
   async function register(){
     resetErrorMessageTree();
-    let name = document.getElementById("register-name").value;
+    let firstName = document.getElementById("register-first-name").value;
+    let lastName = document.getElementById("register-last-name").value;
     let email = document.getElementById("register-email").value;
     let pw1 = document.getElementById("register-pw1").value;
     let pw2 = document.getElementById("register-pw2").value;
     
-    if(!name)
-      setErrorMessageTree(prevState => ({...prevState,registerName: 'Bitte einem Namen angeben'}));
+    if(!firstName)
+      setErrorMessageTree(prevState => ({...prevState,registerFirstName: 'Bitte einem Namen angeben'}));
+    if(!lastName)
+      setErrorMessageTree(prevState => ({...prevState,registerLastName: 'Bitte einem Namen angeben'}));
     if(!email)
       setErrorMessageTree(prevState => ({...prevState,registerEmail: 'Bitte eine E-Mail angeben'}));
     if(!pw1)
@@ -96,9 +100,9 @@ function Login(){
     if(pw1 !== pw2)
       setErrorMessageTree(prevState => ({...prevState,registerPW2: 'Passwörter stimmen nicht überein'}));
     
-    if(name && email && pw1 && pw1 === pw2){
+    if(firstName && lastName && email && pw1 && pw1 === pw2){
       // call to server to register
-      let registerResponse = await ServerRequest.register({name: name, email: email, password: pw1})
+      let registerResponse = await ServerRequest.register({firstName: firstName, lastName: lastName, email: email, password: pw1})
       setErrorMessageTree(prevState => ({...prevState,registerError: registerResponse.data.message}));  
       console.log(registerResponse.data.message) 
     }
@@ -145,12 +149,20 @@ function Login(){
               <h1 className="li-title">Registrieren</h1>
 
               <div className="li-input-info">
-                <p className="li-form-title">Name</p>
-                <CSSTransition in={errorMessageTree.registerName != null} classNames="fade" timeout={400} unmountOnExit>
-                  <p className="li-input-err">{errorMessageTree.registerName}</p>
+                <p className="li-form-title">Vorname</p>
+                <CSSTransition in={errorMessageTree.registerFirstName != null} classNames="fade" timeout={400} unmountOnExit>
+                  <p className="li-input-err">{errorMessageTree.registerFirstName}</p>
                 </CSSTransition>
               </div>  
-              <input id="register-name" className="li-form-input" type="text"/>
+              <input id="register-first-name" className="li-form-input" type="text"/>
+
+              <div className="li-input-info">
+                <p className="li-form-title">Nachname</p>
+                <CSSTransition in={errorMessageTree.registerLastName != null} classNames="fade" timeout={400} unmountOnExit>
+                  <p className="li-input-err">{errorMessageTree.registerLastName}</p>
+                </CSSTransition>
+              </div>  
+              <input id="register-last-name" className="li-form-input" type="text"/>
 
               <div className="li-input-info">
                 <p className="li-form-title">E-Mail</p>

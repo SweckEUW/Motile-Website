@@ -1,5 +1,8 @@
 .BackConfiguration{
     padding: 24px;
+    height: calc(100% - 48px);
+    display: flex;
+    flex-direction: column;
 }
 .mp-icons{
     display: flex;
@@ -22,8 +25,14 @@
 }
 .swiper{
     height: 100%;
+    width: 100%;
     z-index: 0 !important;
     border-radius: 24px;
+}
+.swiper-slide{
+    display: flex;
+    flex-flow: column;
+    height: 100%;
 }
 .mp-info{
     height: 216px;
@@ -31,18 +40,26 @@
     background-color: white;
     display: flex;
     justify-content: space-between;
-    margin: auto;
+    margin: 0 auto;
+}
+.mp-settings {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.mp-settings::-webkit-scrollbar {
+    display: none;
 }
 .mp-info-left{
     margin: auto 20px;
     text-align: left;
     font-weight: bold;
 }
-
 .mp-info-left * {
     font-family: 'AVANTGARDE';
 }
-
 .mp-name{
     font-size: 40px;
     margin-bottom: 5px;
@@ -50,8 +67,7 @@
 .mp-price{
     font-size: 20px;
     font-weight: 300;
-    margin-bottom: 20px
-;
+    margin-bottom: 20px;
 }
 .mp-dot{
     border-radius: 50%;
@@ -77,6 +93,7 @@
     color: white;
     padding: 14px 20px;
     margin: 20px 10px;
+    margin-bottom: 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;

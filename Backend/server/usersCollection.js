@@ -2,6 +2,7 @@ import bcrypt from "bcrypt"
 import nodemailer from "nodemailer"
 import ConfigsCollection from "./configsCollection.js"; 
 import jwt from "jsonwebtoken"
+import userDataCollection from "./userDataCollection.js";
 
 let users;
 
@@ -102,6 +103,7 @@ export default class usersCollection{
 
             //generate a configs collection for a new user
             ConfigsCollection.addConfigsToUser(newUser);
+            userDataCollection.addUserDataToUser(newUser);
             
             try {
                 await transporter.sendMail(mailOptions);

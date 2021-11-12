@@ -42,7 +42,7 @@ app.post('/Login', UsersCollection.login);
 app.post('/LoginJWT', Middleware.verifyJWT, UsersCollection.loginJWT);
 app.post('/Register', UsersCollection.addUser);
 app.post('/User/Configs', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
-app.post('/User/Data', Middleware.verifyJWT, UsersCollection.getUserData);
+app.post('/User/Data', Middleware.verifyJWT, UsersCollection.getUserDataFromUser);
 app.post('/Blender', BlenderJobs.render);
 
 // static assets - public folder

@@ -85,7 +85,7 @@ function Login(){
     resetErrorMessageTree();
     let firstName = document.getElementById("register-first-name").value;
     let lastName = document.getElementById("register-last-name").value;
-    let email = document.getElementById("register-email").value;
+    let email = document.getElementById("register-email").value.toLowerCase();
     let pw1 = document.getElementById("register-pw1").value;
     let pw2 = document.getElementById("register-pw2").value;
     

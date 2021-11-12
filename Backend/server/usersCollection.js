@@ -106,7 +106,7 @@ export default class usersCollection{
 
             //generate a configs collection for a new user
             ConfigsCollection.addConfigsToUser(newUser);
-            userDataCollection.addUserDataToUser(newUser);
+            UserDataCollection.addUserDataToUser(newUser);
             
             try {
                 await transporter.sendMail(mailOptions);
@@ -133,17 +133,6 @@ export default class usersCollection{
         }
     }
 
-    static async getUserData(request, response) {
-        let decoded = jwt.decode(request.body.token);
-
-        // Look for user with same E-Mail
-        let user = await users.find({"email": {$eq: decoded.email}}).toArray();
-        if(user[0])
-            response.json({success: true , userData: {name: user[0].name, email: user[0].email}})
-        else
-            response.json({success: false , message: 'Kein Nutzer mit dieser E-Mail gefunden'})
-    }
-
     static async getConfigFromUser(request, response) {
         let user = request.user;
         if(user){
@@ -163,6 +152,7 @@ export default class usersCollection{
         if(user){
             let userData = await UserDataCollection.getUserData(user);
             if(userData){
+                userData.email = user.email;
                 response.json({success: true , message: 'UserData gefunden', userData: userData})
             }else{
                 response.json({success: false ,  message: 'Keine UserData gefunden'})

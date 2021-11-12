@@ -1,27 +1,22 @@
 import './Settings.css'
 import '../Profile.css'
+import ServerRequest from '../../../services/ServerRequest'
+import React, {useState ,useEffect} from 'react';
 
 const Configurations = () => {
-  
-    let addresses = [
-        {
-            forename: "Anna",
-            surname: "Tanke",
-            street: "An der Zapsäule 69",
-            city: "59557 Lippstadt",
-            country: "Deutschland",
-            telephone: "+49 1575 0456123"
-        },
+    const [userData, setUserData] = useState(null);
 
-        {
-            forename: "Nick",
-            surname: "Dieter",
-            street: "Nice street 123",
-            city: "12345 Westhausen",
-            country: "Griechenland",
-            telephone: "+49 3451 145212"
-        }
-    ]
+    useEffect(() =>{ 
+        getUserData();
+    }, []);
+
+    async function getUserData(){
+        let userDataResponse = await ServerRequest.getUserData();
+        console.log(userDataResponse.data.message);
+        console.log(userDataResponse.data.userData);
+        if(userDataResponse.data.success)
+            setUserData(userDataResponse.data.userData)
+    }
 
     return (
         <div className="Settings pr-page">
@@ -34,9 +29,9 @@ const Configurations = () => {
                 <div className="st-setting">
                     <span>Adressen</span>
                     <div className="st-adresses">
-                        {addresses.map((adress,index) =>{return(
+                        {userData ? userData.adresses.map((adress,index) =>{return(
                             <span key={index} className="st-adress-element">
-                                <div>{adress.forename + ' ' + adress.surname}</div>
+                                <div>{userData.firstName + ' ' + userData.lastName}</div>
                                 <div>{adress.street}</div>
                                 <div>{adress.city}</div>
                                 <div>{adress.country}</div>
@@ -47,7 +42,7 @@ const Configurations = () => {
                                     <span>Entfernen</span>
                                 </div>
                             </span>
-                        )})}
+                        )}) : ""} 
                         <span className="st-adress-element st-addAdress">+ Neue Adresse hinzufügen</span>
                     </div>
                 </div>

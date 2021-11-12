@@ -23,13 +23,22 @@ export default class userDataCollection {
         let template = await userData.insertOne({
             firstName: user.firstName,
             lastName: user.lastName,
-            profilePic:"",
-            adress: {
-                street:"",
-                city: "",
-                country: "",
-                telephone: ""
-            }
+            profilePic: "",
+            adresses: [
+                {
+                    street: "An der Zapsäule 69",
+                    city: "59557 Lippstadt",
+                    country: "Deutschland",
+                    telephone: "+49 1575 0456123"
+                },
+        
+                {
+                    street: "Nice street 123",
+                    city: "12345 Westhausen",
+                    country: "Griechenland",
+                    telephone: "+49 3451 145212"
+                }
+            ]
         });
         
         user.userData = template.insertedId.toHexString();

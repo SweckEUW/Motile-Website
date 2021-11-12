@@ -51,7 +51,7 @@ const Navbar = () => {
                 <div className="nav-account-container" onClick={() =>{toggleLoginDialogue()}}>
                     <span className="material-icons nav-account">account_circle</span>
                     <CSSTransition in={userData != null} classNames="slide-right" timeout={400} unmountOnExit>
-                        <span className="nav-name">{userData ? userData.name : ''}</span>
+                        <span className="nav-name">{userData ? userData.firstName : ''}</span>
                     </CSSTransition>
                 </div>
             </div>
@@ -62,7 +62,7 @@ const Navbar = () => {
                     <div className="nav-user">
                         <img className="nav-user-img" src={process.env.PUBLIC_URL+'/Assets/profile_placeholder.png'} alt="" />
                         <span className="nav-user-info">
-                            <span className="nav-user-name">{userData ? userData.name : ''}</span>
+                            <span className="nav-user-name">{userData ? userData.firstName : ''}</span>
                             <span className="nav-user-email">{userData ? userData.email : ''}</span>
                         </span>
                     </div>

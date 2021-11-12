@@ -56,7 +56,7 @@ function Login(){
 
   async function login(){
     resetErrorMessageTree();
-    let email = document.getElementById("login-email").value;
+    let email = document.getElementById("login-email").value.toLowerCase();
     let password = document.getElementById("login-pw").value;
     
     if(!email)

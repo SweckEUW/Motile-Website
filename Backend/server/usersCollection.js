@@ -2,7 +2,8 @@ import bcrypt from "bcrypt"
 import nodemailer from "nodemailer"
 import ConfigsCollection from "./configsCollection.js"; 
 import jwt from "jsonwebtoken"
-import userDataCollection from "./userDataCollection.js";
+import UserDataCollection from "./userDataCollection.js";
+import { ObjectId } from "bson";
 
 let users;
 
@@ -53,14 +54,16 @@ export default class usersCollection{
     }
 
     static async loginJWT(request, response) {
-        let decoded = jwt.decode(request.body.token);
-
-        // Look for user with same E-Mail
-        let user = await users.find({"email": {$eq: decoded.email}}).toArray();
-        if(user[0])
+        let user = request.user;
+        if(user)
             response.json({success: true , message: 'Nutzer gefunden, JWT-Token Anmeldung erfolgreich'})
         else
             response.json({success: false , message: 'Kein Nutzer mit dieser E-Mail gefunden'})
+    }
+
+    static async getUser(id) {
+        let user = await users.find({"_id": {$eq: ObjectId.createFromHexString(id)}}).toArray();
+        return user[0];
     }
 
     static async addUser(request,response) {
@@ -142,19 +145,30 @@ export default class usersCollection{
     }
 
     static async getConfigFromUser(request, response) {
-        let decoded = jwt.decode(request.body.token);
-
-        // Look for user with same E-Mail
-        let user = await users.find({"email": {$eq: decoded.email}}).toArray();
-        if(user[0]){
-            let config = await ConfigsCollection.getConfig(user[0]);
+        let user = request.user;
+        if(user){
+            let config = await ConfigsCollection.getConfig(user);
             if(config){
                 response.json({success: true , message: 'Konfigurationen gefunden', configs: config})
             }else{
                 response.json({success: false ,  message: 'Keine Konfigurationen gefunden'})
             }
         }else{
-            response.json({success: false , message: 'Kein Nutzer mit dieser E-Mail gefunden'})
+            response.json({success: false , message: 'Kein Nutzer gefunden'})
+        }
+    }
+
+    static async getUserDataFromUser(request, response) {
+        let user = request.user;
+        if(user){
+            let userData = await UserDataCollection.getUserData(user);
+            if(userData){
+                response.json({success: true , message: 'UserData gefunden', userData: userData})
+            }else{
+                response.json({success: false ,  message: 'Keine UserData gefunden'})
+            }
+        }else{
+            response.json({success: false , message: 'Kein Nutzer gefunden'})
         }
     }
 }

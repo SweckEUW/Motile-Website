@@ -1,21 +1,22 @@
 import './Configurations.css'
 import '../Profile.css'
-// import ServerRequest from '../../../services/ServerRequest'
-// import React, {useState ,useEffect} from 'react';
+import ServerRequest from '../../../services/ServerRequest'
+import React, {useState ,useEffect} from 'react';
 
 const Configurations = () => {
     // const [configurations, setConfigurations] = useState([]);
 
-    // useEffect(() =>{ 
-    //     getConfigurations();
-    // }, []);
+    useEffect(() =>{ 
+        getConfigurations();
+    }, []);
 
-    // async function getConfigurations(){
-    //     let configurationsResponse = await ServerRequest.getMotileConfigurations();
-    //     console.log(configurationsResponse.data.message);
-    //     if(configurationsResponse.data.success)
-    //         setConfigurations(configurationsResponse.data.configs.configs)
-    // }
+    async function getConfigurations(){
+        let configurationsResponse = await ServerRequest.getMotileConfigurations();
+        console.log(configurationsResponse.data.message);
+        console.log(configurationsResponse.data.configs);
+        // if(configurationsResponse.data.success)
+        //     setConfigurations(configurationsResponse.data.configs.configs)
+    }
 
     let configurations = [
         {

@@ -8,13 +8,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 12px 0;
 }
 .mp-icon{
-    margin: 24px;
-    display: inline-block;
+    width: 100%;
+    line-height: 72px;
     cursor: pointer;
     user-select: none;
-    transition: .4s font-size ease, .4s opacity ease, .4s margin ease;
+    transition: .4s font-size ease, .4s opacity ease;
 }
 .mp-icon:hover {
     opacity: 1!important;
@@ -40,7 +41,6 @@
     background-color: white;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
 }
 .mp-settings {
     flex-grow: 1;

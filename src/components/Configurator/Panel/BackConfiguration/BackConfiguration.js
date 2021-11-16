@@ -55,13 +55,12 @@ function BackConfiguration(){
         {motileParts.map((motilePart,index) =>{return(
           <span key={index} className="mp-icon material-icons" onClick={() =>{changeSwiperPage(index)}} style={{
             opacity: index === currentPage ? '1' : '0.3',
-            fontSize: index === currentPage ? '48px' : '24px',
-            margin: index === currentPage ? '12px' : '24px'
+            fontSize: index === currentPage ? '48px' : '24px'
           }}>
             {motilePart.metaData.icon}
           </span>
         )})}
-      </div>
+      </div>                   
       
       <div id="bc-Swiper" className="swiper"> 
         <div className="swiper-wrapper">

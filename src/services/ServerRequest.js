@@ -11,7 +11,7 @@ class ServerRequest{
         return await AxiosHelper.get('/MotileParts');
     }
 
-    async getMotileConfigurations() {
+    async getUserConfigurations() {
         return await AxiosHelper.post('/User/Configs', getJWTToken());
     }
 

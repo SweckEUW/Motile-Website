@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 
 const initialState = {
-    loggedIn: false
+    loggedIn: false,
+    components: []
 };
 
 export const Context = React.createContext();

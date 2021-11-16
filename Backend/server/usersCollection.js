@@ -105,8 +105,8 @@ export default class usersCollection{
             } 
 
             //generate a configs collection for a new user
-            ConfigsCollection.addConfigsToUser(newUser);
-            UserDataCollection.addUserDataToUser(newUser);
+            ConfigsCollection.initializeUserConfigurations(newUser);
+            UserDataCollection.initializeUserData(newUser);
             
             try {
                 await transporter.sendMail(mailOptions);
@@ -136,9 +136,9 @@ export default class usersCollection{
     static async getConfigFromUser(request, response) {
         let user = request.user;
         if(user){
-            let config = await ConfigsCollection.getConfig(user);
-            if(config){
-                response.json({success: true , message: 'Konfigurationen gefunden', configs: config})
+            let configs = await ConfigsCollection.getConfig(user);
+            if(configs){
+                response.json({success: true , message: 'Konfigurationen gefunden', configs: configs})
             }else{
                 response.json({success: false ,  message: 'Keine Konfigurationen gefunden'})
             }

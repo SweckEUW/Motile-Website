@@ -19,11 +19,13 @@ export default class userDataCollection {
         }
     }
 
-    static async addUserDataToUser(user) {
+    static async initializeUserData(user) {
+
+        // Adding Mock-Data
         let template = await userData.insertOne({
             firstName: user.firstName,
             lastName: user.lastName,
-            profilePic: "",
+            profilePic: "http://localhost:5000/Placeholder/profile_placeholder.png",
             adresses: [
                 {
                     street: "An der Zapsäule 69",

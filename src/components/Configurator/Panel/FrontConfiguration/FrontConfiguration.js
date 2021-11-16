@@ -1,12 +1,14 @@
 import './FrontConfiguration.css';
-import React, {useState ,useEffect} from 'react';
+import React, {useContext,useEffect,useState} from 'react';
 import ServerRequest from '../../../../services/ServerRequest';
 import ComponentSelector from '../ComponentSelector/ComponentSelector'
 import Swiper from 'swiper';
 import 'swiper/swiper.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
+import {Context} from '../../../../Store'
 
 function FrontConfiguration(){
+  const [state, setState] = useContext(Context);
   const [motileParts, setMotileParts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [swiper, setSwiper] = useState(null);
@@ -42,8 +44,15 @@ function FrontConfiguration(){
     setMotileParts(motilePartsResponse.data.filter(part => part.side === "Front"))
   }
 
-  function sendSignal(name){
-    document.dispatchEvent(new CustomEvent("spawnComponent", {detail:{name: name}}));
+  function addComponent(motilePart){
+    document.dispatchEvent(new CustomEvent("spawnComponent", {detail:{name: motilePart.name}}));
+    let components = state.components;
+    let component = {
+      component: motilePart,
+      settings: ["ToDo"]
+    }
+    components.push(component);
+    setState(prevState => ({...prevState,components: components}));
   }
 
   return (
@@ -92,7 +101,7 @@ function FrontConfiguration(){
                 })}
 
                 {/* Spawn Button */}
-                <div className="mp-button" onClick={() =>{sendSignal(motilePart.name)}}>Einbauen</div>
+                <div className="mp-button" onClick={() =>{addComponent(motilePart)}}>Einbauen</div>
               </div>
             </div>
           )})}

@@ -1,7 +1,12 @@
 import './Header.css'
 import {Link} from "react-router-dom";
+import React, { useEffect} from 'react';
 
 const Header = () => {
+
+    useEffect(() =>{ 
+        document.title = "Motile"
+    }, []);
 
     return (
         <div className="Header">

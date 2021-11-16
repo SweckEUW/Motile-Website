@@ -1,48 +1,26 @@
 import './Configurations.css'
 import '../Profile.css'
 import ServerRequest from '../../../services/ServerRequest'
-import React, {useState ,useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {Context} from '../../../Store.js'
 
 const Configurations = () => {
-    // const [configurations, setConfigurations] = useState([]);
+    const [state, setState] = useContext(Context);
+    const [configurations, setConfigurations] = useState([]);
 
     useEffect(() =>{ 
+        document.title = "Motile - Geräte"
         getConfigurations();
-    }, []);
+    }, [state]);
 
     async function getConfigurations(){
-        let configurationsResponse = await ServerRequest.getMotileConfigurations();
+        let configurationsResponse = await ServerRequest.getUserConfigurations();
         console.log(configurationsResponse.data.message);
-        console.log(configurationsResponse.data.configs);
-        // if(configurationsResponse.data.success)
-        //     setConfigurations(configurationsResponse.data.configs.configs)
+        if(configurationsResponse.data.success)
+            setConfigurations(configurationsResponse.data.configs.configs)
+        else
+            setConfigurations([])
     }
-
-    let configurations = [
-        {
-            bought: true,
-            name: "Walter",
-            price: "250 €",
-            date: "10/2021",
-            thumbnail: process.env.PUBLIC_URL+'/Assets/phone_placeholder.png',
-        },
-
-        {
-            bought: false,
-            name: "Manfred",
-            price: "350 €",
-            date: "10/2021",
-            thumbnail: process.env.PUBLIC_URL+'/Assets/phone_placeholder.png',
-        },
-
-        {
-            bought: false,
-            name: "Rüdiger",
-            price: "350 €",
-            date: "10/2021",
-            thumbnail: process.env.PUBLIC_URL+'/Assets/phone_placeholder.png',
-        },
-    ]
 
     return (
         <div className="Configurations pr-page">
@@ -57,7 +35,7 @@ const Configurations = () => {
                         <div key={index} className="cf-configuration">
                             <img src={configuration.thumbnail} alt=""/>
                             <div className="cf-name">{configuration.name}</div>
-                            <div className="cf-info">{'gekauft '+configuration.date}</div>
+                            <div className="cf-info">{'gekauft '+configuration.orderDate}</div>
                             <div className="cf-button cf-upgrade">Upgrade</div>
                             <div className="cf-link">Details anzeigen &gt;</div>
                         </div>

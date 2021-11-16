@@ -107,6 +107,10 @@ export default class usersCollection{
             //generate a configs collection for a new user
             ConfigsCollection.initializeUserConfigurations(newUser);
             UserDataCollection.initializeUserData(newUser);
+
+            //delete first and last name
+            delete newUser.firstName;
+            delete newUser.lastName;
             
             try {
                 await transporter.sendMail(mailOptions);

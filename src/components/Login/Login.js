@@ -5,9 +5,9 @@ import {CSSTransition} from 'react-transition-group';
 import {Context} from '../../Store'
 
 function Login(){
+  const [state, setState] = useContext(Context);
   const [loginDialogueVisible, setLoginDialogueVisible] = useState(false);
   const [showRegister, toggleRegister] = useState(false);
-  const [state, setState] = useContext(Context);
 
   const [errorMessageTree, setErrorMessageTree] = useState({
     loginError: null,
@@ -29,11 +29,9 @@ function Login(){
   // Try logging in with jwt token
   async function tryJWTLogin(){
     let loginJWTResponse = await ServerRequest.loginJWT();
-    if(loginJWTResponse.data.success){
+    console.log(loginJWTResponse.data.message)
+    if(loginJWTResponse.data.success)
       setState(prevState => ({...prevState,loggedIn: true}));
-      console.log(loginJWTResponse.data.message)
-    }
-     
   }
   
   document.addEventListener("toggleLoginDialogue", toggleLoginDialogue);

@@ -60,7 +60,7 @@ const Navbar = () => {
                 <div className="nav-dropDown">
                     <div className="nav-dropDown-arrow"/>
                     <div className="nav-user">
-                        <img className="nav-user-img" src={process.env.PUBLIC_URL+'/Assets/profile_placeholder.png'} alt="" />
+                        <img className="nav-user-img" src={userData ? userData.profilePic : ''} alt="" />
                         <span className="nav-user-info">
                             <span className="nav-user-name">{userData ? userData.firstName : ''}</span>
                             <span className="nav-user-email">{userData ? userData.email : ''}</span>

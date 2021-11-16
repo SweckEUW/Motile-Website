@@ -9,7 +9,7 @@ export default class configsCollection {
             return 
         
         try{
-            configs = await conn.db('Motile').collection("Configs");
+            configs = await conn.db('Motile').collection("UserConfigurations");
             if(configs)
                 console.log("Retrieved configsCollection")
             else
@@ -19,25 +19,46 @@ export default class configsCollection {
         }
     }
 
-    static async addConfigsToUser(user) {
+    static async initializeUserConfigurations(user) {
         let template = await configs.insertOne({
             configs: []
         });
         
         user.configs = template.insertedId.toHexString();
+        
 
+        // Adding Mock-Data
         await this.addConfig(user, {
-            cpu: "Snapdragon 888+",
-            camera: "C7 Anamorphic",
-            dac: "Fiio K3 Pro",
-            battery:"Motile XCharge Premium"
+            name: "Walter",
+            number: "804686108",
+            orderDate: "20 Oktober 2021",
+            deliveryDate: "25 Oktober 2021",
+            price: "250 €",
+            thumbnail: "http://localhost:5000/Placeholder/phone_placeholder.png",
+            bought: false,
+            parts: [
+                {icon: "memory"},
+                {icon: "wifi"},
+                {icon: "storage"},
+                {icon: "battery_std"},
+                {icon: "photo_camera"},
+            ], 
         }),
 
         await this.addConfig(user, {
-            cpu: "MediaTek Dimensity",
-            camera: "Pro",
-            dac: "Fiio K3 Pro",
-            battery:"3.500 mAh"
+            name: "Norbert",
+            number: "123456789",
+            orderDate: "4 Juli 1988",
+            deliveryDate: "18 Oktober 2010",
+            price: "666,14 €",
+            thumbnail: "http://localhost:5000/Placeholder/phone_placeholder.png",
+            bought: true,
+            parts: [
+                {icon: "storage"},
+                {icon: "wifi"},
+                {icon: "storage"},
+                {icon: "battery_std"},
+            ], 
         }) 
     }
 

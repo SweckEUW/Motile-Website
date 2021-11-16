@@ -1,21 +1,25 @@
 import './Settings.css'
 import '../Profile.css'
 import ServerRequest from '../../../services/ServerRequest'
-import React, {useState ,useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {Context} from '../../../Store.js'
 
 const Configurations = () => {
+    const [state, setState] = useContext(Context);
     const [userData, setUserData] = useState(null);
 
     useEffect(() =>{ 
+        document.title = "Motile - Einstellungen"
         getUserData();
-    }, []);
+    }, [state]);
 
     async function getUserData(){
         let userDataResponse = await ServerRequest.getUserData();
         console.log(userDataResponse.data.message);
-        console.log(userDataResponse.data.userData);
         if(userDataResponse.data.success)
             setUserData(userDataResponse.data.userData)
+        else
+            setUserData([])
     }
 
     return (

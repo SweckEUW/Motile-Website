@@ -1,4 +1,4 @@
-ul {
+.columnSelector{
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -10,18 +10,27 @@ ul {
     padding: 0;
     flex-direction: row;
 }
-
-ul li {
-    padding-top: 10px;
+.cs-button-container{
+    margin: 5px;
+}
+.cs-button{
+    padding: 10px;
     border: 2px solid black;
     border-radius: 10px;
     font-size: 20px;
     font-weight: 800;
     text-align: center;
     cursor: pointer;
+    transition: background .2s ease;
 }
-
-ul li:hover {
+.cs-button:hover{
+    background-color: black;
+    color: white;
+}
+.cs-button-input{
+    display: none;
+}
+.cs-button-input:checked + .cs-button{
     background-color: black;
     color: white;
 }

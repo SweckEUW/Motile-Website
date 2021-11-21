@@ -1,0 +1,41 @@
+.SizeChooser{
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+.sc-container{
+    width: 40%;
+    margin-bottom: 5%;
+}
+.sc-title{
+    font-size: 32px;
+}
+.sc-elements{
+    display: flex;
+    justify-content: center;
+    align-items: self-end;
+    margin-top: 70px;
+}
+.sc-element{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 50px;
+    cursor: pointer;
+    transition: opacity .2s ease, transform .2s ease;
+    opacity: 0.6;
+}
+.sc-element:hover{
+    opacity: 1;
+    transform: translateY(-10px);
+}
+.sc-img{
+    display: inline-block;
+}

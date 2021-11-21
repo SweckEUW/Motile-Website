@@ -43,7 +43,7 @@ const Orders = () => {
                             <span className="or-delivered">{order.deliverDate}</span>
                         </span>
                         <span className="or-buttons">
-                            <div className="or-button">Lieferung verfolgen</div>
+                            {/* <div className="or-button">Lieferung verfolgen</div> */}
                             <div className="or-button">Rechnung herunterladen</div>
                         </span> 
                     </div>

@@ -34,8 +34,8 @@ function BackConfiguration(){
   }, []);
 
   function changeSwiperPage(index){
-    setCurrentPage(index);
-    swiper.slideTo(index);
+    // setCurrentPage(index);
+    // swiper.slideTo(index);
   }
 
   async function getMotileParts(){
@@ -52,6 +52,7 @@ function BackConfiguration(){
     }
     components.push(component);
     setState(prevState => ({...prevState,components: components}));
+    swiper.slideNext();
   }
 
   return (

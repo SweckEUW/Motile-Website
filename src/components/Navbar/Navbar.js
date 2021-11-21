@@ -47,7 +47,9 @@ const Navbar = () => {
             </div>
             
             <div className="nav-links">
-                <span className="material-icons nav-shopping">shopping_cart</span>
+                <Link to="/Warenkorb">
+                    <span className="material-icons nav-shopping">shopping_cart</span>
+                </Link>
                 <div className="nav-account-container" onClick={() =>{toggleLoginDialogue()}}>
                     <span className="material-icons nav-account">account_circle</span>
                     <CSSTransition in={userData != null} classNames="slide-right" timeout={400} unmountOnExit>

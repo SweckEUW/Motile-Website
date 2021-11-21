@@ -8,7 +8,6 @@ function Login(){
   const [state, setState] = useContext(Context);
   const [loginDialogueVisible, setLoginDialogueVisible] = useState(false);
   const [showRegister, toggleRegister] = useState(false);
-
   const [errorMessageTree, setErrorMessageTree] = useState({
     loginError: null,
     loginEmail: null,
@@ -21,6 +20,7 @@ function Login(){
     registerPW1: null,
     registerPW2: null
   });
+  let stayAliveID = null;
 
   useEffect(() => {
     tryJWTLogin();
@@ -30,8 +30,14 @@ function Login(){
   async function tryJWTLogin(){
     let loginJWTResponse = await ServerRequest.loginJWT();
     console.log(loginJWTResponse.data.message)
-    if(loginJWTResponse.data.success)
+    if(loginJWTResponse.data.success){
       setState(prevState => ({...prevState,loggedIn: true}));
+      clearInterval(stayAliveID);  
+      stayAliveID = setInterval(() => {
+        stayAliveCall();
+      }, 300000);
+    }
+      
   }
   
   document.addEventListener("toggleLoginDialogue", toggleLoginDialogue);
@@ -64,7 +70,16 @@ function Login(){
     
     if(email && password){
       // call to server to login
-      let loginResponse = await ServerRequest.login({email,password});
+      let loginResponse = await ServerRequest.login({
+        email: email,
+        password: password,
+        language: navigator.language,
+        availWidth: window.screen.availWidth,
+        availHeight: window.screen.availHeight,
+        colorDepth: window.screen.colorDepth,
+        pixelDepth: window.screen.pixelDepth,
+        mobile: /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())
+      });
       setErrorMessageTree(prevState => ({...prevState,loginError: loginResponse.data.message}));
       
       if(loginResponse.data.success){
@@ -74,9 +89,22 @@ function Login(){
         setTimeout(() => {
           setLoginDialogueVisible(false);
         }, 1500);
+
+        clearInterval(stayAliveID);  
+        stayAliveID = setInterval(() => {
+          stayAliveCall();
+        }, 300000);
+
       }
         
     }
+  }
+
+  async function stayAliveCall(){
+    console.log("Stay alive call");
+    let stayAliveResponse = await ServerRequest.stayAlive();
+    console.log(stayAliveResponse.data.message);
+    localStorage.setItem('token', stayAliveResponse.data.token); 
   }
 
   async function register(){

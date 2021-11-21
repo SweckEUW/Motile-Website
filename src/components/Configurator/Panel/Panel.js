@@ -18,7 +18,7 @@ function Panel(){
         allowTouchMove: false,
         pagination: {
           el: '#swiper-pagination',
-          clickable: true
+          clickable: false
         },
         observer: true
       });

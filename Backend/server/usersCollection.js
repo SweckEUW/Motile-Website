@@ -37,7 +37,13 @@ export default class usersCollection{
                 }else{
                     let token = jwt.sign({
                         email: user[0].email,
-                        userId: user[0]._id
+                        userId: user[0]._id,
+                        language: request.body.language,
+                        availWidth: request.body.availWidth,
+                        availHeight: request.body.availHeight,
+                        colorDepth: request.body.colorDepth,
+                        pixelDepth: request.body.pixelDepth,
+                        mobile: request.body.mobile,
                     },"secret007",{expiresIn: '1h'})
                     response.json({
                         success: true , 
@@ -157,6 +163,23 @@ export default class usersCollection{
             }else{
                 response.json({success: false ,  message: 'Keine UserData gefunden'})
             }
+        }else{
+            response.json({success: false , message: 'Kein Nutzer gefunden'})
+        }
+    }
+
+    static async stayAlive(request, response) {
+        let user = request.user;
+        if(user){
+            let token = jwt.sign({
+                email: user.email,
+                userId: user._id
+            },"secret007",{expiresIn: '1h'})
+            response.json({
+                success: true, 
+                message: 'Sending new Token from Server!',
+                token: token
+            })
         }else{
             response.json({success: false , message: 'Kein Nutzer gefunden'})
         }

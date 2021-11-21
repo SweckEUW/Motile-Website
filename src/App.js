@@ -9,7 +9,9 @@ import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
 import Configurations from './components/Profile/Configurations/Configurations';
 import Settings from './components/Profile/Settings/Settings';
 import Orders from './components/Profile/Orders/Orders';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import Store from './Store';
+import SizeChooser from './components/Configurator/SizeChooser/SizeChooser';
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
           {/* Konfigurator */}
           <Route exact path="/Konfigurator" render={() => (
             <div>
+              <SizeChooser/>
               <Panel/>
               <BabylonView/>
               {/* <BlenderRendering/> */}
@@ -53,6 +56,13 @@ function App() {
           <Route exact path="/Profil/Einstellungen" render={() => (
             <div>
               <Settings/>
+            </div>
+          )}/>
+
+          {/* Warenkorb */}
+          <Route exact path="/Warenkorb" render={() => (
+            <div>
+              <ShoppingCart/>
             </div>
           )}/>
 

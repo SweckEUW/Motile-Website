@@ -22,16 +22,24 @@ const ColumnSelector = (props) => {
 
         return 0;
     }
+    function guidGenerator() {
+        var S4 = function() {
+           return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        };
+        return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+    }
+    let id = guidGenerator();
 
     return (
         <div className="columnSelector">
-            <ul>
-                {options.map(item => (
-                    <li style={itemSize} key={item}>
+            {options.map((item,index) => (
+                <label className="cs-button-container" key={item}>
+                    <input className="cs-button-input" type="radio" name={id} style={itemSize} defaultChecked={index == 0}/>
+                    <span className="cs-button">
                         {item}
-                    </li>
-                ))}
-            </ul>
+                    </span> 
+                </label>
+            ))}
         </div>
     )
 }

@@ -44,6 +44,8 @@ app.post('/Register', UsersCollection.addUser);
 app.post('/User/Configs', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
 app.post('/User/Data', Middleware.verifyJWT, UsersCollection.getUserDataFromUser);
 app.post('/Blender', BlenderJobs.render);
+app.post('/StayAlive', Middleware.verifyJWT, UsersCollection.stayAlive);
+
 
 // static assets - public folder
 let filename = fileURLToPath(import.meta.url);

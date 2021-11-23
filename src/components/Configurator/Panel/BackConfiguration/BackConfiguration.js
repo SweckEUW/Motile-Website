@@ -34,8 +34,8 @@ function BackConfiguration(){
   }, []);
 
   function changeSwiperPage(index){
-    // setCurrentPage(index);
-    // swiper.slideTo(index);
+    setCurrentPage(index);
+    swiper.slideTo(index);
   }
 
   async function getMotileParts(){

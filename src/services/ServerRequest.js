@@ -1,4 +1,5 @@
 import AxiosHelper from "./AxiosHelper.js";
+import axios from "axios";
 
 function getJWTToken(){
     let token = localStorage.getItem('token')
@@ -29,6 +30,36 @@ class ServerRequest{
 
     async getUserData() {
         return await AxiosHelper.post('/User/Data', getJWTToken());
+    }
+
+    async changeUserData(userData){
+        return await AxiosHelper.post('/User/Modify', {
+            userData, 
+            token: localStorage.getItem('token')
+        })
+    }
+
+    async addAddress(address){
+        return await AxiosHelper.post('/User/AddAddress', {
+            address, 
+            token: localStorage.getItem('token')
+        })
+    }
+
+    async removeAddress(addressId){
+        return await AxiosHelper.post('/User/RemoveAddress', {
+            addressId, 
+            token: localStorage.getItem('token')
+        })
+    }
+
+    async uploadImage(data){
+        data.append("token", localStorage.getItem('token'));
+        axios({
+            method: 'post',
+            url: 'http://localhost:5000/User/UploadProfilePic',
+            data: data
+        })
     }
 
     async requestBlenderRendering(settings) {

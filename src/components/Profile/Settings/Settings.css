@@ -19,36 +19,26 @@
     display: flex;
 }
 
-.st-adress-element{
-    padding: 0px 10px;
-    margin: 20px 0px;
-    margin-right: 40px;
-}
-.st-adress-element div{
-    margin: 2px 0px;
-}
-.st-hr{
-    width: 100%;
-    padding: 0 5px;
-    height: 2px;
-    margin-left: -5px !important;
-    margin-top: 20px !important;
-    background: black;
-}
 .st-delete{
     display: flex;
     cursor: pointer;
     justify-content: center;
-    margin-top: 5px !important; 
-    padding: 5px;
+    margin-top: 10px !important; 
+    padding-top: 12px;
+    padding-bottom: 12px;
+    width: 100%;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    border-top: 2px solid #d3d3d3;
 }
 .st-delete:hover{
     background: rgb(233, 233, 233);
 }
 .st-addAdress{
-    border-radius: 20px;
-    border: 3px dotted black;
-    padding: 12px 30px;
+    border-radius: 24px;
+    border: 2px dashed #707070;
+    width: 192px;
+    height: 192px;
     margin: 25px 0px;
     cursor: pointer;
     display: flex;
@@ -56,7 +46,12 @@
     flex-direction: column;
 }
 .st-addAdress:hover{
-    border: 3px solid black;
+    border: 2px solid black;
+}
+
+.st-addAdress-plus {
+    font-size: 90px;
+    color: #141414;
 }
 
 .st-acc {
@@ -115,41 +110,58 @@
     font-size: 15px;
 }
 
-.st-prv-data {
+.st-shipment-pay {
     display: flex;
     justify-content: space-between;
     margin-top: 40px;
 }
 
-.st-prv-container {
+.st-shipment-pay-container {
     padding: 12px 30px;
     margin: 25px 0px;
 }
 
-.st-prv-options {
+.st-shipment-pay-options {
     display: flex;
     justify-content: space-between;
+    width: 440px;
+    height: 230px
 }
 
-#st-prv-swiper {
+#st-shipment-swiper, #st-payment-swiper {
     filter: drop-shadow(0px 4px 3px rgba(0, 0, 0, 0.1));
+    z-index: 0 !important;
 }
 
 .swiper-wrapper {
-    width: 220px;
+    width: 192px;
+    height: 192px;
+    margin: 25px 0px;
 }
 
-.swiper-slide {
+/* Swiper needs specific class names, prevents other pages to get affected by the local CSS-Styles*/
+#st-shipment-swiper .swiper-wrapper .swiper-slide, #st-payment-swiper .swiper-wrapper .swiper-slide {
     background-color: white;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 24px;
 }
 
-.swiper-slide-content{
+.swiper-slide-content {
+    margin-top: 30px;
     text-align: left;
-    width: 80%;
-    margin: 0 auto;
-    /* display: flex;
-    border-radius: 0;  */
+}
+
+.st-payment-method {
+    margin-top: 50px;
+    font-size: 15px;
+}
+
+.st-payment-method img {
+    width: 70%;
+    margin-bottom: 10px;
 }
 
 #swiper-pagination {
@@ -167,3 +179,5 @@
 .swiper-pagination-bullet-active {
     background: #000!important;
 }
+
+

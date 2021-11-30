@@ -151,6 +151,16 @@ export default class usersCollection{
         }
     }
 
+    static async updateUser(request, response, updateData) {
+        const filter = {"_id": {$eq: request.user._id}};
+        const updateDoc = {
+            $set: {
+                ...updateData
+            }
+        }
+        const result = await users.updateOne(filter, updateDoc);
+    }
+
     static async getUserDataFromUser(request, response) {
         let user = request.user;
         if(user){

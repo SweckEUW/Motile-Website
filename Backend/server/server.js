@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import mongodb from "mongodb"
+import multer from "multer"
 import motilePartsCollection from "./motilePartsCollection.js"
 import UsersCollection from "./usersCollection.js"
 import BlenderJobs from "./blenderJobs.js"
@@ -9,6 +10,8 @@ import { fileURLToPath } from 'url';
 import ConfigsCollection from "./configsCollection.js"
 import userDataCollection from "./userDataCollection.js"
 import Middleware from "./middleware.js"
+import ImageUploadHandler from "./ImageUploadHandler.js"
+import { Zoom } from "swiper"
 
 const app = express();
 
@@ -44,6 +47,13 @@ app.post('/Register', UsersCollection.addUser);
 app.post('/User/Configs', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
 app.post('/User/Data', Middleware.verifyJWT, UsersCollection.getUserDataFromUser);
 app.post('/Blender', BlenderJobs.render);
+app.post('/User/Modify', Middleware.verifyJWT, userDataCollection.modifyUserData);
+app.post('/User/AddAddress', Middleware.verifyJWT, userDataCollection.addAddress);
+app.post('/User/RemoveAddress', Middleware.verifyJWT, userDataCollection.removeAddress);
+
+//Image upload prep
+let upload = multer({ storage: ImageUploadHandler.getStorage() })
+app.post('/User/UploadProfilePic', upload.single('file'), Middleware.verifyJWT, userDataCollection.updateProfilePic);
 
 // static assets - public folder
 let filename = fileURLToPath(import.meta.url);

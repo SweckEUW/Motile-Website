@@ -2,15 +2,7 @@ import AxiosHelper from "./AxiosHelper.js";
 
 function getData(){
     let token = localStorage.getItem('token');
-    return {
-        token: token,
-        language: navigator.language,
-        availWidth: window.screen.availWidth,
-        availHeight: window.screen.availHeight,
-        colorDepth: window.screen.colorDepth,
-        pixelDepth: window.screen.pixelDepth,
-        mobile: /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())
-    };
+    return {token};
 }
 
 class ServerRequest{

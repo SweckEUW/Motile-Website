@@ -3,8 +3,9 @@ import '../Profile.css'
 import ServerRequest from '../../../services/ServerRequest'
 import React, {useState, useEffect, useContext} from 'react';
 import {Context} from '../../../Store.js'
+import history from '../../../services/RouterHistory.js';
 
-const Configurations = () => {
+const Configurations = (props) => {
     const [state, setState] = useContext(Context);
     const [configurations, setConfigurations] = useState([]);
 
@@ -22,6 +23,16 @@ const Configurations = () => {
             setConfigurations([])
     }
 
+    function editeConfiguration(configuration){
+        history.push({
+            pathname: '/Konfigurator',
+            state: {
+                editMode: true,
+                configuration: configuration
+            }
+        })
+    }
+
     return (
         <div className="Configurations pr-page">
 
@@ -33,7 +44,7 @@ const Configurations = () => {
                     <span className="cf-title">Meine Geräte</span>
                     {configurations.filter(configuration => configuration.bought).map((configuration,index) =>{return(
                         <div key={index} className="cf-configuration">
-                            <img src={configuration.thumbnail} alt=""/>
+                            <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "http://localhost:5000/Placeholder/phone_placeholder.png"} alt=""/>
                             <div className="cf-name">{configuration.name}</div>
                             <div className="cf-info">{'gekauft '+configuration.orderDate}</div>
                             <div className="cf-button cf-upgrade">Upgrade</div>
@@ -47,12 +58,12 @@ const Configurations = () => {
                     <div className="cf-saved-configurations">
                         {configurations.filter(configuration => !configuration.bought).map((configuration,index) =>{return(
                             <div key={index} className="cf-configuration cf-saved-configuration">
-                                <img src={configuration.thumbnail} alt=""/>
+                                <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "http://localhost:5000/Placeholder/phone_placeholder.png"} alt=""/>
                                 <div className="cf-name">{configuration.name}</div>
                                 <div className="cf-info">{configuration.price}</div>
                                 <div className="cf-button">In den Warenkorb</div>
                                 <div className="cf-link-container">
-                                    <span className="cf-link">bearbeiten</span>
+                                    <span className="cf-link" onClick={() =>{editeConfiguration(configuration)}}>bearbeiten</span>
                                     <span className="cf-link">löschen</span>
                                 </div>
                             </div>

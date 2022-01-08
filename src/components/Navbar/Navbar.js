@@ -34,7 +34,6 @@ const Navbar = () => {
     function logout(){
         setState(prevState => ({...prevState,loggedIn: false}));
         localStorage.removeItem('token');
-        setUserData(null);
         console.log("Logout");
     }
 
@@ -52,7 +51,7 @@ const Navbar = () => {
                 </Link>
                 <div className="nav-account-container" onClick={() =>{toggleLoginDialogue()}}>
                     <span className="material-icons nav-account">account_circle</span>
-                    <CSSTransition in={userData != null} classNames="slide-right" timeout={400} unmountOnExit>
+                    <CSSTransition in={state.loggedIn} classNames="slide-right" timeout={400} unmountOnExit>
                         <span className="nav-name">{userData ? userData.firstName : ''}</span>
                     </CSSTransition>
                 </div>

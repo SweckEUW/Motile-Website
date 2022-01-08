@@ -1,9 +1,40 @@
 import './Overview.css';
 import React, {useContext} from 'react';
 import {Context} from '../../../../Store'
+import ServerRequest from '../../../../services/ServerRequest'
 
 function Overview(){
   const [state, setState] = useContext(Context);
+  
+  async function saveConfiguration(){
+    let data = {
+      name: "Norbert",
+      number: Math.floor(Math.random() * 1000000000),
+      orderDate: new Date().toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
+      deliveryDate: new Date().addDays(7).toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
+      price: getPrice(),
+      bought:  Math.random() < 0.5, //false
+      parts: state.components
+    }
+
+    let saveResponse = await ServerRequest.saveUserConfiguration(data);
+    console.log(saveResponse.data.message);
+    console.log(saveResponse.data);
+
+    if(saveResponse.data.success){
+      // TODO Redirect
+    }
+  }
+
+  function getPrice(){
+    return state.components.reduce((pv, component) => pv + parseInt(component.component.metaData.price), 0) + " €"
+  }
+
+  Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  } 
 
   return (
     <div className="Overview">
@@ -47,10 +78,10 @@ function Overview(){
 
         <span className="ov-price">
           <span>Gesamt:</span>
-          <span className="ov-price-number">{state.components.reduce((pv, component) => pv + parseInt(component.component.metaData.price), 0) + " €"}</span>
+          <span className="ov-price-number">{getPrice()}</span>
         </span>
       </div>
-      <span className="ov-button">Speichern</span>
+      <span className="ov-button" onClick={() =>{saveConfiguration()}}>Speichern</span>
 
     </div>
   );

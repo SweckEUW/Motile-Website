@@ -8,6 +8,7 @@ import React, {  useEffect } from 'react';
 import Plate from './Plate';
 import Component from './Component';
 import ServerRequest from '../../../services/ServerRequest';
+import history from '../../../services/RouterHistory';
 
 function BabylonView(){
   let motileParts = [];
@@ -15,6 +16,17 @@ function BabylonView(){
   let myRef = React.useRef(null)
 
   useEffect(() => {
+    initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function loadConfiguration(configuration){
+    configuration.parts.forEach(part => {
+      spawnComponent(part.component.name);
+    });
+  }
+
+  async function initialize(){
     // init engine
     let engine = new BABYLON.Engine(myRef.current, true);
     window.addEventListener("resize", () => {
@@ -38,13 +50,10 @@ function BabylonView(){
     // Set up Shadows
     let light0 = new BABYLON.DirectionalLight("MainLight", new BABYLON.Vector3(1, -1, 1), scene);
     light0.position = new BABYLON.Vector3(-200,100,0);
-    // light0.intensity = 2;
     light0.shadowMaxZ = 1000;
-    // light0.shadowMinZ = -20;
 
     let shadowGenerator = new BABYLON.ShadowGenerator(2048, light0);
     shadowGenerator.useExponentialShadowMap = true;
-    // shadowGenerator.bias = 0.006;
     shadowGenerator.useBlurExponentialShadowMap = true;
     shadowGenerator.useKernelBlur = true;
     shadowGenerator.blurKernel = 64;
@@ -68,12 +77,6 @@ function BabylonView(){
 
     var ground = BABYLON.Mesh.CreateGround("Ground", 20000, 20000, 1, scene, false);
     ground.material = new Materials.ShadowOnlyMaterial('shadowOnly', scene);
-    // ground.material = new BABYLON.PBRMaterial("GroundMat", scene);
-    // ground.material.disableLighting = true;
-    // ground.material.albedoColor = BABYLON.Color3.FromHexString("#424345");
-    // ground.material.microSurface = 0.5;
-    // ground.material.metallic = 0;
-    // ground.material.roughness = 0.35;
     ground.receiveShadows = true;
 
     // Start rendering
@@ -81,15 +84,17 @@ function BabylonView(){
       scene.render();
     });
 
-    loadMotileParts(scene,shadowGenerator);
+    await loadMotileParts(scene,shadowGenerator);
     initDragAndDrop(scene,ground);
-    
+
     document.addEventListener("spawnComponent", spawnComponent);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+    if(history.location.state && history.location.state.editMode)
+      loadConfiguration(history.location.state.configuration);
+  }
 
   function spawnComponent(e){
-    let component = motileParts.find(part => part.name === e.detail.name); 
+    let component = motileParts.find(part => part.name === (e.detail ? e.detail.name : e)); 
     component.cloneMesh();
   }
 
@@ -107,6 +112,12 @@ function BabylonView(){
     new Plate(assetsManager,shadowGenerator);
 
     assetsManager.load();
+
+    return new Promise(function(resolve, reject) {
+      assetsManager.onFinish = () => {
+        resolve()
+      }
+    });
   }
 
   function initDragAndDrop(scene,ground){

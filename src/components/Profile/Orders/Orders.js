@@ -32,7 +32,7 @@ const Orders = () => {
 
                     <div className="or-row or-row-1">
                         <span className="or-date">{order.orderDate}</span>
-                        <span className="or-number">{'Bestellnummer '+order.number}</span>
+                        <span className="or-number">{'Bestellnummer '+ order.number}</span>
                     </div>
 
                     <div className="or-row or-row-2">

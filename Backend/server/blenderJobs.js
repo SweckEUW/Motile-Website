@@ -2,16 +2,15 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import config from './config.js';
 import { exec } from 'child_process';
-
+import UserConfigsCollection from "./userConfigsCollection.js"; 
 
 export default class blenderJobs{
-    static async render(request,response){
-
-        let settings = request.body;
+    static async renderThumbnail(request,response){
+        // let settings = request.body;
+        let settings = {x: 0,y: 0,z: 0,rx: 0,ry: 0,rz: 0};
         let filename = fileURLToPath(import.meta.url);
         let dirname = path.dirname(filename);
-        console.log(dirname);
-        let exportPath = dirname + '/Assets/render.jpg';
+        let exportPath = dirname + '/public/UserThumbnails/' + request.user.firstName + " " + request.user.lastName + " " + request.user._id + '/' + request.body.config.number + '.jpg';
         let blenderFilePath = dirname + '/Assets/Motile.blend';
         let blenderPath = config.blender.path;
         let pythonFilePath = dirname + '/Assets/RenderMotile.py';
@@ -19,7 +18,7 @@ export default class blenderJobs{
         
         console.log("Start Blender rendering");
         let blenderJob = exec((drive != "C:" ? drive : "") + 'cd "' + config.blender.path + '" & blender -b "' + blenderFilePath + '" -P "' + pythonFilePath + '" -- "' + exportPath + '" '  + settings.x + " " + settings.y + " " + settings.z + " " + settings.rx + " " + settings.ry + " " + settings.rz);
-        console.log((drive != "C:" ? drive : "") + 'cd "' + config.blender.path + '" & blender -b "' + blenderFilePath + '" -P "' + pythonFilePath + '" -- "' + exportPath + '" '  + settings.x + " " + settings.y + " " + settings.z + " " + settings.rx + " " + settings.ry + " " + settings.rz);
+       
         blenderJob.stdout.on('data', function (data) {
             console.log('stdout: ' + data.toString());
         });
@@ -28,9 +27,12 @@ export default class blenderJobs{
             console.log('stderr: ' + data.toString());
         });
           
-        blenderJob.on('exit', function (code) {
+        blenderJob.on('exit', () => { 
             console.log("BlenderJob Done");
-            response.sendFile(dirname + '/Assets/render.jpg');  
+            // TODO set path to config
+            let thumbnailPath = 'http://localhost:5000/UserThumbnails/' + request.user.firstName + " " + request.user.lastName + " " + request.user._id + '/' + request.body.config.number + '.jpg';
+            let updteResponse = UserConfigsCollection.setUserConfigThumbnail(request.user,request.body.config.number,thumbnailPath);
+            response.json({success: true , message: 'Rendering done, thumbnail set'});
         });
 
     }

@@ -37,6 +37,9 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+.cf-thumbnail{
+    width: 300px;
+}
 .cf-info{
     color: gray;
     margin-bottom: 40px;

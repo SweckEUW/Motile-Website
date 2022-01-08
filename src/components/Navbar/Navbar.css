@@ -55,6 +55,7 @@
 .nav-name{
     margin-left: 10px;
     line-height: 35px;
+    overflow: hidden;
 }
 
 .nav-dropDown{
@@ -145,7 +146,7 @@
 }
 .slide-right-exit-active{
     max-width: 0;
-    transition: max-width .4s ease;
+    transition: max-width .2s ease;
 } 
 
 

@@ -13,13 +13,14 @@ import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import SizeChooser from './components/Configurator/SizeChooser/SizeChooser';
 import {Context} from './Store.js';
 import React, {useContext} from 'react';
+import history from './services/RouterHistory.js';
 
 const App = () => {
 
   const [state, setState] = useContext(Context);
 
   return (
-    <Router>
+    <Router history={history}>
       <Navbar/>
       <Login/>
 

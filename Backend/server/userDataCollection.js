@@ -20,7 +20,7 @@ export default class userDataCollection {
     }
 
     static async initializeUserData(user) {
-
+        
         // Adding Mock-Data
         let template = await userData.insertOne({
             firstName: user.firstName,

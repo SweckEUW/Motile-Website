@@ -1,9 +1,15 @@
 import './SizeChooser.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {CSSTransition} from 'react-transition-group';
+import history from '../../../services/RouterHistory';
 
 function SizeChooser(){
   const [sizeChooserVisible, setSizeChooserVisible] = useState(true);
+
+  useEffect(() =>{ 
+    if(history.location.state && history.location.state.editMode)
+      setSizeChooserVisible(false);
+  }, []);
 
   return (
     <CSSTransition in={sizeChooserVisible} classNames="fade" timeout={400} unmountOnExit>

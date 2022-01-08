@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt"
 import nodemailer from "nodemailer"
-import ConfigsCollection from "./configsCollection.js"; 
+import UserConfigsCollection from "./userConfigsCollection.js"; 
 import jwt from "jsonwebtoken"
 import UserDataCollection from "./userDataCollection.js";
 import { ObjectId } from "bson";
@@ -111,7 +111,7 @@ export default class usersCollection{
             } 
 
             //generate a configs collection for a new user
-            ConfigsCollection.initializeUserConfigurations(newUser);
+            UserConfigsCollection.initializeUserConfigurations(newUser);
             UserDataCollection.initializeUserData(newUser);
             
             try {
@@ -142,7 +142,7 @@ export default class usersCollection{
     static async getConfigFromUser(request, response) {
         let user = request.user;
         if(user){
-            let configs = await ConfigsCollection.getConfig(user);
+            let configs = await UserConfigsCollection.getConfig(user);
             if(configs){
                 response.json({success: true , message: 'Konfigurationen gefunden', configs: configs})
             }else{

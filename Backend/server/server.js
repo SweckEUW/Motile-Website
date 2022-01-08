@@ -6,7 +6,7 @@ import UsersCollection from "./usersCollection.js"
 import BlenderJobs from "./blenderJobs.js"
 import path from 'path';
 import { fileURLToPath } from 'url';
-import ConfigsCollection from "./configsCollection.js"
+import UserConfigsCollection from "./userConfigsCollection.js"
 import userDataCollection from "./userDataCollection.js"
 import Middleware from "./middleware.js"
 
@@ -28,7 +28,7 @@ MongoClient.connect(
     console.log("Connected to Database")
     await motilePartsCollection.retrieveMotilePartsCollection(client);
     await UsersCollection.retrieveUsersCollection(client);
-    await ConfigsCollection.retrieveConfigsCollection(client);
+    await UserConfigsCollection.retrieveConfigsCollection(client);
     await userDataCollection.retrieveUserDataCollection(client);
     app.listen(5000,() =>{
         console.log('Server started')
@@ -43,8 +43,9 @@ app.post('/LoginJWT', Middleware.verifyJWT, UsersCollection.loginJWT);
 app.post('/Register', UsersCollection.addUser);
 app.post('/User/Configs', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
 app.post('/User/Data', Middleware.verifyJWT, UsersCollection.getUserDataFromUser);
-app.post('/Blender', BlenderJobs.render);
 app.post('/StayAlive', Middleware.verifyJWT, UsersCollection.stayAlive);
+app.post('/SaveConfiguration', Middleware.verifyJWT, UserConfigsCollection.saveUserConfiguration);
+app.post('/GenerateThumbnail', Middleware.verifyJWT, BlenderJobs.renderThumbnail);
 
 
 // static assets - public folder

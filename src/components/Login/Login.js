@@ -72,23 +72,14 @@ function Login(){
       // call to server to login
       let loginResponse = await ServerRequest.login({
         email: email,
-        password: password,
-        language: navigator.language,
-        availWidth: window.screen.availWidth,
-        availHeight: window.screen.availHeight,
-        colorDepth: window.screen.colorDepth,
-        pixelDepth: window.screen.pixelDepth,
-        mobile: /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())
+        password: password
       });
-      setErrorMessageTree(prevState => ({...prevState,loginError: loginResponse.data.message}));
-      
+
       if(loginResponse.data.success){
         localStorage.setItem('token', loginResponse.data.token);
         setState(prevState => ({...prevState,loggedIn: true}));
-        console.log(loginResponse.data.message)
-        setTimeout(() => {
-          setLoginDialogueVisible(false);
-        }, 1500);
+        console.log(loginResponse.data.message);
+        setLoginDialogueVisible(false);
 
         clearInterval(stayAliveID);  
         stayAliveID = setInterval(() => {

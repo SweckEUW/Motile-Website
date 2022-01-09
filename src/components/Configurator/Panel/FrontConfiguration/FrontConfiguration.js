@@ -66,7 +66,6 @@ function FrontConfiguration(){
           <span key={index} className="mp-icon material-icons" onClick={() =>{changeSwiperPage(index)}} style={{
             opacity: index === currentPage ? '1' : '0.3',
             fontSize: index === currentPage ? '48px' : '24px',
-            margin: index === currentPage ? '12px' : '24px'
           }}>
             {motilePart.metaData.icon}
           </span>
@@ -75,23 +74,18 @@ function FrontConfiguration(){
      
       <div id="fc-swiper" className="swiper"> 
         <div className="swiper-wrapper">
-
-        {motileParts.map((motilePart,index) =>{return(
+          {motileParts.map((motilePart,index) =>{return(
             <div key={index} className="swiper-slide">
 
               {/* Info Panel */}
-              <div className="mp-info">
-                <div className="mp-info-left">
-                  <div className="mp-name">{motilePart.name}</div>
-                  <div className="mp-price">{motilePart.metaData.price}</div>
+              <div className="mp-info" style={{backgroundImage: "url("+motilePart.metaData.thumbnail+")"}}>                
+                <div className="mp-name">{motilePart.name}</div>
+                <div className="mp-price">{motilePart.metaData.price}</div>
+                <div className="mp-colors">
                   {motilePart.metaData.colorways.map((colorway,index) =>{return(
                     <div key={index} className="mp-dot" style={{background: colorway}}/>
-                  )})} 
-                </div>
-                
-                <div className="mp-info-right">
-                  <img className="mp-thumbnail" src={motilePart.metaData.thumbnail} alt=""/>
-                </div>
+                  )})}
+                </div>               
               </div>
               <div className="mp-settings">
                 <div className="mp-description">{motilePart.metaData.description}</div>

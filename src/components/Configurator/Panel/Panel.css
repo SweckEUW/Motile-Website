@@ -8,6 +8,7 @@
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
     overflow: hidden;
     border-radius: 24px;
+    background-color: #EEE;
 }
 .swiper{
     height: 100%;

@@ -113,6 +113,10 @@ export default class usersCollection{
             //generate a configs collection for a new user
             UserConfigsCollection.initializeUserConfigurations(newUser);
             UserDataCollection.initializeUserData(newUser);
+
+            //delete first and last name
+            delete newUser.firstName;
+            delete newUser.lastName;
             
             try {
                 await transporter.sendMail(mailOptions);
@@ -151,6 +155,16 @@ export default class usersCollection{
         }else{
             response.json({success: false , message: 'Kein Nutzer gefunden'})
         }
+    }
+
+    static async updateUser(request, response, updateData) {
+        const filter = {"_id": {$eq: request.user._id}};
+        const updateDoc = {
+            $set: {
+                ...updateData
+            }
+        }
+        const result = await users.updateOne(filter, updateDoc);
     }
 
     static async getUserDataFromUser(request, response) {

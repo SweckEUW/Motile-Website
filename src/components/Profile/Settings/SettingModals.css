@@ -1,0 +1,153 @@
+.st-mod-dialogue {
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background: #000000d0;
+}
+
+.st-mod-container {
+    position: relative;
+    background: white;
+    border-radius: 10px;
+    width: 1105px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+}
+
+.st-mod-close-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.st-mod-close-button span{
+    border-radius: 50%;
+    padding: 8px;
+    background-color: black;
+    color: white;
+}
+
+.st-mod-close-button span:hover{
+    background-color: rgb(233, 233, 233);
+}
+
+.st-mod-title {
+    font-size: 20px;
+    margin: 20px auto 30px auto;
+}
+
+
+.st-mod-profile-pic {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+
+.st-mod-edit-pic{
+    position: relative;
+    width: 16%;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.st-mod-profile-pic img{
+    width: 100%;
+}
+
+.st-mod-pic-overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); 
+    font-size: 20px;
+    width: 177px;
+    height: 190px;
+    text-align: center;
+}
+
+.st-mod-pic-overlay:hover {
+    background: rgba(0, 0, 0, 0.8); 
+}
+
+.st-mod-pic-overlay-text {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.st-mod-pic-overlay-text p{
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+    height: 40px;
+}
+
+.st-mod-input {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 6px;
+    border-top: 1px solid #b3b3b3;
+}
+
+.st-mod-input-info {
+    width: 100px;
+    text-align: left;
+}
+
+.st-mod-form-title {
+    font-size: 16px;
+    color: #b3b3b3;
+    margin-left: 20px;
+}
+
+.st-mod-input input{
+    margin-left: 200px;
+    border:none;
+    padding: 2px;
+    width: 300px;
+    font-weight: 600;
+}
+
+.st-mod-confirm {
+    width: 100%;
+    cursor: pointer;
+    padding: 10px 0;
+    font-weight: 800;
+    border-top: 2px solid #707070;
+}
+
+.st-mod-confirm:hover {
+    width: 100%;
+    cursor: pointer;
+    background: rgb(233, 233, 233)
+}
+
+.st-mod-upload-button {
+    background-color: black;
+    border: none;
+    color: white;
+    margin-top: 8px;
+    margin-left: 14px;
+    padding: 10px 40px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.st-mod-upload-button:hover{
+    background-color: grey;
+}

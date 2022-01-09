@@ -1,0 +1,26 @@
+.Footer {
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #FCFBF9;
+    align-items: center;
+}
+
+.ft-line {
+    width: 75%;
+    color: #707070;
+}
+
+.ft-content {
+    width: 75vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 18px;
+}
+
+.ft-item {
+    font-size: 12px;
+    color: #707070;
+}

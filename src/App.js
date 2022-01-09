@@ -4,6 +4,7 @@ import Panel from './components/Configurator/Panel/Panel';
 import Login from './components/Login/Login';
 import Navbar from './components/Navbar/Navbar';
 import Header from './components/Home/Header/Header';
+import Footer from './components/Footer/Footer';
 // import BlenderRendering from './components/BlenderRendering/BlenderRendering';
 import {BrowserRouter as Router,Route,Switch,Redirect} from "react-router-dom";
 import Configurations from './components/Profile/Configurations/Configurations';
@@ -29,6 +30,7 @@ const App = () => {
         <Route exact path="/" render={() => (
           <div>
             <Header/>
+            <Footer/>
           </div>
         )}/>
 
@@ -50,6 +52,7 @@ const App = () => {
           ) : (
             <div>
               <Configurations/>
+              <Footer/>
             </div>
           )
         )}/>
@@ -62,6 +65,7 @@ const App = () => {
           ) : (
             <div>
               <Orders/>
+              <Footer/>
             </div>
           )
         )}/>
@@ -74,6 +78,7 @@ const App = () => {
           ) : (
             <div>
               <Settings/>
+              <Footer/>
             </div>
           )
         )}/>
@@ -82,6 +87,7 @@ const App = () => {
         <Route exact path="/Warenkorb" render={() => (
           <div>
             <ShoppingCart/>
+            <Footer/>
           </div>
         )}/>
 

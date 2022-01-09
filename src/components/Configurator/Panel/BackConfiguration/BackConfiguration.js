@@ -52,6 +52,7 @@ function BackConfiguration(){
     }
     components.push(component);
     setState(prevState => ({...prevState,components: components}));
+    swiper.slideNext();
   }
 
   return (
@@ -64,13 +65,12 @@ function BackConfiguration(){
         {motileParts.map((motilePart,index) =>{return(
           <span key={index} className="mp-icon material-icons" onClick={() =>{changeSwiperPage(index)}} style={{
             opacity: index === currentPage ? '1' : '0.3',
-            fontSize: index === currentPage ? '48px' : '24px',
-            margin: index === currentPage ? '12px' : '24px'
+            fontSize: index === currentPage ? '48px' : '24px'
           }}>
             {motilePart.metaData.icon}
           </span>
         )})}
-      </div>
+      </div>                   
       
       <div id="bc-Swiper" className="swiper"> 
         <div className="swiper-wrapper">
@@ -78,17 +78,13 @@ function BackConfiguration(){
             <div key={index} className="swiper-slide">
 
               {/* Info Panel */}
-              <div className="mp-info">
-                <div className="mp-info-left">
-                  <div className="mp-name">{motilePart.name}</div>
-                  <div className="mp-price">{motilePart.metaData.price}</div>
+              <div className="mp-info" style={{backgroundImage: "url("+motilePart.metaData.thumbnail+")"}}>
+                <div className="mp-name">{motilePart.name}</div>
+                <div className="mp-price">{motilePart.metaData.price}</div>
+                <div className="mp-colors">
                   {motilePart.metaData.colorways.map((colorway,index) =>{return(
                     <div key={index} className="mp-dot" style={{background: colorway}}/>
-                  )})} 
-                </div>
-                
-                <div className="mp-info-right">
-                  <img className="mp-thumbnail" src={motilePart.metaData.thumbnail} alt=""/>
+                  )})}
                 </div>
               </div>
               <div className="mp-settings">

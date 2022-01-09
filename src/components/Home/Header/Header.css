@@ -1,6 +1,5 @@
 .Header {
     margin-top: 73px;
-    height: 90vh;
 }
 .hd-img{
     width: 100%;
@@ -32,3 +31,34 @@
 .hd-link:hover{
     background-color: rgb(31, 31, 31);
 }
+
+.imggrid {
+    width: 1200px;
+    margin: auto;
+}
+.imgrow {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+
+  .feature {
+    width: 420px;
+    margin: auto;
+  }
+  
+  .column {
+    flex: 25% 1;
+    max-width: 25%;
+    padding: 0 24px;
+  }
+  
+  .column img {
+    margin-top: 48px;
+    vertical-align: middle;
+    width: 100%;
+    border-radius: 24px;
+  }
+  * {
+    box-sizing: border-box;
+  }

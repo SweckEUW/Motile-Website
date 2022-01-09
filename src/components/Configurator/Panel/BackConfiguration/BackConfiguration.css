@@ -1,20 +1,19 @@
 .BackConfiguration{
     padding: 24px;
     height: calc(100% - 48px);
-    display: flex;
-    flex-direction: column;
 }
 .mp-icons{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 12px 0;
 }
 .mp-icon{
-    margin: 24px;
-    display: inline-block;
+    width: 100%;
+    line-height: 72px;
     cursor: pointer;
     user-select: none;
-    transition: .4s font-size ease, .4s opacity ease, .4s margin ease;
+    transition: .4s font-size ease, .4s opacity ease;
 }
 .mp-icon:hover {
     opacity: 1!important;
@@ -23,24 +22,24 @@
     height: 100%;
     object-fit: contain;
 }
-.BackConfiguration .swiper{
+.swiper{
     height: 100%;
     width: 100%;
     z-index: 0 !important;
     border-radius: 24px;
 }
-.bc-Swiper .swiper-wrapper .swiper-slide{
+.swiper-slide{
     display: flex;
     flex-flow: column;
     height: 100%;
 }
 .mp-info{
-    height: 216px;
-    border-radius: 20px;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
+    height: 168px;
+    border-radius: 30px;
+    text-align: left;
+    font-weight: bold;
+    padding: 24px;
+    background: no-repeat right/contain #fff;
 }
 .mp-settings {
     flex-grow: 1;
@@ -52,29 +51,29 @@
 .mp-settings::-webkit-scrollbar {
     display: none;
 }
-.mp-info-left{
-    margin: auto 20px;
-    text-align: left;
-    font-weight: bold;
-}
-.mp-info-left * {
+
+.mp-info * {
     font-family: 'AVANTGARDE';
 }
 .mp-name{
     font-size: 40px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 .mp-price{
     font-size: 20px;
     font-weight: 300;
     margin-bottom: 20px;
 }
+.mp-colors {
+    width: 150px;
+}
 .mp-dot{
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 12px;
+    margin-bottom: 5px;
     cursor: pointer;
 }
 .mp-info-right{

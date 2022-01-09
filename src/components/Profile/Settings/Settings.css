@@ -133,7 +133,7 @@
     z-index: 0 !important;
 }
 
-.swiper-wrapper {
+#st-payment-swiper .swiper-wrapper {
     width: 192px;
     height: 192px;
     margin: 25px 0px;
@@ -163,21 +163,4 @@
     width: 70%;
     margin-bottom: 10px;
 }
-
-#swiper-pagination {
-    position: relative;
-    width: 100%;
-    top: 0px;
-    z-index: 9;
-    bottom: unset;
-}
-.swiper-pagination-bullet {
-    width: 10px !important;
-    height: 10px !important;
-    margin: 19px 7px !important;
-}
-.swiper-pagination-bullet-active {
-    background: #000!important;
-}
-
 

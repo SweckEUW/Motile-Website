@@ -5,6 +5,7 @@
   border-bottom: hidden;
   margin: 0px;
   padding-top: 20px;
+  z-index: 10;
 }
 
 .hd-h3{
@@ -18,7 +19,7 @@
 
 /** Klassenselektoren **/
 .Header{
-  margin-top: 73px;
+  margin-top: 65px;
   width: 100vw;
 }
 
@@ -49,13 +50,12 @@
 }
 
 .section1-container{
+  transform: translate(50vw, 25vh);
   width: 25%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   z-index: 2;
-  margin-left: 50vw;
-  margin-top: 15vh;
   text-align: left;
 }
 
@@ -81,15 +81,18 @@
 
 /* Section 2 */
 .hd-section2{
-  height: 80vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .section2-container{
-  width: 25%;
+  transform: translate(50vw, 25vh);
+  width: 15%;
   display: flex;
   flex-direction: column;
-  margin: 5% 0% 0% 50%;
   text-align: left;
+  z-index: 2;
 }
 
 .hd-price{
@@ -130,17 +133,28 @@
 /* Section 4 */
 .hd-section4{
   height: 80vh;
+  display: flex;
 }
 
 .section4-container{
-  height: 50%;
-  width: 20%;
+  width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin-left: 6%;
+  justify-content: center;
+  margin-left: 5%;
+  z-index: 2;
 }
+
+.section4-padding{
+  padding: 10%;
+}
+
+.img-section4 {
+  height: 80vh;
+  transform: translateX(0.5%);
+}
+
 /* Section 5 */
 .imggrid {
   width: 1200px;
@@ -176,21 +190,36 @@
 /* Section 6 */
 .hd-section6{
   height: 80vh;
+  display: flex;
 }
 
 .section6-container1{
-  height: 50%;
-  width: 20%;
+  width: 40%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin-left: 6%;
+  justify-content: center;
+  padding: 10%;
 }
 
 .section6-container2{
+  width: 60%;
+  height: 100%;
+}
+
+.img-section6{
+  height: 80vh;
+  z-index: 1;
+  transform: translateX(7%);
+}
+
+.p-section6{
+  position: absolute;
+  transform: translate(50vw,60vh);
   font-size: 16px;
   color: #707070;
+  z-index: 2;
 }
 
 /* Section 7 */
@@ -201,10 +230,29 @@
   align-items: center;
 }
 
-.section7-container{
+.section7-container1{
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 25%;
+}
+
+.section7-container2{
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+  margin-top: 20px;
+}
+
+.section7-container3{
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+  height: 20%;
+  margin-top: 20px;
+}
+
+.img-section7{
+  z-index: 2;
 }
 
 /* Section 8 */
@@ -213,7 +261,10 @@
 }
 
 .section8-container{
+  height: 70vh;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Section 9 */

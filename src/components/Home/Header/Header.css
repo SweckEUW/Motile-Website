@@ -1,15 +1,18 @@
 /** Typselektoren **/
-h2{
+.hd-h2{
+  font-family: 'AvantGarde';
   font-size: 40px;
   border-bottom: hidden;
+  margin: 0px;
+  padding-top: 20px;
 }
 
-h3{
+.hd-h3{
   font-size: 25px;
   border-bottom: hidden;
 }
 
-p{
+.hd-p{
   font-size: 18px;
 }
 
@@ -21,6 +24,10 @@ p{
 
 .icon-header{
   font-size: 96px;
+}
+
+.icon-medium{
+  font-size: 48px;
 }
 
 /* Hintergrundfarbe */
@@ -47,7 +54,9 @@ p{
   flex-direction: column;
   justify-content: center;
   z-index: 2;
-  margin: auto;
+  margin-left: 50vw;
+  margin-top: 15vh;
+  text-align: left;
 }
 
 .hd-img{
@@ -58,14 +67,16 @@ p{
   /*object-fit: cover;*/
 }
 
-.hd-link{
+.hd-link1{
   width: 75%;
-  border-radius: 20px;
-  margin: auto;
+  height: 50px;
+  border-radius: 25px;
   background-color: #000000;
   color: #FFFFFF;
+  text-align: center;
   text-decoration: none;
-  transition: .2s background ease;
+  padding-top: 12px;
+  /*transition: .2s background ease;*/
 }
 
 /* Section 2 */
@@ -74,11 +85,33 @@ p{
 }
 
 .section2-container{
-  width: 20%;
+  width: 25%;
   display: flex;
   flex-direction: column;
-  margin: auto;
+  margin: 5% 0% 0% 50%;
+  text-align: left;
 }
+
+.hd-price{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.hd-link2{
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #2E2E2E;
+  border-radius: 25px;
+  border-color: #FFFFFF;
+  border-style: solid;
+  border-width: 2px;
+  color: #FFFFFF;
+  text-align: center;
+  text-decoration: none;
+  padding-top: 12px;
+}
+
 
 /* Section 3 */
 .hd-section3{
@@ -100,13 +133,13 @@ p{
 }
 
 .section4-container{
-  position: absolute;
   height: 50%;
   width: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin-left: 6%;
 }
 /* Section 5 */
 .imggrid {
@@ -145,17 +178,33 @@ p{
   height: 80vh;
 }
 
-.section6-container{
+.section6-container1{
+  height: 50%;
+  width: 20%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 6%;
+}
+
+.section6-container2{
+  font-size: 16px;
+  color: #707070;
 }
 
 /* Section 7 */
 .hd-section7{
   height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .section7-container{
   display: flex;
+  flex-direction: column;
+  width: 40%;
 }
 
 /* Section 8 */

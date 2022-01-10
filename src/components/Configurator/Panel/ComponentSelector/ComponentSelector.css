@@ -10,7 +10,7 @@ h2 {
     margin-bottom: 0;
 }
 
-h3 {
+.h3 {
     text-align: center; 
     border-bottom: 1px solid #bbbbbb; 
     line-height: 0.1em;
@@ -30,7 +30,7 @@ h4 {
     margin-bottom: 24px;
 }
 
-h3 span {
+.h3 span {
     background:#eee; 
     padding: 0 15px; 
 }

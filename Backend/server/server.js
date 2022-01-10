@@ -50,7 +50,7 @@ app.post('/StayAlive', Middleware.verifyJWT, UsersCollection.stayAlive);
 app.post('/SaveConfiguration', Middleware.verifyJWT, UserConfigsCollection.saveUserConfiguration);
 app.post('/GenerateThumbnail', Middleware.verifyJWT, BlenderJobs.renderThumbnail);
 
-app.post('/Blender', BlenderJobs.render);
+// app.post('/Blender', BlenderJobs.render);
 app.post('/User/Modify', Middleware.verifyJWT, userDataCollection.modifyUserData);
 app.post('/User/AddAddress', Middleware.verifyJWT, userDataCollection.addAddress);
 app.post('/User/RemoveAddress', Middleware.verifyJWT, userDataCollection.removeAddress);

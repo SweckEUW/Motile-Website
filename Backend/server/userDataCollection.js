@@ -30,12 +30,16 @@ export default class userDataCollection {
             telephone: '+49 1575 0456123',
             adresses: [
                 {
+                    firstName: user.firstName,
+                    lastName: user.lastName,
                     street: "An der Zapsäule 69",
                     city: "59557 Lippstadt",
                     country: "Deutschland",
                 },
         
                 {
+                    firstName: user.firstName,
+                    lastName: user.lastName,
                     street: "Nice street 123",
                     city: "12345 Westhausen",
                     country: "Griechenland",

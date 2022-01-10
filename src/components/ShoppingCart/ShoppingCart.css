@@ -5,7 +5,7 @@
     font-size: 18px;
     overflow-y: auto;
 }
-.or-block{
+.sc-block{
     background: #EEEEEE;
     width: 80%;
     max-width: 1100px;
@@ -13,68 +13,106 @@
     margin-bottom: 60px;
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.2));
 }
-.or-block:last-child{
+.sc-block:last-child{
     margin-bottom: 0px;
 }
-.or-row{
+.sc-row{
     padding: 20px 30px;
     border-bottom: 2px solid rgb(165, 165, 165);
 }
-.or-row:last-child{
+.sc-row:last-child{
     border-bottom: none;
 }
-.or-row-1{
+.sc-row-1{
     display: flex;
 }
-.or-number{
+.sc-number{
     margin-left: auto
 }
-.or-row-2{
+.sc-row-2{
     display: flex;
 }
-.or-info{
+.sc-info{
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: left;
     margin-left: 30px;
 }
-.or-name{
+.sc-name{
     font-size: 25px;
     margin-bottom: 20px;
 }
-.or-delivered{
-    
+.sc-delivered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
-.or-buttons{
+
+.sc-buttons{
     margin-left: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.or-button{
+.sc-button{
     padding: 10px 40px;
     margin: 10px;
     border: 2px solid black;
     border-radius: 5px;
     cursor: pointer;
 }
-.or-button:hover{
+.sc-button:hover{
     background: rgb(150, 150, 150);
 }
-.or-row-3{
+
+.sc-to-checkout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sc-row-3{
     text-align: left;
     display: flex;
     cursor: pointer;
 }
-.or-part-icon{
+.sc-part-icon{
     margin: 0px 10px;
     color: #707070;
 }
-.or-dorpDown-icon{
+.sc-dorpDown-icon{
     margin-left: auto;
 }
-.or-row-4{
+.sc-row-4{
     text-align: left;
     font-weight: bold;
+}
+
+.sc-part-row {
+    display: flex;
+    align-items: center;
+    padding-left: 18px;
+    padding-right: 32px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.sc-part-row > * {
+    flex-basis: 100%;
+}
+
+.sc-part-info {
+    font-weight: lighter;
+}
+
+.sc-part-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sc-part-price{
+    text-align: right;
 }

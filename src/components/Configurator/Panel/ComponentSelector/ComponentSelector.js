@@ -29,7 +29,7 @@ const ComponentSelector = (props) => {
 
     return (
         <div className="component">
-            <h3><span>{props.heading}</span></h3>
+            <h3 className="h3"><span>{props.heading}</span></h3>
             {component}
         </div>
     )

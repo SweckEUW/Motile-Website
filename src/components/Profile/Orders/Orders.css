@@ -32,6 +32,9 @@
 .or-row-2{
     display: flex;
 }
+.or-Thumbnail{
+    width: 40%;
+}
 .or-info{
     display: flex;
     flex-direction: column;

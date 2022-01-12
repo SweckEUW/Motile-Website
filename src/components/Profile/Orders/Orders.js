@@ -36,11 +36,11 @@ const Orders = () => {
                     </div>
 
                     <div className="or-row or-row-2">
-                        <img src={order.thumbnail} alt="" />
+                        <img className="or-Thumbnail" src={order.thumbnail} alt="" />
                         <span className="or-info">
                             <span className="or-name">{order.name}</span>
                             <span>Zugestellt am</span>
-                            <span className="or-delivered">{order.deliverDate}</span>
+                            <span className="or-delivered">{order.deliveryDate}</span>
                         </span>
                         <span className="or-buttons">
                             {/* <div className="or-button">Lieferung verfolgen</div> */}
@@ -51,7 +51,7 @@ const Orders = () => {
                     <div className="or-row or-row-3">
                         <span>Dieses Paket enthält:</span>
                         {order.parts.map((part,index) =>{return(
-                            <span key={index} className="material-icons or-part-icon">{part.icon}</span>
+                            <span key={index} className="material-icons or-part-icon">{part.component.metaData.icon}</span>
                         )})}
                         <span className="material-icons or-dorpDown-icon">keyboard_arrow_down</span>
                     </div>

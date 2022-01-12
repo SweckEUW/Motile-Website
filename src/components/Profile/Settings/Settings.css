@@ -93,6 +93,7 @@
     font-size: 16px;
     border: 2px solid white;
     padding: 7px 70px;
+    cursor: pointer;
 }
 
 .st-acc-overview button:hover{

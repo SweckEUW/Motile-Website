@@ -32,6 +32,9 @@
 .sc-row-2{
     display: flex;
 }
+.sc-thumbnail{
+    width: 40%;
+}
 .sc-info{
     display: flex;
     flex-direction: column;

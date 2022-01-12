@@ -42,7 +42,7 @@ const Orders = () => {
                     </div> */}
 
                     <div className="sc-row sc-row-2">
-                        <img src={order.thumbnail} alt="" />
+                        <img className='sc-thumbnail' src={order.thumbnail} alt="" />
                         <div className="sc-info">
                             <span className="sc-name">{order.name}</span>
                             <span className="sc-delivered">

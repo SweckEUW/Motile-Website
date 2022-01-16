@@ -2,7 +2,6 @@ import '../SettingModals.css'
 import {CSSTransition} from 'react-transition-group';
 import React, { useState, useCallback } from 'react';
 import ServerRequest from '../../../../services/ServerRequest';
-import axios from 'axios';
 
 const EditProfile = (props) => {
     const [editProfileDialogueVisible, setEditProfileDialogueVisible] = useState(false);

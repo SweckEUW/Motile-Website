@@ -1,0 +1,113 @@
+
+.orc-block{
+    background: #EEEEEE;
+    width: 80%;
+    max-width: 1100px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.2));
+}
+.orc-block:last-child{
+    margin-bottom: 0px;
+}
+.orc-row{
+    padding: 20px 30px;
+    border-bottom: 2px solid rgb(165, 165, 165);
+}
+.orc-row:last-child{
+    border-bottom: none;
+}
+.orc-row-1{
+    display: flex;
+}
+.orc-number{
+    margin-left: auto
+}
+.orc-row-2{
+    display: flex;
+}
+.orc-Thumbnail{
+    width: 40%;
+}
+.orc-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    margin-left: 30px;
+}
+.orc-name{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.orc-delivered{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.orc-buttons{
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.orc-button{
+    padding: 10px 40px;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.orc-button:hover{
+    background: rgb(150, 150, 150);
+}
+.orc-row-3{
+    text-align: left;
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+}
+.orc-dropdown{
+    transition: max-height 1s ease;
+    overflow: hidden;
+}
+.orc-part-icon{
+    margin: 0px 10px;
+    color: #707070;
+    user-select: none;
+}
+.orc-dorpDown-icon{
+    margin-left: auto;
+    user-select: none;
+    float: right;
+}
+.orc-row-4{
+    text-align: left;
+    font-weight: bold;
+}
+.orc-part-row {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+.orc-part-row:first-child{
+    margin-top: 20px;
+}
+.orc-part-row > * {
+    flex-basis: 100%;
+}
+.orc-part-name{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.orc-part-info{
+    font-weight: lighter;
+}
+.orc-part-price{
+    text-align: right;
+}

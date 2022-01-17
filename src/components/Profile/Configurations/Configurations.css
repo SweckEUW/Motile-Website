@@ -1,6 +1,5 @@
 .Configurations{
     margin-top: 70px;
-    height: calc(100vh - 70px);
     background-color: #FCFBF9;
     padding: 100px 50px;
 }
@@ -21,6 +20,9 @@
     border-radius: 20px;
     margin-right: 70px;
 }
+.cf-saved{
+    padding: 20px;
+}
 .cf-saved-configurations{
     display: flex;
     flex-direction: row;
@@ -38,7 +40,8 @@
     margin-bottom: 5px;
 }
 .cf-thumbnail{
-    width: 300px;
+    width: 100%;
+    object-fit: contain;
 }
 .cf-info{
     color: gray;
@@ -75,4 +78,14 @@
     margin-top: 15px;
     font-size: 16px;
     cursor: pointer;
+}
+
+
+#cf-Swiper-owned .swiper-wrapper, #cf-Swiper-saved .swiper-wrapper{
+    width: 250px;
+    height: auto;
+}
+
+#cf-Swiper-owned, #cf-Swiper-saved{
+    height: auto;
 }

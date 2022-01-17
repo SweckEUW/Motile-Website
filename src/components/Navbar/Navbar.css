@@ -1,6 +1,6 @@
 .navbar {
     top: 0px;
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: space-between;
     background-color: white;

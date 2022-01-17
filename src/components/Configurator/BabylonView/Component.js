@@ -42,7 +42,7 @@ class Component {
             clone.scaling = new BABYLON.Vector3(...this.scale);
             clone.parent = parent;
             clone.sourceMesh.receiveShadows = true;
-            this.shadowGenerator.getShadowMap().renderList.push(clone);
+            // this.shadowGenerator.getShadowMap().renderList.push(clone);
         });
 
         // Hover-over animation

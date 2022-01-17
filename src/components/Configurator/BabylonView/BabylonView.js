@@ -36,7 +36,7 @@ function BabylonView(){
     // init scene
     let scene = new BABYLON.Scene(engine);
     scene.clearColor = BABYLON.Color3.White();
-    // scene.debugLayer.show();
+    scene.debugLayer.show();
 
     // Physics
     // scene.enablePhysics(new BABYLON.Vector3(0,-10,0), new CannonJSPlugin(true, 0, cannon));

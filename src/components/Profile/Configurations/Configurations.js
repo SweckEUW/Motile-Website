@@ -24,7 +24,7 @@ const Configurations = (props) => {
         if(configurationsResponse.data.success)
             setConfigurations(configurationsResponse.data.configs.configs)
         else
-            setConfigurations([])
+            setConfigurations([])     
     }
 
     function initSwipers(){

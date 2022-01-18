@@ -3,6 +3,7 @@ import React, {useContext,useEffect,useState} from 'react';
 import ServerRequest from '../../services/ServerRequest'
 import {CSSTransition} from 'react-transition-group';
 import {Context} from '../../Store'
+import history from '../../services/RouterHistory';
 
 function Login(){
   const [state, setState] = useContext(Context);
@@ -24,18 +25,28 @@ function Login(){
 
   useEffect(() => {
     tryJWTLogin();
-  },[])
+  },[state])
 
   // Try logging in with jwt token
   async function tryJWTLogin(){
     let loginJWTResponse = await ServerRequest.loginJWT();
     console.log(loginJWTResponse.data.message)
     if(loginJWTResponse.data.success){
-      setState(prevState => ({...prevState,loggedIn: true}));
+      if(!state.loggedIn)
+        setState(prevState => ({...prevState,loggedIn: true}));
       clearInterval(stayAliveID);  
       stayAliveID = setInterval(() => {
         stayAliveCall();
       }, 300000);
+    }else{
+      switch(window.location.pathname) {
+        case "/Profil/Ger%C3%A4te":
+        case "/Profil/Einstellungen":
+        case "/Profil/Bestellungen":
+          history.push({pathname: '/'});
+          console.log("redirect to Home");
+          break;
+      }
     }
       
   }
@@ -85,9 +96,9 @@ function Login(){
         stayAliveID = setInterval(() => {
           stayAliveCall();
         }, 300000);
-
+      }else{
+        setErrorMessageTree(prevState => ({...prevState,loginError: loginResponse.data.message}));
       }
-        
     }
   }
 

@@ -51,13 +51,12 @@ const Configurations = () => {
     }
 
     async function getUserData() {
-        console.log("test");
         let userDataResponse = await ServerRequest.getUserData();
         console.log(userDataResponse.data.message);
         if (userDataResponse.data.success)
             setUserData(userDataResponse.data.userData)
         else
-            setUserData([])
+            setUserData(null)
     }
 
     async function deleteAddress(addressIndex) {

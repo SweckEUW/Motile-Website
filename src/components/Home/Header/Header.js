@@ -27,7 +27,7 @@ const Header = () => {
                 <h3>Multimedia</h3>
                 <p>Das beste Display mit großen Lautsprechern und einem Aufsteller - lehn dich zurück und genieße Filme... oder so. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                 <p className="hd-price">ab 350€</p>
-                <Link className="hd-link2">Preset öffnen</Link>
+                <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
               </div>
               </div>
             </div>

@@ -4,6 +4,7 @@ import ServerRequest from '../../services/ServerRequest'
 import {Link} from "react-router-dom";
 import {CSSTransition} from 'react-transition-group';
 import {Context} from '../../Store'
+import history from '../../services/RouterHistory';
 
 const Navbar = () => {
     const [state, setState] = useContext(Context);
@@ -22,6 +23,7 @@ const Navbar = () => {
 
     function toggleDropDown(){
         setDropDownVisible(!dropDownVisible);
+        getUserData();
     }
 
     function toggleLoginDialogue(){
@@ -32,6 +34,15 @@ const Navbar = () => {
     }
 
     function logout(){
+        switch(window.location.pathname) {
+            case "/Profil/Ger%C3%A4te":
+            case "/Profil/Einstellungen":
+            case "/Profil/Bestellungen":
+                history.push({pathname: '/'});
+                console.log("redirect to Home");
+                break;
+        }
+
         setState(prevState => ({...prevState,loggedIn: false}));
         localStorage.removeItem('token');
         console.log("Logout");

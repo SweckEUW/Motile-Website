@@ -93,7 +93,10 @@ export default class userDataCollection {
             }
         }
         const result = await userData.updateOne(filter, updateDoc);
-        response.status(200).send("file uploaded");
+        if(result.acknowledged)
+            response.json({success: true , message: "Picture uploaded and set"})
+        else
+            response.json({success: false , message: "Update User Picture failed"})
     }
 
     static async addAddress(request, response) {

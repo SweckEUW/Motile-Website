@@ -140,7 +140,7 @@ const Header = () => {
            <div className="grid-container">
                <h2 className="col-12 hd-h2">Technische Daten</h2>
                <div className="col-12 section8-container">
-                  <img src={process.env.PUBLIC_URL+'/Assets/image-section8.png'} alt="" className="img-section8"/>
+                  <img src={process.env.PUBLIC_URL+'/Assets/dimensions.svg'} alt="" className="img-section8"/>
                </div>
                </div>
            </section>

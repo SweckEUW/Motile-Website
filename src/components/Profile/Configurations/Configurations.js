@@ -3,6 +3,7 @@ import '../Profile.css'
 import ServerRequest from '../../../services/ServerRequest'
 import React, {useState, useEffect, useContext} from 'react';
 import {Context} from '../../../Store.js'
+import {ShoppingCartContext} from '../../../ShoppingCartStore'
 import history from '../../../services/RouterHistory.js';
 import Swiper , { Pagination } from 'swiper';
 import 'swiper/swiper.min.css'
@@ -10,6 +11,7 @@ import 'swiper/modules/pagination/pagination.min.css'
 
 const Configurations = (props) => {
     const [state, setState] = useContext(Context);
+    const [inShoppingCart, setShoppingCartItems] = useContext(ShoppingCartContext);
     const [configurations, setConfigurations] = useState([]);
 
     useEffect(() =>{ 
@@ -24,9 +26,9 @@ const Configurations = (props) => {
         if(configurationsResponse.data.success)
             setConfigurations(configurationsResponse.data.configs.configs)
         else
-            setConfigurations([])
+            setConfigurations([])     
     }
-
+    
     function initSwipers(){
         setTimeout(() => {
             new Swiper('#cf-Swiper-owned',{
@@ -53,6 +55,10 @@ const Configurations = (props) => {
 
 
           }, 10);    
+    }
+
+    function addToShoppingCart(configuration) {
+        setShoppingCartItems([...inShoppingCart, configuration])
     }
 
     function editeConfiguration(configuration){
@@ -104,12 +110,12 @@ const Configurations = (props) => {
                             {configurations.filter(configuration => !configuration.bought).map((configuration,index) =>{return(
                                 <div key={index} className="cf-configuration cf-saved-configuration swiper-slide">
                                     <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "http://localhost:5000/Placeholder/phone_placeholder.png"} alt=""/>
-                                    <div className="cf-name">{configuration.name}</div>
+                                    <div className="cf-name">{configuration.name}</div> 
                                     <div className="cf-info">{configuration.price}</div>
-                                    <div className="cf-button">In den Warenkorb</div>
+                                    <div className="cf-button" onClick={() => addToShoppingCart(configuration)}>In den Warenkorb</div>
                                     <div className="cf-link-container">
                                         <span className="cf-link" onClick={() =>{editeConfiguration(configuration)}}>bearbeiten</span>
-                                        <span className="cf-link" onClick={() =>{deleteConfiguration(configuration)}}>löschen</span>
+                                        <span className="cf-link" onClick={() =>{deleteConfiguration(configuration)}}>löschen</span>  
                                     </div>
                                 </div>
                             )})} 
@@ -123,5 +129,5 @@ const Configurations = (props) => {
         </div>
     )
 }
-
+//
 export default Configurations

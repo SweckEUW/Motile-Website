@@ -5,11 +5,14 @@ import ServerRequest from '../../../../services/ServerRequest';
 
 const EditProfile = (props) => {
     const [editProfileDialogueVisible, setEditProfileDialogueVisible] = useState(false);
+    const [profilePicData, setProfilePicData] = useState(null);
     const [profilePic, setProfilePic] = useState(null);
 
     document.addEventListener("toggleEditProfileDialogue", toggleEditProfileDialogue);
     function toggleEditProfileDialogue() {
         setEditProfileDialogueVisible(!editProfileDialogueVisible);
+        setProfilePic(null);
+        setProfilePicData(null);
     }
 
     async function changeProfileData() {
@@ -25,15 +28,18 @@ const EditProfile = (props) => {
             telephone: telephone
         })
 
-        if(changeUserDataRequest.data.success)
-            toggleEditProfileDialogue();
-            props.updateState(state => ({...state}));
+        if(profilePicData)
+            await sendImage();
+        
+        props.updateState(state => ({...state}));
+        toggleEditProfileDialogue();
     }
 
-    const sendImage = e => {
+    async function sendImage(){
         const data = new FormData();
-        data.append('file', profilePic);
-        ServerRequest.uploadImage(data);
+        data.append('file', profilePicData);
+        let uploadImageResponse = await ServerRequest.uploadImage(data);
+        console.log(uploadImageResponse.data);
     }
 
     return (
@@ -44,17 +50,13 @@ const EditProfile = (props) => {
                         <h1 className="st-mod-title">Profil bearbeiten</h1>
                         <div className="st-mod-profile-pic">
                             <div className="st-mod-edit-pic" >
-                                <img src={props.userData && props.userData.profilePic} alt="" />
-                                <div className="st-mod-pic-overlay">
-                                    <div className="st-mod-pic-overlay-text">
-                                        <input type="file" className="st-mod-select-pic" id="newProfilePic" name="file" onChange={event => {
-                                            const file = event.target.files[0];
-                                            setProfilePic(file);
-                                        }}/>
-                                    </div>
-                                </div>
+                                <input type="file" className="st-mod-select-pic" id="newProfilePic" name="file" accept="image/*" onChange={event => {
+                                    const file = event.target.files[0];
+                                    setProfilePic(URL.createObjectURL(file));
+                                    setProfilePicData(file);
+                                }}/>
+                                <img src={profilePic || props.userData && props.userData.profilePic} alt="" />
                             </div> 
-                            <button className="st-mod-upload-button" onClick={sendImage}>Hochladen</button>
                         </div>
 
                         <div className="st-mod-close-button" onClick={() =>{toggleEditProfileDialogue()}}>

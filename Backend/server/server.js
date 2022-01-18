@@ -54,10 +54,11 @@ app.post('/GenerateThumbnail', Middleware.verifyJWT, BlenderJobs.renderThumbnail
 app.post('/User/Modify', Middleware.verifyJWT, userDataCollection.modifyUserData);
 app.post('/User/AddAddress', Middleware.verifyJWT, userDataCollection.addAddress);
 app.post('/User/RemoveAddress', Middleware.verifyJWT, userDataCollection.removeAddress);
+app.post('/User/Configs/Remove', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
 
 //Image upload prep
 let upload = multer({ storage: ImageUploadHandler.getStorage() })
-app.post('/User/UploadProfilePic', upload.single('file'), Middleware.verifyJWT, userDataCollection.updateProfilePic);
+app.post('/User/UploadProfilePic',  upload.single('file'), Middleware.verifyJWT, userDataCollection.updateProfilePic);
 
 // static assets - public folder
 let filename = fileURLToPath(import.meta.url);

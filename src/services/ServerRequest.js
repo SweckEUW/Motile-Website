@@ -55,11 +55,7 @@ class ServerRequest{
 
     async uploadImage(data){
         data.append("token", localStorage.getItem('token'));
-        axios({
-            method: 'post',
-            url: 'http://localhost:5000/User/UploadProfilePic',
-            data: data
-        })
+        return await AxiosHelper.post('/User/UploadProfilePic', data);
     }
 
     async requestBlenderRendering(settings) {
@@ -76,6 +72,10 @@ class ServerRequest{
         let saveResponse = await AxiosHelper.post('/SaveConfiguration', sendData);
         let generateThumbnailRespone = await AxiosHelper.post('/GenerateThumbnail', sendData);
         return generateThumbnailRespone;
+    }
+
+    async removeUserConfiguration(data){
+        return await AxiosHelper.post('/StayAlive', getData());
     }
 }
 

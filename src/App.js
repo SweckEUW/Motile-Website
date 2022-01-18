@@ -12,13 +12,10 @@ import Settings from './components/Profile/Settings/Settings';
 import Orders from './components/Profile/Orders/Orders';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import SizeChooser from './components/Configurator/SizeChooser/SizeChooser';
-import {Context} from './Store.js';
 import React, {useContext} from 'react';
 import history from './services/RouterHistory.js';
 
 const App = () => {
-
-  const [state, setState] = useContext(Context);
 
   return (
     <Router history={history}>
@@ -46,41 +43,26 @@ const App = () => {
 
         {/* Nutzer Konfigurationen */}
         <Route exact path="/Profil/Geräte" render={() => (
-          !state.loggedIn ? 
-          (
-            <Redirect to="/"/>
-          ) : (
             <div>
               <Configurations/>
               <Footer/>
             </div>
-          )
         )}/>
 
         {/* Nutzer Bestellungen */}
         <Route exact path="/Profil/Bestellungen" render={() => (
-          !state.loggedIn ? 
-          (
-            <Redirect to="/"/>
-          ) : (
             <div>
               <Orders/>
               <Footer/>
             </div>
-          )
         )}/>
         
         {/* Nutzer Konfigurationen */}
         <Route exact path="/Profil/Einstellungen" render={() => (
-          !state.loggedIn ? 
-          (
-            <Redirect to="/"/>
-          ) : (
             <div>
               <Settings/>
               <Footer/>
             </div>
-          )
         )}/>
 
         {/* Warenkorb */}

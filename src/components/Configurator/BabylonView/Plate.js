@@ -18,7 +18,7 @@ class Plate {
             plate.name = "Plate";
             plate.getChildMeshes().forEach(mesh => {
                 mesh.receiveShadows = true;
-                this.shadowGenerator.getShadowMap().renderList.push(mesh);
+                // this.shadowGenerator.getShadowMap().renderList.push(mesh);
                 mesh.isPickable = false;
             });
            

@@ -34,12 +34,14 @@
     height: 100%;
 }
 .mp-info{
-    height: 168px;
+    height: 216px;
     border-radius: 30px;
     text-align: left;
     font-weight: bold;
     padding: 24px;
-    background: no-repeat right/contain #fff;
+    background: no-repeat right/contain #f5f5ef;
+    background-blend-mode: darken;
+    
 }
 .mp-settings {
     flex-grow: 1;

@@ -1,6 +1,7 @@
 import './App.css';
 import BabylonView from './components/Configurator/BabylonView/BabylonView';
 import Panel from './components/Configurator/Panel/Panel';
+import Colorpicker from './components/Configurator/Colorpicker/Colorpicker';
 import Login from './components/Login/Login';
 import Navbar from './components/Navbar/Navbar';
 import Header from './components/Home/Header/Header';
@@ -36,6 +37,7 @@ const App = () => {
           <div>
             <SizeChooser/>
             <Panel/>
+            <Colorpicker/>
             <BabylonView/>
             {/* <BlenderRendering/> */}
           </div>

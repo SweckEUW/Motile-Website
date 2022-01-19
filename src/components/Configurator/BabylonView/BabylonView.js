@@ -12,7 +12,6 @@ import history from '../../../services/RouterHistory';
 
 function BabylonView(){
   let motileParts = [];
-
   let myRef = React.useRef(null)
 
   useEffect(() => {
@@ -29,6 +28,9 @@ function BabylonView(){
   async function initialize(){
     // init engine
     let engine = new BABYLON.Engine(myRef.current, true);
+
+    // Enable Hardware Scaling
+    engine.setHardwareScalingLevel(1 / window.devicePixelRatio);
     window.addEventListener("resize", () => {
       engine.resize();
     });
@@ -74,6 +76,7 @@ function BabylonView(){
     skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
     var hdrTexture = new BABYLON.CubeTexture.CreateFromPrefilteredData("https://assets.babylonjs.com/environments/studio.env", scene);
     scene.environmentTexture = hdrTexture;
+    scene.clearColor = new BABYLON.Color3(0.98,0.98,0.97);
 
     var ground = BABYLON.Mesh.CreateGround("Ground", 20000, 20000, 1, scene, false);
     ground.material = new Materials.ShadowOnlyMaterial('shadowOnly', scene);

@@ -21,12 +21,12 @@
     z-index: 9;
     bottom: unset;
 }
-.swiper-pagination-bullet {
+.Panel .swiper-pagination-bullet {
     width: 10px !important;
     height: 10px !important;
     margin: 19px 7px !important;
 }
-.swiper-pagination-bullet-active {
+.Panel .swiper-pagination-bullet-active {
     background: #000!important;
 }
 .columnSelector {

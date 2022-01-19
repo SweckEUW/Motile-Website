@@ -1,13 +1,37 @@
 import './Header.css'
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
-import React, { useEffect} from 'react';
+import Swiper , { Pagination } from 'swiper';
+import 'swiper/swiper.min.css';
+import 'swiper/modules/pagination/pagination.min.css';
 
-const Header = () => {
+function Header(){
+  const [swiper, setSwiper] = useState(null);
+
 
     useEffect(() =>{ 
         document.title = "Motile"
-    }, []);
 
+        setTimeout(() => {
+          let swiper = new Swiper('#hd-swiper', {
+            modules: [Pagination],
+            spaceBetween: 50,
+            allowTouchMove: true,
+            pagination: {
+              el: '#hd-pagination',
+              type: 'bullets',
+              clickable: true,
+            },
+          }, 25);
+    
+          swiper.on('slideChange', () => {
+            setSwiper(swiper.activeIndex);
+          });
+    
+          setSwiper(swiper);
+        }, 10);
+    }, []);
+  
     return (
         <div className="Header">
           <section className="hd-section1" style={{backgroundImage: "url('/Assets/Header.png')"}}>
@@ -19,16 +43,39 @@ const Header = () => {
           </section>
 
           <section className="hd-section2">
-          <div className="grid-container">
+            <div className="grid-container">
               <h2 className="hd-h2 col-12">Lass dich inspirieren</h2>
-              <div>
-              <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
-              <div className="col-4 section2-container">
-                <h3>Multimedia</h3>
-                <p>Das beste Display mit großen Lautsprechern und einem Aufsteller - lehn dich zurück und genieße Filme... oder so. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                <p className="hd-price">ab 350€</p>
-                <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
-              </div>
+              <div id="hd-swiper" className="swiper">
+                <div className="swiper-wrapper">
+                  <div className="swiper-slide col-12">
+                    <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
+                    <div className="col-4 section2-container">
+                      <h3>Multimedia</h3>
+                      <p>Das beste Display mit großen Lautsprechern und einem Aufsteller - lehn dich zurück und genieße Filme... oder so. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                      <p className="hd-price">ab 350€</p>
+                      <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
+                   </div>
+                  </div>
+                  <div className="swiper-slide col-12">
+                  <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
+                    <div className="col-4 section2-container">
+                      <h3>Teil 2</h3>
+                      <p>Teil 2</p>
+                      <p className="hd-price">ab 350€</p>
+                      <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
+                   </div>
+                  </div>
+                  <div className="swiper-slide col-12">
+                  <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
+                    <div className="col-4 section2-container">
+                      <h3>Teil 3</h3>
+                      <p>Teil 3</p>
+                      <p className="hd-price">ab 350€</p>
+                      <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
+                   </div>
+                  </div>
+                </div>
+                <div id="hd-pagination" className="col-4"></div>
               </div>
             </div>
           </section>
@@ -152,7 +199,7 @@ const Header = () => {
            </section>
             
         </div>
-    )
-}
+    );
+    }
 
-export default Header
+export default Header;

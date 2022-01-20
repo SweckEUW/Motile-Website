@@ -4,7 +4,6 @@ html {
 .grid-container {
   max-width: 1124px;
   margin: auto;
-  padding: 24px 0;
   display: flex;
   flex-wrap: wrap;
 }
@@ -120,9 +119,11 @@ a.span.material-icons-outlined:hover {
   font-size: 48px;
 }
 
-[class*="hd-section"] {
+.Header section{
   /*min-height: 80vh;*/
   display: flex;
+  flex-wrap: wrap;
+  padding: 24px 0;
 }
 
 /* Hintergrundfarbe */
@@ -202,11 +203,13 @@ section.hd-section2 {
   min-height: 600px;
 }
 
-.hd-price{
+.Header p.hd-price {
   max-width: 100%;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   font-family: 'AvantGarde';
+  margin-top: 0;
+  margin-bottom: 50px;
 }
 
 .hd-link2 {
@@ -215,8 +218,17 @@ section.hd-section2 {
   border: 2px solid #fff;
   color: #fff;
   text-decoration: none;
-  padding: 10px 60px;
+  padding: 10px 40px;
 }
+
+.Header .swiper{
+  height: 100%;
+  width: 100%;
+  z-index: 0 !important;
+}
+
+
+
 #hd-swiper{
   max-width: 100%;
 }
@@ -228,12 +240,6 @@ section.hd-section2 {
   z-index: 9;
 }
 
-.hd-section2 .swiper-pagination-bullet {
-  max-width: 100%;
-  width: 25px !important;
-  height: 25px !important;
-  background: #000;
-}
 .hd-section2 .swiper-pagination-bullet-active {
   max-width: 100%;
   background: #FFF!important;
@@ -243,9 +249,17 @@ section.hd-section2 {
 .hd-section3 a {
   color: #000;
   text-decoration: none;
+  position: relative;  
+  padding-bottom: 28px;
+  margin-bottom: 48px;
 }
 
-
+.hd-section3 a span.material-icons-outlined:last-child {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-size: 40px;
+}
 
 /* Section 4 */
 
@@ -258,15 +272,14 @@ section.hd-section2 {
   margin-left: 5%;
   z-index: 2;
 }
-
-.image-right{
-  background-position: right;
-  background-repeat: no-repeat;
-  background-size: contain;
+#core .col-4.col-m-4 {
+  text-shadow: 0 0 20px black;
 }
-section#core {
+#core {
   background-size: cover;
+  background-attachment: fixed;
 }
+
 @media only screen and (min-width: 500px) {
   section#core {
     background-image: none!important;

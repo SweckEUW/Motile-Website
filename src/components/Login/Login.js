@@ -145,7 +145,7 @@ function Login(){
 
             {/* Login */}
             <div className="li-login-container" style={{marginLeft: showRegister ? "-550px" : ""}}>
-              <h1 className="li-title">Login</h1>
+              <h2 className="li-title">Login</h2>
 
               <div className="li-input-info">
                 <p className="li-form-title">E-Mail</p>
@@ -174,7 +174,7 @@ function Login(){
               
             {/* Register */}
             <div className="li-register-container">
-              <h1 className="li-title">Registrieren</h1>
+              <h2 className="li-title">Registrieren</h2>
 
               <div className="li-input-info">
                 <p className="li-form-title">Vorname</p>

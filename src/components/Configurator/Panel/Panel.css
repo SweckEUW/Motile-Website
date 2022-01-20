@@ -8,11 +8,22 @@
     overflow: hidden;
     border-radius: 24px;
     background-color: #fff;
+    z-index: 1;
 }
 .Panel .swiper{
     height: 100%;
     width: 100%;
 }
+#handle {
+    display: none;
+    width: 50px;
+    position: relative;
+    background: black;
+    height: 3px;
+    border-radius: 5px;
+    margin: 15px auto;
+}
+
 #swiper-pagination {
     position: absolute;
     width: 100%;
@@ -39,5 +50,11 @@
         left: 0;
         height: 80%;
         border-radius: 24px 24px 0 0;
+    }
+    #handle {
+        display: block;
+    }
+    #swiper-pagination {
+        top: 30px;
     }
 }

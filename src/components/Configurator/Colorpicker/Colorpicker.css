@@ -1,5 +1,5 @@
 .Colorpicker {
-    position: absolute;
+    position: fixed;
     bottom: 75px;
     right: 0;
     display: flex;

@@ -14,19 +14,19 @@ function SizeChooser(){
   return (
     <CSSTransition in={sizeChooserVisible} classNames="fade" timeout={400} unmountOnExit>
       <div className="SizeChooser">
-        <div className="sc-container">
-          <p className="sc-title">Größe Wählen</p>
-          <p className="sc-text">Ein vollständig modulares Smartphone. Lorem ipsum dolor sit atmet, consenttetur sadicsvin eltir, sed diam nomumy eirmond tempor invidunt ut labore et dolore magna.</p>
-          <div className="sc-elements">
-            <span className="sc-element" onClick={() =>{setSizeChooserVisible(false)}}>
-              <img className="sc-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.png'} alt="" />
+        <div className="grid-container sc-container">
+          <h2 className="col-12 sc-title">Größe Wählen</h2>
+          <p className="col-12 sc-text">Mächtest du ein smartphone oder ein Tablet?</p>
+
+            <span className="col-6 sc-element" onClick={() =>{setSizeChooserVisible(false)}}>
+              <img className="sc-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.svg'} alt="" />
               <p>Smartphone</p>
             </span>
-            <span className="sc-element" onClick={() =>{setSizeChooserVisible(false)}}>
-              <img className="sc-img" src={process.env.PUBLIC_URL+'/Assets/tablet_size.png'} alt="" />
+            <span className="col-6 sc-element" onClick={() =>{setSizeChooserVisible(false)}}>
+              <img className="sc-img" src={process.env.PUBLIC_URL+'/Assets/tablet_size.svg'} alt="" />
               <p>Tablet</p>
             </span>
-          </div>
+
         </div>
       </div>
     </CSSTransition>

@@ -1,6 +1,11 @@
 html {
   scroll-behavior: smooth;
 }
+
+p {
+  font-size: 16px;
+}
+
 .grid-container {
   max-width: 1124px;
   margin: auto;
@@ -38,8 +43,11 @@ a.span.material-icons-outlined:hover {
 /* For mobile phones: */
 @media only screen and (max-width: 499px) {
   .col-s-0 {display:none;}
+
+  p {
+    font-size: 14px;
+  }
 }
- 
   .col-s-1 {width: 8.33%;}
   .col-s-2 {width: 16.66%;}
   .col-s-3 {width: 25%;}
@@ -85,7 +93,7 @@ a.span.material-icons-outlined:hover {
 }
 
 /** Klassenselektoren **/
-.hd-h2{
+h2{
   font-family: 'AvantGarde';
   font-size: 40px;
   border-bottom: hidden;

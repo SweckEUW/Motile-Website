@@ -31,14 +31,14 @@ function Header(){
         <div className="Header">
           <section className="hd-section1" style={{backgroundImage: "url('/Assets/Header.png')"}}>
              <div className="section1-container">
-                  <h2 className="hd-h2">Nachhaltig, individuell und aufrüstbar.</h2>
+                  <h2>Nachhaltig, individuell und aufrüstbar.</h2>
                   <p>Ein vollständig modulares Smartphone. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                   <Link to="/Konfigurator" className="hd-link1">Jetzt konfigurieren</Link>
               </div>
           </section>
 
           <section className="hd-section2">            
-              <h2 className="hd-h2 col-12">Lass dich inspirieren</h2>
+              <h2 className="col-12">Lass dich inspirieren</h2>
               <div id="hd-swiper" className="swiper">
                 <div className="swiper-wrapper">
                   <div className="swiper-slide col-12">
@@ -81,7 +81,7 @@ function Header(){
 
           <section className="hd-section3">
             <div className="grid-container">
-            <h2 className="hd-h2 col-12">Komplett individualisierbar</h2>
+            <h2 className="col-12">Komplett individualisierbar</h2>
               <a href="#core" className="col-3 col-m-6">
                   <span className="material-icons-outlined icon-medium">memory</span>
                   <h3>Core</h3>
@@ -184,7 +184,7 @@ function Header(){
 
            <section className="hd-section8" >
            <div className="grid-container">
-               <h2 className="col-12 hd-h2">Technische Daten</h2>
+               <h2 className="col-12">Technische Daten</h2>
                <div className="col-12 section8-container">
                   <img src={process.env.PUBLIC_URL+'/Assets/dimensions.svg'} alt="" className="img-section8"/>
                </div>
@@ -193,7 +193,7 @@ function Header(){
 
            <section className="hd-section9">
            <div className="grid-container">
-               <h2 className="hd-h2">Neue Motile-Produkte</h2>
+               <h2>Neue Motile-Produkte</h2>
             </div>
            </section>
             

@@ -41,9 +41,10 @@
 .mp-info * {
     font-family: 'AVANTGARDE';
 }
-.mp-name{
-    font-size: 40px;
+.mp-name {
+    margin: 0;
     margin-bottom: 15px;
+    padding: 0;
 }
 .mp-price{
     font-size: 20px;

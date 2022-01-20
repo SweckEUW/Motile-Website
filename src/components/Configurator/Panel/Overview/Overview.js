@@ -13,14 +13,12 @@ function Overview(){
       orderDate: new Date().toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
       deliveryDate: new Date().addDays(7).toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
       price: getPrice(),
-      bought:  Math.random() < 0.5, //false
+      bought:  false,
       parts: state.components
     }
 
     let saveResponse = await ServerRequest.saveUserConfiguration(data);
     console.log(saveResponse.data.message);
-    console.log(saveResponse.data);
-
     if(saveResponse.data.success){
       // TODO Redirect
     }

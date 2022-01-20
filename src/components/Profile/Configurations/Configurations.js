@@ -8,6 +8,7 @@ import history from '../../../services/RouterHistory.js';
 import Swiper , { Pagination } from 'swiper';
 import 'swiper/swiper.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
+import {CSSTransition} from 'react-transition-group';
 
 const Configurations = (props) => {
     const [state, setState] = useContext(Context);
@@ -71,8 +72,11 @@ const Configurations = (props) => {
         })
     }
 
-    function deleteConfiguration(configuration){
-        
+    async function deleteConfiguration(configuration){
+        let removeConfigurationResponse = await ServerRequest.removeUserConfiguration(configuration);
+        console.log(removeConfigurationResponse.data.message);
+        if(removeConfigurationResponse.data.success)
+            getConfigurations();
     }
 
     return (
@@ -83,47 +87,58 @@ const Configurations = (props) => {
             <div className="cf-block">
 
                 {/* Meine Geräte */}
-                <div className="cf-owned">
-                    <span className="cf-title">Meine Geräte</span>
-                    <div id="cf-Swiper-owned" className="swiper"> 
-                        <div className="swiper-wrapper">
-                            {configurations.filter(configuration => configuration.bought).map((configuration,index) =>{return(
-                                <div key={index} className="cf-configuration swiper-slide">
-                                    <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "http://localhost:5000/Placeholder/phone_placeholder.png"} alt=""/>
-                                    <div className="cf-name">{configuration.name}</div>
-                                    <div className="cf-info">{'gekauft '+configuration.orderDate}</div>
-                                    <div className="cf-button cf-upgrade" onClick={() =>{editeConfiguration(configuration)}}>Upgrade</div>
-                                    <div className="cf-link">Details anzeigen &gt;</div>
-                                </div>
-                            )})}
-                        </div> 
-                    </div>
-                    <div id="cf-Swiper-owned-pagination"/>
+                <CSSTransition in={configurations.filter(configuration => configuration.bought).length != 0} unmountOnExit timeout={0}>
+                    <div className="cf-owned" style={{marginRight: configurations.filter(configuration => !configuration.bought).length != 0 ? '' : '0px'}}>
+                        <span className="cf-title">Meine Geräte</span>
+                        <div id="cf-Swiper-owned" className="swiper"> 
+                            <div className="swiper-wrapper">
+                                {configurations.filter(configuration => configuration.bought).map((configuration,index) =>{return(
+                                    <div key={index} className="cf-configuration swiper-slide">
+                                        <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "http://localhost:5000/Placeholder/phone_placeholder.png"} alt=""/>
+                                        <div className="cf-name">{configuration.name}</div>
+                                        <div className="cf-info">{'gekauft '+configuration.orderDate}</div>
+                                        <div className="cf-button cf-upgrade" onClick={() =>{editeConfiguration(configuration)}}>Upgrade</div>
+                                        <div className="cf-link">Details anzeigen &gt;</div>
+                                    </div>
+                                )})}
+                            </div> 
+                        </div>
+                        <div id="cf-Swiper-owned-pagination"/>
 
-                </div>
+                    </div>
+                </CSSTransition>
                 
                 {/* Gespeicherte Geräte */}
-                <div className="cf-saved">
-                    <span className="cf-title">Gespeicherte Geräte</span>
-                    <div id="cf-Swiper-saved" className="swiper"> 
-                        <div className="swiper-wrapper">
-                            {configurations.filter(configuration => !configuration.bought).map((configuration,index) =>{return(
-                                <div key={index} className="cf-configuration cf-saved-configuration swiper-slide">
-                                    <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "http://localhost:5000/Placeholder/phone_placeholder.png"} alt=""/>
-                                    <div className="cf-name">{configuration.name}</div> 
-                                    <div className="cf-info">{configuration.price}</div>
-                                    <div className="cf-button" onClick={() => addToShoppingCart(configuration)}>In den Warenkorb</div>
-                                    <div className="cf-link-container">
-                                        <span className="cf-link" onClick={() =>{editeConfiguration(configuration)}}>bearbeiten</span>
-                                        <span className="cf-link" onClick={() =>{deleteConfiguration(configuration)}}>löschen</span>  
+                <CSSTransition in={configurations.filter(configuration => !configuration.bought).length != 0} unmountOnExit timeout={0}>
+                    <div className="cf-saved">
+                        <span className="cf-title">Gespeicherte Geräte</span>
+                        <div id="cf-Swiper-saved" className="swiper"> 
+                            <div className="swiper-wrapper">
+                                {configurations.filter(configuration => !configuration.bought).map((configuration,index) =>{return(
+                                    <div key={index} className="cf-configuration cf-saved-configuration swiper-slide">
+                                        <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "http://localhost:5000/Placeholder/phone_placeholder.png"} alt=""/>
+                                        <div className="cf-name">{configuration.name}</div> 
+                                        <div className="cf-info">{configuration.price}</div>
+                                        <div className="cf-button" onClick={() => addToShoppingCart(configuration)}>In den Warenkorb</div>
+                                        <div className="cf-link-container">
+                                            <span className="cf-link" onClick={() =>{editeConfiguration(configuration)}}>bearbeiten</span>
+                                            <span className="cf-link" onClick={() =>{deleteConfiguration(configuration)}}>löschen</span>  
+                                        </div>
                                     </div>
-                                </div>
-                            )})} 
-                        </div>                   
+                                )})} 
+                            </div>                   
+                        </div>
+                        <div id="cf-Swiper-saved-pagination"/>
+                        
                     </div>
-                    <div id="cf-Swiper-saved-pagination"/>
-                    
-                </div>
+                </CSSTransition>
+
+                <CSSTransition in={configurations.length == 0} unmountOnExit timeout={0}>
+                    <div className='cf-no-configurations'>
+                        <div className="cf-no-configurations-text">Keine gekauften oder gespeichterten Geräte gefunden.</div>
+                        <div className="cf-button" onClick={() =>{history.push({pathname: '/Konfigurator'})}}>Erstelle eine neue Konfiguration</div>
+                    </div>
+                </CSSTransition>
                  
             </div>
         </div>

@@ -11,7 +11,10 @@
     justify-content: center;
 }
 .cf-configuration{
-    margin-top: 60px;
+    margin-top: 30px;
+}
+.cf-title{
+    font-size: 24px;
 }
 .cf-owned{
     background: white;
@@ -28,7 +31,6 @@
     flex-direction: row;
 }
 .cf-saved-configuration{
-    padding: 20px;
     margin-right: 70px;
 }
 .cf-saved-configuration:last-child{
@@ -41,6 +43,7 @@
 }
 .cf-thumbnail{
     width: 100%;
+    margin-bottom: 20px;
     object-fit: contain;
 }
 .cf-info{
@@ -88,4 +91,19 @@
 
 #cf-Swiper-owned, #cf-Swiper-saved{
     height: auto;
+}
+
+.Configurations .swiper-pagination-bullet{
+    width: 12px;
+    height: 12px;
+}
+.Configurations .swiper-pagination-bullet:hover{
+    background-color: blue;
+}
+.Configurations .swiper-pagination-clickable{
+    margin-top: 20px;
+}
+
+.cf-no-configurations-text{
+    margin-bottom: 40px;
 }

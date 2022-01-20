@@ -38,27 +38,28 @@ MongoClient.connect(
     });
 })
 
+// MotileParts
 app.get('/MotileParts', motilePartsCollection.getMotileParts);
-app.get('/VerifyEmail', UsersCollection.verifyUser);
 
+// Login/Register
 app.post('/Login', UsersCollection.login);
 app.post('/LoginJWT', Middleware.verifyJWT, UsersCollection.loginJWT);
-app.post('/Register', UsersCollection.addUser);
-app.post('/User/Configs', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
-app.post('/User/Data', Middleware.verifyJWT, UsersCollection.getUserDataFromUser);
 app.post('/StayAlive', Middleware.verifyJWT, UsersCollection.stayAlive);
-app.post('/SaveConfiguration', Middleware.verifyJWT, UserConfigsCollection.saveUserConfiguration);
-app.post('/GenerateThumbnail', Middleware.verifyJWT, BlenderJobs.renderThumbnail);
+app.post('/Register', UsersCollection.addUser);
+app.get('/VerifyEmail', UsersCollection.verifyUser);
 
-// app.post('/Blender', BlenderJobs.render);
-app.post('/User/Modify', Middleware.verifyJWT, userDataCollection.modifyUserData);
-app.post('/User/AddAddress', Middleware.verifyJWT, userDataCollection.addAddress);
-app.post('/User/RemoveAddress', Middleware.verifyJWT, userDataCollection.removeAddress);
-app.post('/User/Configs/Remove', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
+// UserData
+app.post('/User/Data', Middleware.verifyJWT, UsersCollection.getUserDataFromUser);
+app.post('/User/Data/AddAddress', Middleware.verifyJWT, userDataCollection.addAddress);
+app.post('/User/Data/RemoveAddress', Middleware.verifyJWT, userDataCollection.removeAddress);
+app.post('/User/Data/UploadProfilePic',  multer({ storage: ImageUploadHandler.getStorage() }).single('file'), Middleware.verifyJWT, userDataCollection.updateProfilePic);
+app.post('/User/Data/Modify', Middleware.verifyJWT, userDataCollection.modifyUserData);
 
-//Image upload prep
-let upload = multer({ storage: ImageUploadHandler.getStorage() })
-app.post('/User/UploadProfilePic',  upload.single('file'), Middleware.verifyJWT, userDataCollection.updateProfilePic);
+// UserConfigurations
+app.post('/User/Configs', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
+app.post('/User/Configs/Remove', Middleware.verifyJWT, UserConfigsCollection.removeUserConfiguration);
+app.post('/User/Configs/Add', Middleware.verifyJWT, UserConfigsCollection.addUserConfiguration);
+app.post('/User/Configs/GenerateThumbnail', Middleware.verifyJWT, BlenderJobs.renderThumbnail);
 
 // static assets - public folder
 let filename = fileURLToPath(import.meta.url);

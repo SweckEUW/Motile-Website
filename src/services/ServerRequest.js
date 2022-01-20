@@ -33,21 +33,21 @@ class ServerRequest{
     }
 
     async changeUserData(userData){
-        return await AxiosHelper.post('/User/Modify', {
+        return await AxiosHelper.post('/User/Data/Modify', {
             userData, 
             token: localStorage.getItem('token')
         })
     }
 
     async addAddress(address){
-        return await AxiosHelper.post('/User/AddAddress', {
+        return await AxiosHelper.post('/User/Data/AddAddress', {
             address, 
             token: localStorage.getItem('token')
         })
     }
 
     async removeAddress(addressId){
-        return await AxiosHelper.post('/User/RemoveAddress', {
+        return await AxiosHelper.post('/User/Data/RemoveAddress', {
             addressId, 
             token: localStorage.getItem('token')
         })
@@ -55,7 +55,7 @@ class ServerRequest{
 
     async uploadImage(data){
         data.append("token", localStorage.getItem('token'));
-        return await AxiosHelper.post('/User/UploadProfilePic', data);
+        return await AxiosHelper.post('/User/Data/UploadProfilePic', data);
     }
 
     async requestBlenderRendering(settings) {
@@ -69,13 +69,15 @@ class ServerRequest{
     async saveUserConfiguration(data){
         let sendData = getData();
         sendData.config = data;
-        let saveResponse = await AxiosHelper.post('/SaveConfiguration', sendData);
-        let generateThumbnailRespone = await AxiosHelper.post('/GenerateThumbnail', sendData);
+        let saveResponse = await AxiosHelper.post('/User/Configs/Add', sendData);
+        let generateThumbnailRespone = await AxiosHelper.post('/User/Configs/GenerateThumbnail', sendData);
         return generateThumbnailRespone;
     }
 
     async removeUserConfiguration(data){
-        return await AxiosHelper.post('/StayAlive', getData());
+        let sendData = getData();
+        sendData.config = data;
+        return await AxiosHelper.post('/User/Configs/Remove', sendData);
     }
 }
 

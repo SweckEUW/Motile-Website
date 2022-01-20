@@ -4,8 +4,8 @@ import ServerRequest from '../../../services/ServerRequest'
 import React, {useState, useEffect, useContext} from 'react';
 import {Context} from '../../../Store.js'
 import OrderComponent from './OrderComponent/OrderComponent'
-import {CSSTransition} from 'react-transition-group';
 import history from '../../../services/RouterHistory.js';
+import {CSSTransition} from 'react-transition-group';
 
 const Orders = () => {
     const [state, setState] = useContext(Context);
@@ -34,10 +34,19 @@ const Orders = () => {
                 <OrderComponent key={index} order={order}/>
             )})}
 
-            <CSSTransition in={orders.length == 0} unmountOnExit timeout={0}>
-                <div className='or-no-orders'>
-                    <div className="or-no-orders-text">Keine bestellten Geräte gefunden.</div>
-                    <div className="or-button" onClick={() =>{history.push({pathname: '/Konfigurator'})}}>Erstelle eine neue Konfiguration</div>
+            <CSSTransition in={orders.length == 0} unmountOnExit timeout={0}>   
+                <div>
+                    <div className="or-text">Keine bestellten Geräte gefunden.</div>
+                    <div className='or-new' onClick={() =>{history.push({pathname: '/Konfigurator'})}}>
+                        <img className="or-new-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.png'} alt="" />  
+                        <div className='or-new-text'>Neu</div>
+                        <div className='or-new-gray1'/>
+                        <div className='or-new-gray2'/>
+                        <div className='or-new-gray3'>
+                            <div/>
+                            <div/>
+                        </div>
+                    </div>
                 </div>
             </CSSTransition>
 

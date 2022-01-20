@@ -84,11 +84,15 @@ const Configurations = (props) => {
 
             <h1 className="pr-title">Geräte</h1>
             
+            <CSSTransition in={configurations.length == 0} unmountOnExit timeout={0}>   
+                <div className="cf-text">Keine gekauften oder gespeicherten Geräte gefunden.</div>
+            </CSSTransition>
+
             <div className="cf-block">
 
                 {/* Meine Geräte */}
                 <CSSTransition in={configurations.filter(configuration => configuration.bought).length != 0} unmountOnExit timeout={0}>
-                    <div className="cf-owned" style={{marginRight: configurations.filter(configuration => !configuration.bought).length != 0 ? '' : '0px'}}>
+                    <div className="cf-owned">
                         <span className="cf-title">Meine Geräte</span>
                         <div id="cf-Swiper-owned" className="swiper"> 
                             <div className="swiper-wrapper">
@@ -98,7 +102,7 @@ const Configurations = (props) => {
                                         <div className="cf-name">{configuration.name}</div>
                                         <div className="cf-info">{'gekauft '+configuration.orderDate}</div>
                                         <div className="cf-button cf-upgrade" onClick={() =>{editeConfiguration(configuration)}}>Upgrade</div>
-                                        <div className="cf-link">Details anzeigen &gt;</div>
+                                        <div className="cf-link" onClick={()=>{history.push({pathname: '/Profil/Bestellungen'})}}>Details anzeigen &gt;</div>
                                     </div>
                                 )})}
                             </div> 
@@ -133,12 +137,16 @@ const Configurations = (props) => {
                     </div>
                 </CSSTransition>
 
-                <CSSTransition in={configurations.length == 0} unmountOnExit timeout={0}>
-                    <div className='cf-no-configurations'>
-                        <div className="cf-no-configurations-text">Keine gekauften oder gespeichterten Geräte gefunden.</div>
-                        <div className="cf-button" onClick={() =>{history.push({pathname: '/Konfigurator'})}}>Erstelle eine neue Konfiguration</div>
+                <div className='cf-new' style={{marginLeft: configurations.length != 0 ? '' : '0px'}} onClick={() =>{history.push({pathname: '/Konfigurator'})}}>
+                    <img className="cf-new-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.png'} alt="" />  
+                    <div className='cf-new-text'>Neu</div>
+                    <div className='cf-new-gray1'/>
+                    <div className='cf-new-gray2'/>
+                    <div className='cf-new-gray3'>
+                        <div/>
+                        <div/>
                     </div>
-                </CSSTransition>
+                </div>
                  
             </div>
         </div>

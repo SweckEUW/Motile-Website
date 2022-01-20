@@ -6,20 +6,18 @@ import Login from './components/Login/Login';
 import Navbar from './components/Navbar/Navbar';
 import Header from './components/Home/Header/Header';
 import Footer from './components/Footer/Footer';
-// import BlenderRendering from './components/BlenderRendering/BlenderRendering';
 import {BrowserRouter as Router,Route,Switch,Redirect} from "react-router-dom";
 import Configurations from './components/Profile/Configurations/Configurations';
 import Settings from './components/Profile/Settings/Settings';
 import Orders from './components/Profile/Orders/Orders';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import SizeChooser from './components/Configurator/SizeChooser/SizeChooser';
-import React, {useContext} from 'react';
-import history from './services/RouterHistory.js';
+import React from 'react';
 
 const App = () => {
 
   return (
-    <Router history={history}>
+    <Router>
       <Navbar/>
       <Login/>
 
@@ -39,7 +37,6 @@ const App = () => {
             <Panel/>
             <Colorpicker/>
             <BabylonView/>
-            {/* <BlenderRendering/> */}
           </div>
         )}/>
 

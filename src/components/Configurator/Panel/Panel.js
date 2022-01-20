@@ -3,9 +3,8 @@ import React, {useEffect} from 'react';
 import Swiper , { Pagination } from 'swiper';
 import 'swiper/swiper.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
-import BackConfiguration from './BackConfiguration/BackConfiguration';
-import FrontConfiguration from './FrontConfiguration/FrontConfiguration';
 import Overview from './Overview/Overview';
+import PanelElement from "./PanelElement/PanelElement"
 
 function Panel(){
 
@@ -33,10 +32,10 @@ function Panel(){
       <div id="pl-Swiper" className="swiper"> 
         <div className="swiper-wrapper">
           <div className="swiper-slide">
-            <BackConfiguration/>
+            <PanelElement side="Back"/>
           </div>
           <div className="swiper-slide">
-            <FrontConfiguration/>  
+            <PanelElement side="Front"/>  
           </div>
           <div className="swiper-slide">
             <Overview/>  

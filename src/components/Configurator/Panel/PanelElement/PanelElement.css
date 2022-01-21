@@ -52,9 +52,10 @@
     margin-bottom: 20px;
 }
 .mp-colors {
-    width: 150px;
+    width: 200px;
 }
 .mp-dot{
+    -webkit-appearance: none;
     border-radius: 50%;
     width: 24px;
     height: 24px;
@@ -62,6 +63,25 @@
     margin-right: 12px;
     margin-bottom: 5px;
     cursor: pointer;
+    position: relative;
+}
+.mp-dot:after{
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: -5px;
+    top: -5px;
+    border: 2px solid black;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+.mp-dot:hover:after{
+    opacity: 0.3;
+}
+.mp-dot:checked:after{
+    opacity: 1;
 }
 .mp-info-right{
     margin: auto 20px;
@@ -88,4 +108,8 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background .2s ease;
+}
+.mp-button:hover{
+    background: #333333;
 }

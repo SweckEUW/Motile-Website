@@ -138,7 +138,7 @@ const Configurations = (props) => {
                 </CSSTransition>
 
                 <div className='cf-new' style={{marginLeft: configurations.length != 0 ? '' : '0px'}} onClick={() =>{history.push({pathname: '/Konfigurator'})}}>
-                    <img className="cf-new-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.png'} alt="" />  
+                    <img className="cf-new-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.svg'} alt="" />  
                     <div className='cf-new-text'>Neu</div>
                     <div className='cf-new-gray1'/>
                     <div className='cf-new-gray2'/>

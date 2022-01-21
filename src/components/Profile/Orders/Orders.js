@@ -38,7 +38,7 @@ const Orders = () => {
                 <div>
                     <div className="or-text">Keine bestellten Geräte gefunden.</div>
                     <div className='or-new' onClick={() =>{history.push({pathname: '/Konfigurator'})}}>
-                        <img className="or-new-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.png'} alt="" />  
+                        <img className="or-new-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.svg'} alt="" />  
                         <div className='or-new-text'>Neu</div>
                         <div className='or-new-gray1'/>
                         <div className='or-new-gray2'/>

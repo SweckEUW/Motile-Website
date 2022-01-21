@@ -6,6 +6,14 @@
     flex-direction: column;
     color: #141414;
 }
+.ov-title{
+    font-family: 'AvantGarde';
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 24px;
+    margin-bottom: 0;
+}
 .ov-header{
     display: flex;
     margin: 20px auto;
@@ -24,22 +32,29 @@
     padding: 2px;
     width: auto;
     font-weight: 600;
-    font-size: 20px;
-    width: 200px;
+    font-size: 25px;
+    width: 250px;
     cursor: pointer;
     text-align: center;
+    background: #F0F1F2;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: border .2s ease;
+}
+.ov-header-input:focus{
+    border: 2px solid black;
 }
 .ov-box{
-    background: #fff;
+    background: #FFFFFF;
     border-radius: 24px;
     padding: 24px;
     text-align: left;
     flex: 1;
     overflow: auto;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 .ov-side{
-    font-size: 25px;
+    font-size: 20px;
     margin-bottom: 20px;
     display: inline-block;
     width: 100%;
@@ -74,21 +89,25 @@
 .ov-price{
     display: flex;
     align-items: center;
-    font-size: 25px;
+    font-size: 20px;
     margin-top: 35px;
 }   
 .ov-price-number{
     margin-left: auto;
-    font-size: 35px;
+    font-size: 20px;
 }
 .ov-button{
     width: 100%;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #000000;
+    transition: background .3s ease;
+    color: white;
+    padding: 14px 20px;
+    margin-bottom: 0;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    border-top: 2px solid black;
-    text-transform: uppercase;
-    font-size: 25px;
+    transition: background .2s ease;
+}
+.ov-button:hover{
+    background: #333333;
 }

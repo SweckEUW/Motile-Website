@@ -27,7 +27,7 @@
     display: flex;
 }
 .orc-Thumbnail{
-    width: 40%;
+    width: 25%;
 }
 .orc-info{
     display: flex;
@@ -40,14 +40,6 @@
     font-size: 25px;
     margin-bottom: 20px;
 }
-
-.orc-delivered{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
 .orc-buttons{
     margin-left: auto;
     display: flex;

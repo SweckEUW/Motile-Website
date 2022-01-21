@@ -54,7 +54,7 @@ function Overview(){
   return (
     <div className="Overview">
 
-      <h2>Übersicht</h2>
+      <p className='ov-title'>Übersicht</p>
 
       <span className="ov-header" onClick={() =>{toggleNameEdit()}}>  
         <input id='ov-header-input' className="ov-header-input" type="text" defaultValue={configName} onChange={e => updateConfigurationName(e)}/>
@@ -79,7 +79,7 @@ function Overview(){
           </div>
         )})}
 
-        <span className="ov-side">Forderseite</span> 
+        <span className="ov-side">Vorderseite</span> 
         {state.components.filter(component => component.component.side === "Front").map((component,index) =>{return(
           <div key={index} className="ov-component">
             <span className="material-icons">{component.component.metaData.icon}</span>

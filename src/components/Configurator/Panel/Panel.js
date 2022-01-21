@@ -30,8 +30,8 @@ function Panel(){
 
   return (
     <div className="Panel">
+      <div id="handle"/>
       <div id="swiper-pagination"/>
-
       <div id="pl-Swiper" className="swiper"> 
         <div className="swiper-wrapper">
           <div className="swiper-slide">

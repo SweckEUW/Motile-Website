@@ -34,9 +34,10 @@ const App = () => {
         <Route exact path="/Konfigurator" render={() => (
           <div>
             <SizeChooser/>
+            <BabylonView/>
             <Panel/>
             <Colorpicker/>
-            <BabylonView/>
+            
           </div>
         )}/>
 

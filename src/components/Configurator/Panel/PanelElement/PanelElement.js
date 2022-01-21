@@ -91,7 +91,7 @@ function PanelElement(props){
   return (
     <div className="PanelElement">
 
-      <h2>{props.side == "Back" ? "Rückseite" : "Frontseite"}</h2>
+      <p className="side">{props.side == "Back" ? "Rückseite" : "Frontseite"}</p>
 
       {/* MotilePart Icons */}
       <div className="mp-icons">
@@ -111,8 +111,8 @@ function PanelElement(props){
             <div key={index} className='swiper-slide'>
               <div className="mp-settings">
                 <div className="mp-info" style={{backgroundImage: "url("+motilePart.metaData.thumbnail+")"}}>
-                  <div className="mp-name">{motilePart.name}</div>
-                  <div className="mp-price">{motilePart.metaData.price}</div>
+                  <h2 className="mp-name">{motilePart.name}</h2>
+                  <p className="mp-price">{motilePart.metaData.price}</p>
                   <div className="mp-colors">
                     {motilePart.metaData.colorways.map((colorway,index) =>{return(
                       <div key={index} className="mp-dot" style={{background: colorway}}/>

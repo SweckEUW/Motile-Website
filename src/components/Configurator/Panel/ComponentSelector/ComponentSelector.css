@@ -2,11 +2,12 @@
     margin-top: 40px;
 }
 
-.Panel h2 {
+.side {
     font-family: 'AvantGarde';
     font-size: 20px;
     font-weight: 600;
-    margin-top: 33px;
+    margin: 0;
+    margin-top: 24px;
     margin-bottom: 0;
 }
 

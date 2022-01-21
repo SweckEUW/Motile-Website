@@ -63,17 +63,17 @@ function BabylonView(){
     shadowGenerator.setDarkness(0.5);
 
     // init environment
-    var skybox = BABYLON.Mesh.CreateBox("SkyBox", 5000.0, scene);
-    skybox.isPickable = false;
-    var skyboxMaterial = new BABYLON.PBRMaterial("pbr", scene);
-    skyboxMaterial.backFaceCulling = false;
-    skyboxMaterial.microSurface = 0.7;
-    skyboxMaterial.disableLighting = true;
-    skybox.material = skyboxMaterial;
-    skybox.infiniteDistance = true;
-    skyboxMaterial.disableLighting = true;
-    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("https://assets.babylonjs.com/environments/studio.env", scene);
-    skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+    // var skybox = BABYLON.Mesh.CreateBox("SkyBox", 5000.0, scene);
+    // skybox.isPickable = false;
+    // var skyboxMaterial = new BABYLON.PBRMaterial("pbr", scene);
+    // skyboxMaterial.backFaceCulling = false;
+    // skyboxMaterial.microSurface = 0.7;
+    // skyboxMaterial.disableLighting = true;
+    // skybox.material = skyboxMaterial;
+    // skybox.infiniteDistance = true;
+    // skyboxMaterial.disableLighting = true;
+    // skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("https://assets.babylonjs.com/environments/studio.env", scene);
+    // skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
     var hdrTexture = new BABYLON.CubeTexture.CreateFromPrefilteredData("https://assets.babylonjs.com/environments/studio.env", scene);
     scene.environmentTexture = hdrTexture;
     scene.clearColor = new BABYLON.Color3(0.98,0.98,0.97);

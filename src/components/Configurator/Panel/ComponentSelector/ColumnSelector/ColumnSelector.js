@@ -2,14 +2,16 @@ import './ColumnSelector.css'
 import {React} from 'react'
 
 const ColumnSelector = (props) => {
-    const options = props.options;
     const itemSize = {
         width: `${92 + stretchItem()}px`,
-        height: '40px'
+        // height: '40px'
     }
 
     function stretchItem() {
-        let longest = options.reduce(
+        if(props.options[0] == "MediaTek Dimensity")
+            return 15
+        
+        let longest = props.options.reduce(
             function (a, b) {
                 return a.length > b.length ? a : b;
             }
@@ -32,9 +34,9 @@ const ColumnSelector = (props) => {
 
     return (
         <div className="columnSelector">
-            {options.map((item,index) => (
-                <label className="cs-button-container" key={item}>
-                    <input className="cs-button-input" type="radio" name={id} style={itemSize} defaultChecked={index == 0}/>
+            {props.options.map((item,index) => (
+                <label className="cs-button-container" key={item} style={itemSize}>
+                    <input className="cs-button-input" type="radio" name={id} defaultChecked={index == 0} onChange={e => props.updateCurrentSettings(props.index1, props.index2, 0, e.target.checked ? item : "")}/>
                     <span className="cs-button">
                         {item}
                     </span> 

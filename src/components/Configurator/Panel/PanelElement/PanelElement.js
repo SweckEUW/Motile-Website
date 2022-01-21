@@ -12,6 +12,7 @@ function PanelElement(props){
   const [motileParts, setMotileParts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [swiper, setSwiper] = useState(null);
+  const [currentSettings, setCurrentSettings] = useState(null);
 
   useEffect(() =>{ 
     getMotileParts();
@@ -34,25 +35,57 @@ function PanelElement(props){
   }, []);
 
   function changeSwiperPage(index){
-    setCurrentPage(index);
-    swiper.slideTo(index);
+    if(index != motileParts.length){
+      setCurrentPage(index);
+      swiper.slideTo(index);
+    }else{
+      props.swiper.slideNext();
+    }
   }
 
   async function getMotileParts(){
     let motilePartsResponse = await ServerRequest.getAllMotileParts();
-    setMotileParts(motilePartsResponse.data.filter(part => part.side === props.side))
+    if(motilePartsResponse.data.success){
+      setMotileParts(motilePartsResponse.data.parts.filter(part => part.side === props.side));
+      setupCurrentSettings(motilePartsResponse.data.parts.filter(part => part.side === props.side));
+    }
   }
 
-  function addComponent(motilePart){
+  function setupCurrentSettings(localMotileParts){
+    let newCurrentSettings = [];
+    localMotileParts.forEach((motilePart,index) => {
+      newCurrentSettings.push([]);
+      motilePart.metaData.options.forEach(option => {
+        if(option.type == "columns")
+          option.selectedOptions = [option.selections[0]];
+        if(option.type == "switch")
+          option.selectedOptions = Array(option.selections.length);
+        if(option.type == "rows")
+          option.selectedOptions = [option.selections[0]];
+        if(option.type == "addon")
+          option.selectedOptions = [""];
+        newCurrentSettings[index].push(option);
+      });
+    });
+    setCurrentSettings(newCurrentSettings);
+  }
+
+  function updateCurrentSettings(index1, index2,index3,selectedOption){
+    let newCurrentSettings = currentSettings;
+    console.log(currentSettings);
+    newCurrentSettings[index1][index2].selectedOptions[index3] = selectedOption;
+    setCurrentSettings(newCurrentSettings);
+    console.log(newCurrentSettings);
+  }
+
+  function addComponent(motilePart,index){
     document.dispatchEvent(new CustomEvent("spawnComponent", {detail:{name: motilePart.name}}));
+    let component = {component: motilePart, settings: currentSettings[index]}
     let components = state.components;
-    let component = {
-      component: motilePart,
-      settings: ["ToDo"]
-    }
     components.push(component);
     setState(prevState => ({...prevState,components: components}));
-    swiper.slideNext();
+    
+    changeSwiperPage(currentPage+1);
   }
 
   return (
@@ -88,12 +121,12 @@ function PanelElement(props){
                 </div>
                 <div className="mp-description">{motilePart.metaData.description}</div>
                 <div className='mp-selectors'>
-                  {motilePart.metaData.options.map((option, index) => {
-                    return <ComponentSelector key={index} type={option.type} options={option.selections} heading={option.name}/>
+                  {motilePart.metaData.options.map((option, index2) => {
+                    return <ComponentSelector key={index2} type={option.type} options={option.selections} heading={option.name} index1={index} index2={index2} updateCurrentSettings={updateCurrentSettings}/>
                   })}
                 </div>
               </div>
-              <div className="mp-button" onClick={() =>{addComponent(motilePart)}}>Einbauen</div>
+              <div className="mp-button" onClick={() =>{addComponent(motilePart,index)}}>{props.side == "Back" && index == motileParts.length-1 ? "Weiter" : "Einbauen"}</div>
             </div>
           )})}
         </div>

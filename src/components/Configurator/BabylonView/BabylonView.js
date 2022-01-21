@@ -109,10 +109,14 @@ function BabylonView(){
     });
 
     let motilePartsResponse = await ServerRequest.getAllMotileParts();
-    motilePartsResponse.data.forEach((motilePart) => {
-      motileParts.push(new Component(scene, assetsManager, shadowGenerator, motilePart));
-    });
+    console.log(motilePartsResponse.data.message);
+    if(motilePartsResponse.data.success){
+      motilePartsResponse.data.parts.forEach((motilePart) => {
+        motileParts.push(new Component(scene, assetsManager, shadowGenerator, motilePart));
+      });
+    }
     new Plate(assetsManager,shadowGenerator);
+  
 
     assetsManager.load();
 

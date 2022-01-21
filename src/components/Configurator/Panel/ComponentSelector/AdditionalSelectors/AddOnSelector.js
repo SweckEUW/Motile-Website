@@ -5,15 +5,12 @@ const AddOnSelector = (props) => {
     const options = props.options;
 
     return (
-        <div className="additionalSelector">
+        <div className="additionalSelectorContainer">
             {options.map(item => (
-                <div key={item} className="opt-row">
-                    <div className="opt-head">
-                        <p>{item}</p>
-                    </div>
-                    <div className="opt-btn">
-                        <div className="opt-btn-build">Einbauen</div>
-                    </div>
+                <div key={item.name} className="additionalSelector">
+                    <span className='as-icon material-icons-outlined'>{item.icon}</span>
+                    <span className='as-name'>{item.name}</span>
+                    <div className="as-button">Einbauen</div>
                 </div>
             ))}
         </div>

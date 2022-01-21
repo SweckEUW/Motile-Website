@@ -19,6 +19,9 @@ export default class motileParts{
 
     static async getMotileParts(request,response){
         let parts = await motilePartsCollection.find().toArray();
-        response.json(parts.slice(0,10))
+        if(parts)
+            response.json({success: true, message: 'MotileParts gefunden', parts: parts});
+        else    
+            response.json({success: false, message: 'Keine MotileParts gefunden'}); 
     }
 }

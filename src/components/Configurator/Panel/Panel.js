@@ -1,5 +1,5 @@
 import './Panel.css';
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import Swiper , { Pagination } from 'swiper';
 import 'swiper/swiper.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
@@ -7,11 +7,12 @@ import Overview from './Overview/Overview';
 import PanelElement from "./PanelElement/PanelElement"
 
 function Panel(){
+  const [swiper, setSwiper] = useState(null);
 
   useEffect(() =>{ 
     // Works only with Timeout?
     setTimeout(() => {
-      new Swiper('#pl-Swiper',{
+      let swiper = new Swiper('#pl-Swiper',{
         modules: [Pagination],
         spaceBetween: 50,
         allowTouchMove: false,
@@ -21,6 +22,8 @@ function Panel(){
         },
         observer: true
       });
+
+      setSwiper(swiper);
     }, 10);
   }, []);
 
@@ -32,10 +35,10 @@ function Panel(){
       <div id="pl-Swiper" className="swiper"> 
         <div className="swiper-wrapper">
           <div className="swiper-slide">
-            <PanelElement side="Back"/>
+            <PanelElement side="Back" swiper={swiper}/>
           </div>
           <div className="swiper-slide">
-            <PanelElement side="Front"/>  
+            <PanelElement side="Front" swiper={swiper}/>  
           </div>
           <div className="swiper-slide">
             <Overview/>  

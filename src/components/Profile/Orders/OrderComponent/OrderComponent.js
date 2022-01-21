@@ -45,7 +45,14 @@ const OrderComponent = (props) => {
                                 <p className="material-icons orc-part-icon">{part.component.metaData.icon}</p>
                                 <p>{part.component.name}</p>
                             </div>
-                            <p className='orc-part-info'>Snapdragon 750 16GB RAM</p>
+                            <p className='orc-part-info'>
+                                {part.settings.map((setting) =>{return(
+                                    setting.selectedOptions.map(selectedOption => 
+                                        selectedOption ? selectedOption + " " : ''
+                                    )
+                                )})}
+                            </p>
+                            
                             <p className='orc-part-price'>{part.component.metaData.price}</p>
                         </div>
                     )})}

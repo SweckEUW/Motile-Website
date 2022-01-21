@@ -2,27 +2,64 @@
     width: 80%;
     margin: 0 auto;
 }
-
-.row {
-    border: 2px solid black;
-    border-radius: 10px;
-    text-align: left;
-    padding: 10px;
-    margin-bottom: 20px;
+.rs-button-container{
+    border: 2px solid #000;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;    
+    margin-bottom: 15px;
 }
-
-.row:hover {
+.rs-button{
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
+    cursor: pointer;
+    transition: background .2s ease;
+    width: 100%;
+    padding: 4px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 8px;
+}
+.rs-button:hover{
     background-color: black;
     color: white;
 }
-
-.row-head p{
+.rs-button:hover .row-img-wrapper img{
+    filter: invert(1);
+}
+.rs-button-input{
+    display: none;
+}
+.rs-button-input:checked + .rs-button{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+.rs-button-input:checked + .rs-button .row-img-wrapper img{
+    filter: invert(1);
+}
+.row-img-wrapper{
+    width: 120px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.row-img-wrapper img{
+    min-width: 40px;
+    min-height: 36px;
+}
+.rs-info-head{
     margin: 0 auto;
     padding: 0;
     font-weight: 800;
+    text-align: left;
+    font-size: 18px;
 }
-
-.row-additional p{
+.rs-info-additional{
     margin: 5px auto 0 auto;
     padding: 0;
+    color: rgb(104, 104, 104);
 }

@@ -5,7 +5,7 @@ import * as Materials from 'babylonjs-materials';
 // import * as cannon from "cannon";
 // import { CannonJSPlugin } from "babylonjs";
 import React, {  useEffect } from 'react';
-import Plate from './Plate';
+import Base from './Base';
 import Component from './Component';
 import ServerRequest from '../../../services/ServerRequest';
 import history from '../../../services/RouterHistory';
@@ -15,6 +15,7 @@ function BabylonView(){
   let myRef = React.useRef(null)
 
   useEffect(() => {
+    document.title = "Motile - Konfigurator"
     initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -47,7 +48,10 @@ function BabylonView(){
     
     // init camera
     let camera = new BABYLON.ArcRotateCamera("Camera", -1, 1, 200,new BABYLON.Vector3(60,0,30),scene); 
-		camera.attachControl(myRef.current);
+		camera.attachControl(myRef.current,true,false,4);
+    camera.lowerRadiusLimit = 200; // Stop zooming in
+    camera.upperRadiusLimit = 200; // Stop zooming out
+    camera.upperBetaLimit = 1.5;
 
     // Set up Shadows
     let light0 = new BABYLON.DirectionalLight("MainLight", new BABYLON.Vector3(1, -1, 1), scene);
@@ -115,7 +119,7 @@ function BabylonView(){
         motileParts.push(new Component(scene, assetsManager, shadowGenerator, motilePart));
       });
     }
-    new Plate(assetsManager,shadowGenerator);
+    new Base(assetsManager,shadowGenerator);
   
 
     assetsManager.load();

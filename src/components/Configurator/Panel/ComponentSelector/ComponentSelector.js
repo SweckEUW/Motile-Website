@@ -20,7 +20,7 @@ const ComponentSelector = (props) => {
             component = <RowSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings}/> 
             break;
         case 'addon': 
-            component = <AddOnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings}/> 
+            component = <AddOnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings} addComponent={props.addComponent} motileParts={props.motileParts}/> 
             break;
         default: 
             component = <ColumnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings}/>

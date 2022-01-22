@@ -52,8 +52,10 @@ function Login(){
   }
   
   document.addEventListener("toggleLoginDialogue", toggleLoginDialogue);
-  function toggleLoginDialogue(){
+  function toggleLoginDialogue(e){
     setLoginDialogueVisible(!loginDialogueVisible);
+    if(e && e.detail)
+      setErrorMessageTree(prevState => ({...prevState,loginError: e.detail.information}));
   }
 
   function resetErrorMessageTree(){

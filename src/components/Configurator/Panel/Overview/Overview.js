@@ -2,31 +2,39 @@ import './Overview.css';
 import React, {useContext,useEffect,useState} from 'react';
 import {Context} from '../../../../Store'
 import ServerRequest from '../../../../services/ServerRequest'
+import history from '../../../../services/RouterHistory';
 
 function Overview(){
   const [state, setState] = useContext(Context);
   const [configName, setConfigName] = useState("Meine Konfiguration");
   const [configNameEditEnabled, setConfigNameEditEnabled] = useState(false);
-  
+
   useEffect(() =>{ 
     setState(prevState => ({...prevState,components: []}));
   },[]);
 
   async function saveConfiguration(){
-    let data = {
-      name: configName,
-      number: Math.floor(Math.random() * 1000000000),
-      orderDate: new Date().toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
-      deliveryDate: new Date().addDays(7).toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
-      price: getPrice(),
-      bought:  false,
-      parts: state.components
-    }
+    if(state.loggedIn){
+      setState(prevState => ({...prevState,showLoadingscreen: true}));
+      let data = {
+        name: configName,
+        number: Math.floor(Math.random() * 1000000000),
+        orderDate: new Date().toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
+        deliveryDate: new Date().addDays(7).toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
+        price: getPrice(),
+        bought:  false,
+        parts: state.components
+      }
 
-    let saveResponse = await ServerRequest.saveUserConfiguration(data);
-    console.log(saveResponse.data.message);
-    if(saveResponse.data.success){
-      // TODO Redirect
+      let saveResponse = await ServerRequest.saveUserConfiguration(data);
+      console.log(saveResponse.data.message);
+      if(saveResponse.data.success){
+        // TODO Redirect
+      }
+      history.push({pathname: '/Profil/Geräte'});
+      setState(prevState => ({...prevState,showLoadingscreen: false}));
+    }else{
+      document.dispatchEvent(new CustomEvent("toggleLoginDialogue", {detail: {information: 'Sie müssen eingeloggt sein, um eine Konfiguration zu speichern'}}));
     }
   }
 
@@ -53,7 +61,7 @@ function Overview(){
 
   return (
     <div className="Overview">
-
+      
       <p className='ov-title'>Übersicht</p>
 
       <span className="ov-header" onClick={() =>{toggleNameEdit()}}>  

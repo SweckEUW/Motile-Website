@@ -3,6 +3,7 @@ import BabylonView from './components/Configurator/BabylonView/BabylonView';
 import Panel from './components/Configurator/Panel/Panel';
 import Colorpicker from './components/Configurator/Colorpicker/Colorpicker';
 import Login from './components/Login/Login';
+import Loadingscreen from './components/Loadingscreen/Loadingscreen';
 import Navbar from './components/Navbar/Navbar';
 import Header from './components/Home/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -18,9 +19,10 @@ const App = () => {
 
   return (
     <Router>
+      <Loadingscreen/>
       <Navbar/>
       <Login/>
-
+      
       <Switch>
         {/* Home */}
         <Route exact path="/" render={() => (

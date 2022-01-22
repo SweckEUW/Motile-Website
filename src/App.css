@@ -6,6 +6,18 @@ body{
   overflow-x: hidden;
 }
 
+body::-webkit-scrollbar {
+  width: 15px;
+}
+body::-webkit-scrollbar-track {
+  background-color: rgb(206, 206, 206);
+  border-radius: 20px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 20px;
+}
+
 @font-face {
   font-family: AvantGarde;
   src: url(/src/Assets/Fonts/ITCAvantGardeStd-Demi.otf);

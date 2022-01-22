@@ -10,6 +10,7 @@ import {Context} from '../../../../Store'
 function PanelElement(props){
   const [state, setState] = useContext(Context);
   const [motileParts, setMotileParts] = useState([]);
+  const [allMotileParts, setAllMotileParts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [swiper, setSwiper] = useState(null);
   const [currentSettings, setCurrentSettings] = useState(null);
@@ -47,7 +48,8 @@ function PanelElement(props){
   async function getMotileParts(){
     let motilePartsResponse = await ServerRequest.getAllMotileParts();
     if(motilePartsResponse.data.success){
-      let localMotileParts = motilePartsResponse.data.parts.filter(part => part.side === props.side);
+      setAllMotileParts(motilePartsResponse.data.parts);
+      let localMotileParts = motilePartsResponse.data.parts.filter(part => part.side === props.side && !part.optional);
       setMotileParts(localMotileParts);
       setupCurrentSettings(localMotileParts);
       setupCurrentColors(localMotileParts);
@@ -91,18 +93,22 @@ function PanelElement(props){
     let newCurrentColors = currentColors;
     newCurrentColors[index] = color;
     setCurrentColors(newCurrentColors);
-    console.log(newCurrentColors)
   }
 
-  function addComponent(motilePart,index){
+  function addComponent(motilePart,index,optional){
+    if(props.side == "Back" && index == motileParts.length-1 && !optional){
+      changeSwiperPage(currentPage+1);
+      return
+    }
+      
     document.dispatchEvent(new CustomEvent("spawnComponent", {detail:{name: motilePart.name}}));
     let component = {component: motilePart, settings: currentSettings[index], color: "red"}
     let components = state.components;
     components.push(component);
-    console.log(component)
     setState(prevState => ({...prevState,components: components}));
     
-    changeSwiperPage(currentPage+1);
+    if(!optional)
+      changeSwiperPage(currentPage+1);
   }
 
   return (
@@ -139,7 +145,7 @@ function PanelElement(props){
                 <div className="mp-description">{motilePart.metaData.description}</div>
                 <div className='mp-selectors'>
                   {motilePart.metaData.options.map((option, index2) => {
-                    return <ComponentSelector key={index2} type={option.type} options={option.selections} heading={option.name} index1={index} index2={index2} updateCurrentSettings={updateCurrentSettings}/>
+                    return <ComponentSelector key={index2} type={option.type} options={option.selections} heading={option.name} index1={index} index2={index2} updateCurrentSettings={updateCurrentSettings} addComponent={addComponent} motileParts={allMotileParts}/>
                   })}
                 </div>
               </div>

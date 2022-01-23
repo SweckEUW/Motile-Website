@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 const initialState = {
     loggedIn: false,
+    showLoadingscreen: false,
     components: []
 };
 

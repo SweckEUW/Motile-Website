@@ -28,7 +28,7 @@
     justify-content: center;
     align-items: center;
     z-index: 99;
-    background: #000000d0;
+    background: #0005;
 }
 .li-dialogue-container{
     background: white;
@@ -59,10 +59,9 @@
 .li-register-toggle {
     text-decoration: underline;
     cursor: pointer;
+    color: #999;
 }
-.li-register-toggle:active {
-    color: lightblue;
-}
+
 .li-form-input{
     width: 100%;
     padding: 8px 12px;
@@ -79,26 +78,34 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.li-form-title{
+.li-form-title {
     text-align: left;
     margin: 0px;
-    font-size: 20px;
+    position: relative;
+    top: 13px;
+    left: 15px;
+    background-color: #fff;
+    padding: 0 5px;
+    font-size: 13px;
 }
-.li-input-err{
+.li-input-err {
     text-align: right;
     margin: 0px;
-    font-size: 18px;
-    color:red;
+    font-size: 13px;
+    color: #b40000;
+    position: relative;
+    top: 32px;
+    margin-right: 12px;
 }
-.li-form-button{
+.li-form-button {
     width: 100%;
-    background-color: #761104;
+    background-color: #000;
     transition: background .3s ease;
     color: white;
-    padding: 14px 20px;
+    padding: 14px;
     margin: 20px 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px;
     cursor: pointer;
 }
 .li-form-button:hover{

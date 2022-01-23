@@ -27,7 +27,7 @@
     display: flex;
 }
 .orc-Thumbnail{
-    width: 40%;
+    width: 25%;
 }
 .orc-info{
     display: flex;
@@ -40,14 +40,6 @@
     font-size: 25px;
     margin-bottom: 20px;
 }
-
-.orc-delivered{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
 .orc-buttons{
     margin-left: auto;
     display: flex;
@@ -69,6 +61,7 @@
     display: flex;
     cursor: pointer;
     flex-direction: column;
+    background: #F5F5F5;
 }
 .orc-dropdown{
     transition: max-height 1s ease;
@@ -87,6 +80,7 @@
 .orc-row-4{
     text-align: left;
     font-weight: bold;
+    background: #F5F5F5;
 }
 .orc-part-row {
     display: flex;

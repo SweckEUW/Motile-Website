@@ -55,7 +55,12 @@ const Navbar = () => {
                     <img src={process.env.PUBLIC_URL+'/Assets/Logo.svg'}  className="nav-img" alt="" />
                 </Link>
             </div>
+
+            <div className='nav-button-container'>   
+                <Link className='nav-button' to="/Konfigurator">konfigurieren</Link>
+            </div>
             
+
             <div className="nav-links">
                 <Link to="/Warenkorb">
                     <span className="material-icons nav-shopping">shopping_cart</span>

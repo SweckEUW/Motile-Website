@@ -39,7 +39,7 @@ const EditProfile = (props) => {
         const data = new FormData();
         data.append('file', profilePicData);
         let uploadImageResponse = await ServerRequest.uploadImage(data);
-        console.log(uploadImageResponse.data);
+        console.log(uploadImageResponse.data.message);
     }
 
     return (

@@ -1,10 +1,14 @@
 html {
   scroll-behavior: smooth;
 }
+
+p {
+  font-size: 16px;
+}
+
 .grid-container {
   max-width: 1124px;
   margin: auto;
-  padding: 24px 0;
   display: flex;
   flex-wrap: wrap;
 }
@@ -39,8 +43,11 @@ a.span.material-icons-outlined:hover {
 /* For mobile phones: */
 @media only screen and (max-width: 499px) {
   .col-s-0 {display:none;}
+
+  p {
+    font-size: 14px;
+  }
 }
- 
   .col-s-1 {width: 8.33%;}
   .col-s-2 {width: 16.66%;}
   .col-s-3 {width: 25%;}
@@ -85,9 +92,16 @@ a.span.material-icons-outlined:hover {
   .col-12 {width: 100%;}
 }
 
+/** Klassenselektoren **/
+h1{
+  font-family: 'AvantGarde';
+  font-size: 40px;
+  border-bottom: hidden;
+  padding-top: 20px;
+  z-index: 10;
+}
 
-/** Typselektoren **/
-.hd-h2{
+h2{
   font-family: 'AvantGarde';
   font-size: 40px;
   border-bottom: hidden;
@@ -108,7 +122,6 @@ a.span.material-icons-outlined:hover {
   max-width: 100%;
 }
 
-/** Klassenselektoren **/
 .Header{
   margin-top: 65px;
   background-color: #FCFBF9;
@@ -122,11 +135,11 @@ a.span.material-icons-outlined:hover {
   font-size: 48px;
 }
 
-
-
-[class*="hd-section"] {
+.Header section{
   /*min-height: 80vh;*/
   display: flex;
+  flex-wrap: wrap;
+  padding: 24px 0;
 }
 
 /* Hintergrundfarbe */
@@ -176,22 +189,23 @@ a.span.material-icons-outlined:hover {
 
 
 .hd-img{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  /*object-fit: cover;*/
+  max-width: 100%;
 }
-
-.hd-link1{
+button {
   border-radius: 25px;
   background-color: #000;
   color: #fff;
   text-decoration: none;
   padding: 10px 50px;
-  /*transition: .2s background ease;*/
+  transition: .2s background ease;
+  font-family: 'AvantGarde';
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
 }
-
+button:hover {
+  background-color: #555;
+}
 /* Section 2 */
 .hd-section2{
     background-position: left;
@@ -200,36 +214,73 @@ a.span.material-icons-outlined:hover {
 }
 
 .section2-container{
+  max-width: 100%;
   text-align: left;
   z-index: 2;
   float: right;
 }
 section.hd-section2 {
+  max-width: 100%;
   min-height: 600px;
 }
 
-.hd-price{
-  font-size: 20px;
+.Header p.hd-price {
+  max-width: 100%;
+  font-size: 18px;
   font-weight: bold;
   font-family: 'AvantGarde';
+  margin-top: 0;
+  margin-bottom: 50px;
 }
 
 .hd-link2 {
+  max-width: 100%;
   border-radius: 24px;
   border: 2px solid #fff;
   color: #fff;
   text-decoration: none;
-  padding: 10px 60px;
+  padding: 10px 40px;
 }
 
+.Header .swiper{
+  height: 100%;
+  width: 100%;
+  z-index: 0 !important;
+}
+
+
+
+#hd-swiper{
+  max-width: 100%;
+}
+
+#hd-pagination {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 9;
+}
+
+.hd-section2 .swiper-pagination-bullet-active {
+  max-width: 100%;
+  background: #FFF!important;
+}
 
 /* Section 3 */
 .hd-section3 a {
   color: #000;
   text-decoration: none;
+  position: relative;  
+  padding-bottom: 28px;
+  margin-bottom: 48px;
 }
 
-
+.hd-section3 a span.material-icons-outlined:last-child {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-size: 40px;
+}
 
 /* Section 4 */
 
@@ -242,15 +293,14 @@ section.hd-section2 {
   margin-left: 5%;
   z-index: 2;
 }
-
-.image-right{
-  background-position: right;
-  background-repeat: no-repeat;
-  background-size: contain;
+#core .col-4.col-m-4 {
+  text-shadow: 0 0 20px black;
 }
-section#core {
+#core {
   background-size: cover;
+  background-attachment: fixed;
 }
+
 @media only screen and (min-width: 500px) {
   section#core {
     background-image: none!important;

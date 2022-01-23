@@ -1,0 +1,15 @@
+.Loadingscreen{
+    position: absolute;
+    z-index: 9999999;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.ls-animation{
+    fill: #761104;
+    width: 200px;
+    height: 200px;
+    margin-top: 350px;
+}

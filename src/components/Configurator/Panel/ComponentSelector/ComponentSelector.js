@@ -11,19 +11,19 @@ const ComponentSelector = (props) => {
 
     switch(props.type) {
         case 'columns':
-            component = <ColumnSelector options = {props.options} heading={props.heading}/>
+            component = <ColumnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings}/>
             break;
         case 'switch': 
-            component = <SwitchSelector options = {props.options} heading={props.heading}/> 
+            component = <SwitchSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings}/> 
             break;
         case 'rows': 
-            component = <RowSelector options = {props.options} heading={props.heading}/> 
+            component = <RowSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings}/> 
             break;
         case 'addon': 
-            component = <AddOnSelector options = {props.options} heading={props.heading}/> 
+            component = <AddOnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings} addComponent={props.addComponent} motileParts={props.motileParts}/> 
             break;
         default: 
-            component = <ColumnSelector options = {props.options} heading={props.heading}/>
+            component = <ColumnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings}/>
             break;
     }
 

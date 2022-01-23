@@ -1,41 +1,87 @@
 import './Header.css'
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
-import React, { useEffect} from 'react';
+import Swiper , { Pagination } from 'swiper';
+import 'swiper/swiper.min.css';
+import 'swiper/modules/pagination/pagination.min.css';
 
-const Header = () => {
-
+function Header(){
+  const [swiper, setSwiper] = useState(null);
     useEffect(() =>{ 
         document.title = "Motile"
+        setTimeout(() => {
+          let swiper = new Swiper('#hd-swiper', {
+            modules: [Pagination],
+            spaceBetween: 50,
+            allowTouchMove: true,
+            pagination: {
+              el: '#hd-pagination',
+              type: 'bullets',
+              clickable: true,
+            },
+          }, 25);    
+          swiper.on('slideChange', () => {
+            setSwiper(swiper.activeIndex);
+          });    
+          setSwiper(swiper);
+        }, 10);
     }, []);
-
+  
     return (
         <div className="Header">
           <section className="hd-section1" style={{backgroundImage: "url('/Assets/Header.png')"}}>
              <div className="section1-container">
-                  <h2 className="hd-h2">Nachhaltig, individuell und aufrüstbar.</h2>
+                  <h2>Nachhaltig, individuell und aufrüstbar.</h2>
                   <p>Ein vollständig modulares Smartphone. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                  <Link to="/Konfigurator" className="hd-link1">Jetzt konfigurieren</Link>
+                  <Link to="/Konfigurator" className="hd-link1"><button>Jetzt konfigurieren</button></Link>
               </div>
           </section>
 
-          <section className="hd-section2">
-          <div className="grid-container">
-              <h2 className="hd-h2 col-12">Lass dich inspirieren</h2>
-              <div>
-              <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
-              <div className="col-4 section2-container">
-                <h3>Multimedia</h3>
-                <p>Das beste Display mit großen Lautsprechern und einem Aufsteller - lehn dich zurück und genieße Filme... oder so. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                <p className="hd-price">ab 350€</p>
-                <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
+          <section className="hd-section2">            
+              <h2 className="col-12">Lass dich inspirieren</h2>
+              <div id="hd-swiper" className="swiper">
+                <div className="swiper-wrapper">
+                  <div className="swiper-slide col-12">
+                  <div className="grid-container">
+                    <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
+                    <div className="col-4 section2-container">
+                      <h3>Multimedia</h3>
+                      <p>Das beste Display mit großen Lautsprechern und einem Aufsteller - lehn dich zurück und genieße Filme... oder so. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                      <p className="hd-price">ab 350€</p>
+                      <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
+                   </div>
+                   </div>
+                  </div>
+                  <div className="swiper-slide col-12">
+                  <div className="grid-container">
+                  <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
+                    <div className="col-4 section2-container">
+                      <h3>Fotografie</h3>
+                      <p>Statte dein Smartphone mit der besten Kamera, einem großen Akku, sowie per microSD-Karte erweiterbaren Speicher aus um auf deinen Foto expeditionen bestens ausgestattet zu sein!</p>
+                      <p className="hd-price">ab 350€</p>
+                      <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
+                   </div>
+                  </div>
+                  </div>
+                  <div className="swiper-slide col-12">
+                  <div className="grid-container">
+                  <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
+                    <div className="col-4 section2-container">
+                      <h3>Basic</h3>
+                      <p>ein budget freundliche zusammenstellung die alles Nötige für den Allteg bietet</p>
+                      <p className="hd-price">ab 350€</p>
+                      <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
+                   </div>
+                  </div>
+                  </div>
+                </div>
+                <div id="hd-pagination" className="col-4"></div>
               </div>
-              </div>
-            </div>
           </section>
 
           <section className="hd-section3">
-            <div className="grid-container centered">
-            <h2 className="hd-h2 col-12">Komplett individualisierbar</h2>
+            <div className="grid-container">
+            <h2 className="col-12">Komplett individualisierbar</h2>
               <a href="#core" className="col-3 col-m-6">
                   <span className="material-icons-outlined icon-medium">memory</span>
                   <h3>Core</h3>
@@ -138,21 +184,21 @@ const Header = () => {
 
            <section className="hd-section8" >
            <div className="grid-container">
-               <h2 className="col-12 hd-h2">Technische Daten</h2>
+               <h2 className="col-12">Technische Daten</h2>
                <div className="col-12 section8-container">
-                  <img src={process.env.PUBLIC_URL+'/Assets/image-section8.png'} alt="" className="img-section8"/>
+                  <img src={process.env.PUBLIC_URL+'/Assets/dimensions.svg'} alt="" className="img-section8"/>
                </div>
                </div>
            </section>
 
            <section className="hd-section9">
            <div className="grid-container">
-               <h2 className="hd-h2">Neue Motile-Produkte</h2>
+               <h2>Neue Motile-Produkte</h2>
             </div>
            </section>
             
         </div>
-    )
-}
+    );
+    }
 
-export default Header
+export default Header;

@@ -2,26 +2,33 @@
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: center;
-    grid-gap: 24px;
     gap: 24px;
     list-style-type: none;
-    width: 79%;
+    width: 100%;
     margin: 0 auto 0 auto;
     padding: 0;
     flex-direction: row;
 }
 .cs-button-container{
-    margin: 5px;
+    border: 2px solid #000;
+    border-radius: 12px;
+    width: calc(33% - 15px);
+    display: flex;
+    align-items: center;    
 }
 .cs-button{
-    padding: 10px;
-    border: 2px solid black;
-    border-radius: 10px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 800;
     text-align: center;
     cursor: pointer;
     transition: background .2s ease;
+    width: 100%;
+    padding: 12px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
 }
 .cs-button:hover{
     background-color: black;
@@ -33,4 +40,6 @@
 .cs-button-input:checked + .cs-button{
     background-color: black;
     color: white;
+    border-radius: 10px;
+
 }

@@ -2,19 +2,29 @@ import './RowSelector.css'
 import {React} from 'react'
 
 const RowSelector = (props) => {
-    const options = props.options;
+    function guidGenerator() {
+        var S4 = function() {
+           return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        };
+        return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+    }
+    let id = guidGenerator();
 
     return (
         <div className="rowSelector">
-            {options.map(item => (
-                <div key={item.head} className="row">
-                    <div className="row-head">
-                        <p>{item.head}</p>
-                    </div>
-                    <div className="row-additional">
-                        <p>{item.additionalInfo}</p>
-                    </div>
-                </div>
+            {props.options.map((item,index) => (
+                <label className="rs-button-container" key={index}>
+                    <input className="rs-button-input" type="radio" name={id} defaultChecked={index == 0} onChange={e => props.updateCurrentSettings(props.index1, props.index2, 0, e.target.checked ? item.additionalInfo : "")}/>
+                    <span className="rs-button">
+                        <div className='row-img-wrapper'>
+                            <img src={item.img ? item.img : ''} alt=""/>
+                        </div>
+                        <div className='rs-info'>
+                            <p className="rs-info-head">{item.head}</p>
+                            <p className="rs-info-additional">{item.additionalInfo}</p>
+                        </div>
+                    </span> 
+                </label>
             ))}
         </div>
     )

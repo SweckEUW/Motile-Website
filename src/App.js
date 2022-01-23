@@ -1,12 +1,13 @@
 import './App.css';
-import BabylonView from './components/Configurator/BabylonView/BabylonView';
-import Panel from './components/Configurator/Panel/Panel';
+import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
 import Login from './components/Login/Login';
+import Loadingscreen from './components/Loadingscreen/Loadingscreen';
 import Navbar from './components/Navbar/Navbar';
 import Header from './components/Home/Header/Header';
 import Footer from './components/Footer/Footer';
 // import BlenderRendering from './components/BlenderRendering/BlenderRendering';
 import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
+import Configurator from './components/Configurator/Configurator';
 import Configurations from './components/Profile/Configurations/Configurations';
 import Settings from './components/Profile/Settings/Settings';
 import Orders from './components/Profile/Orders/Orders';
@@ -17,13 +18,16 @@ import SizeChooser from './components/Configurator/SizeChooser/SizeChooser';
 import React from 'react';
 import history from './services/RouterHistory.js';
 
+import React from 'react';
+
 const App = () => {
 
   return (
-    <Router history={history}>
+    <Router>
+      <Loadingscreen/>
       <Navbar/>
       <Login/>
-
+      
       <Switch>
         {/* Home */}
         <Route exact path="/" render={() => (
@@ -36,10 +40,7 @@ const App = () => {
         {/* Konfigurator */}
         <Route exact path="/Konfigurator" render={() => (
           <div>
-            <SizeChooser/>
-            <Panel/>
-            <BabylonView/>
-            {/* <BlenderRendering/> */}
+            <Configurator/>
           </div>
         )}/>
 

@@ -88,11 +88,14 @@
     padding: 0 5px;
     font-size: 13px;
 }
-.li-input-err{
+.li-input-err {
     text-align: right;
     margin: 0px;
-    font-size: 18px;
-    color:red;
+    font-size: 13px;
+    color: #b40000;
+    position: relative;
+    top: 32px;
+    margin-right: 12px;
 }
 .li-form-button {
     width: 100%;

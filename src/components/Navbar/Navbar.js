@@ -50,18 +50,25 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <div className="nav-container">
-            <Link to="/">
-                <img src={process.env.PUBLIC_URL+'/Assets/Logo.svg'}  className="nav-img" alt="" />
-            </Link>
+            <div className="nav-logo-container">
+                <Link to="/">
+                    <img src={process.env.PUBLIC_URL+'/Assets/Logo.svg'}  className="nav-img" alt="" />
+                </Link>
+            </div>
+
+            <div className='nav-button-container'>   
+                <Link className='nav-button' to="/Konfigurator">konfigurieren</Link>
+            </div>
             
+
             <div className="nav-links">
-                <Link to="/Konfigurator"><button>konfigurieren</button></Link>
-                <Link to="/Warenkorb" className="material-icons-outlined nav-shopping">shopping_cart</Link>
+                <Link to="/Warenkorb">
+                    <span className="material-icons nav-shopping">shopping_cart</span>
+                </Link>
                 <div className="nav-account-container" onClick={() =>{toggleLoginDialogue()}}>
-                    <span className="material-icons-outlined nav-account">account_circle</span>
-                    <CSSTransition in={state.loggedIn} classNames="slide-right" timeout={400} unmountOnExit>                        
-                    <img className="nav-user-img pfp" src={userData ? userData.profilePic : ''} alt="" />
+                    <span className="material-icons nav-account">account_circle</span>
+                    <CSSTransition in={state.loggedIn} classNames="slide-right" timeout={400} unmountOnExit>
+                        <span className="nav-name">{userData ? userData.firstName : ''}</span>
                     </CSSTransition>
                 </div>
             </div>
@@ -79,26 +86,25 @@ const Navbar = () => {
 
                     <div className="nav-dropDown-links">             
                         <Link to="/Profil/Geräte" className="nav-dropDown-link" onClick={() =>{toggleDropDown()}}>
-                            <span className="material-icons-outlined nav-dropDown-icon">smartphone</span>
+                            <span className="material-icons nav-dropDown-icon">smartphone</span>
                             Geräte
                         </Link>
                         <Link to="/Profil/Bestellungen" className="nav-dropDown-link" onClick={() =>{toggleDropDown()}}>
-                            <span className="material-icons-outlined nav-dropDown-icon">receipt_long</span>
+                            <span className="material-icons nav-dropDown-icon">receipt_long</span>
                             Bestellungen
                         </Link>
                         <Link to="/Profil/Einstellungen" className="nav-dropDown-link" onClick={() =>{toggleDropDown()}}>
-                            <span className="material-icons-outlined nav-dropDown-icon">settings</span>
+                            <span className="material-icons nav-dropDown-icon">settings</span>
                             Einstellungen
                         </Link>
                         <hr className="nav-dropDown-hr"/>
                         <p className="nav-dropDown-link" onClick={() =>{logout(); toggleDropDown();}}>
-                            <span className="material-icons-outlined nav-dropDown-icon">logout</span>
+                            <span className="material-icons nav-dropDown-icon">logout</span>
                             Abmelden
                         </p>
                     </div>
                 </div>
             </CSSTransition>
-            </div>
         </nav>
     )
 }

@@ -29,8 +29,8 @@ class Component {
     cloneMesh(){
         this.instances++;
         let parent = new BABYLON.TransformNode(this.name+"_"+this.instances);
-        parent.position = new BABYLON.Vector3(100,0,110);
-        parent.rotation = new BABYLON.Vector3(0,2.09,0);
+        parent.position = new BABYLON.Vector3(120,0,110);
+        // parent.rotation = new BABYLON.Vector3(0,2.09,0);
 
         var boxCollider = BABYLON.MeshBuilder.CreateBox("Collider", {height: 3, width: 47, depth: 38});
         boxCollider.position.y = 1.5;

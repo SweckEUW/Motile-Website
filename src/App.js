@@ -6,13 +6,15 @@ import Navbar from './components/Navbar/Navbar';
 import Header from './components/Home/Header/Header';
 import Footer from './components/Footer/Footer';
 // import BlenderRendering from './components/BlenderRendering/BlenderRendering';
-import {BrowserRouter as Router,Route,Switch,Redirect} from "react-router-dom";
+import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
 import Configurations from './components/Profile/Configurations/Configurations';
 import Settings from './components/Profile/Settings/Settings';
 import Orders from './components/Profile/Orders/Orders';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
+import Checkout from './components/Checkout/Checkout';
+import BuyConfirmation from './components/Checkout/BuyConfirmation/BuyConfirmation';
 import SizeChooser from './components/Configurator/SizeChooser/SizeChooser';
-import React, {useContext} from 'react';
+import React from 'react';
 import history from './services/RouterHistory.js';
 
 const App = () => {
@@ -69,6 +71,22 @@ const App = () => {
         <Route exact path="/Warenkorb" render={() => (
           <div>
             <ShoppingCart/>
+            <Footer/>
+          </div>
+        )}/>
+
+        {/* Checkout */}
+        <Route exact path="/Kasse" render={() => (
+          <div>
+            <Checkout/>
+            <Footer/>
+          </div>
+        )}/>
+
+        {/* Kaufbestätigung */}
+        <Route exact path="/Kaufbestätigung" render={() => (
+          <div>
+            <BuyConfirmation/>
             <Footer/>
           </div>
         )}/>

@@ -56,4 +56,19 @@ export default class userConfigsCollection {
         
         return await configs.updateOne({"_id": {$eq: ObjectId.createFromHexString(user.configs)}}, {$set: userConfigs});
     }
+
+    static async setUserConfigToBought(request, response) {
+        let user = request.user;
+        if(user){
+            console.log("number", request.body.number);
+            let userConfigs = await UserConfigsCollection.getConfig(user);
+            let config = userConfigs.configs.find(config => config.number == request.body.number);
+            config.bought = true;
+            let result = await configs.updateOne({"_id": {$eq: ObjectId.createFromHexString(user.configs)}}, {$set: userConfigs});
+            
+            response.json({success: true, message: 'Kauf erfolgreich'});
+        }else{
+            response.json({success: false, message: 'Kauf konnte nicht vollzogen werden'});
+        }
+    }
 }

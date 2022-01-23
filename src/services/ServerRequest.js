@@ -32,6 +32,13 @@ class ServerRequest{
         return await AxiosHelper.post('/User/Data', getData());
     }
 
+    async buyConfig(number) {
+        return await AxiosHelper.post('/User/Configs/Buy', {
+            number, 
+            token: localStorage.getItem('token')
+        });
+    }
+
     async changeUserData(userData){
         return await AxiosHelper.post('/User/Modify', {
             userData, 

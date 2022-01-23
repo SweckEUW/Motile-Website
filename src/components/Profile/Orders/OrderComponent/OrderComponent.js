@@ -25,7 +25,7 @@ const OrderComponent = (props) => {
                 </span>
                 <span className="orc-buttons">
                     {/* <div className="or-button">Lieferung verfolgen</div> */}
-                    <div className="orc-button">Rechnung herunterladen</div>
+                    <div className="orc-button" onClick={() => {props.buttonCallback(props.order.number)}}>{props.isShoppingCartItem ? 'Produkt entfernen': 'Rechnung herunterladen'}</div>
                 </span> 
             </div>
 

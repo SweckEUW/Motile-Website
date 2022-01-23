@@ -55,6 +55,7 @@ app.post('/User/Modify', Middleware.verifyJWT, userDataCollection.modifyUserData
 app.post('/User/AddAddress', Middleware.verifyJWT, userDataCollection.addAddress);
 app.post('/User/RemoveAddress', Middleware.verifyJWT, userDataCollection.removeAddress);
 app.post('/User/Configs/Remove', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
+app.post('/User/Configs/Buy', Middleware.verifyJWT, UserConfigsCollection.setUserConfigToBought)
 
 //Image upload prep
 let upload = multer({ storage: ImageUploadHandler.getStorage() })

@@ -93,6 +93,14 @@ a.span.material-icons-outlined:hover {
 }
 
 /** Klassenselektoren **/
+h1{
+  font-family: 'AvantGarde';
+  font-size: 40px;
+  border-bottom: hidden;
+  padding-top: 20px;
+  z-index: 10;
+}
+
 h2{
   font-family: 'AvantGarde';
   font-size: 40px;
@@ -185,14 +193,23 @@ h2{
 }
 
 .hd-link1{
+ 
+}
+button {
   border-radius: 25px;
   background-color: #000;
   color: #fff;
   text-decoration: none;
   padding: 10px 50px;
-  /*transition: .2s background ease;*/
+  transition: .2s background ease;
+  font-family: 'AvantGarde';
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
 }
-
+button:hover {
+  background-color: #555;
+}
 /* Section 2 */
 .hd-section2{
     background-position: left;

@@ -33,7 +33,7 @@ function Header(){
              <div className="section1-container">
                   <h2>Nachhaltig, individuell und aufrüstbar.</h2>
                   <p>Ein vollständig modulares Smartphone. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                  <Link to="/Konfigurator" className="hd-link1">Jetzt konfigurieren</Link>
+                  <Link to="/Konfigurator" className="hd-link1"><button>Jetzt konfigurieren</button></Link>
               </div>
           </section>
 

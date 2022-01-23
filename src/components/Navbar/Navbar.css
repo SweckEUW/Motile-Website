@@ -8,12 +8,15 @@
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.2));
     z-index: 99;
     user-select: none;
+    height: 75px;
 }
-.nav-logo-container {
-    width: 8em;
-    padding: 0.9em 0 0.45em 1.8em;
-    cursor: pointer;
+.nav-container {
+    display: flex;
+    width: 1124px;
+    margin: 12px auto;
+    padding: 0 24px;
 }
+
 .nav-img {
     max-width: 100%;
     max-height: 100%;
@@ -23,34 +26,32 @@
     display: flex;
     justify-content: space-evenly;
     align-self: center;
-    align-items: baseline;
-    margin-right: 2.5em;
+    align-items: center;
+    margin-right: 0;
+    margin-left: auto;
 }
 .nav-shopping{
     cursor: pointer;
-    font-size: 30px;
     color: black !important;
-    border-radius: 20px;
-    padding: 2px 10px;
     transition: background .4s ease;
+    text-decoration: none;
+    margin-left: 60px;
 }
-.nav-shopping:hover{
-    background: rgb(202, 202, 202);
+.nav-shopping:hover {
+    color: #777 !important;
 }
 .nav-account{
-    font-size: 32px;
+    font-size: 40px;
 }
 .nav-account-container{
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 2px 10px;
-    border-radius: 20px;
-    transition: background .4s ease;
+    transition: color .4s ease;
     margin-left: 20px;
 }
-.nav-account-container:hover{
-    background: rgb(202, 202, 202);
+.nav-account-container:hover {
+    color: #777;
 }
 .nav-name{
     margin-left: 5px;
@@ -58,45 +59,47 @@
     overflow: hidden;
 }
 
+.pfp {
+    position: absolute;
+    padding: 4px;
+}
+
 .nav-dropDown{
     position: absolute;
     top: 75px;
-    right: 1em;
+    left: calc(50% + 209px);
     border-radius: 20px;
     overflow: hidden;
     text-align: left;
 }
-.nav-dropDown-links{
-    padding: 10px 10px;
-    background: #EEEEEE;
+.nav-dropDown-links {
+    background: #EEE;
+    border-radius: 0 0 24px 24px;
 }
-.nav-dropDown-link{
-    border-radius: 20px;
-    display: block;
-    padding: 8px 20px;
-    margin: 4px 0px;
+.nav-dropDown-link {
+    padding: 12px;
     text-decoration: none;
     color: black;
     display: flex;
     transition: .2s background ease;
     cursor: pointer;
+    margin: 0;
 }
-.nav-dropDown-link:hover{
-    background: white;
+.nav-dropDown-link:hover {
+    background: #fbfbfb;
 }
 .nav-dropDown-hr{
-    border-color: black;
+    background: black;
     width: 90%;
 }
 .nav-dropDown-icon{
     margin-right: 20px;
 }
-.nav-user{
-    border-radius: 20px 20px 0 0;
+.nav-user {
+    border-radius: 24px 24px 0 0;
     display: flex;
-    flex-direction: row;
     background: white;
-    padding: 20px 30px;
+    padding: 24px;
 }
 .nav-user-img{
     border-radius: 50%;
@@ -110,8 +113,10 @@
     flex-direction: column;
     justify-content: center;
 }
-.nav-user-name{
+.nav-user-name {
     font-size: 40px;
+    font-family: 'AvantGarde';
+    font-weight: 600;
 }
 .nav-user-email{
     display: block;
@@ -179,4 +184,6 @@
 .nav-dropDown-arrow:after {
 	transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
 }
-
+@media only screen and (max-width: 700px) {
+    nav button {display:none;}
+  }

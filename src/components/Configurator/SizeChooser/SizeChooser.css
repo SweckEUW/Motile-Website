@@ -13,15 +13,21 @@
     align-items: baseline;
 }
 .sc-elements{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: self-end;
-    margin-top: 70px;
+    flex-direction: column;
+    flex-direction: row;
 }
 .sc-element{
     cursor: pointer;
     transition: opacity .2s ease, transform .2s ease;
     opacity: 0.6;
+    margin-bottom: 20px;
+}
+.sc-element:first-child{
+    margin-right: 130px;
 }
 .sc-element:hover{
     opacity: 1;
@@ -29,4 +35,18 @@
 }
 .sc-img{
     display: inline-block;
+}
+.sc-text{
+    margin-bottom: 70px;
+}
+@media only screen and (max-width: 500px) {
+    .sc-elements{
+        flex-direction: column;
+    }
+    .sc-element:first-child{
+        margin-right: 0px;
+    }
+    .sc-element{
+        align-self: center;
+    }
 }

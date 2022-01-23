@@ -1,18 +1,16 @@
 import './App.css';
-import BabylonView from './components/Configurator/BabylonView/BabylonView';
-import Panel from './components/Configurator/Panel/Panel';
-import Colorpicker from './components/Configurator/Colorpicker/Colorpicker';
+import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
 import Login from './components/Login/Login';
 import Loadingscreen from './components/Loadingscreen/Loadingscreen';
 import Navbar from './components/Navbar/Navbar';
 import Header from './components/Home/Header/Header';
 import Footer from './components/Footer/Footer';
-import {BrowserRouter as Router,Route,Switch,Redirect} from "react-router-dom";
+import Configurator from './components/Configurator/Configurator';
 import Configurations from './components/Profile/Configurations/Configurations';
 import Settings from './components/Profile/Settings/Settings';
 import Orders from './components/Profile/Orders/Orders';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
-import SizeChooser from './components/Configurator/SizeChooser/SizeChooser';
+
 import React from 'react';
 
 const App = () => {
@@ -35,11 +33,7 @@ const App = () => {
         {/* Konfigurator */}
         <Route exact path="/Konfigurator" render={() => (
           <div>
-            <SizeChooser/>
-            <BabylonView/>
-            <Panel/>
-            <Colorpicker/>
-            
+            <Configurator/>
           </div>
         )}/>
 

@@ -26,7 +26,7 @@ class Component {
         }    
     }
 
-    cloneMesh(){
+    cloneMesh(color){
         this.instances++;
         let parent = new BABYLON.TransformNode(this.name+"_"+this.instances);
         parent.position = new BABYLON.Vector3(100,0,110);
@@ -43,6 +43,7 @@ class Component {
             clone.parent = parent;
             clone.sourceMesh.receiveShadows = true;
             // this.shadowGenerator.getShadowMap().renderList.push(clone);
+            mesh.material.albedoColor = BABYLON.Color3.FromHexString(color);
         });
 
         // Hover-over animation

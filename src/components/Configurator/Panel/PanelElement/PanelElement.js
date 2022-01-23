@@ -33,7 +33,6 @@ function PanelElement(props){
 
       setSwiper(swiper);
     }, 0);
-
   }, []);
 
   function changeSwiperPage(index){
@@ -69,13 +68,13 @@ function PanelElement(props){
     localMotileParts.forEach((motilePart,index) => {
       newCurrentSettings.push([]);
       motilePart.metaData.options.forEach(option => {
-        if(option.type == "columns")
+        if(option.type === "columns")
           option.selectedOptions = [option.selections[0]];
-        if(option.type == "switch")
+        if(option.type === "switch")
           option.selectedOptions = Array(option.selections.length);
-        if(option.type == "rows")
+        if(option.type === "rows")
           option.selectedOptions = [option.selections[0].additionalInfo];
-        if(option.type == "addon")
+        if(option.type === "addon")
           option.selectedOptions = [""];
         newCurrentSettings[index].push(option);
       });
@@ -96,13 +95,13 @@ function PanelElement(props){
   }
 
   function addComponent(motilePart,index,optional){
-    if(props.side == "Back" && index == motileParts.length-1 && !optional){
+    if(props.side === "Back" && index === motileParts.length-1 && !optional){
       changeSwiperPage(currentPage+1);
       return
     }
       
-    document.dispatchEvent(new CustomEvent("spawnComponent", {detail:{name: motilePart.name}}));
-    let component = {component: motilePart, settings: currentSettings[index], color: "red"}
+    document.dispatchEvent(new CustomEvent("spawnComponent", {detail:{name: motilePart.name, settings: currentSettings[index], color: currentColors[index]}}));
+    let component = {component: motilePart, settings: currentSettings[index], color: currentColors[index]}
     let components = state.components;
     components.push(component);
     setState(prevState => ({...prevState,components: components}));
@@ -114,7 +113,7 @@ function PanelElement(props){
   return (
     <div className="PanelElement">
 
-      <p className="side">{props.side == "Back" ? "Rückseite" : "Vorderseite"}</p>
+      <p className="side">{props.side === "Back" ? "Rückseite" : "Vorderseite"}</p>
 
       {/* MotilePart Icons */}
       <div className="mp-icons">
@@ -138,7 +137,7 @@ function PanelElement(props){
                   <p className="mp-price">{motilePart.metaData.price}</p>
                   <div className="mp-colors">
                     {motilePart.metaData.colorways.map((colorway,index2) =>{return(
-                      <input type="radio" name={motilePart.name+"_Radio"} key={index2} className="mp-dot" defaultChecked={index2 == 0} style={{background: colorway}} onClick={() =>{updateCurrentColors(index,colorway)}}/>
+                      <input type="radio" name={motilePart.name+"_Radio"} key={index2} className="mp-dot" defaultChecked={index2 === 0} style={{background: colorway}} onClick={() =>{updateCurrentColors(index,colorway)}}/>
                     )})}
                   </div>
                 </div>
@@ -149,7 +148,7 @@ function PanelElement(props){
                   })}
                 </div>
               </div>
-              <div className="mp-button" onClick={() =>{addComponent(motilePart,index)}}>{props.side == "Back" && index == motileParts.length-1 ? "Weiter" : "Einbauen"}</div>
+              <div className="mp-button" onClick={() =>{addComponent(motilePart,index)}}>{props.side === "Back" && index === motileParts.length-1 ? "Weiter" : "Einbauen"}</div>
             </div>
           )})}
         </div>

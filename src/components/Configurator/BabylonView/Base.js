@@ -5,7 +5,6 @@ class Base {
         this.assetsManager = assetsManager;
         this.shadowGenerator = shadowGenerator;
         this.isTablet = isTablet;
-
         this.loadMesh();
     }
 

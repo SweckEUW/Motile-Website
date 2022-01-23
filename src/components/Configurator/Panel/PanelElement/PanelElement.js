@@ -33,13 +33,25 @@ function PanelElement(props){
 
       setSwiper(swiper);
     }, 0);
-
   }, []);
 
-  function changeSwiperPage(index){
+  function changeSwiperPageToIndex(index){
+    if(props.availableSwipes < index)
+      return;
+
     if(index != motileParts.length){
       setCurrentPage(index);
       swiper.slideTo(index);
+    }else{
+      props.swiper.slideNext();
+    }
+  }
+
+  function changeSwiperPageNextIndex(){
+    props.setAvailableSwipes(props.availableSwipes + 1);
+    if(currentPage != motileParts.length - 1){
+      setCurrentPage(currentPage + 1);
+      swiper.slideTo(currentPage + 1);
     }else{
       props.swiper.slideNext();
     }
@@ -53,6 +65,7 @@ function PanelElement(props){
       setMotileParts(localMotileParts);
       setupCurrentSettings(localMotileParts);
       setupCurrentColors(localMotileParts);
+      props.setMaxAvailableSwipes(localMotileParts.length);
     }
   }
 
@@ -69,13 +82,13 @@ function PanelElement(props){
     localMotileParts.forEach((motilePart,index) => {
       newCurrentSettings.push([]);
       motilePart.metaData.options.forEach(option => {
-        if(option.type == "columns")
+        if(option.type === "columns")
           option.selectedOptions = [option.selections[0]];
-        if(option.type == "switch")
+        if(option.type === "switch")
           option.selectedOptions = Array(option.selections.length);
-        if(option.type == "rows")
+        if(option.type === "rows")
           option.selectedOptions = [option.selections[0].additionalInfo];
-        if(option.type == "addon")
+        if(option.type === "addon")
           option.selectedOptions = [""];
         newCurrentSettings[index].push(option);
       });
@@ -96,32 +109,33 @@ function PanelElement(props){
   }
 
   function addComponent(motilePart,index,optional){
-    if(props.side == "Back" && index == motileParts.length-1 && !optional){
-      changeSwiperPage(currentPage+1);
+    if(props.side === "Back" && index === motileParts.length-1 && !optional){
+      changeSwiperPageNextIndex();
       return
     }
       
-    document.dispatchEvent(new CustomEvent("spawnComponent", {detail:{name: motilePart.name}}));
-    let component = {component: motilePart, settings: currentSettings[index], color: "red"}
+    document.dispatchEvent(new CustomEvent("spawnComponent", {detail:{name: motilePart.name, settings: currentSettings[index], color: currentColors[index]}}));
+    let component = {component: motilePart, settings: currentSettings[index], color: currentColors[index]}
     let components = state.components;
     components.push(component);
     setState(prevState => ({...prevState,components: components}));
     
     if(!optional)
-      changeSwiperPage(currentPage+1);
+      changeSwiperPageNextIndex();
   }
 
   return (
     <div className="PanelElement">
 
-      <p className="side">{props.side == "Back" ? "Rückseite" : "Vorderseite"}</p>
+      <p className="side">{props.side === "Back" ? "Rückseite" : "Vorderseite"}</p>
 
       {/* MotilePart Icons */}
       <div className="mp-icons">
         {motileParts.map((motilePart,index) =>{return(
-          <span key={index} className="mp-icon material-icons" onClick={() =>{changeSwiperPage(index)}} style={{
-            opacity: index === currentPage ? '1' : '0.3',
-            fontSize: index === currentPage ? '48px' : '24px'
+          <span key={index} className="mp-icon material-icons" onClick={() =>{changeSwiperPageToIndex(index)}} style={{
+            opacity: index === currentPage || props.availableSwipes > index ? '1' : '0.1',
+            fontSize: index === currentPage ? '40px' : '24px',
+            cursor: index === currentPage || props.availableSwipes > index ? 'pointer' : ''
           }}>
             {motilePart.metaData.icon}
           </span>
@@ -138,7 +152,7 @@ function PanelElement(props){
                   <p className="mp-price">{motilePart.metaData.price}</p>
                   <div className="mp-colors">
                     {motilePart.metaData.colorways.map((colorway,index2) =>{return(
-                      <input type="radio" name={motilePart.name+"_Radio"} key={index2} className="mp-dot" defaultChecked={index2 == 0} style={{background: colorway}} onClick={() =>{updateCurrentColors(index,colorway)}}/>
+                      <input type="radio" name={motilePart.name+"_Radio"} key={index2} className="mp-dot" defaultChecked={index2 === 0} style={{background: colorway}} onClick={() =>{updateCurrentColors(index,colorway)}}/>
                     )})}
                   </div>
                 </div>
@@ -149,7 +163,7 @@ function PanelElement(props){
                   })}
                 </div>
               </div>
-              <div className="mp-button" onClick={() =>{addComponent(motilePart,index)}}>{props.side == "Back" && index == motileParts.length-1 ? "Weiter" : "Einbauen"}</div>
+              <div className="mp-button" onClick={() =>{addComponent(motilePart,index)}}>{props.side === "Back" && index === motileParts.length-1 ? "Weiter" : "Einbauen"}</div>
             </div>
           )})}
         </div>

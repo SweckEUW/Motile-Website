@@ -25,7 +25,7 @@ function Login(){
 
   useEffect(() => {
     tryJWTLogin();
-  },[state])
+  },[])
 
   // Try logging in with jwt token
   async function tryJWTLogin(){

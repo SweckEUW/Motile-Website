@@ -15,33 +15,27 @@
     height: 100%;
     width: 100%;
 }
-#handle {
-    display: none;
-    width: 50px;
-    position: relative;
-    background: black;
-    height: 3px;
-    border-radius: 5px;
-    margin: 15px auto;
-}
-
-#swiper-pagination {
-    position: absolute;
-    width: 100%;
-    top: 0px;
-    z-index: 9;
-    bottom: unset;
-}
-.Panel .swiper-pagination-bullet {
-    width: 10px !important;
-    height: 10px !important;
-    margin: 19px 7px !important;
-}
-.Panel .swiper-pagination-bullet-active {
-    background: #000!important;
-}
 .Panel .columnSelector {
     font-family: 'AvantGarde';
+}
+
+.pl-dots{
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    z-index: 2;
+}
+.pl-dots div{
+    border-radius: 50%;
+    background: black;
+    width: 15px;
+    height: 15px;
+    margin: 10px;
+    transition: width .3s ease, height .3s ease, opacity .3s ease, background .3s ease;
 }
 
 /* Scrollbar CSS */

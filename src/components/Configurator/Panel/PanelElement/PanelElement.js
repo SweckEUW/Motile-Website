@@ -35,10 +35,23 @@ function PanelElement(props){
     }, 0);
   }, []);
 
-  function changeSwiperPage(index){
+  function changeSwiperPageToIndex(index){
+    if(props.availableSwipes < index)
+      return;
+
     if(index != motileParts.length){
       setCurrentPage(index);
       swiper.slideTo(index);
+    }else{
+      props.swiper.slideNext();
+    }
+  }
+
+  function changeSwiperPageNextIndex(){
+    props.setAvailableSwipes(props.availableSwipes + 1);
+    if(currentPage != motileParts.length - 1){
+      setCurrentPage(currentPage + 1);
+      swiper.slideTo(currentPage + 1);
     }else{
       props.swiper.slideNext();
     }
@@ -52,6 +65,7 @@ function PanelElement(props){
       setMotileParts(localMotileParts);
       setupCurrentSettings(localMotileParts);
       setupCurrentColors(localMotileParts);
+      props.setMaxAvailableSwipes(localMotileParts.length);
     }
   }
 
@@ -96,7 +110,7 @@ function PanelElement(props){
 
   function addComponent(motilePart,index,optional){
     if(props.side === "Back" && index === motileParts.length-1 && !optional){
-      changeSwiperPage(currentPage+1);
+      changeSwiperPageNextIndex();
       return
     }
       
@@ -107,7 +121,7 @@ function PanelElement(props){
     setState(prevState => ({...prevState,components: components}));
     
     if(!optional)
-      changeSwiperPage(currentPage+1);
+      changeSwiperPageNextIndex();
   }
 
   return (
@@ -118,9 +132,10 @@ function PanelElement(props){
       {/* MotilePart Icons */}
       <div className="mp-icons">
         {motileParts.map((motilePart,index) =>{return(
-          <span key={index} className="mp-icon material-icons" onClick={() =>{changeSwiperPage(index)}} style={{
-            opacity: index === currentPage ? '1' : '0.3',
-            fontSize: index === currentPage ? '48px' : '24px'
+          <span key={index} className="mp-icon material-icons" onClick={() =>{changeSwiperPageToIndex(index)}} style={{
+            opacity: index === currentPage || props.availableSwipes > index ? '1' : '0.1',
+            fontSize: index === currentPage ? '40px' : '24px',
+            cursor: index === currentPage || props.availableSwipes > index ? 'pointer' : ''
           }}>
             {motilePart.metaData.icon}
           </span>

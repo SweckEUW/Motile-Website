@@ -13,12 +13,8 @@
 .mp-icon{
     width: 100%;
     line-height: 72px;
-    cursor: pointer;
     user-select: none;
     transition: .4s font-size ease, .4s opacity ease;
-}
-.mp-icon:hover {
-    opacity: 1!important;
 }
 .mp-icon-img{
     height: 100%;

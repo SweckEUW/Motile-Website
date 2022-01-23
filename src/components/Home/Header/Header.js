@@ -189,14 +189,7 @@ function Header(){
                   <img src={process.env.PUBLIC_URL+'/Assets/dimensions.svg'} alt="" className="img-section8"/>
                </div>
                </div>
-           </section>
-
-           <section className="hd-section9">
-           <div className="grid-container">
-               <h2>Neue Motile-Produkte</h2>
-            </div>
-           </section>
-            
+           </section>            
         </div>
     );
     }

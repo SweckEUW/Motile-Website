@@ -69,6 +69,8 @@ function BabylonView(props){
     camera.lowerRadiusLimit = 200; // Stop zooming in
     camera.upperRadiusLimit = 200; // Stop zooming out
     camera.upperBetaLimit = 1.5;
+    camera.minZ = 10;
+    camera.maxZ = 1000;
 
     // Set up Shadows
     let light0 = new BABYLON.DirectionalLight("MainLight", new BABYLON.Vector3(1, -1, 1), scene);

@@ -16,6 +16,10 @@ const Orders = () => {
         getOrders();
     }, [state]);
 
+    let billingCallback = (childData) =>{
+        console.log(childData);
+    }
+
     async function getOrders(){
         let ordersResponse = await ServerRequest.getUserConfigurations();
         console.log(ordersResponse.data.message);
@@ -31,7 +35,7 @@ const Orders = () => {
             <h1 className="pr-title">Bestellungen</h1>
 
             {orders.map((order,index) =>{return(
-                <OrderComponent key={index} order={order}/>
+                <OrderComponent key={index} order={order} isShoppingCartItem={false} buttonCallback={billingCallback}/>
             )})}
 
             <CSSTransition in={orders.length == 0} unmountOnExit timeout={0}>   

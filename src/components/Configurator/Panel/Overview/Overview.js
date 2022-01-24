@@ -16,6 +16,7 @@ function Overview(){
   async function saveConfiguration(){
     if(state.loggedIn){
       setState(prevState => ({...prevState,showLoadingscreen: true}));
+      
       let data = {
         name: configName,
         number: Math.floor(Math.random() * 1000000000),
@@ -25,14 +26,13 @@ function Overview(){
         bought:  false,
         parts: state.components
       }
-
+      
       let saveResponse = await ServerRequest.saveUserConfiguration(data);
       console.log(saveResponse.data.message);
       if(saveResponse.data.success){
-        // TODO Redirect
+        // history.push({pathname: '/Profil/Geräte'});
+        setState(prevState => ({...prevState,showLoadingscreen: false}));
       }
-      history.push({pathname: '/Profil/Geräte'});
-      setState(prevState => ({...prevState,showLoadingscreen: false}));
     }else{
       document.dispatchEvent(new CustomEvent("toggleLoginDialogue", {detail: {information: 'Sie müssen eingeloggt sein, um eine Konfiguration zu speichern'}}));
     }

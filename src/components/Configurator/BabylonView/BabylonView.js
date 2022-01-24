@@ -45,6 +45,11 @@ function BabylonView(props){
     // init engine
     let engine = new BABYLON.Engine(myRef.current, true);
     setGlobalEngine(globalEngine[0] = engine);
+    engine.enableOfflineSupport = true;
+    BABYLON.Database.IDBStorageEnabled = true;
+    BABYLON.Engine.OfflineProviderFactory = (urlToScene, callbackManifestChecked, disableManifestCheck) => {
+      return new BABYLON.Database(urlToScene, callbackManifestChecked, true);
+    };
 
     // Enable Hardware Scaling
     engine.setHardwareScalingLevel(1 / window.devicePixelRatio);
@@ -105,19 +110,33 @@ function BabylonView(props){
     ground.material = new Materials.ShadowOnlyMaterial('shadowOnly', scene);
     ground.receiveShadows = true;
 
+    const snapBoxes = [];
+    const positions = [new BABYLON.Vector3(37,5,87), new BABYLON.Vector3(60,5,87), new BABYLON.Vector3(83,5,87),
+                        new BABYLON.Vector3(37,5,49), new BABYLON.Vector3(60,5,49), new BABYLON.Vector3(83,5,49),
+                        new BABYLON.Vector3(37,5,11), new BABYLON.Vector3(60,5,11), new BABYLON.Vector3(83,5,11),
+                        new BABYLON.Vector3(37,5,-27), new BABYLON.Vector3(60,5,-27), new BABYLON.Vector3(83,5,-27)]
+    for (let i = 0; i < 12; i++) {
+      const snapBox = BABYLON.MeshBuilder.CreateBox(`snapBox_${i}`, {width: 10, height: 5, depth: 20}, scene);
+      snapBox.position = positions[i];
+      snapBox.showBoundingBox = true;
+      snapBox.visibility = false;
+      snapBoxes.push(snapBox);
+    }
+
     // Start rendering
     engine.runRenderLoop(() => {
       scene.render();
     });
 
     await loadMotileParts(scene,shadowGenerator);
-    initDragAndDrop(scene,ground);
+    initDragAndDrop(scene,ground, snapBoxes);
 
     document.addEventListener("spawnComponent", spawnComponent);
 
     if(history.location.state && history.location.state.editMode)
       loadConfiguration(history.location.state.configuration);
   }
+
 
   function spawnComponent(e){
     if(e.detail.settings){
@@ -153,7 +172,7 @@ function BabylonView(props){
     });
   }
 
-  function initDragAndDrop(scene,ground){
+  function initDragAndDrop(scene,ground, snapBoxes){
     let currentMesh, startingPoint;
     
     var getGroundPosition = function () {
@@ -164,7 +183,7 @@ function BabylonView(props){
 
     var onPointerDown = function (evt) {
       var pickInfo = scene.pick(scene.pointerX, scene.pointerY);
-      if(pickInfo.hit && pickInfo.pickedMesh.name !== "SkyBox" && pickInfo.pickedMesh.name !== "Ground"){
+      if(pickInfo.hit && pickInfo.pickedMesh.name !== "SkyBox" && pickInfo.pickedMesh.name !== "Ground" && !pickInfo.pickedMesh.name.includes('snapBox')){
         currentMesh = pickInfo.pickedMesh.parent;
         startingPoint = getGroundPosition(evt);
 
@@ -177,6 +196,11 @@ function BabylonView(props){
       if(startingPoint){
         scene.activeCamera.attachControl(myRef.current);
         startingPoint = null;
+        for (let snapBox of snapBoxes) {
+          if (snapBox.intersectsPoint(currentMesh.position)) {
+            currentMesh.position = new BABYLON.Vector3(snapBox.position._x, snapBox.position._y, snapBox.position._z);
+          }
+        }
         return;
       }
     }

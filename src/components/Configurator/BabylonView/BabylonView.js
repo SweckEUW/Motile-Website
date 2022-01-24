@@ -112,7 +112,7 @@ function BabylonView(props){
       const snapBox = BABYLON.MeshBuilder.CreateBox(`snapBox_${i}`, {width: 10, height: 5, depth: 20}, scene);
       snapBox.position = positions[i];
       snapBox.showBoundingBox = true;
-      snapBox.visibility = false;
+      // snapBox.visibility = false;
       snapBoxes.push(snapBox);
     }
 

@@ -109,7 +109,7 @@ const Checkout = () => {
                                     <div key={index} className="swiper-slide">
                                         <div className="co-selected-product">
                                             <div className="co-product-img">
-                                                <img src="http://localhost:5000/Placeholder/phone_placeholder.png" alt="" />
+                                                <img src={order.thumbnail} alt="" />
                                             </div>
                                             <div className="co-product-info-container">
                                                 <div className="product-info">

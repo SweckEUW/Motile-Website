@@ -28,6 +28,18 @@ export default class userDataCollection {
             lastName: user.lastName,
             profilePic: "http://localhost:5000/Placeholder/profile_placeholder.png",
             telephone: '+49 1575 0456123',
+            paymentMethods: [
+                {
+                    name: 'PayPal',
+                    previewImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/640px-PayPal.svg.png",
+                    user: user.firstName + ' ' + user.lastName
+                },
+                {
+                    name: 'VISA',
+                    previewImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Visa_2021.svg/2560px-Visa_2021.svg.png",
+                    user: user.firstName + ' ' + user.lastName
+                }
+            ],
             adresses: [
                 {
                     firstName: user.firstName,

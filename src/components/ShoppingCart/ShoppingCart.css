@@ -1,15 +1,31 @@
 .sc-button{
     padding: 10px 40px;
     margin: 10px;
-    border: 2px solid black;
     border-radius: 5px;
-    cursor: pointer;
 }
-.sc-button:hover{
-    background: rgb(150, 150, 150);
-}
+
 .sc-to-checkout {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.sc-to-checkout-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.button-inactive {
+    border: 2px solid lightgray;
+    color: lightgray;
+}
+
+.button-active {
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.button-active:hover {
+    background: rgb(150, 150, 150);
+}
+

@@ -4,6 +4,13 @@ import {Link} from "react-router-dom";
 import Swiper , { Pagination } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/modules/pagination/pagination.min.css';
+import ServerRequest from '../../../services/ServerRequest'
+
+async function renderTest(){
+  console.log("start Request");
+  let renderTestResponse = await ServerRequest.renderTest();
+  console.log(renderTestResponse.data.message);
+}
 
 function Header(){
   const [swiper, setSwiper] = useState(null);

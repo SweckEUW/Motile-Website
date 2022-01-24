@@ -1,14 +1,15 @@
-import bpy,sys
+from tokenize import String
+import bpy,sys,json
 
 argv = sys.argv
 argv = argv[argv.index("--") + 1:]
+settings = json.loads(argv[0])
 
 phone = bpy.data.objects['Phone']
-phone.location = (phone.location.x + float(argv[1]), phone.location.y +float(argv[2]), phone.location.z +float(argv[3]))
-phone.rotation_euler = (phone.rotation_euler.x + float(argv[4]), phone.rotation_euler.y + float(argv[5]), phone.rotation_euler.z + float(argv[6]))
+print(settings["components"])
 
 # Change Rendering filepath
-bpy.context.scene.render.filepath = argv[0]
+bpy.context.scene.render.filepath = settings["exportPath"]
 
 print("Starting Rendering!")
 bpy.ops.render.render(write_still=True)

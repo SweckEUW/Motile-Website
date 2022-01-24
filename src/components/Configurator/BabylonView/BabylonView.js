@@ -45,6 +45,11 @@ function BabylonView(props){
     // init engine
     let engine = new BABYLON.Engine(myRef.current, true);
     setGlobalEngine(globalEngine[0] = engine);
+    engine.enableOfflineSupport = true;
+    BABYLON.Database.IDBStorageEnabled = true;
+    BABYLON.Engine.OfflineProviderFactory = (urlToScene, callbackManifestChecked, disableManifestCheck) => {
+      return new BABYLON.Database(urlToScene, callbackManifestChecked, true);
+    };
 
     // Enable Hardware Scaling
     engine.setHardwareScalingLevel(1 / window.devicePixelRatio);

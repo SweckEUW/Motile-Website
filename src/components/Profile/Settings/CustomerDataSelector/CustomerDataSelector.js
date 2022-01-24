@@ -61,73 +61,89 @@ const CustomerDataSelector = (props) => {
 
     return (
         <div className="CustomerDataSelector">
-            
             <AddAddress userData={props.userData} updateState={setState}/>
-
-            <div className="csd-shipment-pay">
-                <div className="csd-shipment-pay-container">
-                    <span>Zahlungsmethoden</span>
-                    <div className="csd-shipment-pay-options">
-                        <div className="csd-shipment-pay-swipables">
-                            <div id="csd-payment-swiper" className="swiper">
-                                <div className="swiper-wrapper">
-                                    {props.userData && props.userData.paymentMethods ? props.userData.paymentMethods.map((option, index) => {
-                                        return (
-                                            <span key={index} className="swiper-slide">
-                                                <div className="csd-payment-method">
-                                                    <img src={option.previewImg} alt="" />
-                                                    <div>{option.user}</div>
-                                                </div>
-                                                <div className="csd-delete">
-                                                    <span className="material-icons">delete</span>
-                                                    <span>Entfernen</span>
-                                                </div>
-                                            </span>
-                                        )
-                                    }): ""}
+            <div className="col-6 st-shipment-pay-container">
+                        <h3 className="col-12">Zahlungsmethoden</h3>
+                        <div className="col-6">
+                                <div id="csd-payment-swiper" className="swiper">
+                                    <div className="swiper-wrapper">
+                                        <div className="swiper-slide">
+                                            <div className="swiper-slide-content">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/640px-PayPal.svg.png" alt="" />
+                                                <p>{props.userData && props.userData.email}</p>
+                                            </div>
+                                            <div className="st-delete">
+                                                <span className="material-icons-outlined">delete</span>
+                                                <span>Entfernen</span>
+                                            </div>
+                                        </div>
+                                        <div className="swiper-slide">
+                                            <div className="swiper-slide-content">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Visa_2021.svg/2560px-Visa_2021.svg.png" alt="" />
+                                                <p>{props.userData && props.userData.firstName + " " + props.userData.lastName}</p>
+                                            </div>
+                                            <div className="st-delete">
+                                                <span className="material-icons-outlined">delete</span>
+                                                <span>Entfernen</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="swiper-payment-pagination" />
+                            </div>
+                            <div className="col-6">
+                            <div className="st-addAdress">
+                                <div className="st-addAdress-content">
+                                    <div className="st-addAdress-add">
+                                        <span className="material-icons-outlined st-addAdress-plus">add</span>
+                                    </div>
+                                    <div className="st-addAdress-add">
+                                        <p>Neue Zahlungsmethode hinzufügen</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div id="swiper-payment-pagination" />
-                        </div>
-                        <div className="csd-addAdress">
-                            <div className="csd-addAdress-plus">+</div>
-                            <div>Neue <br /> Zahlungsmethode <br /> hinzufügen</div>
                         </div>
                     </div>
-                </div>
-                <div className="csd-shipment-pay-container">
-                    <span>Adressen</span>
-                    <div className="csd-shipment-pay-options">
-                        <div className="csd-prv-swipables">
-                            <div id="csd-shipment-swiper" className="swiper">
-                                <div className="swiper-wrapper">
-                                    {props.userData ? props.userData.adresses.map((adress, index) => {
-                                        return (
-                                            <span key={index} className="swiper-slide">
-                                                <div className="swiper-slide-content">
-                                                    <div>{adress.firstName + ' ' + adress.lastName}</div>
-                                                    <div>{adress.street}</div>
-                                                    <div>{adress.city}</div>
-                                                    <div>{adress.country}</div>
-                                                </div>
-                                                <div className="csd-delete" onClick={() =>{deleteAddress(index)}}>
-                                                    <span className="material-icons">delete</span>
-                                                    <span>Entfernen</span>
-                                                </div>
-                                            </span>
-                                        )
-                                    }) : ""}
+                    <div className="col-6 st-shipment-pay-container">
+                        <h3 className="col-12">Adressen</h3>
+                        <div className="col-6">
+                            <div className="st-prv-swipables">
+                                <div id="csd-shipment-swiper" className="swiper">
+                                    <div className="swiper-wrapper">
+                                        {props.userData && props.userData.adresses ? props.userData.adresses.map((adress, index) => {
+                                            return (
+                                                <span key={index} className="swiper-slide">
+                                                    <div className="swiper-slide-content">
+                                                        <p>{adress.firstName + ' ' + adress.lastName}</p>
+                                                        <p>{adress.street}</p>
+                                                        <p>{adress.city}</p>
+                                                        <p>{adress.country}</p>
+                                                    </div>
+                                                    <div className="st-delete" onClick={() =>{deleteAddress(index)}}>
+                                                        <span className="material-icons-outlined">delete</span>
+                                                        <span>Entfernen</span>
+                                                    </div>
+                                                </span>
+                                            )
+                                        }) : ""}
+                                    </div>
+                                </div>
+                                <div id="swiper-shipment-pagination" />
+                            </div>
+                            </div>
+                            <div className="col-6">
+                            <div className="st-addAdress" onClick={() =>{toggleAddDressDialogue()}}>
+                                <div className="st-addAdress-content">
+                                    <div className="st-addAdress-add">
+                                        <span className="material-icons-outlined st-addAdress-plus">add</span>
+                                    </div>
+                                    <div className="st-addAdress-add">
+                                        <p>Neue Adresse hinzufügen</p>
+                                    </div>                                
                                 </div>
                             </div>
-                            <div id="swiper-shipment-pagination" />
-                        </div>
-                        <div className="csd-addAdress" onClick={() =>{toggleAddDressDialogue()}}>
-                            <div className="csd-addAdress-plus">+</div>
-                            <div>Neue Adresse hinzufügen</div>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
     )
 }

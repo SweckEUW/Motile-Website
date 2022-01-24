@@ -30,35 +30,33 @@ const Configurations = () => {
     }
 
     return (
-        <div className="Settings pr-page">
+        <div className="Settings grid-container">
             
-            <h1 className="pr-title">Einstellungen</h1>
+            <h1 className="col-12 pr-title">Einstellungen</h1>
             <EditProfile userData={userData} updateState={setState}/>
 
-            <div className="st-block">
-                <div className="st-acc">
+                <div className="col-12 st-acc">
                     <div className="st-acc-head">
-                        <div className="st-acc-pic">
-                            <img src={userData && userData.profilePic} alt="" />
+                        <div className="col-4 col-m-6">
+                            <img className="st-acc-pic" src={userData && userData.profilePic} alt="" />
                         </div>
-                        <div className="st-acc-overview">
-                            <p>{userData && userData.firstName + " " + userData.lastName}</p>
+                        <div className="col-8 col-m-6 st-acc-overview">
+                            <h2>{userData && userData.firstName + " " + userData.lastName}</h2>
                             <button onClick={() =>{toggleEditProfileDialogue()}}>Profil bearbeiten</button>
                         </div>
                     </div>
                     <div className="st-acc-data">
                         <div className="st-acc-row">
-                            <p>E-Mail</p>
-                            <p>{userData && userData.email}</p>
+                            <p className="col-4">E-Mail</p>
+                            <p className="col-8">{userData && userData.email}</p>
                         </div>
                         <div className="st-acc-row">
-                            <p>Telefon</p>
-                            <p>{userData && userData.telephone}</p>
+                            <p className="col-4">Telefon</p>
+                            <p className="col-8">{userData && userData.telephone}</p>
                         </div>
                     </div>
                 </div>
                 <CustomerDataSelector userData={userData}/>
-            </div>
         </div>
     )
 }

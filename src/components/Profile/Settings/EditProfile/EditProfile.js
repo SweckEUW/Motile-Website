@@ -55,8 +55,10 @@ const EditProfile = (props) => {
                                     setProfilePic(URL.createObjectURL(file));
                                     setProfilePicData(file);
                                 }}/>
+                                
                                 <img src={profilePic || props.userData && props.userData.profilePic} alt="" />
                             </div> 
+                            <span className="material-icons-outlined">add_a_photo</span>
                         </div>
 
                         <div className="st-mod-close-button" onClick={() =>{toggleEditProfileDialogue()}}>

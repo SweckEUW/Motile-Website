@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
-    background: #000000d0;
+    background: #00000085;
 }
 
 .st-mod-container {
@@ -55,10 +55,21 @@
 
 .st-mod-select-pic:hover + img{
     filter: brightness(0.5);
+    content: " - Remember this";
 }
 
 .st-mod-select-pic:hover + img{
     filter: brightness(0.5);
+    content: " - Remember this";
+}
+
+.st-mod-profile-pic .material-icons-outlined {
+    width: 200px;
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    top: 170px;
+    font-size: 48px;
 }
 
 .st-mod-profile-pic {

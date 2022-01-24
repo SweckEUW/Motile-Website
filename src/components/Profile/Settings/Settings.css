@@ -1,3 +1,6 @@
+.col-6 .col-6 {
+    width: 50%;
+}
 .st-block{
     width: 80%;
     max-width: 1100px;
@@ -17,25 +20,27 @@
 
 .st-acc {
     background: white;
-    border-radius: 30px;
+    border-radius: 24px;
     text-align: left;
     filter: drop-shadow(0px 4px 3px rgba(0, 0, 0, 0.1));
 }
 
 .st-acc-head {
     display: flex;
+    flex-wrap: wrap;
     background-color: #242328;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    padding: 65px 45px;
+    border-radius: 24px 24px 0 0;
+    padding: 48px 0;
+    margin: 0 -24px;
 }
 
-.st-acc-pic {
-    width: 180px;
-    height: 180px;
-    margin-right: 100px;
+
+.st-acc-head h2 {
+    color: #fff;
+    word-break: break-word;
 }
-.st-acc-pic img{
+
+.st-acc-pic{
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -65,13 +70,7 @@
 
 .st-acc-row {
     display: flex;
-    padding: 6px 30px;
     border-bottom: 2px solid #f0f0f0;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-}
-
-.st-acc-row p{
-    width: 315px;
-    font-size: 15px;
+    margin: 0 -24px;
+    padding: 0 24px;
 }

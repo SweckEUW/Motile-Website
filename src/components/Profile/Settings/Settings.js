@@ -68,58 +68,56 @@ const Configurations = () => {
     }
 
     return (
-        <div className="Settings pr-page">
+        <div className="Settings grid-container">
             
-            <h1 className="pr-title">Einstellungen</h1>
+            <h1 className="col-12 pr-title">Einstellungen</h1>
             <EditProfile userData={userData} updateState={setState}/>
             <AddAddress userData={userData} updateState={setState}/>
 
-            <div className="st-block">
-                <div className="st-acc">
+                <div className="col-12 st-acc">
                     <div className="st-acc-head">
-                        <div className="st-acc-pic">
-                            <img src={userData && userData.profilePic} alt="" />
+                        <div className="col-4 col-m-6">
+                            <img className="st-acc-pic" src={userData && userData.profilePic} alt="" />
                         </div>
-                        <div className="st-acc-overview">
-                            <p>{userData && userData.firstName + " " + userData.lastName}</p>
+                        <div className="col-8 col-m-6 st-acc-overview">
+                            <h2>{userData && userData.firstName + " " + userData.lastName}</h2>
                             <button onClick={() =>{toggleEditProfileDialogue()}}>Profil bearbeiten</button>
                         </div>
                     </div>
                     <div className="st-acc-data">
                         <div className="st-acc-row">
-                            <p>E-Mail</p>
-                            <p>{userData && userData.email}</p>
+                            <p className="col-4">E-Mail</p>
+                            <p className="col-8">{userData && userData.email}</p>
                         </div>
                         <div className="st-acc-row">
-                            <p>Telefon</p>
-                            <p>{userData && userData.telephone}</p>
+                            <p className="col-4">Telefon</p>
+                            <p className="col-8">{userData && userData.telephone}</p>
                         </div>
                     </div>
                 </div>
-                <div className="st-shipment-pay">
-                    <div className="st-shipment-pay-container">
-                        <span>Zahlungsmethoden</span>
-                        <div className="st-shipment-pay-options">
-                            <div className="st-shipment-pay-swipables">
+
+                    <div className="col-6 st-shipment-pay-container">
+                        <h3 className="col-12">Zahlungsmethoden</h3>
+                        <div className="col-6">
                                 <div id="st-payment-swiper" className="swiper">
                                     <div className="swiper-wrapper">
                                         <div className="swiper-slide">
-                                            <div className="st-payment-method">
+                                            <div className="swiper-slide-content">
                                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/640px-PayPal.svg.png" alt="" />
-                                                <div>anna_tanke@gmx.de</div>
+                                                <p>{userData && userData.email}</p>
                                             </div>
                                             <div className="st-delete">
-                                                <span className="material-icons">delete</span>
+                                                <span className="material-icons-outlined">delete</span>
                                                 <span>Entfernen</span>
                                             </div>
                                         </div>
                                         <div className="swiper-slide">
-                                            <div className="st-payment-method">
+                                            <div className="swiper-slide-content">
                                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Visa_2021.svg/2560px-Visa_2021.svg.png" alt="" />
-                                                <div>Benjamin Jäger</div>
+                                                <p>{userData && userData.firstName + " " + userData.lastName}</p>
                                             </div>
                                             <div className="st-delete">
-                                                <span className="material-icons">delete</span>
+                                                <span className="material-icons-outlined">delete</span>
                                                 <span>Entfernen</span>
                                             </div>
                                         </div>
@@ -127,15 +125,22 @@ const Configurations = () => {
                                 </div>
                                 <div id="swiper-payment-pagination" />
                             </div>
+                            <div className="col-6">
                             <div className="st-addAdress">
-                                <div className="st-addAdress-plus">+</div>
-                                <div>Neue <br /> Zahlungsmethode <br /> hinzufügen</div>
+                                <div className="st-addAdress-content">
+                                    <div className="st-addAdress-add">
+                                        <span className="material-icons-outlined st-addAdress-plus">add</span>
+                                    </div>
+                                    <div className="st-addAdress-add">
+                                        <p>Neue Zahlungsmethode hinzufügen</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="st-shipment-pay-container">
-                        <span>Adressen</span>
-                        <div className="st-shipment-pay-options">
+                    <div className="col-6 st-shipment-pay-container">
+                        <h3 className="col-12">Adressen</h3>
+                        <div className="col-6">
                             <div className="st-prv-swipables">
                                 <div id="st-shipment-swiper" className="swiper">
                                     <div className="swiper-wrapper">
@@ -143,13 +148,13 @@ const Configurations = () => {
                                             return (
                                                 <span key={index} className="swiper-slide">
                                                     <div className="swiper-slide-content">
-                                                        <div>{adress.firstName + ' ' + adress.lastName}</div>
-                                                        <div>{adress.street}</div>
-                                                        <div>{adress.city}</div>
-                                                        <div>{adress.country}</div>
+                                                        <p>{adress.firstName + ' ' + adress.lastName}</p>
+                                                        <p>{adress.street}</p>
+                                                        <p>{adress.city}</p>
+                                                        <p>{adress.country}</p>
                                                     </div>
                                                     <div className="st-delete" onClick={() =>{deleteAddress(index)}}>
-                                                        <span className="material-icons">delete</span>
+                                                        <span className="material-icons-outlined">delete</span>
                                                         <span>Entfernen</span>
                                                     </div>
                                                 </span>
@@ -159,14 +164,20 @@ const Configurations = () => {
                                 </div>
                                 <div id="swiper-shipment-pagination" />
                             </div>
+                            </div>
+                            <div className="col-6">
                             <div className="st-addAdress" onClick={() =>{toggleAddDressDialogue()}}>
-                                <div className="st-addAdress-plus">+</div>
-                                <div>Neue Adresse hinzufügen</div>
+                                <div className="st-addAdress-content">
+                                    <div className="st-addAdress-add">
+                                        <span className="material-icons-outlined st-addAdress-plus">add</span>
+                                    </div>
+                                    <div className="st-addAdress-add">
+                                        <p>Neue Adresse hinzufügen</p>
+                                    </div>                                
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
     )
 }

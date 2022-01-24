@@ -1,3 +1,6 @@
+.col-6 .col-6 {
+    width: 50%;
+}
 .st-block{
     width: 80%;
     max-width: 1100px;
@@ -15,16 +18,12 @@
     display: flex;
 }
 
-.st-delete{
+.st-delete {
     display: flex;
     cursor: pointer;
     justify-content: center;
-    margin-top: 10px !important; 
-    padding-top: 12px;
-    padding-bottom: 12px;
-    width: 100%;
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius: 24px;
+    padding-top: 4px;
+    margin: 0 -24px;
     border-top: 2px solid #d3d3d3;
 }
 .st-delete:hover{
@@ -32,45 +31,72 @@
 }
 .st-addAdress{
     border-radius: 24px;
-    border: 2px dashed #707070;
-    width: 192px;
-    height: 192px;
+    border: 2px dashed #000;
     margin: 25px 0px;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    opacity: .6;
+    transition: all .3s;
 }
+
 .st-addAdress:hover{
     border: 2px solid black;
+    opacity: .8;
+    background-color: #fff;
+}
+.st-addAdress-content {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .st-addAdress-plus {
     font-size: 90px;
-    color: #141414;
+    margin: 0;
+    width: 100%;
+}
+
+.st-addAdress-add {
+    display: flex;
+    text-align: center;
+    height: 50%;
+    vertical-align: middle;
+    align-items: center;
+    word-break: break-word;
+}
+.st-addAdress-add p {
+    width: 100%;
 }
 
 .st-acc {
     background: white;
-    border-radius: 30px;
+    border-radius: 24px;
     text-align: left;
     filter: drop-shadow(0px 4px 3px rgba(0, 0, 0, 0.1));
 }
 
 .st-acc-head {
     display: flex;
+    flex-wrap: wrap;
     background-color: #242328;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    padding: 65px 45px;
+    border-radius: 24px 24px 0 0;
+    padding: 48px 0;
+    margin: 0 -24px;
 }
 
-.st-acc-pic {
-    width: 180px;
-    height: 180px;
-    margin-right: 100px;
+
+.st-acc-head h2 {
+    color: #fff;
+    word-break: break-word;
 }
-.st-acc-pic img{
+
+.st-acc-pic{
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -100,15 +126,9 @@
 
 .st-acc-row {
     display: flex;
-    padding: 6px 30px;
     border-bottom: 2px solid #f0f0f0;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-}
-
-.st-acc-row p{
-    width: 315px;
-    font-size: 15px;
+    margin: 0 -24px;
+    padding: 0 24px;
 }
 
 .st-shipment-pay {
@@ -118,9 +138,9 @@
 }
 
 .st-shipment-pay-container {
-    padding: 12px 30px;
     margin: 25px 0px;
 }
+
 
 .st-shipment-pay-options {
     display: flex;
@@ -132,36 +152,61 @@
 #st-shipment-swiper, #st-payment-swiper {
     filter: drop-shadow(0px 4px 3px rgba(0, 0, 0, 0.1));
     z-index: 0 !important;
-}
-
-#st-payment-swiper .swiper-wrapper, #st-shipment-swiper .swiper-wrapper {
-    width: 192px;
-    height: 192px;
     margin: 25px 0px;
+    height: 0;
+    padding-bottom: 100%;
 }
 
+.Settings .swiper-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide-content p {
+    margin: 0;
+    margin-bottom: 4px;
+}
 /* Swiper needs specific class names, prevents other pages to get affected by the local CSS-Styles*/
 #st-shipment-swiper .swiper-wrapper .swiper-slide, #st-payment-swiper .swiper-wrapper .swiper-slide {
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
     border-radius: 24px;
+    padding: 24px;
 }
 
 .swiper-slide-content {
-    margin-top: 30px;
     text-align: left;
+    height: calc(100% - 10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.st-payment-method {
-    margin-top: 50px;
-    font-size: 15px;
-}
-
-.st-payment-method img {
-    width: 70%;
+.swiper-slide-content img {
+    width: 100%;
     margin-bottom: 10px;
 }
+.swiper-slide-content p {
+    word-break: break-word;
+    margin: 0;
+}
 
+/* For mobile phones: */
+@media only screen and (max-width: 767px) {
+    .st-shipment-pay-container {
+        padding: 0;
+    }
+    .st-acc-head {
+        margin: 0 -12px;
+    }
+    .st-acc-row {
+        margin: 0 -12px;
+        padding: 0 12px;
+    }
+    #st-shipment-swiper .swiper-wrapper .swiper-slide, #st-payment-swiper .swiper-wrapper .swiper-slide {
+        padding: 12px;
+    }
+  }

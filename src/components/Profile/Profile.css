@@ -1,11 +1,9 @@
 .pr-page{
     margin-top: 70px;
     background-color: #FCFBF9;
-    padding: 50px 50px;
+    padding: 0 50px;
     min-height: calc(100vh - 132px - 71px);
 }
 .pr-title{
-    opacity: 0.7;
     margin-bottom: 50px;
-    font-weight: normal;
 }

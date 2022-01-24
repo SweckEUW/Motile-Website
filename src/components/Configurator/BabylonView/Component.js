@@ -26,10 +26,10 @@ class Component {
         }    
     }
 
-    cloneMesh(color){
+    cloneMesh(color,position){
         this.instances++;
         let parent = new BABYLON.TransformNode(this.name+"_"+this.instances);
-        parent.position = new BABYLON.Vector3(120,3,110);
+        parent.position = position ? position : new BABYLON.Vector3(120,3,110);
         // parent.rotation = new BABYLON.Vector3(0,2.09,0);
 
         var boxCollider = BABYLON.MeshBuilder.CreateBox("Collider", {height: 3, width: 47, depth: 38});
@@ -47,8 +47,8 @@ class Component {
         });
 
         // Hover-over animation
-        var ease = new BABYLON.CubicEase();
-        boxCollider.actionManager = new BABYLON.ActionManager(this.scene);
+        // var ease = new BABYLON.CubicEase();
+        // boxCollider.actionManager = new BABYLON.ActionManager(this.scene);
         // boxCollider.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger,() => {  
         //     BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30,8, parent.position.y, 3, 0, ease);
         // }));

@@ -39,7 +39,7 @@ function BabylonView(props){
   function loadConfiguration(configuration){
     let components = [];
     configuration.parts.forEach(part => {
-      spawnComponent({detail:{name: part.component.name, color: part.color}});
+      spawnComponent({detail:{name: part.component.name, color: part.color, position: part.position}});
       components.push(part);
     });
     setState(prevState => ({...prevState,components: components}));    
@@ -75,7 +75,7 @@ function BabylonView(props){
     
     // init camera
     let camera = new BABYLON.ArcRotateCamera("Camera", -1, 1, 200,new BABYLON.Vector3(60,0,30),scene); 
-		camera.attachControl(myRef.current,true,false,4);
+		camera.attachControl(myRef.current,false,false,4);
     camera.lowerRadiusLimit = 200; // Stop zooming in
     camera.upperRadiusLimit = 200; // Stop zooming out
     camera.upperBetaLimit = 1.5;
@@ -145,11 +145,8 @@ function BabylonView(props){
 
 
   function spawnComponent(e){
-    if(e.detail.settings){
-      
-    }
     let component = motilePartsNodes.find(part => part.name === (e.detail.name)); 
-    component.cloneMesh(e.detail.color);
+    component.cloneMesh(e.detail.color,e.detail.position);
   }
 
   async function loadMotileParts(scene,shadowGenerator){

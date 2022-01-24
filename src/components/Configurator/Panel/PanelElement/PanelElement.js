@@ -36,6 +36,11 @@ function PanelElement(props){
   }, []);
 
   function changeSwiperPageToIndex(index){
+    if(props.ignoreSwiperLimits){
+      setCurrentPage(index);
+      swiper.slideTo(index);
+    }
+
     if(props.availableSwipes < index)
       return;
 
@@ -133,9 +138,9 @@ function PanelElement(props){
       <div className="mp-icons">
         {motileParts.map((motilePart,index) =>{return(
           <span key={index} className="mp-icon material-icons" onClick={() =>{changeSwiperPageToIndex(index)}} style={{
-            opacity: index === currentPage || props.availableSwipes > index ? '1' : '0.1',
+            opacity: index === currentPage || props.availableSwipes > index || props.ignoreSwiperLimits ? '1' : '0.1',
             fontSize: index === currentPage ? '40px' : '24px',
-            cursor: index === currentPage || props.availableSwipes > index ? 'pointer' : ''
+            cursor: index === currentPage || props.availableSwipes > index || props.ignoreSwiperLimits ? 'pointer' : ''
           }}>
             {motilePart.metaData.icon}
           </span>

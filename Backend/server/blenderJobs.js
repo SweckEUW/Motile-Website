@@ -14,12 +14,12 @@ export default class blenderJobs{
         let pythonFilePath = dirname + '/Assets/RenderMotile.py';
         let drive = blenderPath.split("/")[0];
 
-
         let renderPositions = []
         request.body.config.parts.forEach(part => {
             renderPositions.push({
                 name: part.component.name.replace(" ",""),
-                position: part.position
+                position: part.position,
+                color: part.color
             })
         });
 
@@ -27,9 +27,8 @@ export default class blenderJobs{
             exportPath: exportPath,
             components: renderPositions
         }    
-        console.log(settings);
         settings = JSON.stringify(JSON.stringify(settings));
-        console.log(settings);
+
         console.log("Start Blender rendering");
         let blenderJob = exec((drive != "C:" ? drive : "") + 'cd "' + config.blender.path + '" & blender -b "' + blenderFilePath + '" -P "' + pythonFilePath + '" -- "' + settings);
        

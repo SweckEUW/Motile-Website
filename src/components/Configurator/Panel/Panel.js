@@ -5,9 +5,11 @@ import 'swiper/swiper.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
 import Overview from './Overview/Overview';
 import PanelElement from "./PanelElement/PanelElement"
+import history from '../../../services/RouterHistory';
 
 function Panel(){
   const [swiper, setSwiper] = useState(null);
+  const [ignoreSwiperLimits, setIgnoreSwiperLimits] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [availableSwipesBack, setAvailableSwipesBack] = useState(0);
   const [maxAvailableSwipesBack, setMaxAvailableSwipesBack] = useState(0);
@@ -33,10 +35,20 @@ function Panel(){
       });
       
       setSwiper(swiper);
+
+      if(history.location.state && history.location.state.editMode){
+        setIgnoreSwiperLimits(true);
+        swiper.slideTo(2);
+      }
+        
     }, 10);
   }, []);
 
   function changeSwiperPageToIndex(index){
+    if(ignoreSwiperLimits){
+      setCurrentPage(index);
+      swiper.slideTo(index);
+    }
     if(maxAvailableSwipesBack - 1 < availableSwipesBack && index <= 1){
       setCurrentPage(index);
       swiper.slideTo(index);
@@ -54,8 +66,8 @@ function Panel(){
       <div className='pl-dots'>
         {[...Array(3)].map((x,index) =>
           <div key={index} onClick={() =>{changeSwiperPageToIndex(index)}} style={{
-            opacity: index === currentPage || maxAvailableSwipesBack - 1 < availableSwipesBack && index <= 1 || maxAvailableSwipesFront - 1 < availableSwipesFront && index <= 2 ? '1' : '0.1',
-            cursor: index === currentPage || maxAvailableSwipesBack - 1 < availableSwipesBack && index <= 1 || maxAvailableSwipesFront - 1 < availableSwipesFront && index <= 2 ? 'pointer' : '',
+            opacity: index === currentPage || maxAvailableSwipesBack - 1 < availableSwipesBack && index <= 1 || maxAvailableSwipesFront - 1 < availableSwipesFront && index <= 2 || ignoreSwiperLimits ? '1' : '0.1',
+            cursor: index === currentPage || maxAvailableSwipesBack - 1 < availableSwipesBack && index <= 1 || maxAvailableSwipesFront - 1 < availableSwipesFront && index <= 2 || ignoreSwiperLimits ? 'pointer' : '',
             width: index === currentPage ? '18px' : '14px',
             height: index === currentPage ? '18px' : '14px',
           }}/>
@@ -65,10 +77,10 @@ function Panel(){
       <div id="pl-Swiper" className="swiper"> 
         <div className="swiper-wrapper">
           <div className="swiper-slide">
-            <PanelElement side="Back" swiper={swiper} availableSwipes={availableSwipesBack} setAvailableSwipes={setAvailableSwipesBack} setMaxAvailableSwipes={setMaxAvailableSwipesBack}/>
+            <PanelElement side="Back" swiper={swiper} availableSwipes={availableSwipesBack} setAvailableSwipes={setAvailableSwipesBack} setMaxAvailableSwipes={setMaxAvailableSwipesBack} ignoreSwiperLimits={ignoreSwiperLimits}/>
           </div>
           <div className="swiper-slide">
-            <PanelElement side="Front" swiper={swiper} availableSwipes={availableSwipesFront} setAvailableSwipes={setAvailableSwipesFront} setMaxAvailableSwipes={setMaxAvailableSwipesFront}/>  
+            <PanelElement side="Front" swiper={swiper} availableSwipes={availableSwipesFront} setAvailableSwipes={setAvailableSwipesFront} setMaxAvailableSwipes={setMaxAvailableSwipesFront} ignoreSwiperLimits={ignoreSwiperLimits}/>  
           </div>
           <div className="swiper-slide">
             <Overview/>  

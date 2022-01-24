@@ -57,7 +57,6 @@ const Configurations = () => {
                     </div>
                 </div>
                 <CustomerDataSelector userData={userData}/>
-            </div>
         </div>
     )
 }

@@ -12,11 +12,16 @@ import history from '../../../services/RouterHistory';
 import {Context} from '../../../Store'
 
 function BabylonView(props){
-  const [globalScene, setGlobalScene] =  useState([null]);
-  const [globalEngine, setGlobalEngine] = useState([null]);
   const [state, setState] = useContext(Context);
+  const [globalEngine, setGlobalEngine] = useState([null]);
+  const [globalScene, setglobalScene] = useState([null]);
+  const [currentMesh, setCurrentMesh] =  useState(null);
+  const [startingPoint, setStartingPoint] = useState(null);
+  const [ground, setGround] = useState(null);
+  const [snapBoxes, setSnapBoxes] = useState(null);
 
-  let motileParts = [];
+
+  let motilePartsNodes = [];
   let myRef = React.useRef(null)
 
   useEffect(() => {
@@ -29,7 +34,6 @@ function BabylonView(props){
       globalEngine[0].dispose();
       history.location.state = null;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function loadConfiguration(configuration){
@@ -59,7 +63,8 @@ function BabylonView(props){
 
     // init scene
     let scene = new BABYLON.Scene(engine);
-    setGlobalScene(globalScene[0] = scene);
+    globalScene[0] = scene;
+    setglobalScene(globalScene);
     scene.clearColor = BABYLON.Color3.White();
     // scene.debugLayer.show();
 
@@ -106,10 +111,10 @@ function BabylonView(props){
     scene.environmentTexture = hdrTexture;
     scene.clearColor = new BABYLON.Color3(0.98,0.98,0.97);
 
-    var ground = BABYLON.Mesh.CreateGround("Ground", 20000, 20000, 1, scene, false);
+    let ground = BABYLON.Mesh.CreateGround("Ground", 20000, 20000, 1, scene, false);
     ground.material = new Materials.ShadowOnlyMaterial('shadowOnly', scene);
     ground.receiveShadows = true;
-
+    setGround(ground);
     const snapBoxes = [];
     const positions = [new BABYLON.Vector3(37,5,87), new BABYLON.Vector3(60,5,87), new BABYLON.Vector3(83,5,87),
                         new BABYLON.Vector3(37,5,49), new BABYLON.Vector3(60,5,49), new BABYLON.Vector3(83,5,49),
@@ -122,6 +127,7 @@ function BabylonView(props){
       snapBox.visibility = false;
       snapBoxes.push(snapBox);
     }
+    setSnapBoxes(snapBoxes);
 
     // Start rendering
     engine.runRenderLoop(() => {
@@ -129,7 +135,7 @@ function BabylonView(props){
     });
 
     await loadMotileParts(scene,shadowGenerator);
-    initDragAndDrop(scene,ground, snapBoxes);
+    // initDragAndDrop(scene,ground, snapBoxes);
 
     document.addEventListener("spawnComponent", spawnComponent);
 
@@ -142,7 +148,7 @@ function BabylonView(props){
     if(e.detail.settings){
       
     }
-    let component = motileParts.find(part => part.name === (e.detail.name)); 
+    let component = motilePartsNodes.find(part => part.name === (e.detail.name)); 
     component.cloneMesh(e.detail.color);
   }
 
@@ -157,7 +163,7 @@ function BabylonView(props){
     console.log(motilePartsResponse.data.message);
     if(motilePartsResponse.data.success){
       motilePartsResponse.data.parts.forEach((motilePart) => {
-        motileParts.push(new Component(scene, assetsManager, shadowGenerator, motilePart));
+        motilePartsNodes.push(new Component(scene, assetsManager, shadowGenerator, motilePart));
       });
     }
     new Base(assetsManager,shadowGenerator,props.tabletSelected);
@@ -172,60 +178,53 @@ function BabylonView(props){
     });
   }
 
-  function initDragAndDrop(scene,ground, snapBoxes){
-    let currentMesh, startingPoint;
-    
-    var getGroundPosition = function () {
-      var pickinfo = scene.pick(scene.pointerX, scene.pointerY, function (mesh) { return mesh === ground; });
-      return pickinfo.hit ? pickinfo.pickedPoint: null
-    }
+  function getGroundPosition(){
+    var pickinfo = globalScene[0].pick(globalScene[0].pointerX, globalScene[0].pointerY, function (mesh) { return mesh === ground; });
+    return pickinfo.hit ? pickinfo.pickedPoint: null
+  }
 
-
-    var onPointerDown = function (evt) {
-      var pickInfo = scene.pick(scene.pointerX, scene.pointerY);
-      if(pickInfo.hit && pickInfo.pickedMesh.name !== "SkyBox" && pickInfo.pickedMesh.name !== "Ground" && !pickInfo.pickedMesh.name.includes('snapBox')){
-        currentMesh = pickInfo.pickedMesh.parent;
-        startingPoint = getGroundPosition(evt);
-
-        if(startingPoint)
-          scene.activeCamera.detachControl(); 
-      }
-    } 
-
-    var onPointerUp = function () {
-      if(startingPoint){
-        scene.activeCamera.attachControl(myRef.current);
-        startingPoint = null;
-        for (let snapBox of snapBoxes) {
-          if (snapBox.intersectsPoint(currentMesh.position)) {
-            currentMesh.position = new BABYLON.Vector3(snapBox.position._x, snapBox.position._y, snapBox.position._z);
-          }
-        }
+  function onPointerMove(evt){
+    if(startingPoint){
+      var current = getGroundPosition(evt);
+      if(!current) 
         return;
-      }
-    }
 
-    var onPointerMove = function (evt) {
-      if(startingPoint){
-        var current = getGroundPosition(evt);
-        if(!current) 
+      var diff = current.subtract(startingPoint);
+      currentMesh.position.addInPlace(diff);
+
+      setStartingPoint(current);
+    }
+  }
+
+  function onPointerDown(evt){
+    var pickInfo = globalScene[0].pick(globalScene[0].pointerX, globalScene[0].pointerY);
+    if(pickInfo.hit && pickInfo.pickedMesh.name !== "SkyBox" && pickInfo.pickedMesh.name !== "Ground" && !pickInfo.pickedMesh.name.includes('snapBox')){
+      setCurrentMesh(pickInfo.pickedMesh.parent);
+      setStartingPoint(getGroundPosition(evt));
+      globalScene[0].activeCamera.detachControl(); 
+    }
+  } 
+
+  function onPointerUp(){
+    if(startingPoint){
+      globalScene[0].activeCamera.attachControl(myRef.current);
+      setStartingPoint(null);
+      for (let snapBox of snapBoxes) {
+        if(snapBox.intersectsPoint(currentMesh.position)) {
+          currentMesh.position = new BABYLON.Vector3(snapBox.position._x, snapBox.position._y, snapBox.position._z);
+          state.components.find(component => component.component.name == currentMesh.name.split('_')[0]).position = currentMesh.position; // save snap position
           return;
-
-        var diff = current.subtract(startingPoint);
-        currentMesh.position.addInPlace(diff);
-
-        startingPoint = current;
+        }else{
+          state.components.find(component => component.component.name == currentMesh.name.split('_')[0]).position =  null; // remove snap position
+        }
       }
+      return;
     }
-
-    myRef.current.addEventListener("pointerdown", onPointerDown, false);
-    myRef.current.addEventListener("pointerup", onPointerUp, false);
-    myRef.current.addEventListener("pointermove", onPointerMove, false);
   }
 
   return (
     <div className="BabylonView">
-      <canvas className="bv-canvas" ref={myRef}/>
+      <canvas className="bv-canvas" ref={myRef} onPointerMove={(ev)=> onPointerMove(ev)} onPointerDown={(ev)=> onPointerDown(ev)} onPointerUp={(ev)=> onPointerUp(ev)}/>
     </div>
   );
 

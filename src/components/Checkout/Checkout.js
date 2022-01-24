@@ -82,7 +82,7 @@ const Checkout = () => {
                 for (let i = 0; i < amount - 1; i++) {
                     let data = orders.filter(order => order.number === uniqueShoppingCartNumber)[0];
                     data.bought = true;
-                    let saveResponse = await ServerRequest.saveUserConfiguration(data);
+                    let saveResponse = await ServerRequest.saveUserConfiguration(data); // das nicht der richtige call, der rendert das Thumbnail auch...
                     console.log(saveResponse.data.message);
                     console.log(saveResponse.data);
                 }

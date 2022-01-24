@@ -71,7 +71,7 @@ const CustomerDataSelector = (props) => {
                         <div className="csd-shipment-pay-swipables">
                             <div id="csd-payment-swiper" className="swiper">
                                 <div className="swiper-wrapper">
-                                    {props.userData ? props.userData.paymentMethods.map((option, index) => {
+                                    {props.userData && props.userData.paymentMethods ? props.userData.paymentMethods.map((option, index) => {
                                         return (
                                             <span key={index} className="swiper-slide">
                                                 <div className="csd-payment-method">

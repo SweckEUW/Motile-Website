@@ -171,7 +171,7 @@ function BabylonView(props){
       const snapBox = BABYLON.MeshBuilder.CreateBox(`snapBox_${i}`, {width: 10, height: 5, depth: 20}, scene);
       snapBox.position = positions[i].position;
       snapBox.showBoundingBox = true;
-      // snapBox.visibility = false;
+      snapBox.visibility = false;
       snapBox.isPickable = false;
       snapBoxes.push({
         mesh: snapBox,
@@ -257,14 +257,16 @@ function BabylonView(props){
     if(startingPoint){
       globalScene[0].activeCamera.attachControl(myRef.current);
       setStartingPoint(null);
+      console.log(state.components.find(component => component.component.name == currentMesh.name.split('_')[0]));
+
       for (let snapBox of snapBoxes) {
-        let componentSize = state.components.find(component => component.component.name == currentMesh.name.split('_')[0]).component.metaData.size;
-        if(snapBox.mesh.intersectsPoint(currentMesh.position) && snapBox.allowsFor.includes(componentSize)) {
+        let componentState = state.components.find(component => component.component.name == currentMesh.name.split('_')[0])
+        if(snapBox.mesh.intersectsPoint(currentMesh.position) && snapBox.allowsFor.includes(componentState.component.metaData.size)) {
           currentMesh.position = new BABYLON.Vector3(snapBox.mesh.position._x, 6, snapBox.mesh.position._z);
-          state.components.find(component => component.component.name == currentMesh.name.split('_')[0]).position = currentMesh.position; // save snap position
+          componentState.position = currentMesh.position; // save snap position
           return;
         }else{
-          state.components.find(component => component.component.name == currentMesh.name.split('_')[0]).position =  null; // remove snap position
+          componentState.position =  null; // remove snap position
         }
       }
       return;

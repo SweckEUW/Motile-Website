@@ -13,7 +13,6 @@ class Component {
         this.mesh = null;
         this.instances = 0;
         let metaData = motilePart["metaData"];
-        this.size = metaData.size;
 
         this.loadMesh();
     }

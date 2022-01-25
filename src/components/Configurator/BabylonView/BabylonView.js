@@ -116,16 +116,67 @@ function BabylonView(props){
     ground.receiveShadows = true;
     setGround(ground);
     const snapBoxes = [];
-    const positions = [new BABYLON.Vector3(37,5,87), new BABYLON.Vector3(60,5,87), new BABYLON.Vector3(83,5,87),
-                        new BABYLON.Vector3(37,5,49), new BABYLON.Vector3(60,5,49), new BABYLON.Vector3(83,5,49),
-                        new BABYLON.Vector3(37,5,11), new BABYLON.Vector3(60,5,11), new BABYLON.Vector3(83,5,11),
-                        new BABYLON.Vector3(37,5,-27), new BABYLON.Vector3(60,5,-27), new BABYLON.Vector3(83,5,-27)]
+    const positions = [
+      {
+          position: new BABYLON.Vector3(37,5,87), 
+          allowsFor: ['s', 'm']
+      },
+      {
+          position: new BABYLON.Vector3(60,5,87), 
+          allowsFor: ['s', 'm', 'l']
+      },
+      {
+          position: new BABYLON.Vector3(83,5,87), 
+          allowsFor: ['s']
+      },
+      {
+          position: new BABYLON.Vector3(37,5,49), 
+          allowsFor: ['s', 'm']
+      },
+      {
+          position: new BABYLON.Vector3(60,5,49), 
+          allowsFor: ['s', 'm', 'l']
+      },
+      {
+          position: new BABYLON.Vector3(83,5,49), 
+          allowsFor: ['s']
+      },
+      {
+          position: new BABYLON.Vector3(37,5,11), 
+          allowsFor: ['s', 'm']
+      },
+      {
+          position: new BABYLON.Vector3(60,5,11), 
+          allowsFor: ['s', 'm', 'l']
+      },
+      {
+          position: new BABYLON.Vector3(83,5,11), 
+          allowsFor: ['s']
+      },
+      {
+          position: new BABYLON.Vector3(37,5,-27), 
+          allowsFor: ['s', 'm']
+      },
+      {
+          position: new BABYLON.Vector3(60,5,-27), 
+          allowsFor: ['s', 'm', 'l']
+      },
+      {
+          position: new BABYLON.Vector3(83,5,-27), 
+          allowsFor: ['s']
+      }
+  ];
+
     for (let i = 0; i < 12; i++) {
       const snapBox = BABYLON.MeshBuilder.CreateBox(`snapBox_${i}`, {width: 10, height: 5, depth: 20}, scene);
-      snapBox.position = positions[i];
+      snapBox.position = positions[i].position;
       snapBox.showBoundingBox = true;
-      snapBox.visibility = false;
-      snapBoxes.push(snapBox);
+      // snapBox.visibility = false;
+      snapBox.isPickable = false;
+      snapBoxes.push({
+        mesh: snapBox,
+        allowsFor: positions[i].allowsFor
+      });
     }
     setSnapBoxes(snapBoxes);
 
@@ -207,8 +258,9 @@ function BabylonView(props){
       globalScene[0].activeCamera.attachControl(myRef.current);
       setStartingPoint(null);
       for (let snapBox of snapBoxes) {
-        if(snapBox.intersectsPoint(currentMesh.position)) {
-          currentMesh.position = new BABYLON.Vector3(snapBox.position._x, snapBox.position._y, snapBox.position._z);
+        let componentSize = state.components.find(component => component.component.name == currentMesh.name.split('_')[0]).component.metaData.size;
+        if(snapBox.mesh.intersectsPoint(currentMesh.position) && snapBox.allowsFor.includes(componentSize)) {
+          currentMesh.position = new BABYLON.Vector3(snapBox.mesh.position._x, 6, snapBox.mesh.position._z);
           state.components.find(component => component.component.name == currentMesh.name.split('_')[0]).position = currentMesh.position; // save snap position
           return;
         }else{

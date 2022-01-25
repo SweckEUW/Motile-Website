@@ -19,7 +19,7 @@ function SizeChooser(props){
     <div className="SizeChooser">
       <div className="grid-container sc-container">
         <h2 className="col-12 sc-title">Größe Wählen</h2>
-        <p className="col-12 sc-text">Mächtest du ein smartphone oder ein Tablet?</p>
+        <p className="col-12 sc-text">Möchtest du ein Smartphone oder ein Tablet konfigurieren?</p>
         
         <div className="sc-elements">
           <span className="sc-element" onClick={() =>{select(false)}}>

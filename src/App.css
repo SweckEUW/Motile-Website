@@ -4,8 +4,9 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   overflow-x: hidden;
-  margin-top: 75px;
+  margin-top: 72px;
   background-color: #FCFBF9;
+  min-height: calc(100vh - 65px);
 }
 
 html {
@@ -28,6 +29,10 @@ h2{
   border-bottom: hidden;
   padding-top: 20px;
   z-index: 10;
+}
+h3 {
+  font-family: 'AvantGarde';
+  font-size: 20px;
 }
 
 p {

@@ -80,20 +80,19 @@ const Configurations = (props) => {
     }
 
     return (
-        <div className="Configurations pr-page">
+        <div className="Configurations pr-page grid-container">
 
-            <h1 className="pr-title">Geräte</h1>
-            
+            <h1 className="pr-title col-12">Geräte</h1>
             <CSSTransition in={configurations.length == 0} unmountOnExit timeout={0}>   
                 <div className="cf-text">Keine gekauften oder gespeicherten Geräte gefunden.</div>
             </CSSTransition>
 
-            <div className="cf-block">
 
                 {/* Meine Geräte */}
                 <CSSTransition in={configurations.filter(configuration => configuration.bought).length != 0} unmountOnExit timeout={0}>
+                <div className="col-4">
                     <div className="cf-owned">
-                        <span className="cf-title">Meine Geräte</span>
+                        <h3 className="cf-title">Meine Geräte</h3>
                         <div id="cf-Swiper-owned" className="swiper"> 
                             <div className="swiper-wrapper">
                                 {configurations.filter(configuration => configuration.bought).map((configuration,index) =>{return(
@@ -108,14 +107,14 @@ const Configurations = (props) => {
                             </div> 
                         </div>
                         <div id="cf-Swiper-owned-pagination"/>
-
+                    </div>
                     </div>
                 </CSSTransition>
                 
                 {/* Gespeicherte Geräte */}
                 <CSSTransition in={configurations.filter(configuration => !configuration.bought).length != 0} unmountOnExit timeout={0}>
-                    <div className="cf-saved">
-                        <span className="cf-title">Gespeicherte Geräte</span>
+                    <div className="col-4 cf-saved">
+                        <h3 className="cf-title">Gespeicherte Geräte</h3>
                         <div id="cf-Swiper-saved" className="swiper"> 
                             <div className="swiper-wrapper">
                                 {configurations.filter(configuration => !configuration.bought).map((configuration,index) =>{return(
@@ -137,9 +136,10 @@ const Configurations = (props) => {
                     </div>
                 </CSSTransition>
 
-                <div className='cf-new' style={{marginLeft: configurations.length != 0 ? '' : '0px'}} onClick={() =>{history.push({pathname: '/Konfigurator'})}}>
+                <div className='col-4 cf-new' style={{marginLeft: configurations.length != 0 ? '' : '0px'}} onClick={() =>{history.push({pathname: '/Konfigurator'})}}>
+                <h3 className="cf-title">new</h3>
                     <img className="cf-new-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.svg'} alt="" />  
-                    <div className='cf-new-text'>Neu</div>
+                    <div className='cf-name'>Neu</div>
                     <div className='cf-new-gray1'/>
                     <div className='cf-new-gray2'/>
                     <div className='cf-new-gray3'>
@@ -147,8 +147,6 @@ const Configurations = (props) => {
                         <div/>
                     </div>
                 </div>
-                 
-            </div>
         </div>
     )
 }

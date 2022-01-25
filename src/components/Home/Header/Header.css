@@ -30,11 +30,6 @@ a.span.material-icons-outlined:hover {
   max-width: 100%;
 }
 
-.Header{
-  margin-top: 65px;
-  background-color: #FCFBF9;
-}
-
 .icon-header{
   font-size: 96px;
 }
@@ -93,9 +88,6 @@ a.span.material-icons-outlined:hover {
 }
 }
 
-
-
-
 .hd-img{
   max-width: 100%;
 }
@@ -107,7 +99,7 @@ button {
   padding: 10px 50px;
   transition: .2s background ease;
   font-family: 'AvantGarde';
-  font-size: 20px;
+  font-size: 17px;
   border: none;
   cursor: pointer;
 }

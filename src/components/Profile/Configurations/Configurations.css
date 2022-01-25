@@ -1,8 +1,10 @@
 .Configurations{
-    margin-top: 70px;
-    background-color: #FCFBF9;
-    padding: 100px 50px;
+    margin-bottom: 100px;
 }
+.cf-new h3 {
+    opacity: 0;
+}
+
 .cf-block{
     width: 80%;
     max-width: 1100px;
@@ -15,13 +17,13 @@
 }
 .cf-title{
     font-size: 24px;
+    height: 48px;
 }
 .cf-owned{
     background: white;
     padding: 20px;
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.2));
     border-radius: 20px;
-    margin-right: 70px;
 }
 .cf-saved{
     padding: 20px;
@@ -30,14 +32,11 @@
     display: flex;
     flex-direction: row;
 }
-.cf-saved-configuration{
-    margin-right: 70px;
-}
-.cf-saved-configuration:last-child{
-    margin-right: 0px;
-}
+
+
 .cf-name{
-    font-size: 22px;
+    font-size: 25px;
+    font-family: 'AvantGarde';
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -45,6 +44,7 @@
     height: 250px;
     margin-bottom: 20px;
     object-fit: contain;
+    mix-blend-mode: multiply;
 }
 .cf-info{
     color: gray;
@@ -69,12 +69,13 @@
 }
 .cf-link-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0px 20px;
     margin-top: 15px;
 }
 .cf-link-container .cf-link{
-    margin-top: 0px
+    margin-top: 0px;
+    margin: 0 15px;
 }
 .cf-link{
     text-decoration: underline;
@@ -112,13 +113,10 @@
 }
 .cf-new{
     cursor: pointer;
-    width: 250px;
-    height: 566px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 70px;
     transition: .3s background ease, .3s filter ease;
     border-radius: 7px;
 }
@@ -128,12 +126,11 @@
 }
 .cf-new-img{
     margin-top: 60px;
+    margin-bottom: 48px;
     opacity: 0.5;
-    width: 50%;
+    height: 30%;
 }
-.cf-new-text{
-    margin-top: 25px;
-}
+
 .cf-new-gray1{
     margin-top: 10px;
     background: #E1E1E1;

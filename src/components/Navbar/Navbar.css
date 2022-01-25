@@ -8,7 +8,7 @@
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.2));
     z-index: 99;
     user-select: none;
-    height: 72px;
+    height: 65px;
 }
 .nav-container {
     display: flex;
@@ -21,6 +21,10 @@
     max-height: 100%;
 }
 
+nav button {
+    margin-right: 60px;
+}
+
 .nav-button-container{
     align-self: center;
     margin-top: 8px;
@@ -28,7 +32,7 @@
 .nav-button{
     background: black;
     color: white;
-    border-radius: 16px;
+    border-radius: 24px;
     transition: background .2s ease;
     font-size: 16px;
     padding: 8px 30px;
@@ -51,7 +55,6 @@
     color: black !important;
     transition: background .4s ease;
     text-decoration: none;
-    margin-left: 60px;
 }
 .nav-shopping:hover {
     color: #777 !important;
@@ -75,15 +78,21 @@
     overflow: hidden;
 }
 .pfp {
-    padding: 12px;
-    margin-left: -57px;
+    margin-left: -44px;
     margin-right: 0!important;
+    padding: 5px;
+    height: 48px!important;
+    width: 48px!important;
+    transition: all .3s;
+}
+img.nav-user-img.pfp.slide-right-enter-done:hover {
+    background: #c4c4c4;
 }
 .nav-dropDown{
     position: absolute;
     top: 75px;
     left: calc(50% + 209px);
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
     text-align: left;
 }
@@ -106,22 +115,26 @@
     border-radius: 0 0 24px 24px;
 }
 .nav-dropDown-link{
-    padding: 12px;
+    padding: 12px 24px;
     text-decoration: none;
     color: black;
     display: flex;
     transition: .2s background ease;
     cursor: pointer;
+    margin: 0;
 }
 .nav-dropDown-link:hover{
     background: #fbfbfb;
 }
+.nav-dropDown-link:last-child:hover {
+    border-radius: 0 0 24px 24px;
+}
 .nav-dropDown-hr{
     background: black;
-    width: 90%;
+    margin: 0 24px;
 }
 .nav-dropDown-icon{
-    margin-right: 20px;
+    margin-right: 12px;
 }
 .nav-user{
     border-radius: 24px 24px 0 0;
@@ -149,6 +162,7 @@
 .nav-user-email{
     display: block;
     font-size: 16px;
+    word-break: break-word;
 }
 @media only screen and (max-width: 700px) {
     nav button {display:none;}

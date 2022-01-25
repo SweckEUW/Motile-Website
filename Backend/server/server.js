@@ -48,12 +48,6 @@ app.post('/StayAlive', Middleware.verifyJWT, UsersCollection.stayAlive);
 app.post('/Register', UsersCollection.addUser);
 app.get('/VerifyEmail', UsersCollection.verifyUser);
 
-// app.post('/Blender', BlenderJobs.render);
-app.post('/User/Modify', Middleware.verifyJWT, userDataCollection.modifyUserData);
-app.post('/User/AddAddress', Middleware.verifyJWT, userDataCollection.addAddress);
-app.post('/User/RemoveAddress', Middleware.verifyJWT, userDataCollection.removeAddress);
-app.post('/User/Configs/Remove', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
-app.post('/User/Configs/Buy', Middleware.verifyJWT, UserConfigsCollection.setUserConfigToBought)
 // UserData
 app.post('/User/Data', Middleware.verifyJWT, UsersCollection.getUserDataFromUser);
 app.post('/User/Data/AddAddress', Middleware.verifyJWT, userDataCollection.addAddress);
@@ -66,6 +60,7 @@ app.post('/User/Configs', Middleware.verifyJWT, UsersCollection.getConfigFromUse
 app.post('/User/Configs/Remove', Middleware.verifyJWT, UserConfigsCollection.removeUserConfiguration);
 app.post('/User/Configs/Add', Middleware.verifyJWT, UserConfigsCollection.addUserConfiguration);
 app.post('/User/Configs/GenerateThumbnail', Middleware.verifyJWT, BlenderJobs.renderThumbnail);
+app.post('/User/Configs/Buy', Middleware.verifyJWT, UserConfigsCollection.setUserConfigToBought)
 
 // static assets - public folder
 let filename = fileURLToPath(import.meta.url);

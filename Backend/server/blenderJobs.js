@@ -8,19 +8,19 @@ export default class blenderJobs{
     static async renderThumbnail(request,response){
         let filename = fileURLToPath(import.meta.url);
         let dirname = path.dirname(filename);
-        let exportPath =  dirname + '/public/Test/Test.png'; //dirname + '/public/UserThumbnails/' + request.user.firstName + " " + request.user.lastName + " " + request.user._id + '/' + request.body.config.number + '.png';
+        let exportPath = dirname + '/public/UserThumbnails/' + request.user.firstName + "_" + request.user.lastName + "_" + request.user._id + '/' + request.body.config.number + '.png';
         let blenderFilePath = dirname + '/Assets/Motile.blend';
         let blenderPath = config.blender.path;
         let pythonFilePath = dirname + '/Assets/RenderMotile.py';
         let drive = blenderPath.split("/")[0];
 
-
         let renderPositions = []
         request.body.config.parts.forEach(part => {
-          renderPositions.push({
-            name: part.component.name,
-            position: part.position
-          })
+            renderPositions.push({
+                name: part.component.name.replace(" ",""),
+                position: part.position,
+                color: part.color
+            })
         });
 
         let settings = {
@@ -28,7 +28,7 @@ export default class blenderJobs{
             components: renderPositions
         }    
         settings = JSON.stringify(JSON.stringify(settings));
-        console.log(settings);
+
         console.log("Start Blender rendering");
         let blenderJob = exec((drive != "C:" ? drive : "") + 'cd "' + config.blender.path + '" & blender -b "' + blenderFilePath + '" -P "' + pythonFilePath + '" -- "' + settings);
        
@@ -42,8 +42,8 @@ export default class blenderJobs{
           
         blenderJob.on('exit', () => { 
             console.log("BlenderJob Done");
-            // let thumbnailPath = 'http://localhost:5000/UserThumbnails/' + request.user.firstName + " " + request.user.lastName + " " + request.user._id + '/' + request.body.config.number + '.png';
-            // let updteResponse = UserConfigsCollection.setUserConfigThumbnail(request.user,request.body.config.number,thumbnailPath);
+            let thumbnailPath = 'http://localhost:5000/UserThumbnails/' + request.user.firstName + "_" + request.user.lastName + "_" + request.user._id + '/' + request.body.config.number + '.png';
+            let updteResponse = UserConfigsCollection.setUserConfigThumbnail(request.user,request.body.config.number,thumbnailPath);
             response.json({success: true , message: 'Rendering done, thumbnail set'});
         });
 

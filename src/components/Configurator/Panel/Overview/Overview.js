@@ -26,11 +26,11 @@ function Overview(){
         bought:  false,
         parts: state.components
       }
-      
-      let saveResponse = await ServerRequest.saveUserConfiguration(data);
+
+      let saveResponse = await ServerRequest.saveUserConfiguration(data); 
       console.log(saveResponse.data.message);
       if(saveResponse.data.success){
-        // history.push({pathname: '/Profil/Geräte'});
+        history.push({pathname: '/Profil/Geräte'});
         setState(prevState => ({...prevState,showLoadingscreen: false}));
       }
     }else{

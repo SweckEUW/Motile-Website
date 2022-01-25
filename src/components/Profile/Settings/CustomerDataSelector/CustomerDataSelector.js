@@ -110,7 +110,7 @@ const CustomerDataSelector = (props) => {
                             <div className="st-prv-swipables">
                                 <div id="csd-shipment-swiper" className="swiper">
                                     <div className="swiper-wrapper">
-                                        {props.userData ? props.userData.adresses.map((adress, index) => {
+                                        {props.userData && props.userData.adresses ? props.userData.adresses.map((adress, index) => {
                                             return (
                                                 <span key={index} className="swiper-slide">
                                                     <div className="swiper-slide-content">

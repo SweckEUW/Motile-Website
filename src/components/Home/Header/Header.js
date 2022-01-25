@@ -39,7 +39,7 @@ function Header(){
           <section className="hd-section1" style={{backgroundImage: "url('/Assets/Header.png')"}}>
              <div className="section1-container">
                   <h2>Nachhaltig, individuell und aufrüstbar.</h2>
-                  <p>Ein vollständig modulares Smartphone. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                  <p>Ein vollständig modulares Smartphone. Ganz nach deinen eigenen Bedürfnissen und Vorlieben. Wähle aus verschiedenen Bestandteilen diejenigen aus, die perfekt zu deinen Vorstellungen passen. Und das beste: Wenn du dein Smartphone zukünftig aufrüsten möchtest, ist dies durch die modulare Bauweise problemlos möglich, ohne gleich das ganze Gerät austauschen zu müssen. Sei dabei!</p>
                   <Link to="/Konfigurator" className="hd-link1"><button>Jetzt konfigurieren</button></Link>
               </div>
           </section>
@@ -52,8 +52,8 @@ function Header(){
                   <div className="grid-container">
                     <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
                     <div className="col-4 section2-container">
-                      <h3>Multimedia</h3>
-                      <p>Das beste Display mit großen Lautsprechern und einem Aufsteller - lehn dich zurück und genieße Filme... oder so. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                      <h3>Entertainment</h3>
+                      <p>Ausgestattet mit einem hochauflösenden Display, großen kraftvollen Lautsprechern sowie einem robusten Standfuß. Die beste Art, um sich entspannt zurückzulehnen und die Unterhaltung zu genießen.</p>
                       <p className="hd-price">ab 350€</p>
                       <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
                    </div>
@@ -63,8 +63,8 @@ function Header(){
                   <div className="grid-container">
                   <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
                     <div className="col-4 section2-container">
-                      <h3>Fotografie</h3>
-                      <p>Statte dein Smartphone mit der besten Kamera, einem großen Akku, sowie per microSD-Karte erweiterbaren Speicher aus um auf deinen Foto expeditionen bestens ausgestattet zu sein!</p>
+                      <h3>Erlebnis</h3>
+                      <p>Unermüdliche Laufzeit, maximaler Platz sowie die ausgetüfteltste Kamera im Gepäck. Die beste Ausstattung, um unterwegs zu sein und unzählige Erinnerungen zu schaffen.</p>
                       <p className="hd-price">ab 350€</p>
                       <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
                    </div>
@@ -74,8 +74,8 @@ function Header(){
                   <div className="grid-container">
                   <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
                     <div className="col-4 section2-container">
-                      <h3>Basic</h3>
-                      <p>ein budget freundliche zusammenstellung die alles Nötige für den Allteg bietet</p>
+                      <h3>Einsteiger</h3>
+                      <p>Schonend für den Geldbeutel und trotzdem leistungsfähig: Unser Basismodell bietet alles, was du brauchst. Kein Schnickschnack, kein wenn und aber. </p>
                       <p className="hd-price">ab 350€</p>
                       <Link to="/Konfigurator" className="hd-link2">Preset öffnen</Link>
                    </div>
@@ -92,25 +92,25 @@ function Header(){
               <a href="#core" className="col-3 col-m-6">
                   <span className="material-icons-outlined icon-medium">memory</span>
                   <h3>Core</h3>
-                  <p>Nutze den Top end Soc für die beste Leistung, oder nutze einen effizienten Prozessor für längere Akkulaufzeit.</p>
+                  <p>Wähle den Top end SoC für die beste Leistung, oder nutze einen effizienten Prozessor für längere Akkulaufzeit.</p>
                   <span className="material-icons-outlined">expand_more</span>
               </a>
               <a href="#camera"  className="col-3 col-m-6">
                   <span className="material-icons-outlined icon-medium">photo_camera</span>
                   <h3>Kamera</h3>
-                  <p>Wähle aus einer Auswahl an verschiedenen Kameras.</p>
+                  <p>Wähle hier aus verschiedenen verfügbaren Alternativen aus. Wie scharf dürfen deine Erinnerungen werden?</p>
                   <span className="material-icons-outlined">expand_more</span>
               </a>
               <a href="#display" className="col-3 col-m-6">
                   <span className="material-icons-outlined icon-medium">light_mode</span>
                   <h3>Display</h3>
-                  <p>Wähle zwischen verschiedenen display technologien, auflösungen und bildwiederholraten - frei nach deinen Bedürfnissen.</p>
+                  <p>Wähle zwischen verschiedenen Technologien, Auflösungen und Bildwiederholungsraten - frei nach deinen Bedürfnissen.</p>
                   <span className="material-icons-outlined">expand_more</span>
               </a>
               <a href="#optional" className="col-3 col-m-6">
                   <span className="material-icons-outlined icon-medium">add_box</span>
                   <h3>Optional</h3>
-                  <p>Wähle aus einenr Auswahl an optionalen Zusatzmodulen um dein Smartphone zu individualisieren.</p>
+                  <p>Wähle für deine Bedürfnisse optimierte Zusatzmodule aus, um dein Smartphone zu individualisieren.</p>
                   <span className="material-icons-outlined">expand_more</span>
               </a>
             </div>  
@@ -121,7 +121,7 @@ function Header(){
             <div className="col-4 col-m-4">
               <span className="material-icons-outlined icon-header">memory</span>
               <h3>Core</h3>
-              <p>Nutze den Top end Soc für die beste Leistung, oder nutze einen effizienten Prozessor für längere Akkulaufzeit</p>
+              <p>Das Herzstück des Smartphones. Auf welchen Chip die Wahl auch fällt: Das Nutzungserlebnis erreicht garantiert Höchstleistungen.</p>
             </div>
             <div className="col-4  col-m-4">
               <img src={process.env.PUBLIC_URL+'/Assets/akku.png'} alt=""/>
@@ -137,7 +137,7 @@ function Header(){
             <div className="col-12">
               <span className="material-icons-outlined icon-header">photo_camera</span>
               <h3>Kamera</h3>
-              <p className="feature">Die Kamera blabla Rhabarber Ein vollständig modulares Smartphone. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
+              <p className="feature">Du hast die Wahl zwischen verschiedenen Linsen, Brennweiten und und und. Halte deine liebsten Momente so genau fest, wie du sie möchtest. </p>
             </div>
                 <div className="col-3 col-m-3 col-s-6">
                   <img src={process.env.PUBLIC_URL+'/Assets/photos/IMG_9125.jpg'} alt=""/>
@@ -164,7 +164,7 @@ function Header(){
               <div className="col-6">
                 <span className="material-icons-outlined icon-header">light_mode</span>
                 <h3>Display</h3>
-                <p>Das Display hat eine Größe von 6,5". Auflösung, Bildwiederholrate und Technologie kannst du frei nach deinen Vorlieben zusammenstellen. Prozessor für längere Akkulaufzeit</p>
+                <p>Das Display hat eine feste Größe von 6,5". Die Auflösung, die Bildwiederholungsrate und die Darstellungstechnologie kannst du frei nach deinen Vorlieben zusammenstellen.</p>
               </div>
               <img className="col-6" src={process.env.PUBLIC_URL+'/Assets/screen.jpg'} alt=""/>
               <div className="col-3">
@@ -178,7 +178,7 @@ function Header(){
               <div className="col-12">
                 <span className="material-icons-outlined icon-header">add_box</span>
                 <h3>Zusatz</h3>
-                <p>Die Kamera blabla Rhabarber Ein vollständig modulares Smartphone. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
+                <p>Mit der Auswahl an verschiedenen optionalen Modulen wie etwa Lautsprecher, zusätzlichen Displays, einem Kickstand, einem DAC oder auch einem Fingerabdruckleser lässt sich das Smartphone individualisieren und für deine persönliche Nutzung optimieren.</p>
               </div>
               <div className="col-12">
                 <img src={process.env.PUBLIC_URL+'/Assets/akku2.png'  } alt=""/>                

@@ -50,7 +50,7 @@ function Header(){
                 <div className="swiper-wrapper">
                   <div className="swiper-slide col-12">
                   <div className="grid-container">
-                    <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
+                    <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/presets/Kickstand.jpg'} alt=""/>
                     <div className="col-4 section2-container">
                       <h3>Entertainment</h3>
                       <p>Ausgestattet mit einem hochauflösenden Display, großen kraftvollen Lautsprechern sowie einem robusten Standfuß. Die beste Art, um sich entspannt zurückzulehnen und die Unterhaltung zu genießen.</p>
@@ -61,7 +61,7 @@ function Header(){
                   </div>
                   <div className="swiper-slide col-12">
                   <div className="grid-container">
-                  <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
+                  <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/presets/Camera.jpg'} alt=""/>
                     <div className="col-4 section2-container">
                       <h3>Erlebnis</h3>
                       <p>Unermüdliche Laufzeit, maximaler Platz sowie die ausgetüfteltste Kamera im Gepäck. Die beste Ausstattung, um unterwegs zu sein und unzählige Erinnerungen zu schaffen.</p>
@@ -72,7 +72,7 @@ function Header(){
                   </div>
                   <div className="swiper-slide col-12">
                   <div className="grid-container">
-                  <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/Kickstand.jpg'} alt=""/>
+                  <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/presets/Basic.jpg'} alt=""/>
                     <div className="col-4 section2-container">
                       <h3>Einsteiger</h3>
                       <p>Schonend für den Geldbeutel und trotzdem leistungsfähig: Unser Basismodell bietet alles, was du brauchst. Kein Schnickschnack, kein wenn und aber. </p>

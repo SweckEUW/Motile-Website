@@ -141,6 +141,10 @@ section.hd-section2 {
   text-decoration: none;
   padding: 10px 40px;
 }
+.hd-link2:hover {
+  background-color: #fff;
+  color: #000;
+}
 
 .Header .swiper{
   height: 100%;

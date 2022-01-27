@@ -12,7 +12,6 @@ class Component {
         this.scale = data.scale;
         this.mesh = null;
         this.instances = 0;
-        let metaData = motilePart["metaData"];
 
         this.loadMesh();
     }
@@ -27,10 +26,10 @@ class Component {
         }    
     }
 
-    cloneMesh(color,position){
+    cloneMesh(color,position, heightCallback){
         this.instances++;
         let parent = new BABYLON.TransformNode(this.name+"_"+this.instances);
-        parent.position = position ? position : new BABYLON.Vector3(120,0,110);
+        parent.position = position ? position : new BABYLON.Vector3(120,5,110);
         // parent.rotation = new BABYLON.Vector3(0,2.09,0);
 
         var boxCollider = BABYLON.MeshBuilder.CreateBox("Collider", {height: 3, width: 47, depth: 38});
@@ -57,19 +56,6 @@ class Component {
         boxCollider.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger,() => {
             BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30,8, parent.position.y, 2.5, 0, ease);
         }));
-
-        // Physics
-        // var boxCollider = BABYLON.MeshBuilder.CreateBox(this.mesh.name+"_Collider", {height: 3, width: 47, depth: 38});
-        // boxCollider.position.y = 1.5;
-        // boxCollider.isVisible = false;
-        // boxCollider.parent = parent;
-
-        // var physicsRoot = new BABYLON.Mesh("physicsRoot", this.scene);
-        // physicsRoot.addChild(parent);
-        // physicsRoot.position.y = 40;
-
-        // boxCollider.physicsImpostor = new BABYLON.PhysicsImpostor(boxCollider, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0.1 }, this.scene);
-        // physicsRoot.physicsImpostor = new BABYLON.PhysicsImpostor(physicsRoot, BABYLON.PhysicsImpostor.NoImpostor, { mass: 200 }, this.scene);
     }
 
 }

@@ -2,8 +2,8 @@ import './BabylonView.css';
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
 import * as Materials from 'babylonjs-materials';
-// import * as cannon from "cannon";
-// import { CannonJSPlugin } from "babylonjs";
+import * as cannon from "cannon";
+import { CannonJSPlugin} from "babylonjs";
 import React, {useEffect,useState,useContext} from 'react';
 import Base from './Base';
 import Component from './Component';
@@ -67,11 +67,6 @@ function BabylonView(props){
     setglobalScene(globalScene);
     scene.clearColor = BABYLON.Color3.White();
     // scene.debugLayer.show();
-
-    // Physics
-    // scene.enablePhysics(new BABYLON.Vector3(0,-10,0), new CannonJSPlugin(true, 0, cannon));
-    // var ground = BABYLON.Mesh.CreateGround("ground1", 1000, 1000, 1, scene);
-    // ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, friction: 0.5, restitution: 0.7 }, scene);
     
     // init camera
     let camera = new BABYLON.ArcRotateCamera("Camera", -1, 1, 200,new BABYLON.Vector3(60,0,30),scene); 
@@ -115,6 +110,7 @@ function BabylonView(props){
     ground.material = new Materials.ShadowOnlyMaterial('shadowOnly', scene);
     ground.receiveShadows = true;
     setGround(ground);
+
     const snapBoxes = [];
     const positions = [
       {
@@ -194,7 +190,6 @@ function BabylonView(props){
       loadConfiguration(history.location.state.configuration);
   }
 
-
   function spawnComponent(e){
     let component = motilePartsNodes.find(part => part.name === (e.detail.name)); 
     component.cloneMesh(e.detail.color,e.detail.position);
@@ -257,7 +252,7 @@ function BabylonView(props){
     if(startingPoint){
       globalScene[0].activeCamera.attachControl(myRef.current);
       setStartingPoint(null);
-      console.log(state.components.find(component => component.component.name == currentMesh.name.split('_')[0]));
+      console.log(currentMesh);
 
       for (let snapBox of snapBoxes) {
         let componentState = state.components.find(component => component.component.name == currentMesh.name.split('_')[0])

@@ -32,7 +32,7 @@ const Orders = () => {
     return (
         <div className="Orders pr-page">
 
-            <h1 className="pr-title">Bestellungen</h1>
+            <h1 className="col-12 pr-title">Bestellungen</h1>
 
             {orders.map((order,index) =>{return(
                 <OrderComponent key={index} order={order} isShoppingCartItem={false} buttonCallback={billingCallback}/>

@@ -44,11 +44,18 @@
     padding: 0;
 }
 
+.st-acc-pic-container{
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+}
+
 .st-acc-pic{
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    position: absolute;
 }
 
 .st-acc-overview p{

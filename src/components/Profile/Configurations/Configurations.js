@@ -84,7 +84,7 @@ const Configurations = (props) => {
 
             <h1 className="pr-title col-12">Geräte</h1>
             <CSSTransition in={configurations.length == 0} unmountOnExit timeout={0}>   
-                <div className="cf-text">Keine gekauften oder gespeicherten Geräte gefunden.</div>
+                <div className="col-12 cf-text">Keine gekauften oder gespeicherten Geräte gefunden.</div>
             </CSSTransition>
 
 

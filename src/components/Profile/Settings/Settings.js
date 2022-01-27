@@ -38,7 +38,9 @@ const Configurations = () => {
                 <div className="col-12 st-acc">
                     <div className="st-acc-head">
                         <div className="col-4 col-m-6">
-                            <img className="st-acc-pic" src={userData && userData.profilePic} alt="" />
+                            <div className="st-acc-pic-container">
+                                <img className="st-acc-pic" src={userData && userData.profilePic} alt="" />
+                            </div>
                         </div>
                         <div className="col-8 col-m-6 st-acc-overview">
                             <h2>{userData && userData.firstName + " " + userData.lastName}</h2>

@@ -21,15 +21,17 @@ const Orders = () => {
     }
 
     return (
-        <div className="ShoppingCart pr-page">
+        <div className="ShoppingCart pr-page grid-container">
 
-            <h1 className="pr-title">Warenkorb</h1>
+            <h1 className="col-12 pr-title">Warenkorb</h1>
 
+            <div className="col-12 sc-order">
             {inShoppingCart.map((order,index) =>{return(
                 <OrderComponent key={index} order={order} isShoppingCartItem={true} buttonCallback={deleteItemCallback}/>
             )})}
+            </div>
 
-            <div className="sc-sum">
+            <div className="col-12 sc-sum">
                 <p>{'Summe (' + inShoppingCart.length + ' Artikel): ' + inShoppingCart.reduce((sum, element) => sum + parseFloat(element.price.match(/\d+/)[0]), 0) + ' €'}</p>
             </div>
 

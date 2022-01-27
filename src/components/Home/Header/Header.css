@@ -75,17 +75,25 @@ a.span.material-icons-outlined:hover {
 }
 @media only screen and (max-width: 600px) {
   .hd-section1 {
-    background-position: 19%;
+    background-position: 19% calc(50% - 90px);
     background-size: 240%;
     display: block;
   }
   .section1-container {
     position: relative;
     left: 0;
-    top: 40px;
+    top: 0;
     width: unset;
     margin: 24px;
-}
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hd-section1 h2 {
+    margin-top: 0;
+    padding-top: 0;
+  }
 }
 
 .hd-img{

@@ -17,21 +17,20 @@ function SizeChooser(props){
 
   return (
     <div className="SizeChooser">
-      <div className="grid-container sc-container">
+      <div className="grid-container">
         <h2 className="col-12 sc-title">Größe Wählen</h2>
-        <p className="col-12 sc-text">Möchtest du ein Smartphone oder ein Tablet konfigurieren?</p>
+        <p className="col-12 sc-text">Möchtest du ein Smartphone oder ein Tablet?</p>
         
         <div className="sc-elements">
-          <span className="sc-element" onClick={() =>{select(false)}}>
+          <span className="col-6 sc-element" onClick={() =>{select(false)}}>
             <img className="sc-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.svg'} alt="" />
-            <p>Smartphone</p>
+            <h3>Smartphone</h3>
           </span>
-          <span className="sc-element" onClick={() =>{select(true)}}>
+          <span className="col-6 sc-element" onClick={() =>{select(true)}}>
             <img className="sc-img" src={process.env.PUBLIC_URL+'/Assets/tablet_size.svg'} alt="" />
-            <p>Tablet</p>
+            <h3>Tablet</h3>
           </span>
         </div>  
-
       </div>
     </div>
   );

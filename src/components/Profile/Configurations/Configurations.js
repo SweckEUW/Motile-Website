@@ -81,13 +81,11 @@ const Configurations = (props) => {
 
     return (
         <div className="Configurations pr-page grid-container">
-
+            <div>
             <h1 className="pr-title col-12">Geräte</h1>
             <CSSTransition in={configurations.length == 0} unmountOnExit timeout={0}>   
                 <div className="col-12 cf-text">Keine gekauften oder gespeicherten Geräte gefunden.</div>
             </CSSTransition>
-
-
                 {/* Meine Geräte */}
                 <CSSTransition in={configurations.filter(configuration => configuration.bought).length != 0} unmountOnExit timeout={0}>
                 <div className="col-4">
@@ -146,6 +144,7 @@ const Configurations = (props) => {
                         <div/>
                     </div>
                 </div>
+            </div>
         </div>
     )
 }

@@ -2,15 +2,10 @@
     position: absolute;
     z-index: 10;
     width: 100%;
-    height: calc(100% - 75px);
-    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column;
-}
-.sc-container{
-    align-items: baseline;
 }
 .sc-elements{
     width: 100%;
@@ -26,15 +21,14 @@
     opacity: 0.6;
     margin-bottom: 20px;
 }
-.sc-element:first-child{
-    margin-right: 130px;
-}
+
 .sc-element:hover{
     opacity: 1;
     transform: translateY(-10px);
 }
 .sc-img{
     display: inline-block;
+    width: 50%;
 }
 .sc-text{
     margin-bottom: 70px;

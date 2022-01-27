@@ -132,12 +132,11 @@ const Configurations = (props) => {
                             </div>                   
                         </div>
                         <div id="cf-Swiper-saved-pagination"/>
-                        
                     </div>
                 </CSSTransition>
 
                 <div className='col-4 cf-new' style={{marginLeft: configurations.length != 0 ? '' : '0px'}} onClick={() =>{history.push({pathname: '/Konfigurator'})}}>
-                <h3 className="cf-title">new</h3>
+                    <h3 className="cf-title">new</h3>
                     <img className="cf-new-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.svg'} alt="" />  
                     <div className='cf-name'>Neu</div>
                     <div className='cf-new-gray1'/>

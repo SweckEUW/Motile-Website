@@ -29,7 +29,7 @@ const App = () => {
       <Switch>
         {/* Home */}
         <Route exact path="/" render={() => (
-          <div>
+          <div className='pagewrapper'>
             <Header/>
             <Footer/>
           </div>
@@ -37,14 +37,14 @@ const App = () => {
 
         {/* Konfigurator */}
         <Route exact path="/Konfigurator" render={() => (
-          <div>
+          <div className='pagewrapper'>
             <Configurator/>
           </div>
         )}/>
 
         {/* Nutzer Konfigurationen */}
         <Route exact path="/Profil/Geräte" render={() => (
-            <div>
+            <div className='pagewrapper'>
               <Configurations/>
               <Footer/>
             </div>
@@ -52,7 +52,7 @@ const App = () => {
 
         {/* Nutzer Bestellungen */}
         <Route exact path="/Profil/Bestellungen" render={() => (
-            <div>
+            <div className='pagewrapper'>
               <Orders/>
               <Footer/>
             </div>
@@ -60,7 +60,7 @@ const App = () => {
         
         {/* Nutzer Konfigurationen */}
         <Route exact path="/Profil/Einstellungen" render={() => (
-            <div>
+            <div className='pagewrapper'>
               <Settings/>
               <Footer/>
             </div>
@@ -68,7 +68,7 @@ const App = () => {
 
         {/* Warenkorb */}
         <Route exact path="/Warenkorb" render={() => (
-          <div>
+          <div className='pagewrapper'>
             <ShoppingCart/>
             <Footer/>
           </div>
@@ -76,7 +76,7 @@ const App = () => {
 
         {/* Checkout */}
         <Route exact path="/Kasse" render={() => (
-          <div>
+          <div className='pagewrapper'>
             <Checkout/>
             <Footer/>
           </div>
@@ -84,7 +84,7 @@ const App = () => {
 
         {/* Kaufbestätigung */}
         <Route exact path="/Kaufbestätigung" render={() => (
-          <div>
+          <div className='pagewrapper'>
             <BuyConfirmation/>
             <Footer/>
           </div>
@@ -92,7 +92,7 @@ const App = () => {
 
         {/* 404 */}
         <Route render={() => (
-          <div>
+          <div className='pagewrapper'>
             <h1 style={{marginTop: '100px'}}>404 - Seite nicht gefunden</h1>
           </div>
         )}/>

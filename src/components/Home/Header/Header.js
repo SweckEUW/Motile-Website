@@ -124,7 +124,7 @@ function Header(){
               <p>Das Herzstück des Smartphones. Auf welchen Chip die Wahl auch fällt: Das Nutzungserlebnis erreicht garantiert Höchstleistungen.</p>
             </div>
             <div className="col-4  col-m-4">
-              <img src={process.env.PUBLIC_URL+'/Assets/akku.png'} alt=""/>
+              <img src={process.env.PUBLIC_URL+'/Assets/core.png'} alt=""/>
             </div>
             <div className="col-4  col-m-4 col-s-0">
               <img src={process.env.PUBLIC_URL+'/Assets/image-section4.png'} alt=""/>

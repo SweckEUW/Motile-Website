@@ -6,10 +6,11 @@ class Component {
         this.assetsManager = assetsManager;
         this.shadowGenerator = shadowGenerator;
 
-        let data = motilePart["3DData"]
+        let data = motilePart["3DData"];
         this.path = data.path;
         this.name = motilePart.name;;
         this.scale = data.scale;
+        this.size = motilePart.metaData.size;
         this.mesh = null;
         this.parent = null; 
         this.ease = null;
@@ -27,9 +28,10 @@ class Component {
             this.mesh.scaling = new BABYLON.Vector3(...this.scale);
             this.mesh.name = this.name+"_Meshes";
             this.mesh.parent = this.parent
-
-            var boxCollider = BABYLON.MeshBuilder.CreateBox("Collider", {height: 3, width: 47, depth: 38});
+            
+            var boxCollider = BABYLON.MeshBuilder.CreateBox("Collider", {height: 3, width: this.size == "m" ? 47 : this.size == "s" ? 23 : 70 , depth: 38});
             boxCollider.position.y = 1.5;
+            boxCollider.position.x = this.size == "m" ? -11 : 0;
             boxCollider.visibility = 0;
             boxCollider.parent = this.parent;
 
@@ -80,7 +82,7 @@ class Component {
         this.parent.setEnabled(true);
 
         if(position)
-            this.parent.position = position;
+            this.parent.position = new BABYLON.Vector3(position._x,position._y,position._z);
         
         this.mesh.getChildMeshes().forEach(mesh => {
             if(mesh.material)

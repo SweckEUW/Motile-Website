@@ -20,8 +20,8 @@ class Base {
             plate.parent = this.scene.getNodeByName("Phone");
             
             plate.getChildMeshes().forEach(mesh => {
-                // mesh.receiveShadows = true;
-                // this.shadowGenerator.getShadowMap().renderList.push(mesh);
+                mesh.receiveShadows = true;
+                this.shadowGenerator.getShadowMap().renderList.push(mesh);
                 mesh.isPickable = false;
             });
         }    

@@ -37,8 +37,8 @@ class Component {
             boxCollider.parent = this.parent;
 
             this.mesh.getChildMeshes().forEach(mesh => {
-                // mesh.receiveShadows = true;
-                // this.shadowGenerator.getShadowMap().renderList.push(mesh);
+                mesh.receiveShadows = true;
+                this.shadowGenerator.getShadowMap().renderList.push(mesh);
                 mesh.visibility = 0;
                 mesh.isPickable = false;
                 if(mesh.material)

@@ -1,10 +1,11 @@
 import * as BABYLON from 'babylonjs';
 
 class Base {
-    constructor(scene, assetsManager, shadowGenerator, isTablet) {
+    // constructor(scene, assetsManager, shadowGenerator, isTablet) {
+    constructor(scene, assetsManager, isTablet) {
         this.scene = scene;
         this.assetsManager = assetsManager;
-        this.shadowGenerator = shadowGenerator;
+        // this.shadowGenerator = shadowGenerator;
         this.isTablet = isTablet;
         this.loadMesh();
     }
@@ -19,8 +20,8 @@ class Base {
             plate.parent = this.scene.getNodeByName("Phone");
             
             plate.getChildMeshes().forEach(mesh => {
-                mesh.receiveShadows = true;
-                this.shadowGenerator.getShadowMap().renderList.push(mesh);
+                // mesh.receiveShadows = true;
+                // this.shadowGenerator.getShadowMap().renderList.push(mesh);
                 mesh.isPickable = false;
             });
         }    

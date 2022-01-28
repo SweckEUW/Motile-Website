@@ -1,10 +1,11 @@
 import * as BABYLON from 'babylonjs';
 
 class Component {
-    constructor(scene, assetsManager, shadowGenerator, motilePart) {
+    // constructor(scene, assetsManager, shadowGenerator, motilePart) {
+    constructor(scene, assetsManager, motilePart) {
         this.scene = scene;
         this.assetsManager = assetsManager;
-        this.shadowGenerator = shadowGenerator;
+        // this.shadowGenerator = shadowGenerator;
 
         let data = motilePart["3DData"];
         this.path = data.path;
@@ -36,8 +37,8 @@ class Component {
             boxCollider.parent = this.parent;
 
             this.mesh.getChildMeshes().forEach(mesh => {
-                mesh.receiveShadows = true;
-                this.shadowGenerator.getShadowMap().renderList.push(mesh);
+                // mesh.receiveShadows = true;
+                // this.shadowGenerator.getShadowMap().renderList.push(mesh);
                 mesh.visibility = 0;
                 mesh.isPickable = false;
                 if(mesh.material)

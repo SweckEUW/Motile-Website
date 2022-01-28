@@ -3,7 +3,8 @@ import React, {useState} from 'react';
 const initialState = {
     loggedIn: false,
     showLoadingscreen: false,
-    components: []
+    components: [],
+    configuratorErrorMessage: null,
 };
 
 export const Context = React.createContext();

@@ -37,15 +37,15 @@ class SnapBoxes {
             allowsFor: ['s']
         },
         {
-            position: new BABYLON.Vector3(-23,5,-21), 
+            position: new BABYLON.Vector3(-23,5,-19), 
             allowsFor: ['s', 'm']
         },
         {
-            position: new BABYLON.Vector3(0,5,-21), 
+            position: new BABYLON.Vector3(0,5,-19), 
             allowsFor: ['s', 'm', 'l']
         },
         {
-            position: new BABYLON.Vector3(23,5,-21), 
+            position: new BABYLON.Vector3(23,5,-19), 
             allowsFor: ['s']
         },
         {

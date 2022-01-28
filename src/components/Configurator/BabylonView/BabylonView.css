@@ -9,3 +9,13 @@
     outline: none;
     margin-left: 150px;
 }
+.bv-error{
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+    z-index: 1;
+    color: red;
+    font-size: 20px;
+}

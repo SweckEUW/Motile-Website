@@ -170,9 +170,6 @@ function BabylonView(props){
   }
 
   async function resetComponent(e) {
-    console.log(motilePartsNodes);
-    console.log(e.detail);
-
     motilePartsNodes.find(part => part.name === (e.detail.name)).reset();
   }
 

@@ -17,7 +17,9 @@ const OrderComponent = (props) => {
             </div>
 
             <div className="orc-row orc-row-2">
-                <img className="orc-Thumbnail" src={props.order.thumbnail} alt="" />
+                <div className="orc-Thumbnail-container">
+                    <img className="orc-Thumbnail" src={props.order.thumbnail} alt="" />
+                </div>
                 <span className="orc-info">
                     <span className="orc-name">{props.order.name}</span>
                     <span>Zugestellt am</span>
@@ -26,7 +28,7 @@ const OrderComponent = (props) => {
                 <span className="orc-buttons">
                     {/* <div className="or-button">Lieferung verfolgen</div> */}
                     <div className="orc-button" onClick={() => {props.buttonCallback(props.order.number)}}>{props.isShoppingCartItem ? 'Produkt entfernen': 'Rechnung herunterladen'}</div>
-                </span> 
+                </span>
             </div>
 
             <div className="orc-row orc-row-3" onClick={toggleDropdown}>

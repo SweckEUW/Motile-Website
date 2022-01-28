@@ -4,8 +4,10 @@ import 'babylonjs-loaders';
 import * as Materials from 'babylonjs-materials';
 import * as cannon from "cannon";
 import { CannonJSPlugin} from "babylonjs";
+import SnapBoxes from './SnapBoxes';
 import React, {useEffect,useState,useContext} from 'react';
 import Base from './Base';
+import Trashbin from './Trashbin';
 import Component from './Component';
 import ServerRequest from '../../../services/ServerRequest';
 import history from '../../../services/RouterHistory';
@@ -20,7 +22,7 @@ function BabylonView(props){
   const [startingPoint, setStartingPoint] = useState(null);
   const [ground, setGround] = useState(null);
   const [snapBoxes, setSnapBoxes] = useState(null);
-
+  const [trashbin, setTrashbin] = useState(null);
 
   let motilePartsNodes = [];
   let myRef = React.useRef(null)
@@ -113,71 +115,10 @@ function BabylonView(props){
     ground.receiveShadows = true;
     setGround(ground);
 
-    const snapBoxes = [];
-    const positions = [
-      {
-          position: new BABYLON.Vector3(-23,5,57), 
-          allowsFor: ['s', 'm']
-      },
-      {
-          position: new BABYLON.Vector3(0,5,57), 
-          allowsFor: ['s', 'm', 'l']
-      },
-      {
-          position: new BABYLON.Vector3(23,5,57), 
-          allowsFor: ['s']
-      },
-      {
-          position: new BABYLON.Vector3(-23,5,19), 
-          allowsFor: ['s', 'm']
-      },
-      {
-          position: new BABYLON.Vector3(0,5,19), 
-          allowsFor: ['s', 'm', 'l']
-      },
-      {
-          position: new BABYLON.Vector3(23,5,19), 
-          allowsFor: ['s']
-      },
-      {
-          position: new BABYLON.Vector3(-23,5,-21), 
-          allowsFor: ['s', 'm']
-      },
-      {
-          position: new BABYLON.Vector3(0,5,-21), 
-          allowsFor: ['s', 'm', 'l']
-      },
-      {
-          position: new BABYLON.Vector3(23,5,-21), 
-          allowsFor: ['s']
-      },
-      {
-          position: new BABYLON.Vector3(-23,5,-57), 
-          allowsFor: ['s', 'm']
-      },
-      {
-          position: new BABYLON.Vector3(0,5,-57), 
-          allowsFor: ['s', 'm', 'l']
-      },
-      {
-          position: new BABYLON.Vector3(23,5,-57), 
-          allowsFor: ['s']
-      }
-  ];
+    
     let phoneNode = new BABYLON.TransformNode("Phone");
-    for (let i = 0; i < 12; i++) {
-      const snapBox = BABYLON.MeshBuilder.CreateBox(`snapBox_${i}`, {width: 10, height: 5, depth: 20}, scene);
-      snapBox.position = positions[i].position;
-      snapBox.showBoundingBox = true;
-      snapBox.visibility = false;
-      snapBox.isPickable = false;
-      snapBox.parent = phoneNode;
-      snapBoxes.push({
-        mesh: snapBox,
-        allowsFor: positions[i].allowsFor
-      });
-    }
-    setSnapBoxes(snapBoxes);
+    let snapBoxes = new SnapBoxes(scene, phoneNode, props.tabletSelected)
+    setSnapBoxes(snapBoxes.boxes);
 
     // Start rendering
     engine.runRenderLoop(() => {
@@ -187,6 +128,7 @@ function BabylonView(props){
     await loadMotileParts(scene,shadowGenerator);
     document.addEventListener("spawnComponent", spawnComponent);
     document.addEventListener("rotatePhone", rotatePhone);
+    document.addEventListener("resetComponent", resetComponent);
 
     if(history.location.state && history.location.state.editMode)
       loadConfiguration(history.location.state.configuration);
@@ -219,6 +161,8 @@ function BabylonView(props){
       });
     }
     new Base(scene,assetsManager,shadowGenerator,props.tabletSelected);
+    let trashbinPlate = new Trashbin(scene, assetsManager, props.tabletSelected);
+    setTrashbin(trashbinPlate)
 
     assetsManager.load();
 
@@ -229,10 +173,15 @@ function BabylonView(props){
     });
   }
 
+  async function resetComponent(e) {
+    motilePartsNodes.find(part => part.name === (e.detail.name)).reset();
+  }
+
   function getGroundPosition(){
     var pickinfo = globalScene[0].pick(globalScene[0].pointerX, globalScene[0].pointerY, function (mesh) { return mesh === ground; });
     return pickinfo.hit ? pickinfo.pickedPoint: null
   }
+
 
   function onPointerMove(evt){
     if(startingPoint){
@@ -249,7 +198,8 @@ function BabylonView(props){
 
   function onPointerDown(evt){
     var pickInfo = globalScene[0].pick(globalScene[0].pointerX, globalScene[0].pointerY);
-    if(pickInfo.hit && pickInfo.pickedMesh.name !== "SkyBox" && pickInfo.pickedMesh.name !== "Ground" && !pickInfo.pickedMesh.name.includes('snapBox')){
+    if(pickInfo.hit && pickInfo.pickedMesh.name !== "SkyBox" && pickInfo.pickedMesh.name !== "Ground" && !pickInfo.pickedMesh.name.includes('snapBox')
+        && !pickInfo.pickedMesh.name.includes('Trashbin')){
       setCurrentMesh(pickInfo.pickedMesh.parent);
       setStartingPoint(getGroundPosition(evt));
       globalScene[0].activeCamera.detachControl(); 
@@ -263,7 +213,7 @@ function BabylonView(props){
 
       for (let snapBox of snapBoxes) {
         let componentState = state.components.find(component => component.component.name == currentMesh.name.split('_')[0])
-        if(snapBox.mesh.intersectsPoint(currentMesh.position) && snapBox.allowsFor.includes(componentState.component.metaData.size)) {
+        if(snapBox.mesh.intersectsPoint(currentMesh.position) && snapBox.allowsFor.includes(componentState.component.metaData.size) && snapBox.posRequirements.includes(componentState.component.metaData.requiredPos)) {
           currentMesh.position = new BABYLON.Vector3(snapBox.mesh.position._x, 6, snapBox.mesh.position._z);
           componentState.position = currentMesh.position; // save snap position
           currentMesh.parent = globalScene[0].getNodeByName("Phone");
@@ -273,6 +223,23 @@ function BabylonView(props){
           currentMesh.parent = null;
         }
       }
+
+      if (trashbin.detectionArea.intersectsPoint(currentMesh.position)) {
+        let componentState = state.components.find(component => component.component.name == currentMesh.name.split('_')[0]);
+        let stateComponentsCopy = [...state.components];
+        const index = stateComponentsCopy.indexOf(componentState);
+        if (index > -1) {
+          stateComponentsCopy.splice(index, 1); 
+        }
+        setState(prevState => ({...prevState,components: stateComponentsCopy}))
+        
+        let ease = new BABYLON.CubicEase();
+        ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
+        BABYLON.Animation.CreateAndStartAnimation("", currentMesh, "scaling", 30,4, currentMesh.scaling, new BABYLON.Vector3(0, 0, 0), 0, ease, () => {
+          document.dispatchEvent(new CustomEvent("resetComponent", {detail: {name: currentMesh.name.split('_')[0]}}));
+        });
+      }
+
       return;
     }
   }

@@ -192,7 +192,7 @@ class SnapBoxes {
             const snapBox = BABYLON.MeshBuilder.CreateBox(`snapBox_${i}`, {width: 10, height: 5, depth: 20}, this.scene);
             snapBox.position = list[i].position;
             snapBox.showBoundingBox = true;
-            snapBox.visibility = true;
+            snapBox.visibility = false;
             snapBox.isPickable = false;
             snapBox.parent = this.phoneNode;
             this.boxes.push({

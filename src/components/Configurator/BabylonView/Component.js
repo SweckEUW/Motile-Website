@@ -25,7 +25,7 @@ class Component {
             this.parent.setEnabled(false);
 
             this.mesh = task.loadedMeshes[0];
-            this.mesh.scaling = new BABYLON.Vector3(...this.scale);
+            this.mesh.scaling = new BABYLON.Vector3(...this.scale).multiplyByFloats(-1, 1, 1);
             this.mesh.name = this.name+"_Meshes";
             this.mesh.parent = this.parent
             
@@ -80,6 +80,7 @@ class Component {
 
     place(color,position){
         this.parent.setEnabled(true);
+        console.log(position);
 
         if(position)
             this.parent.position = new BABYLON.Vector3(position._x,position._y,position._z);
@@ -90,6 +91,12 @@ class Component {
         });
 
         BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30,15, 30, 2.5, 0, this.ease);
+    }
+
+    reset() {
+        this.parent.position = new BABYLON.Vector3(80,0,20);
+        this.parent.setEnabled(false);
+        this.parent.scaling = new BABYLON.Vector3(1,1,1);
     }
 
     colorMesh(mesh,color){

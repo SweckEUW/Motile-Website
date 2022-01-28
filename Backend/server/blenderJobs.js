@@ -17,7 +17,7 @@ export default class blenderJobs{
         let renderPositions = []
         request.body.config.parts.forEach(part => {
             renderPositions.push({
-                name: part.component.name.replace(" ",""),
+                name: part.component.name.replaceAll(" ",""),
                 position: part.position,
                 color: part.color
             })
@@ -27,6 +27,7 @@ export default class blenderJobs{
             exportPath: exportPath,
             components: renderPositions
         }    
+        console.log(settings);
         settings = JSON.stringify(JSON.stringify(settings));
 
         console.log("Start Blender rendering");

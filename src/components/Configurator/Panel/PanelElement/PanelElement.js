@@ -93,7 +93,7 @@ function PanelElement(props){
         if(option.type === "switch")
           option.selectedOptions = Array(option.selections.length);
         if(option.type === "rows")
-          option.selectedOptions = [option.selections[0].additionalInfo];
+          option.selectedOptions = [option.selections[0].additionalInfo,option.selections[0].motilePart];
         if(option.type === "addon")
           option.selectedOptions = [""];
         newCurrentSettings[index].push(option);
@@ -119,7 +119,12 @@ function PanelElement(props){
       changeSwiperPageNextIndex();
       return
     }
-      
+
+    currentSettings[index].forEach(setting => {
+      if(setting.type == "rows")
+        motilePart = allMotileParts.find(part => part.name === setting.selectedOptions[1]);
+    });
+
     document.dispatchEvent(new CustomEvent("spawnComponent", {detail:{name: motilePart.name, settings: currentSettings[index], color: currentColors[index]}}));
     let component = {component: motilePart, settings: currentSettings[index], color: currentColors[index]}
     let components = state.components;

@@ -85,12 +85,18 @@ class Component {
             this.parent.position = new BABYLON.Vector3(position._x,position._y,position._z);
         
         this.mesh.getChildMeshes().forEach(mesh => {
-            if(mesh.material)
-                mesh.material.albedoColor = BABYLON.Color3.FromHexString(color);
+            this.colorMesh(mesh,color);
             BABYLON.Animation.CreateAndStartAnimation("", mesh, "visibility", 30,15, 0, 1, 0, this.ease);
         });
 
         BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30,15, 30, 2.5, 0, this.ease);
+    }
+
+    colorMesh(mesh,color){
+        if(mesh.material){
+            if(mesh.name != "Face-0")
+                mesh.material.albedoColor = BABYLON.Color3.FromHexString(color);
+        }
     }
 
 }

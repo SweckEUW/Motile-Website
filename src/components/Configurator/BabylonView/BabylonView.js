@@ -4,6 +4,7 @@ import 'babylonjs-loaders';
 import * as Materials from 'babylonjs-materials';
 import * as cannon from "cannon";
 import { CannonJSPlugin} from "babylonjs";
+import SnapBoxes from './SnapBoxes';
 import React, {useEffect,useState,useContext} from 'react';
 import Base from './Base';
 import Component from './Component';
@@ -112,72 +113,11 @@ function BabylonView(props){
     ground.receiveShadows = true;
     setGround(ground);
 
-    const snapBoxes = [];
-    const positions = [
-      {
-          position: new BABYLON.Vector3(-23,5,57), 
-          allowsFor: ['s', 'm']
-      },
-      {
-          position: new BABYLON.Vector3(0,5,57), 
-          allowsFor: ['s', 'm', 'l']
-      },
-      {
-          position: new BABYLON.Vector3(23,5,57), 
-          allowsFor: ['s']
-      },
-      {
-          position: new BABYLON.Vector3(-23,5,19), 
-          allowsFor: ['s', 'm']
-      },
-      {
-          position: new BABYLON.Vector3(0,5,19), 
-          allowsFor: ['s', 'm', 'l']
-      },
-      {
-          position: new BABYLON.Vector3(23,5,19), 
-          allowsFor: ['s']
-      },
-      {
-          position: new BABYLON.Vector3(-23,5,-21), 
-          allowsFor: ['s', 'm']
-      },
-      {
-          position: new BABYLON.Vector3(0,5,-21), 
-          allowsFor: ['s', 'm', 'l']
-      },
-      {
-          position: new BABYLON.Vector3(23,5,-21), 
-          allowsFor: ['s']
-      },
-      {
-          position: new BABYLON.Vector3(-23,5,-57), 
-          allowsFor: ['s', 'm']
-      },
-      {
-          position: new BABYLON.Vector3(0,5,-57), 
-          allowsFor: ['s', 'm', 'l']
-      },
-      {
-          position: new BABYLON.Vector3(23,5,-57), 
-          allowsFor: ['s']
-      }
-  ];
+    
     let phoneNode = new BABYLON.TransformNode("Phone");
-    for (let i = 0; i < 12; i++) {
-      const snapBox = BABYLON.MeshBuilder.CreateBox(`snapBox_${i}`, {width: 10, height: 5, depth: 20}, scene);
-      snapBox.position = positions[i].position;
-      snapBox.showBoundingBox = true;
-      snapBox.visibility = false;
-      snapBox.isPickable = false;
-      snapBox.parent = phoneNode;
-      snapBoxes.push({
-        mesh: snapBox,
-        allowsFor: positions[i].allowsFor
-      });
-    }
-    setSnapBoxes(snapBoxes);
-
+    let snapBoxes = new SnapBoxes(scene, phoneNode, props.tabletSelected)
+    setSnapBoxes(snapBoxes.boxes);
+    
     // Start rendering
     engine.runRenderLoop(() => {
       scene.render();

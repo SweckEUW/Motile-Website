@@ -81,13 +81,11 @@ const Configurations = (props) => {
 
     return (
         <div className="Configurations pr-page grid-container">
-
+            <div>
             <h1 className="pr-title col-12">Geräte</h1>
             <CSSTransition in={configurations.length == 0} unmountOnExit timeout={0}>   
-                <div className="cf-text">Keine gekauften oder gespeicherten Geräte gefunden.</div>
+                <div className="col-12 cf-text">Keine gekauften oder gespeicherten Geräte gefunden.</div>
             </CSSTransition>
-
-
                 {/* Meine Geräte */}
                 <CSSTransition in={configurations.filter(configuration => configuration.bought).length != 0} unmountOnExit timeout={0}>
                 <div className="col-4">
@@ -132,12 +130,11 @@ const Configurations = (props) => {
                             </div>                   
                         </div>
                         <div id="cf-Swiper-saved-pagination"/>
-                        
                     </div>
                 </CSSTransition>
 
                 <div className='col-4 cf-new' style={{marginLeft: configurations.length != 0 ? '' : '0px'}} onClick={() =>{history.push({pathname: '/Konfigurator'})}}>
-                <h3 className="cf-title">new</h3>
+                    <h3 className="cf-title">new</h3>
                     <img className="cf-new-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.svg'} alt="" />  
                     <div className='cf-name'>Neu</div>
                     <div className='cf-new-gray1'/>
@@ -147,6 +144,7 @@ const Configurations = (props) => {
                         <div/>
                     </div>
                 </div>
+            </div>
         </div>
     )
 }

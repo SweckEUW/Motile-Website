@@ -4,6 +4,8 @@
     flex-direction: column;
     background-color: #FCFBF9;
     align-items: center;
+    position: absolute;
+    bottom: -65px;
 }
 
 .ft-line {

@@ -14,6 +14,34 @@ a.span.material-icons-outlined:hover {
   transform: translateY(5px);
 }
 
+span.material-icons-outlined.icon-medium {
+  color: #785bb4;
+  text-shadow: 0 0 10px #ddd;
+}
+
+
+.btn-grad {background-image: linear-gradient(to right, #5C258D 0%, #4389A2  51%, #5C258D  100%)}
+.btn-grad {
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #ddd;
+ }
+
+ .btn-grad:hover {
+   background-position: right center;
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+
+
+
 /** Klassenselektoren **/
 
 
@@ -39,10 +67,9 @@ a.span.material-icons-outlined:hover {
 }
 
 .Header section{
-  /*min-height: 80vh;*/
   display: flex;
   flex-wrap: wrap;
-  padding: 24px 0;
+  padding: 48px 0;
 }
 
 /* Hintergrundfarbe */
@@ -75,17 +102,25 @@ a.span.material-icons-outlined:hover {
 }
 @media only screen and (max-width: 600px) {
   .hd-section1 {
-    background-position: 19%;
+    background-position: 19% calc(50% - 90px);
     background-size: 240%;
     display: block;
   }
   .section1-container {
     position: relative;
     left: 0;
-    top: 40px;
+    top: 0;
     width: unset;
     margin: 24px;
-}
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hd-section1 h2 {
+    margin-top: 0;
+    padding-top: 0;
+  }
 }
 
 .hd-img{
@@ -141,6 +176,10 @@ section.hd-section2 {
   text-decoration: none;
   padding: 10px 40px;
 }
+.hd-link2:hover {
+  background-color: #fff;
+  color: #000;
+}
 
 .Header .swiper{
   height: 100%;
@@ -173,6 +212,10 @@ section.hd-section2 {
   position: relative;  
   padding-bottom: 28px;
   margin-bottom: 48px;
+  transition: .3s;
+}
+a.col-3.col-m-6:hover {
+  margin-bottom: 30px;
 }
 
 .hd-section3 a span.material-icons-outlined:last-child {

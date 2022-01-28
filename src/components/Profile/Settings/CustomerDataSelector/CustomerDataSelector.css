@@ -35,7 +35,7 @@
     padding-bottom: 100%;
 }
 
-.Settings .swiper-wrapper {
+.CustomerDataSelector .swiper-wrapper {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -51,7 +51,7 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 24px;
-    padding: 24px;
+    padding: 24px 24px 0 24px;
 }
 
 .swiper-slide-content {
@@ -97,9 +97,10 @@
     display: flex;
     cursor: pointer;
     justify-content: center;
-    padding-top: 4px;
     margin: 0 -24px;
+    padding: 6px;
     border-top: 2px solid #d3d3d3;
+    border-radius: 0 0 24px 24px;
 }
 .st-delete:hover{
     background: rgb(233, 233, 233);

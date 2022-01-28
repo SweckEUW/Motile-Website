@@ -30,23 +30,24 @@ const Orders = () => {
     }
 
     return (
-        <div className="Orders pr-page">
+        <div className="Orders pr-page grid-container">
 
-            <h1 className="pr-title">Bestellungen</h1>
+            <h1 className="col-12 pr-title">Bestellungen</h1>
 
             {orders.map((order,index) =>{return(
                 <OrderComponent key={index} order={order} isShoppingCartItem={false} buttonCallback={billingCallback}/>
             )})}
 
             <CSSTransition in={orders.length == 0} unmountOnExit timeout={0}>   
-                <div>
-                    <div className="or-text">Keine bestellten Geräte gefunden.</div>
-                    <div className='or-new' onClick={() =>{history.push({pathname: '/Konfigurator'})}}>
-                        <img className="or-new-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.svg'} alt="" />  
-                        <div className='or-new-text'>Neu</div>
-                        <div className='or-new-gray1'/>
-                        <div className='or-new-gray2'/>
-                        <div className='or-new-gray3'>
+                <div className="or-content">
+                    <div className="col-12 or-text">Keine bestellten Geräte gefunden.</div>
+                    <div className='col-4 cf-new' onClick={() =>{history.push({pathname: '/Konfigurator'})}}>
+                        <h3 className="cf-title">new</h3>
+                        <img className="cf-new-img" src={process.env.PUBLIC_URL+'/Assets/smartphone_size.svg'} alt="" />  
+                        <div className='cf-name'>Neu</div>
+                        <div className='cf-new-gray1'/>
+                        <div className='cf-new-gray2'/>
+                        <div className='cf-new-gray3'>
                             <div/>
                             <div/>
                         </div>

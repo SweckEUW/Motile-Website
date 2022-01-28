@@ -5,8 +5,8 @@ const BuyConfirmation = () => {
     
     return (
         <div className="BuyConfirmation pr-page">
-            <p>Vielen Dank für ihren Kauf!</p>
-            <p>Alle Informationen zu Ihren Artikeln finden Sie unter "Bestellungen" in ihrem Profil.</p>
+            <h1>Vielen Dank für ihren Kauf!</h1>
+            <p>Alle Informationen zu Ihren Artikeln finden Sie unter <a href="/Profil/Bestellungen">Bestellungen</a> in ihrem Profil.</p>
         </div>
     )
 }

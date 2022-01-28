@@ -38,10 +38,10 @@ const Orders = () => {
             <span className='sc-to-checkout'>
                 {inShoppingCart.length > 0 ? (
                         <Link to="/Kasse" className="sc-to-checkout-link">
-                            <div className={`sc-button  ${inShoppingCart.length <= 0 ? 'button-inactive' : 'button-active'}`}>Zur Kasse</div>         
+                            <button className={`button  ${inShoppingCart.length <= 0 ? 'button-inactive' : 'sc-button'}`}>Zur Kasse</button>         
                         </Link>
                     ) :
-                    <div className={`sc-button  ${inShoppingCart.length <= 0 ? 'button-inactive' : 'button-active'}`}>Zur Kasse</div>
+                    <div className={`sc-button  ${inShoppingCart.length <= 0 ? 'button-inactive' : 'sc-button'}`}>Zur Kasse</div>
                 }
             </span>
         </div>

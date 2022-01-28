@@ -24,6 +24,10 @@
     display: flex;
 }
 .orc-Thumbnail{
+    max-height:100%;
+}
+.orc-Thumbnail-container {
+    max-height: 220px;
     width: 25%;
 }
 .orc-info{

@@ -97,10 +97,11 @@ const Checkout = () => {
     }
 
     return (
-        <div className="Checkout pr-page">
-            <h1 className="pr-title">Kasse</h1>
+        <div className="Checkout pr-page grid-container">
+            <h1 className="col-12 pr-title">Kasse</h1>
             <div className="co-container">
                 <CustomerDataSelector userData={userData} paymentCallback={paymentCallback} adressCallback={adressCallback}/>
+                <div className="col-6">
                 <div className="co-product-swipables">
                     <div id="co-product-swiper" className="swiper">
                         <div className="swiper-wrapper">
@@ -108,12 +109,12 @@ const Checkout = () => {
                                 return (
                                     <div key={index} className="swiper-slide">
                                         <div className="co-selected-product">
-                                            <div className="co-product-img">
+                                            <div className="col-6 co-product-img">
                                                 <img src={order.thumbnail} alt="" />
                                             </div>
-                                            <div className="co-product-info-container">
+                                            <div className="col-6 co-product-info-container">
                                                 <div className="product-info">
-                                                    <span className='co-product-name'>{order.name}</span>
+                                                    <h3>{order.name}</h3>
                                                     <p>{order.price}</p>
                                                 </div>
                                             </div>
@@ -126,10 +127,11 @@ const Checkout = () => {
                     <div id="swiper-product-pagination" />
 
                     <Link to="/Kaufbestätigung" className="co-to-confirmation">
-                        <div className="co-product-buy-button" onClick={orderProducts}>
+                        <button className="btn-grad" onClick={orderProducts}>
                             Jetzt kaufen
-                        </div>
+                        </button>
                     </Link>
+                </div>
                 </div>
             </div>
         </div>

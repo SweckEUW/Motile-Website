@@ -56,7 +56,7 @@ const Navbar = () => {
                 </Link>
             
             <div className="nav-links">
-                <Link to="/Konfigurator"><button>konfigurieren</button></Link>
+                <Link to="/Konfigurator"><button>Konfigurieren</button></Link>
                 <Link to="/Warenkorb" className="material-icons-outlined nav-shopping">shopping_cart</Link>
                 <div className="nav-account-container" onClick={() =>{toggleLoginDialogue()}}>
                 <span className="material-icons-outlined nav-account">account_circle</span>

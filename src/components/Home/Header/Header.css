@@ -175,6 +175,7 @@ section.hd-section2 {
   color: #fff;
   text-decoration: none;
   padding: 10px 40px;
+  transition: .2s;
 }
 .hd-link2:hover {
   background-color: #fff;

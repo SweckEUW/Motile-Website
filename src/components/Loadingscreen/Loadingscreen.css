@@ -5,12 +5,12 @@
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
 }
 .ls-animation{
-    fill: #761104;
+    fill: #fff;
     width: 300px;
     height: 300px;
     align-self: center;

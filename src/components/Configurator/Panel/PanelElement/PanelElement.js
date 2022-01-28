@@ -33,6 +33,7 @@ function PanelElement(props){
 
       setSwiper(swiper);
     }, 0);
+
   }, []);
 
   function changeSwiperPageToIndex(index){

@@ -74,26 +74,27 @@ function BabylonView(props){
     // ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, friction: 0.5, restitution: 0.7 }, scene);
     
     // init camera
-    let camera = new BABYLON.ArcRotateCamera("Camera", -1, 1, 200,new BABYLON.Vector3(60,0,30),scene); 
+    let camera = new BABYLON.ArcRotateCamera("Camera", -1, 0.7, 200,new BABYLON.Vector3(0,0,0),scene); 
 		camera.attachControl(myRef.current,false,false,4);
-    camera.lowerRadiusLimit = 200; // Stop zooming in
-    camera.upperRadiusLimit = 200; // Stop zooming out
+    camera.lowerRadiusLimit = 250; // Stop zooming in
+    camera.upperRadiusLimit = 250; // Stop zooming out
     camera.upperBetaLimit = 1.5;
     camera.minZ = 10;
     camera.maxZ = 1000;
 
     // Set up Shadows
-    let light0 = new BABYLON.DirectionalLight("MainLight", new BABYLON.Vector3(1, -1, 1), scene);
+    let light0 = new BABYLON.DirectionalLight("MainLight", new BABYLON.Vector3(0, -1, 0), scene);
     light0.position = new BABYLON.Vector3(-200,100,0);
     light0.shadowMaxZ = 1000;
+    light0.intensity = 8;
 
     let shadowGenerator = new BABYLON.ShadowGenerator(2048, light0);
     shadowGenerator.useExponentialShadowMap = true;
     shadowGenerator.useBlurExponentialShadowMap = true;
     shadowGenerator.useKernelBlur = true;
-    shadowGenerator.blurKernel = 64;
-    shadowGenerator.blurScale = 4;
-    shadowGenerator.setDarkness(0.5);
+    shadowGenerator.blurKernel = 32;
+    shadowGenerator.blurScale = 2;
+    shadowGenerator.setDarkness(0.3);
 
     // init environment
     // var skybox = BABYLON.Mesh.CreateBox("SkyBox", 5000.0, scene);
@@ -118,61 +119,62 @@ function BabylonView(props){
     const snapBoxes = [];
     const positions = [
       {
-          position: new BABYLON.Vector3(37,5,87), 
+          position: new BABYLON.Vector3(-23,5,57), 
           allowsFor: ['s', 'm']
       },
       {
-          position: new BABYLON.Vector3(60,5,87), 
+          position: new BABYLON.Vector3(0,5,57), 
           allowsFor: ['s', 'm', 'l']
       },
       {
-          position: new BABYLON.Vector3(83,5,87), 
+          position: new BABYLON.Vector3(23,5,57), 
           allowsFor: ['s']
       },
       {
-          position: new BABYLON.Vector3(37,5,49), 
+          position: new BABYLON.Vector3(-23,5,19), 
           allowsFor: ['s', 'm']
       },
       {
-          position: new BABYLON.Vector3(60,5,49), 
+          position: new BABYLON.Vector3(0,5,19), 
           allowsFor: ['s', 'm', 'l']
       },
       {
-          position: new BABYLON.Vector3(83,5,49), 
+          position: new BABYLON.Vector3(23,5,19), 
           allowsFor: ['s']
       },
       {
-          position: new BABYLON.Vector3(37,5,11), 
+          position: new BABYLON.Vector3(-23,5,-21), 
           allowsFor: ['s', 'm']
       },
       {
-          position: new BABYLON.Vector3(60,5,11), 
+          position: new BABYLON.Vector3(0,5,-21), 
           allowsFor: ['s', 'm', 'l']
       },
       {
-          position: new BABYLON.Vector3(83,5,11), 
+          position: new BABYLON.Vector3(23,5,-21), 
           allowsFor: ['s']
       },
       {
-          position: new BABYLON.Vector3(37,5,-27), 
+          position: new BABYLON.Vector3(-23,5,-57), 
           allowsFor: ['s', 'm']
       },
       {
-          position: new BABYLON.Vector3(60,5,-27), 
+          position: new BABYLON.Vector3(0,5,-57), 
           allowsFor: ['s', 'm', 'l']
       },
       {
-          position: new BABYLON.Vector3(83,5,-27), 
+          position: new BABYLON.Vector3(23,5,-57), 
           allowsFor: ['s']
       }
   ];
-
+    let phoneNode = new BABYLON.TransformNode("Phone");
     for (let i = 0; i < 12; i++) {
       const snapBox = BABYLON.MeshBuilder.CreateBox(`snapBox_${i}`, {width: 10, height: 5, depth: 20}, scene);
       snapBox.position = positions[i].position;
       snapBox.showBoundingBox = true;
       snapBox.visibility = false;
       snapBox.isPickable = false;
+      snapBox.parent = phoneNode;
       snapBoxes.push({
         mesh: snapBox,
         allowsFor: positions[i].allowsFor
@@ -186,9 +188,9 @@ function BabylonView(props){
     });
 
     await loadMotileParts(scene,shadowGenerator);
-    // initDragAndDrop(scene,ground, snapBoxes);
 
     document.addEventListener("spawnComponent", spawnComponent);
+    document.addEventListener("rotatePhone", rotatePhone);
 
     if(history.location.state && history.location.state.editMode)
       loadConfiguration(history.location.state.configuration);
@@ -197,7 +199,11 @@ function BabylonView(props){
 
   function spawnComponent(e){
     let component = motilePartsNodes.find(part => part.name === (e.detail.name)); 
-    component.cloneMesh(e.detail.color,e.detail.position);
+    component.place(e.detail.color,e.detail.position);
+  }
+
+  function rotatePhone(e){
+    globalScene[0].getNodeByName("Phone").rotation.z = e.detail.side == "Front" ? Math.PI : 0;
   }
 
   async function loadMotileParts(scene,shadowGenerator){
@@ -214,7 +220,7 @@ function BabylonView(props){
         motilePartsNodes.push(new Component(scene, assetsManager, shadowGenerator, motilePart));
       });
     }
-    new Base(assetsManager,shadowGenerator,props.tabletSelected);
+    new Base(scene,assetsManager,shadowGenerator,props.tabletSelected);
   
 
     assetsManager.load();
@@ -257,16 +263,17 @@ function BabylonView(props){
     if(startingPoint){
       globalScene[0].activeCamera.attachControl(myRef.current);
       setStartingPoint(null);
-      console.log(state.components.find(component => component.component.name == currentMesh.name.split('_')[0]));
 
       for (let snapBox of snapBoxes) {
         let componentState = state.components.find(component => component.component.name == currentMesh.name.split('_')[0])
         if(snapBox.mesh.intersectsPoint(currentMesh.position) && snapBox.allowsFor.includes(componentState.component.metaData.size)) {
           currentMesh.position = new BABYLON.Vector3(snapBox.mesh.position._x, 6, snapBox.mesh.position._z);
           componentState.position = currentMesh.position; // save snap position
+          currentMesh.parent = globalScene[0].getNodeByName("Phone");
           return;
         }else{
           componentState.position =  null; // remove snap position
+          currentMesh.parent = null;
         }
       }
       return;

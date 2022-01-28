@@ -32,6 +32,7 @@ function Panel(){
 
       swiper.on('slideChange', () => {
         setCurrentPage(swiper.activeIndex);
+        document.dispatchEvent(new CustomEvent("rotatePhone", {detail:{side: swiper.activeIndex == 1 ? "Front" : "Back"}}));
       });
       
       setSwiper(swiper);
@@ -58,7 +59,6 @@ function Panel(){
       swiper.slideTo(index);
     }
   }
-
 
   return (
     <div className="Panel">

@@ -25,7 +25,7 @@
     width: 0;
     height: 0;
 }
-.slider {
+.switchSelector .slider {
     position: absolute;
     cursor: pointer;
     top: 0;

@@ -6,7 +6,7 @@ body {
   overflow-x: hidden;
   margin-top: 72px;
   background-color: #FCFBF9;
-  min-height: calc(100vh - 65px);
+  min-height: calc(100vh - 73px);
 }
 
 html {

@@ -41,7 +41,7 @@ function Header(){
                   <h2>Nachhaltig, individuell und aufrüstbar.</h2>
                   <div className="section1-text">
                     <p>Ein vollständig modulares Smartphone. Ganz nach deinen eigenen Bedürfnissen und Vorlieben. Wähle aus verschiedenen Bestandteilen diejenigen aus, die perfekt zu deinen Vorstellungen passen. Und das beste: Wenn du dein Smartphone zukünftig aufrüsten möchtest, ist dies durch die modulare Bauweise problemlos möglich, ohne gleich das ganze Gerät austauschen zu müssen. Sei dabei!</p>
-                    <Link to="/Konfigurator" className="hd-link1"><button>Jetzt konfigurieren</button></Link>
+                    <Link to="/Konfigurator" className="hd-link1"><button className="btn-grad">Jetzt konfigurieren</button></Link>
                   </div>
               </div>
           </section>
@@ -122,7 +122,7 @@ function Header(){
           <div className="grid-container centered">
             <div className="col-4 col-m-4">
               <span className="material-icons-outlined icon-header">memory</span>
-              <h3>Core</h3>
+              <h2>Core</h2>
               <p>Das Herzstück des Smartphones. Auf welchen Chip die Wahl auch fällt: Das Nutzungserlebnis erreicht garantiert Höchstleistungen.</p>
             </div>
             <div className="col-4  col-m-4">
@@ -138,7 +138,7 @@ function Header(){
           <div className="grid-container">
             <div className="col-12">
               <span className="material-icons-outlined icon-header">photo_camera</span>
-              <h3>Kamera</h3>
+              <h2>Kamera</h2>
               <p className="feature">Du hast die Wahl zwischen verschiedenen Linsen, Brennweiten und und und. Halte deine liebsten Momente so genau fest, wie du sie möchtest. </p>
             </div>
                 <div className="col-3 col-m-3 col-s-6">
@@ -151,7 +151,7 @@ function Header(){
                 </div>
                 <div className="col-3 col-m-3 col-s-0">
                   <img src={process.env.PUBLIC_URL+'/Assets/photos/IMG_20200811_150814~2.jpg'} alt=""/>
-                  <img src={process.env.PUBLIC_URL+'/Assets/photos/IMG_6986.jpg'} alt=""/>
+                  <img src={process.env.PUBLIC_URL+'/Assets/photos/IMG_4591.jpg'} alt=""/>
                 </div>
                 <div className="col-3 col-m-3 col-s-0">
                   <img src={process.env.PUBLIC_URL+'/Assets/photos/IMG_0048.jpg'} alt=""/>
@@ -165,7 +165,7 @@ function Header(){
            <div className="grid-container centered">
               <div className="col-6">
                 <span className="material-icons-outlined icon-header">light_mode</span>
-                <h3>Display</h3>
+                <h2>Display</h2>
                 <p>Das Display hat eine feste Größe von 6,5". Die Auflösung, die Bildwiederholungsrate und die Darstellungstechnologie kannst du frei nach deinen Vorlieben zusammenstellen.</p>
               </div>
               <img className="col-6" src={process.env.PUBLIC_URL+'/Assets/screen.jpg'} alt=""/>
@@ -179,7 +179,7 @@ function Header(){
            <div className="grid-container">
               <div className="col-12">
                 <span className="material-icons-outlined icon-header">add_box</span>
-                <h3>Zusatz</h3>
+                <h2>Zusatz</h2>
                 <p>Mit der Auswahl an verschiedenen optionalen Modulen wie etwa Lautsprecher, zusätzlichen Displays, einem Kickstand, einem DAC oder auch einem Fingerabdruckleser lässt sich das Smartphone individualisieren und für deine persönliche Nutzung optimieren.</p>
               </div>
               <div className="col-12">
@@ -198,7 +198,7 @@ function Header(){
                   <img src={process.env.PUBLIC_URL+'/Assets/dimensions.svg'} alt="" className="img-section8"/>
                </div>
                </div>
-           </section>            
+           </section>
         </div>
     );
     }

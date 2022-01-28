@@ -14,6 +14,34 @@ a.span.material-icons-outlined:hover {
   transform: translateY(5px);
 }
 
+span.material-icons-outlined.icon-medium {
+  color: #785bb4;
+  text-shadow: 0 0 10px #ddd;
+}
+
+
+.btn-grad {background-image: linear-gradient(to right, #5C258D 0%, #4389A2  51%, #5C258D  100%)}
+.btn-grad {
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #ddd;
+ }
+
+ .btn-grad:hover {
+   background-position: right center;
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+
+
+
 /** Klassenselektoren **/
 
 
@@ -39,10 +67,9 @@ a.span.material-icons-outlined:hover {
 }
 
 .Header section{
-  /*min-height: 80vh;*/
   display: flex;
   flex-wrap: wrap;
-  padding: 24px 0;
+  padding: 48px 0;
 }
 
 /* Hintergrundfarbe */
@@ -185,6 +212,10 @@ section.hd-section2 {
   position: relative;  
   padding-bottom: 28px;
   margin-bottom: 48px;
+  transition: .3s;
+}
+a.col-3.col-m-6:hover {
+  margin-bottom: 30px;
 }
 
 .hd-section3 a span.material-icons-outlined:last-child {

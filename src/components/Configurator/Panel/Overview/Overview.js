@@ -14,24 +14,37 @@ function Overview(){
   },[]);
 
   async function saveConfiguration(){
-    if(state.loggedIn){
-      setState(prevState => ({...prevState,showLoadingscreen: true}));
-      
-      let data = {
-        name: configName,
-        number: Math.floor(Math.random() * 1000000000),
-        orderDate: new Date().toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
-        deliveryDate: new Date().addDays(7).toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
-        price: getPrice(),
-        bought:  false,
-        parts: state.components
-      }
+    if(state.loggedIn){   
+      let allComponentsPlaced = true;
+      state.components.forEach(component => {
+        if(!component.position && component.component.name != "Display"&& component.component.name != "Hörmuschel"){
+          allComponentsPlaced = false;
+          setState(prevState => ({...prevState,configuratorErrorMessage: "Du hast nicht alle Komponenten auf das Handy platziert!"}));
+          setTimeout(() => {
+            setState(prevState => ({...prevState,configuratorErrorMessage: null}));
+          }, 8000);
+        }
+      });
 
-      let saveResponse = await ServerRequest.saveUserConfiguration(data); 
-      console.log(saveResponse.data.message);
-      if(saveResponse.data.success){
-        history.push({pathname: '/Profil/Geräte'});
-        setState(prevState => ({...prevState,showLoadingscreen: false}));
+      if(allComponentsPlaced){
+        setState(prevState => ({...prevState,showLoadingscreen: true}));
+   
+        let data = {
+          name: configName,
+          number: Math.floor(Math.random() * 1000000000),
+          orderDate: new Date().toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
+          deliveryDate: new Date().addDays(7).toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
+          price: getPrice(),
+          bought:  false,
+          parts: state.components
+        }
+
+        let saveResponse = await ServerRequest.saveUserConfiguration(data); 
+        console.log(saveResponse.data.message);
+        if(saveResponse.data.success){
+          history.push({pathname: '/Profil/Geräte'});
+          setState(prevState => ({...prevState,showLoadingscreen: false}));
+        }
       }
     }else{
       document.dispatchEvent(new CustomEvent("toggleLoginDialogue", {detail: {information: 'Sie müssen eingeloggt sein, um eine Konfiguration zu speichern'}}));

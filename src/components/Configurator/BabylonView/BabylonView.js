@@ -12,6 +12,7 @@ import Component from './Component';
 import ServerRequest from '../../../services/ServerRequest';
 import history from '../../../services/RouterHistory';
 import {Context} from '../../../Store'
+import {CSSTransition} from 'react-transition-group';
 
 function BabylonView(props){
   const [state, setState] = useContext(Context);
@@ -134,12 +135,15 @@ function BabylonView(props){
   }
 
   function spawnComponent(e){
-    let component = motilePartsNodes.find(part => part.name === (e.detail.name)); 
-    component.place(e.detail.color,e.detail.position);
+    if(e.detail.name != "Display" && e.detail.name != "Hörmuschel"){
+      let component = motilePartsNodes.find(part => part.name === e.detail.name); 
+      component.place(e.detail.color,e.detail.position);
+    }
   }
 
   function rotatePhone(e){
-    globalScene[0].getNodeByName("Phone").rotation.z = e.detail.side == "Front" ? Math.PI : 0;
+    if(globalScene[0].getNodeByName("Phone"))
+      globalScene[0].getNodeByName("Phone").rotation.z = e.detail.side == "Front" ? Math.PI : 0;
   }
 
   async function loadMotileParts(scene,shadowGenerator){
@@ -242,6 +246,9 @@ function BabylonView(props){
 
   return (
     <div className="BabylonView">
+      <CSSTransition in={state.configuratorErrorMessage != null} classNames="fade" timeout={400} unmountOnExit>
+        <div className='bv-error'>{state.configuratorErrorMessage}</div>
+      </CSSTransition>
       <canvas className="bv-canvas" ref={myRef} onPointerMove={(ev)=> onPointerMove(ev)} onPointerDown={(ev)=> onPointerDown(ev)} onPointerUp={(ev)=> onPointerUp(ev)}/>
     </div>
   );

@@ -1,11 +1,10 @@
 import * as BABYLON from 'babylonjs';
 
 class Component {
-    // constructor(scene, assetsManager, shadowGenerator, motilePart) {
-    constructor(scene, assetsManager, motilePart) {
+    constructor(scene, assetsManager, shadowGenerator, motilePart) {
         this.scene = scene;
         this.assetsManager = assetsManager;
-        // this.shadowGenerator = shadowGenerator;
+        this.shadowGenerator = shadowGenerator;
 
         let data = motilePart["3DData"];
         this.path = data.path;

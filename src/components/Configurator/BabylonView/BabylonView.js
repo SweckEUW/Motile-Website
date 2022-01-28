@@ -83,13 +83,13 @@ function BabylonView(props){
     light0.shadowMaxZ = 1000;
     light0.intensity = 8;
 
-    // let shadowGenerator = new BABYLON.ShadowGenerator(2048, light0);
-    // shadowGenerator.useExponentialShadowMap = true;
-    // shadowGenerator.useBlurExponentialShadowMap = true;
-    // shadowGenerator.useKernelBlur = true;
-    // shadowGenerator.blurKernel = 32;
-    // shadowGenerator.blurScale = 2;
-    // shadowGenerator.setDarkness(0.3);
+    let shadowGenerator = new BABYLON.ShadowGenerator(2048, light0);
+    shadowGenerator.useExponentialShadowMap = true;
+    shadowGenerator.useBlurExponentialShadowMap = true;
+    shadowGenerator.useKernelBlur = true;
+    shadowGenerator.blurKernel = 32;
+    shadowGenerator.blurScale = 2;
+    shadowGenerator.setDarkness(0.3);
 
     // init environment
     // var skybox = BABYLON.Mesh.CreateBox("SkyBox", 5000.0, scene);
@@ -109,7 +109,7 @@ function BabylonView(props){
 
     let ground = BABYLON.Mesh.CreateGround("Ground", 20000, 20000, 1, scene, false);
     ground.material = new Materials.ShadowOnlyMaterial('shadowOnly', scene);
-    // ground.receiveShadows = true;
+    ground.receiveShadows = true;
     setGround(ground);
 
     const snapBoxes = [];
@@ -183,9 +183,7 @@ function BabylonView(props){
       scene.render();
     });
 
-    // await loadMotileParts(scene,shadowGenerator);
-    await loadMotileParts(scene);
-
+    await loadMotileParts(scene,shadowGenerator);
     document.addEventListener("spawnComponent", spawnComponent);
     document.addEventListener("rotatePhone", rotatePhone);
 
@@ -202,8 +200,7 @@ function BabylonView(props){
     globalScene[0].getNodeByName("Phone").rotation.z = e.detail.side == "Front" ? Math.PI : 0;
   }
 
-  // async function loadMotileParts(scene,shadowGenerator){
-  async function loadMotileParts(scene){
+  async function loadMotileParts(scene,shadowGenerator){
     let assetsManager = new BABYLON.AssetsManager(scene);
     assetsManager.useDefaultLoadingScreen = false;
     assetsManager.onTaskErrorObservable.add(function(task) {
@@ -214,13 +211,10 @@ function BabylonView(props){
     console.log(motilePartsResponse.data.message);
     if(motilePartsResponse.data.success){
       motilePartsResponse.data.parts.forEach((motilePart) => {
-        // motilePartsNodes.push(new Component(scene, assetsManager, shadowGenerator, motilePart));
-        motilePartsNodes.push(new Component(scene, assetsManager, motilePart));
+        motilePartsNodes.push(new Component(scene, assetsManager, shadowGenerator, motilePart));
       });
     }
-    // new Base(scene,assetsManager,shadowGenerator,props.tabletSelected);
-    new Base(scene,assetsManager,props.tabletSelected);
-  
+    new Base(scene,assetsManager,shadowGenerator,props.tabletSelected);
 
     assetsManager.load();
 

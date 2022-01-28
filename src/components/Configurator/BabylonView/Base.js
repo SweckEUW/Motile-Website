@@ -1,11 +1,10 @@
 import * as BABYLON from 'babylonjs';
 
 class Base {
-    // constructor(scene, assetsManager, shadowGenerator, isTablet) {
-    constructor(scene, assetsManager, isTablet) {
+    constructor(scene, assetsManager, shadowGenerator, isTablet) {
         this.scene = scene;
         this.assetsManager = assetsManager;
-        // this.shadowGenerator = shadowGenerator;
+        this.shadowGenerator = shadowGenerator;
         this.isTablet = isTablet;
         this.loadMesh();
     }

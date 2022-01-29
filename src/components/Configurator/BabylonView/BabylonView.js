@@ -71,10 +71,10 @@ function BabylonView(props){
     // scene.debugLayer.show();
     
     // init camera
-    let camera = new BABYLON.ArcRotateCamera("Camera", -1, 0.7, 200,new BABYLON.Vector3(0,0,0),scene); 
+    let camera = new BABYLON.ArcRotateCamera("Camera", -1, 0.7, 0 ,new BABYLON.Vector3(0,0,0),scene); 
 		camera.attachControl(myRef.current,false,false,4);
-    camera.lowerRadiusLimit = 250; // Stop zooming in
-    camera.upperRadiusLimit = 250; // Stop zooming out
+    camera.lowerRadiusLimit = props.tabletSelected ? 300: 250; // Stop zooming in
+    camera.upperRadiusLimit = props.tabletSelected ? 300: 250; // Stop zooming out
     camera.upperBetaLimit = 1.5;
     camera.minZ = 10;
     camera.maxZ = 1000;

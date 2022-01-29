@@ -4,16 +4,24 @@ import ServerRequest from '../../services/ServerRequest'
 import {Link} from "react-router-dom";
 import {CSSTransition} from 'react-transition-group';
 import {Context} from '../../Store'
-import history from '../../services/RouterHistory';
+import { useHistory } from 'react-router-dom'
 
 const Navbar = () => {
     const [state, setState] = useContext(Context);
     const [dropDownVisible, setDropDownVisible] = useState(false);
     const [userData, setUserData] = useState(null);
-    
+    const [showConfigurationButton, setShowConfigurationButton] = useState(true);
+    const history = useHistory() 
+
     useEffect(() => {
         getUserData();
     },[state])
+
+    useEffect(() => {
+        return history.listen((location) => { 
+            setShowConfigurationButton(location.pathname != "/Konfigurator");
+        }) 
+    },[history]) 
 
     async function getUserData(){
         let userDataResponse = await ServerRequest.getUserData();
@@ -56,12 +64,14 @@ const Navbar = () => {
                 </Link>
             
             <div className="nav-links">
-                <Link to="/Konfigurator"><button>Konfigurieren</button></Link>
+                <CSSTransition in={showConfigurationButton} classNames="fade" timeout={400} unmountOnExit>
+                    <Link to="/Konfigurator"><button>Konfigurieren</button></Link>
+                </CSSTransition>
                 <Link to="/Warenkorb" className="material-icons-outlined nav-shopping">shopping_cart</Link>
                 <div className="nav-account-container" onClick={() =>{toggleLoginDialogue()}}>
                 <span className="material-icons-outlined nav-account">account_circle</span>
                     <CSSTransition in={state.loggedIn} classNames="slide-right" timeout={400} unmountOnExit>                        
-                    <img className="nav-user-img pfp" src={userData ? userData.profilePic : ''} alt="" />
+                        <img className="nav-user-img pfp" src={userData ? userData.profilePic : ''} alt="" />
                     </CSSTransition>
                 </div>
             </div>

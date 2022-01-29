@@ -5,7 +5,6 @@ import Loadingscreen from './components/Loadingscreen/Loadingscreen';
 import Navbar from './components/Navbar/Navbar';
 import Header from './components/Home/Header/Header';
 import Footer from './components/Footer/Footer';
-// import BlenderRendering from './components/BlenderRendering/BlenderRendering';
 import Configurator from './components/Configurator/Configurator';
 import Configurations from './components/Profile/Configurations/Configurations';
 import Settings from './components/Profile/Settings/Settings';
@@ -13,8 +12,6 @@ import Orders from './components/Profile/Orders/Orders';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import Checkout from './components/Checkout/Checkout';
 import BuyConfirmation from './components/Checkout/BuyConfirmation/BuyConfirmation';
-import SizeChooser from './components/Configurator/SizeChooser/SizeChooser';
-import history from './services/RouterHistory.js';
 
 import React from 'react';
 

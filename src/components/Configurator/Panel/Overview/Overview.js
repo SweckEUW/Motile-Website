@@ -11,6 +11,9 @@ function Overview(props){
 
   useEffect(() =>{ 
     setState(prevState => ({...prevState,components: []}));
+
+    if(history.location.state && history.location.state.editMode)
+      setConfigName(history.location.state.configuration.name)  
   },[]);
 
   async function saveConfiguration(){
@@ -79,7 +82,7 @@ function Overview(props){
       <p className='ov-title'>Übersicht</p>
 
       <span className="ov-header" onClick={() =>{toggleNameEdit()}}>  
-        <input id='ov-header-input' className="ov-header-input" type="text" defaultValue={configName} onChange={e => updateConfigurationName(e)}/>
+        <input id='ov-header-input' className="ov-header-input" type="text" value={configName} onChange={e => updateConfigurationName(e)}/>
         <span className="material-icons">edit</span>
       </span>
       

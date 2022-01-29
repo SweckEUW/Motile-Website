@@ -25,7 +25,8 @@ export default class blenderJobs{
 
         let settings = {
             exportPath: exportPath,
-            components: renderPositions
+            components: renderPositions,
+            isTablet: request.body.config.isTablet
         }    
         console.log(settings);
         settings = JSON.stringify(JSON.stringify(settings));

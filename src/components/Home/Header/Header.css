@@ -19,6 +19,12 @@ span.material-icons-outlined.icon-medium {
   text-shadow: 0 0 10px #ddd;
 }
 
+a.anchor {
+  display: block;
+  position: relative;
+  top: -65px;
+  visibility: hidden;
+}
 
 .btn-grad {background-image: linear-gradient(to right, #5C258D 0%, #4389A2  51%, #5C258D  100%)}
 .btn-grad {
@@ -237,16 +243,16 @@ a.col-3.col-m-6:hover {
   margin-left: 5%;
   z-index: 2;
 }
-#core .col-4.col-m-4 {
+.hd-section4 .col-4.col-m-4 {
   text-shadow: 0 0 20px black;
 }
-#core {
+.hd-section4 {
   background-size: cover;
   background-attachment: fixed;
 }
 
 @media only screen and (min-width: 500px) {
-  section#core {
+  section.hd-section4 {
     background-image: none!important;
   }  
 }
@@ -254,7 +260,7 @@ a.col-3.col-m-6:hover {
 
 
 /* Section 5 */
-#camera img {
+.hd-section5 img {
   border-radius: 24px;
   margin-bottom: 24px;
 }

@@ -111,14 +111,14 @@ function Header(){
               </a>
               <a href="#optional" className="col-3 col-m-6">
                   <span className="material-icons-outlined icon-medium">add_box</span>
-                  <h3>Optional</h3>
+                  <h3>Zusatz</h3>
                   <p>Wähle für deine Bedürfnisse optimierte Zusatzmodule aus, um dein Smartphone zu individualisieren.</p>
                   <span className="material-icons-outlined">expand_more</span>
               </a>
             </div>  
           </section>     
-           
-          <section id="core" className="hd-section4 image-right" style={{backgroundImage: "url('/Assets/image-section4.png')"}}>
+          <a id="core" className="anchor"/>
+          <section className="hd-section4 image-right anchor" style={{backgroundImage: "url('/Assets/image-section4.png')"}}>
           <div className="grid-container centered">
             <div className="col-4 col-m-4">
               <span className="material-icons-outlined icon-header">memory</span>
@@ -133,8 +133,8 @@ function Header(){
             </div>
             </div>
           </section>
-
-          <section id="camera" className="hd-section5">
+          <a id="camera" className="anchor"/>
+          <section className="hd-section5">
           <div className="grid-container">
             <div className="col-12">
               <span className="material-icons-outlined icon-header">photo_camera</span>
@@ -161,7 +161,8 @@ function Header(){
             </div>
            </section>
 
-           <section id="display" className="hd-section6 image-right">
+           <a id="display" className="anchor"/>
+           <section className="hd-section6 image-right">
            <div className="grid-container centered">
               <div className="col-6">
                 <span className="material-icons-outlined icon-header">light_mode</span>
@@ -175,7 +176,8 @@ function Header(){
            </div>
            </section>
 
-           <section id="optional" className="hd-section7">
+           <a id="optional" className="anchor"/>
+           <section className="hd-section7">
            <div className="grid-container">
               <div className="col-12">
                 <span className="material-icons-outlined icon-header">add_box</span>

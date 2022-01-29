@@ -71,9 +71,11 @@ const Navbar = () => {
                 </CSSTransition>
                 <Link to="/Warenkorb" className="material-icons-outlined nav-shopping">
                     shopping_cart
-
-                    <div className="itemcounter">{inShoppingCart.length}</div>
-
+                    {(function() {
+                    if (inShoppingCart.length > 0) {
+                        return <div className="itemcounter">{inShoppingCart.length}</div>
+                    } 
+                    })()}
                 </Link>
                 <div className="nav-account-container" onClick={() =>{toggleLoginDialogue()}}>
                 <span className="material-icons-outlined nav-account">account_circle</span>

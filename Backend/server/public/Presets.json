@@ -1,0 +1,1381 @@
+[
+    {
+        "name": "Meine Konfiguration",
+        "number": 584277870,
+        "orderDate": "29. Januar 2022",
+        "deliveryDate": "5. Februar 2022",
+        "price": "765 €",
+        "bought": false,
+        "parts": [{
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d67",
+                "name": "Core",
+                "side": "Back",
+                "metaData": {
+                    "price": "35 €",
+                    "description": "Das Computing Modul beinhaltet das SoC (System on Chip) sowie den Arbeitsspeicher und ist damit das Herzstück des Smartphones.",
+                    "size": "m",
+                    "icon": "memory",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/computing/computing.jpg",
+                    "requiredPos": "none",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "SoC",
+                        "type": "columns",
+                        "selections": ["MediaTek Dimensity", "Qualcomm Snapdragon 765", "Qualcomm Snapdragon 888+"],
+                        "selectedOptions": ["MediaTek Dimensity"]
+                    }, {
+                        "name": "Arbeitsspeicher",
+                        "type": "columns",
+                        "selections": ["8GB Ram", "16GB Ram", "32GB Ram"],
+                        "selectedOptions": ["8GB Ram"]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/core/core.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "SoC",
+                "type": "columns",
+                "selections": ["MediaTek Dimensity", "Qualcomm Snapdragon 765", "Qualcomm Snapdragon 888+"],
+                "selectedOptions": ["MediaTek Dimensity"]
+            }, {
+                "name": "Arbeitsspeicher",
+                "type": "columns",
+                "selections": ["8GB Ram", "16GB Ram", "32GB Ram"],
+                "selectedOptions": ["8GB Ram"]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": -23,
+                "_y": 2.5,
+                "_z": 19
+            }
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d68",
+                "name": "Wireless",
+                "side": "Back",
+                "metaData": {
+                    "price": "230 €",
+                    "description": "Das Wireless-Modul beinhaltet den SIM-Kartenslot, die Antennen für Mobilfunk, WLAN-, Bluetooth sowie wahlweise auch GPS und NFC.",
+                    "size": "s",
+                    "icon": "wifi",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/wireless/wireless.jpg",
+                    "requiredPos": "side",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Netzwerk",
+                        "type": "columns",
+                        "selections": ["4G", "5G"],
+                        "selectedOptions": ["4G"]
+                    }, {
+                        "name": "Optionale Features",
+                        "type": "switch",
+                        "selections": [{
+                            "name": "GPS",
+                            "icon": "location_on"
+                        }, {
+                            "name": "NFC",
+                            "icon": "nfc"
+                        }],
+                        "selectedOptions": [null, null]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/Wireless/wireless.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Netzwerk",
+                "type": "columns",
+                "selections": ["4G", "5G"],
+                "selectedOptions": ["4G"]
+            }, {
+                "name": "Optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "GPS",
+                    "icon": "location_on"
+                }, {
+                    "name": "NFC",
+                    "icon": "nfc"
+                }],
+                "selectedOptions": [null, null]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": -23,
+                "_y": 2.5,
+                "_z": -19
+            }
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d69",
+                "name": "Speicher",
+                "side": "Back",
+                "metaData": {
+                    "price": "20 €",
+                    "description": "Bei der Wahl der Speicherkapazität ist zu beachten, dass das Betriebssystem etwa 30 GB benötigt. Auch die Größe des Moduls ist von der Auswahl abhängig.",
+                    "size": "s",
+                    "icon": "storage",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/memory/memory-1.jpg",
+                    "requiredPos": "side",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Kapazität",
+                        "type": "columns",
+                        "selections": ["64 GB", "256 GB", "512 GB", "1 TB"],
+                        "selectedOptions": ["64 GB"]
+                    }, {
+                        "name": "Optionale Features",
+                        "type": "switch",
+                        "selections": [{
+                            "name": "MicroSD Kartenleser",
+                            "icon": "sd_card"
+                        }],
+                        "selectedOptions": [null]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/storage/storage-sd.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Kapazität",
+                "type": "columns",
+                "selections": ["64 GB", "256 GB", "512 GB", "1 TB"],
+                "selectedOptions": ["64 GB"]
+            }, {
+                "name": "Optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "MicroSD Kartenleser",
+                    "icon": "sd_card"
+                }],
+                "selectedOptions": [null]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": 23,
+                "_y": 2.5,
+                "_z": 19
+            }
+        }, {
+            "component": {
+                "_id": "61f3c141d91ee35c51061dd2",
+                "name": "Akku I",
+                "side": "",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "",
+                    "size": "m",
+                    "icon": "add_box",
+                    "thumbnail": "",
+                    "requiredPos": "bottom",
+                    "colorways": [],
+                    "options": []
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/battery/battery.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Größe",
+                "type": "rows",
+                "selections": [{
+                    "head": "3.500 mAh",
+                    "additionalInfo": "",
+                    "img": "",
+                    "motilePart": "Akku I"
+                }, {
+                    "head": "4.000 mAh",
+                    "additionalInfo": "",
+                    "img": "",
+                    "motilePart": "Akku II"
+                }, {
+                    "head": "5.000 mAh",
+                    "motilePart": "Akku III",
+                    "additionalInfo": "",
+                    "img": ""
+                }],
+                "selectedOptions": ["", "Akku I"]
+            }, {
+                "name": "Optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "Induktives Laden",
+                    "icon": "ev_station"
+                }],
+                "selectedOptions": [null]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": -23,
+                "_y": 2.5,
+                "_z": -57
+            }
+        }, {
+            "component": {
+                "_id": "61f3a40bd91ee35c51061dd1",
+                "name": "Kamera klein II",
+                "side": "",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "",
+                    "size": "s",
+                    "icon": "add_box",
+                    "thumbnail": "",
+                    "requiredPos": "none",
+                    "colorways": [],
+                    "options": []
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/camera/camera-small-2.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Typ",
+                "type": "rows",
+                "selections": [{
+                    "head": "Basic",
+                    "additionalInfo": "12 MP 20mm ƒ/4.8",
+                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_1.svg",
+                    "motilePart": "Kamera klein I"
+                }, {
+                    "head": "Dual",
+                    "additionalInfo": "25 MP 23mm ƒ/1.8",
+                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_2.svg",
+                    "motilePart": "Kamera klein II"
+                }, {
+                    "head": "Pro",
+                    "motilePart": "Kamera groß",
+                    "additionalInfo": "48 MP 23mm ƒ/1.8",
+                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_3.svg"
+                }],
+                "selectedOptions": ["25 MP 23mm ƒ/1.8", "Kamera klein II"]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": 23,
+                "_y": 2.5,
+                "_z": 57
+            }
+        }, {
+            "component": {
+                "_id": "61ef0f0d328f749f0814539f",
+                "name": "DAC",
+                "side": "Back",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "",
+                    "size": "s",
+                    "icon": "add_box",
+                    "thumbnail": "",
+                    "requiredPos": "bottom",
+                    "colorways": [],
+                    "options": []
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/optional/audio-dac.glb",
+                    "scale": [1000, 1000, 1000]
+                },
+                "optional": "true"
+            },
+            "settings": [{
+                "name": "Typ",
+                "type": "addon",
+                "selections": [{
+                    "name": "Extra Lautsprecher",
+                    "icon": "speaker"
+                }, {
+                    "name": "Großer Rückdisplay",
+                    "icon": "light_mode"
+                }, {
+                    "name": "Kleiner Rückdisplay",
+                    "icon": "flare"
+                }, {
+                    "name": "DAC",
+                    "icon": "headphones"
+                }, {
+                    "name": "Fingerprint",
+                    "icon": "fingerprint"
+                }],
+                "selectedOptions": [""]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": 23,
+                "_y": 2.5,
+                "_z": -57
+            }
+        }, {
+            "component": {
+                "_id": "61ebf2c071caa686965294fa",
+                "name": "Extra Lautsprecher",
+                "side": "Back",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "",
+                    "size": "m",
+                    "icon": "add_box",
+                    "thumbnail": "",
+                    "requiredPos": "none",
+                    "colorways": [],
+                    "options": []
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/optional/speaker.glb",
+                    "scale": [1000, 1000, 1000]
+                },
+                "optional": "true"
+            },
+            "settings": [{
+                "name": "Typ",
+                "type": "addon",
+                "selections": [{
+                    "name": "Extra Lautsprecher",
+                    "icon": "speaker"
+                }, {
+                    "name": "Großer Rückdisplay",
+                    "icon": "light_mode"
+                }, {
+                    "name": "Kleiner Rückdisplay",
+                    "icon": "flare"
+                }, {
+                    "name": "DAC",
+                    "icon": "headphones"
+                }, {
+                    "name": "Fingerprint",
+                    "icon": "fingerprint"
+                }],
+                "selectedOptions": [""]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": -23,
+                "_y": 2.5,
+                "_z": 57
+            }
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d6d",
+                "name": "Display",
+                "side": "Front",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "Das Display hat eine Größe von 6,5\". Bei der Auswahl von High-End-Optionen wird empfohlen, einen entsprechend leistungsfähigen Akku einzubauen.",
+                    "size": "xl",
+                    "icon": "light_mode",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/optional/screen-2.jpg",
+                    "requiredPos": "none",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Auflösung",
+                        "type": "columns",
+                        "selections": ["720p HD", "1080p FHD", "1440p QHD"],
+                        "selectedOptions": ["720p HD"]
+                    }, {
+                        "name": "Darstellungstechnik",
+                        "type": "columns",
+                        "selections": ["LCD", "OLED"],
+                        "selectedOptions": ["LCD"]
+                    }, {
+                        "name": "Bildwiederholfrequenz",
+                        "type": "columns",
+                        "selections": ["60 HZ", "120 HZ"],
+                        "selectedOptions": ["60 HZ"]
+                    }, {
+                        "name": "optionale Features",
+                        "type": "switch",
+                        "selections": [{
+                            "name": "Fingerabdrucksensor",
+                            "icon": "fingerprint"
+                        }],
+                        "selectedOptions": [null]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/front/screen-phone.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Auflösung",
+                "type": "columns",
+                "selections": ["720p HD", "1080p FHD", "1440p QHD"],
+                "selectedOptions": ["720p HD"]
+            }, {
+                "name": "Darstellungstechnik",
+                "type": "columns",
+                "selections": ["LCD", "OLED"],
+                "selectedOptions": ["LCD"]
+            }, {
+                "name": "Bildwiederholfrequenz",
+                "type": "columns",
+                "selections": ["60 HZ", "120 HZ"],
+                "selectedOptions": ["60 HZ"]
+            }, {
+                "name": "optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "Fingerabdrucksensor",
+                    "icon": "fingerprint"
+                }],
+                "selectedOptions": [null]
+            }],
+            "color": "#000000"
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d6e",
+                "name": "Hörmuschel",
+                "side": "Front",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "In der Hörmuschel befindet sich der Lautsprecher zum telefonieren, ein Näherungssensor sowie die Frontkamera, falls gewünscht.",
+                    "size": "s",
+                    "icon": "volume_up",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/optional/speaker-1.jpg",
+                    "requiredPos": "none",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Kamera",
+                        "type": "columns",
+                        "selections": ["12 MP 30mm ƒ/2.3", "25 MP 19mm ƒ/1.8"],
+                        "selectedOptions": ["12 MP 30mm ƒ/2.3"]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/front/earpiece.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Kamera",
+                "type": "columns",
+                "selections": ["12 MP 30mm ƒ/2.3", "25 MP 19mm ƒ/1.8"],
+                "selectedOptions": ["12 MP 30mm ƒ/2.3"]
+            }],
+            "color": "#000000"
+        }],
+        "isTablet": false,
+        "thumbnail": "http://localhost:5000/UserThumbnails/Simon_Weck_61d91a0cd0312cb4229be81e/584277870.png"
+    },
+
+
+    {
+        "name": "Meine Konfiguration",
+        "number": 183751673,
+        "orderDate": "29. Januar 2022",
+        "deliveryDate": "5. Februar 2022",
+        "price": "685 €",
+        "bought": false,
+        "parts": [{
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d67",
+                "name": "Core",
+                "side": "Back",
+                "metaData": {
+                    "price": "35 €",
+                    "description": "Das Computing Modul beinhaltet das SoC (System on Chip) sowie den Arbeitsspeicher und ist damit das Herzstück des Smartphones.",
+                    "size": "m",
+                    "icon": "memory",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/computing/computing.jpg",
+                    "requiredPos": "none",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "SoC",
+                        "type": "columns",
+                        "selections": ["MediaTek Dimensity", "Qualcomm Snapdragon 765", "Qualcomm Snapdragon 888+"],
+                        "selectedOptions": ["MediaTek Dimensity"]
+                    }, {
+                        "name": "Arbeitsspeicher",
+                        "type": "columns",
+                        "selections": ["8GB Ram", "16GB Ram", "32GB Ram"],
+                        "selectedOptions": ["8GB Ram"]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/core/core.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "SoC",
+                "type": "columns",
+                "selections": ["MediaTek Dimensity", "Qualcomm Snapdragon 765", "Qualcomm Snapdragon 888+"],
+                "selectedOptions": ["MediaTek Dimensity"]
+            }, {
+                "name": "Arbeitsspeicher",
+                "type": "columns",
+                "selections": ["8GB Ram", "16GB Ram", "32GB Ram"],
+                "selectedOptions": ["8GB Ram"]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": -23,
+                "_y": 2.5,
+                "_z": 19
+            }
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d68",
+                "name": "Wireless",
+                "side": "Back",
+                "metaData": {
+                    "price": "230 €",
+                    "description": "Das Wireless-Modul beinhaltet den SIM-Kartenslot, die Antennen für Mobilfunk, WLAN-, Bluetooth sowie wahlweise auch GPS und NFC.",
+                    "size": "s",
+                    "icon": "wifi",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/wireless/wireless.jpg",
+                    "requiredPos": "side",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Netzwerk",
+                        "type": "columns",
+                        "selections": ["4G", "5G"],
+                        "selectedOptions": ["4G"]
+                    }, {
+                        "name": "Optionale Features",
+                        "type": "switch",
+                        "selections": [{
+                            "name": "GPS",
+                            "icon": "location_on"
+                        }, {
+                            "name": "NFC",
+                            "icon": "nfc"
+                        }],
+                        "selectedOptions": [null, null]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/Wireless/wireless.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Netzwerk",
+                "type": "columns",
+                "selections": ["4G", "5G"],
+                "selectedOptions": ["4G"]
+            }, {
+                "name": "Optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "GPS",
+                    "icon": "location_on"
+                }, {
+                    "name": "NFC",
+                    "icon": "nfc"
+                }],
+                "selectedOptions": [null, null]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": -23,
+                "_y": 2.5,
+                "_z": -19
+            }
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d69",
+                "name": "Speicher",
+                "side": "Back",
+                "metaData": {
+                    "price": "20 €",
+                    "description": "Bei der Wahl der Speicherkapazität ist zu beachten, dass das Betriebssystem etwa 30 GB benötigt. Auch die Größe des Moduls ist von der Auswahl abhängig.",
+                    "size": "s",
+                    "icon": "storage",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/memory/memory-1.jpg",
+                    "requiredPos": "side",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Kapazität",
+                        "type": "columns",
+                        "selections": ["64 GB", "256 GB", "512 GB", "1 TB"],
+                        "selectedOptions": ["64 GB"]
+                    }, {
+                        "name": "Optionale Features",
+                        "type": "switch",
+                        "selections": [{
+                            "name": "MicroSD Kartenleser",
+                            "icon": "sd_card"
+                        }],
+                        "selectedOptions": [null]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/storage/storage-sd.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Kapazität",
+                "type": "columns",
+                "selections": ["64 GB", "256 GB", "512 GB", "1 TB"],
+                "selectedOptions": ["64 GB"]
+            }, {
+                "name": "Optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "MicroSD Kartenleser",
+                    "icon": "sd_card"
+                }],
+                "selectedOptions": [null]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": 23,
+                "_y": 2.5,
+                "_z": 19
+            }
+        }, {
+            "component": {
+                "_id": "61f3c160d91ee35c51061dd4",
+                "name": "Akku III",
+                "side": "",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "",
+                    "size": "l",
+                    "icon": "add_box",
+                    "thumbnail": "",
+                    "requiredPos": "bottom",
+                    "colorways": [],
+                    "options": []
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/battery/battery-3.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Größe",
+                "type": "rows",
+                "selections": [{
+                    "head": "3.500 mAh",
+                    "additionalInfo": "",
+                    "img": "",
+                    "motilePart": "Akku I"
+                }, {
+                    "head": "4.000 mAh",
+                    "additionalInfo": "",
+                    "img": "",
+                    "motilePart": "Akku II"
+                }, {
+                    "head": "5.000 mAh",
+                    "motilePart": "Akku III",
+                    "additionalInfo": "",
+                    "img": ""
+                }],
+                "selectedOptions": ["", "Akku III"]
+            }, {
+                "name": "Optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "Induktives Laden",
+                    "icon": "ev_station"
+                }],
+                "selectedOptions": [null]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": 0,
+                "_y": 2.5,
+                "_z": -57
+            }
+        }, {
+            "component": {
+                "_id": "61f3a310d91ee35c51061dcf",
+                "name": "Kamera groß",
+                "side": "",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "",
+                    "size": "m",
+                    "icon": "add_box",
+                    "thumbnail": "",
+                    "requiredPos": "none",
+                    "colorways": [],
+                    "options": []
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/camera/Camera-large.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Typ",
+                "type": "rows",
+                "selections": [{
+                    "head": "Basic",
+                    "additionalInfo": "12 MP 20mm ƒ/4.8",
+                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_1.svg",
+                    "motilePart": "Kamera klein I"
+                }, {
+                    "head": "Dual",
+                    "additionalInfo": "25 MP 23mm ƒ/1.8",
+                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_2.svg",
+                    "motilePart": "Kamera klein II"
+                }, {
+                    "head": "Pro",
+                    "motilePart": "Kamera groß",
+                    "additionalInfo": "48 MP 23mm ƒ/1.8",
+                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_3.svg"
+                }],
+                "selectedOptions": ["48 MP 23mm ƒ/1.8", "Kamera groß"]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": 0,
+                "_y": 2.5,
+                "_z": 57
+            }
+        }, {
+            "component": {
+                "_id": "61ebf35371caa686965294fc",
+                "name": "Großer Rückdisplay",
+                "side": "Back",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "",
+                    "size": "m",
+                    "icon": "add_box",
+                    "thumbnail": "",
+                    "requiredPos": "none",
+                    "colorways": [],
+                    "options": []
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/optional/screen-l.glb",
+                    "scale": [1000, 1000, 1000]
+                },
+                "optional": "true"
+            },
+            "settings": [{
+                "name": "Typ",
+                "type": "addon",
+                "selections": [{
+                    "name": "Extra Lautsprecher",
+                    "icon": "speaker"
+                }, {
+                    "name": "Großer Rückdisplay",
+                    "icon": "light_mode"
+                }, {
+                    "name": "Kleiner Rückdisplay",
+                    "icon": "flare"
+                }, {
+                    "name": "DAC",
+                    "icon": "headphones"
+                }, {
+                    "name": "Fingerprint",
+                    "icon": "fingerprint"
+                }],
+                "selectedOptions": [""]
+            }],
+            "color": "#000000",
+            "position": {
+                "_isDirty": false,
+                "_x": 0,
+                "_y": 2.5,
+                "_z": -19
+            }
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d6d",
+                "name": "Display",
+                "side": "Front",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "Das Display hat eine Größe von 6,5\". Bei der Auswahl von High-End-Optionen wird empfohlen, einen entsprechend leistungsfähigen Akku einzubauen.",
+                    "size": "xl",
+                    "icon": "light_mode",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/optional/screen-2.jpg",
+                    "requiredPos": "none",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Auflösung",
+                        "type": "columns",
+                        "selections": ["720p HD", "1080p FHD", "1440p QHD"],
+                        "selectedOptions": ["720p HD"]
+                    }, {
+                        "name": "Darstellungstechnik",
+                        "type": "columns",
+                        "selections": ["LCD", "OLED"],
+                        "selectedOptions": ["LCD"]
+                    }, {
+                        "name": "Bildwiederholfrequenz",
+                        "type": "columns",
+                        "selections": ["60 HZ", "120 HZ"],
+                        "selectedOptions": ["60 HZ"]
+                    }, {
+                        "name": "optionale Features",
+                        "type": "switch",
+                        "selections": [{
+                            "name": "Fingerabdrucksensor",
+                            "icon": "fingerprint"
+                        }],
+                        "selectedOptions": [null]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/front/screen-phone.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Auflösung",
+                "type": "columns",
+                "selections": ["720p HD", "1080p FHD", "1440p QHD"],
+                "selectedOptions": ["720p HD"]
+            }, {
+                "name": "Darstellungstechnik",
+                "type": "columns",
+                "selections": ["LCD", "OLED"],
+                "selectedOptions": ["LCD"]
+            }, {
+                "name": "Bildwiederholfrequenz",
+                "type": "columns",
+                "selections": ["60 HZ", "120 HZ"],
+                "selectedOptions": ["60 HZ"]
+            }, {
+                "name": "optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "Fingerabdrucksensor",
+                    "icon": "fingerprint"
+                }],
+                "selectedOptions": [null]
+            }],
+            "color": "#000000"
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d6e",
+                "name": "Hörmuschel",
+                "side": "Front",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "In der Hörmuschel befindet sich der Lautsprecher zum telefonieren, ein Näherungssensor sowie die Frontkamera, falls gewünscht.",
+                    "size": "s",
+                    "icon": "volume_up",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/optional/speaker-1.jpg",
+                    "requiredPos": "none",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Kamera",
+                        "type": "columns",
+                        "selections": ["12 MP 30mm ƒ/2.3", "25 MP 19mm ƒ/1.8"],
+                        "selectedOptions": ["12 MP 30mm ƒ/2.3"]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/front/earpiece.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Kamera",
+                "type": "columns",
+                "selections": ["12 MP 30mm ƒ/2.3", "25 MP 19mm ƒ/1.8"],
+                "selectedOptions": ["12 MP 30mm ƒ/2.3"]
+            }],
+            "color": "#000000"
+        }],
+        "isTablet": false,
+        "thumbnail": "http://localhost:5000/UserThumbnails/Simon_Weck_61d91a0cd0312cb4229be81e/183751673.png"
+    },
+
+    {
+        "name": "Meine Konfiguration",
+        "number": 605560876,
+        "orderDate": "29. Januar 2022",
+        "deliveryDate": "5. Februar 2022",
+        "price": "765 €",
+        "bought": false,
+        "parts": [{
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d67",
+                "name": "Core",
+                "side": "Back",
+                "metaData": {
+                    "price": "35 €",
+                    "description": "Das Computing Modul beinhaltet das SoC (System on Chip) sowie den Arbeitsspeicher und ist damit das Herzstück des Smartphones.",
+                    "size": "m",
+                    "icon": "memory",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/computing/computing.jpg",
+                    "requiredPos": "none",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "SoC",
+                        "type": "columns",
+                        "selections": ["MediaTek Dimensity", "Qualcomm Snapdragon 765", "Qualcomm Snapdragon 888+"],
+                        "selectedOptions": ["MediaTek Dimensity"]
+                    }, {
+                        "name": "Arbeitsspeicher",
+                        "type": "columns",
+                        "selections": ["8GB Ram", "16GB Ram", "32GB Ram"],
+                        "selectedOptions": ["8GB Ram"]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/core/core.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "SoC",
+                "type": "columns",
+                "selections": ["MediaTek Dimensity", "Qualcomm Snapdragon 765", "Qualcomm Snapdragon 888+"],
+                "selectedOptions": ["MediaTek Dimensity"]
+            }, {
+                "name": "Arbeitsspeicher",
+                "type": "columns",
+                "selections": ["8GB Ram", "16GB Ram", "32GB Ram"],
+                "selectedOptions": ["8GB Ram"]
+            }],
+            "color": "#AFB0B4",
+            "position": {
+                "_isDirty": false,
+                "_x": -23,
+                "_y": 2.5,
+                "_z": 19
+            }
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d68",
+                "name": "Wireless",
+                "side": "Back",
+                "metaData": {
+                    "price": "230 €",
+                    "description": "Das Wireless-Modul beinhaltet den SIM-Kartenslot, die Antennen für Mobilfunk, WLAN-, Bluetooth sowie wahlweise auch GPS und NFC.",
+                    "size": "s",
+                    "icon": "wifi",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/wireless/wireless.jpg",
+                    "requiredPos": "side",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Netzwerk",
+                        "type": "columns",
+                        "selections": ["4G", "5G"],
+                        "selectedOptions": ["4G"]
+                    }, {
+                        "name": "Optionale Features",
+                        "type": "switch",
+                        "selections": [{
+                            "name": "GPS",
+                            "icon": "location_on"
+                        }, {
+                            "name": "NFC",
+                            "icon": "nfc"
+                        }],
+                        "selectedOptions": [null, null]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/Wireless/wireless.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Netzwerk",
+                "type": "columns",
+                "selections": ["4G", "5G"],
+                "selectedOptions": ["4G"]
+            }, {
+                "name": "Optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "GPS",
+                    "icon": "location_on"
+                }, {
+                    "name": "NFC",
+                    "icon": "nfc"
+                }],
+                "selectedOptions": [null, null]
+            }],
+            "color": "#D4ACAA",
+            "position": {
+                "_isDirty": false,
+                "_x": -23,
+                "_y": 2.5,
+                "_z": -19
+            }
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d69",
+                "name": "Speicher",
+                "side": "Back",
+                "metaData": {
+                    "price": "20 €",
+                    "description": "Bei der Wahl der Speicherkapazität ist zu beachten, dass das Betriebssystem etwa 30 GB benötigt. Auch die Größe des Moduls ist von der Auswahl abhängig.",
+                    "size": "s",
+                    "icon": "storage",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/memory/memory-1.jpg",
+                    "requiredPos": "side",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Kapazität",
+                        "type": "columns",
+                        "selections": ["64 GB", "256 GB", "512 GB", "1 TB"],
+                        "selectedOptions": ["64 GB"]
+                    }, {
+                        "name": "Optionale Features",
+                        "type": "switch",
+                        "selections": [{
+                            "name": "MicroSD Kartenleser",
+                            "icon": "sd_card"
+                        }],
+                        "selectedOptions": [null]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/storage/storage-sd.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Kapazität",
+                "type": "columns",
+                "selections": ["64 GB", "256 GB", "512 GB", "1 TB"],
+                "selectedOptions": ["64 GB"]
+            }, {
+                "name": "Optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "MicroSD Kartenleser",
+                    "icon": "sd_card"
+                }],
+                "selectedOptions": [null]
+            }],
+            "color": "#D43536",
+            "position": {
+                "_isDirty": false,
+                "_x": 23,
+                "_y": 2.5,
+                "_z": 19
+            }
+        }, {
+            "component": {
+                "_id": "61f3c141d91ee35c51061dd2",
+                "name": "Akku I",
+                "side": "",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "",
+                    "size": "m",
+                    "icon": "add_box",
+                    "thumbnail": "",
+                    "requiredPos": "bottom",
+                    "colorways": [],
+                    "options": []
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/battery/battery.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Größe",
+                "type": "rows",
+                "selections": [{
+                    "head": "3.500 mAh",
+                    "additionalInfo": "",
+                    "img": "",
+                    "motilePart": "Akku I"
+                }, {
+                    "head": "4.000 mAh",
+                    "additionalInfo": "",
+                    "img": "",
+                    "motilePart": "Akku II"
+                }, {
+                    "head": "5.000 mAh",
+                    "motilePart": "Akku III",
+                    "additionalInfo": "",
+                    "img": ""
+                }],
+                "selectedOptions": ["", "Akku I"]
+            }, {
+                "name": "Optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "Induktives Laden",
+                    "icon": "ev_station"
+                }],
+                "selectedOptions": [null]
+            }],
+            "color": "#4D7A91",
+            "position": {
+                "_isDirty": false,
+                "_x": -23,
+                "_y": 6,
+                "_z": -57
+            }
+        }, {
+            "component": {
+                "_id": "61f3a40bd91ee35c51061dd1",
+                "name": "Kamera klein II",
+                "side": "",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "",
+                    "size": "s",
+                    "icon": "add_box",
+                    "thumbnail": "",
+                    "requiredPos": "none",
+                    "colorways": [],
+                    "options": []
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/camera/camera-small-2.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Typ",
+                "type": "rows",
+                "selections": [{
+                    "head": "Basic",
+                    "additionalInfo": "12 MP 20mm ƒ/4.8",
+                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_1.svg",
+                    "motilePart": "Kamera klein I"
+                }, {
+                    "head": "Dual",
+                    "additionalInfo": "25 MP 23mm ƒ/1.8",
+                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_2.svg",
+                    "motilePart": "Kamera klein II"
+                }, {
+                    "head": "Pro",
+                    "motilePart": "Kamera groß",
+                    "additionalInfo": "48 MP 23mm ƒ/1.8",
+                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_3.svg"
+                }],
+                "selectedOptions": ["25 MP 23mm ƒ/1.8", "Kamera klein II"]
+            }],
+            "color": "#AFB0B4",
+            "position": {
+                "_isDirty": false,
+                "_x": -23,
+                "_y": 2.5,
+                "_z": 57
+            }
+        }, {
+            "component": {
+                "_id": "61ef0f0d328f749f0814539f",
+                "name": "DAC",
+                "side": "Back",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "",
+                    "size": "s",
+                    "icon": "add_box",
+                    "thumbnail": "",
+                    "requiredPos": "bottom",
+                    "colorways": [],
+                    "options": []
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/optional/audio-dac.glb",
+                    "scale": [1000, 1000, 1000]
+                },
+                "optional": "true"
+            },
+            "settings": [{
+                "name": "Typ",
+                "type": "addon",
+                "selections": [{
+                    "name": "Extra Lautsprecher",
+                    "icon": "speaker"
+                }, {
+                    "name": "Großer Rückdisplay",
+                    "icon": "light_mode"
+                }, {
+                    "name": "Kleiner Rückdisplay",
+                    "icon": "flare"
+                }, {
+                    "name": "DAC",
+                    "icon": "headphones"
+                }, {
+                    "name": "Fingerprint",
+                    "icon": "fingerprint"
+                }],
+                "selectedOptions": [""]
+            }],
+            "color": "#AFD7CE",
+            "position": {
+                "_isDirty": false,
+                "_x": 23,
+                "_y": 2.5,
+                "_z": -57
+            }
+        }, {
+            "component": {
+                "_id": "61ebf2c071caa686965294fa",
+                "name": "Extra Lautsprecher",
+                "side": "Back",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "",
+                    "size": "m",
+                    "icon": "add_box",
+                    "thumbnail": "",
+                    "requiredPos": "none",
+                    "colorways": [],
+                    "options": []
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/back/modules/optional/speaker.glb",
+                    "scale": [1000, 1000, 1000]
+                },
+                "optional": "true"
+            },
+            "settings": [{
+                "name": "Typ",
+                "type": "addon",
+                "selections": [{
+                    "name": "Extra Lautsprecher",
+                    "icon": "speaker"
+                }, {
+                    "name": "Großer Rückdisplay",
+                    "icon": "light_mode"
+                }, {
+                    "name": "Kleiner Rückdisplay",
+                    "icon": "flare"
+                }, {
+                    "name": "DAC",
+                    "icon": "headphones"
+                }, {
+                    "name": "Fingerprint",
+                    "icon": "fingerprint"
+                }],
+                "selectedOptions": [""]
+            }],
+            "color": "#E9EC67",
+            "position": {
+                "_isDirty": false,
+                "_x": 0,
+                "_y": 2.5,
+                "_z": -19
+            }
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d6d",
+                "name": "Display",
+                "side": "Front",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "Das Display hat eine Größe von 6,5\". Bei der Auswahl von High-End-Optionen wird empfohlen, einen entsprechend leistungsfähigen Akku einzubauen.",
+                    "size": "xl",
+                    "icon": "light_mode",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/optional/screen-2.jpg",
+                    "requiredPos": "none",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Auflösung",
+                        "type": "columns",
+                        "selections": ["720p HD", "1080p FHD", "1440p QHD"],
+                        "selectedOptions": ["720p HD"]
+                    }, {
+                        "name": "Darstellungstechnik",
+                        "type": "columns",
+                        "selections": ["LCD", "OLED"],
+                        "selectedOptions": ["LCD"]
+                    }, {
+                        "name": "Bildwiederholfrequenz",
+                        "type": "columns",
+                        "selections": ["60 HZ", "120 HZ"],
+                        "selectedOptions": ["60 HZ"]
+                    }, {
+                        "name": "optionale Features",
+                        "type": "switch",
+                        "selections": [{
+                            "name": "Fingerabdrucksensor",
+                            "icon": "fingerprint"
+                        }],
+                        "selectedOptions": [null]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/front/screen-phone.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Auflösung",
+                "type": "columns",
+                "selections": ["720p HD", "1080p FHD", "1440p QHD"],
+                "selectedOptions": ["720p HD"]
+            }, {
+                "name": "Darstellungstechnik",
+                "type": "columns",
+                "selections": ["LCD", "OLED"],
+                "selectedOptions": ["LCD"]
+            }, {
+                "name": "Bildwiederholfrequenz",
+                "type": "columns",
+                "selections": ["60 HZ", "120 HZ"],
+                "selectedOptions": ["60 HZ"]
+            }, {
+                "name": "optionale Features",
+                "type": "switch",
+                "selections": [{
+                    "name": "Fingerabdrucksensor",
+                    "icon": "fingerprint"
+                }],
+                "selectedOptions": [null]
+            }],
+            "color": "#000000"
+        }, {
+            "component": {
+                "_id": "61814b5d158dd09f37bb4d6e",
+                "name": "Hörmuschel",
+                "side": "Front",
+                "metaData": {
+                    "price": "80 €",
+                    "description": "In der Hörmuschel befindet sich der Lautsprecher zum telefonieren, ein Näherungssensor sowie die Frontkamera, falls gewünscht.",
+                    "size": "s",
+                    "icon": "volume_up",
+                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/optional/speaker-1.jpg",
+                    "requiredPos": "none",
+                    "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
+                    "options": [{
+                        "name": "Kamera",
+                        "type": "columns",
+                        "selections": ["12 MP 30mm ƒ/2.3", "25 MP 19mm ƒ/1.8"],
+                        "selectedOptions": ["12 MP 30mm ƒ/2.3"]
+                    }]
+                },
+                "3DData": {
+                    "path": "http://localhost:5000/MotileParts/Models/front/earpiece.glb",
+                    "scale": [1000, 1000, 1000]
+                }
+            },
+            "settings": [{
+                "name": "Kamera",
+                "type": "columns",
+                "selections": ["12 MP 30mm ƒ/2.3", "25 MP 19mm ƒ/1.8"],
+                "selectedOptions": ["12 MP 30mm ƒ/2.3"]
+            }],
+            "color": "#000000"
+        }],
+        "isTablet": false,
+        "thumbnail": "http://localhost:5000/UserThumbnails/Simon_Weck_61d91a0cd0312cb4229be81e/605560876.png"
+    }
+]

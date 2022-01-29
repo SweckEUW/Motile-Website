@@ -154,7 +154,7 @@ function BabylonView(props){
 
   function rotatePhone(e){
     if(globalScene.current.getNodeByName("Phone"))
-    globalScene.current.getNodeByName("Phone").rotation.z = e.detail.side == "Front" ? Math.PI : 0;
+      globalScene.current.getNodeByName("Phone").rotation.z = e.detail.side == "Front" ? Math.PI : 0;
   }
 
   async function loadMotileParts(scene,shadowGenerator){

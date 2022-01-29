@@ -4,7 +4,7 @@ import {Context} from '../../../../Store'
 import ServerRequest from '../../../../services/ServerRequest'
 import history from '../../../../services/RouterHistory';
 
-function Overview(){
+function Overview(props){
   const [state, setState] = useContext(Context);
   const [configName, setConfigName] = useState("Meine Konfiguration");
   const [configNameEditEnabled, setConfigNameEditEnabled] = useState(false);
@@ -23,7 +23,6 @@ function Overview(){
           setTimeout(() => {
             setState(prevState => ({...prevState,configuratorErrorMessage: null}));
           }, 8000);
-          console.log("after timeout")
         }
       });
 
@@ -37,7 +36,8 @@ function Overview(){
           deliveryDate: new Date().addDays(7).toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
           price: getPrice(),
           bought:  false,
-          parts: state.components
+          parts: state.components,
+          isTablet: props.tabletSelected
         }
 
         let saveResponse = await ServerRequest.saveUserConfiguration(data); 

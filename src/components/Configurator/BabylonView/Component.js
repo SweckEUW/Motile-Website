@@ -51,7 +51,8 @@ class Component {
             boxCollider.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger,() => {  
                 BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30,4, this.parent.position.y, 6, 0, this.ease);
                 this.mesh.getChildMeshes().forEach(mesh => {
-                    BABYLON.Animation.CreateAndStartAnimation("", mesh.material, "alpha", 30,4, mesh.material.alpha, 0.8, 0, this.ease);
+                    if(mesh.name != "All_clonedChild")
+                        BABYLON.Animation.CreateAndStartAnimation("", mesh.material, "alpha", 30,4, mesh.material.alpha, 0.8, 0, this.ease);
                 });
             }));
             
@@ -59,7 +60,8 @@ class Component {
             boxCollider.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger,() => {
                 BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30,4, this.parent.position.y, 2.5, 0, this.ease);
                 this.mesh.getChildMeshes().forEach(mesh => {
-                    BABYLON.Animation.CreateAndStartAnimation("", mesh.material, "alpha", 30,4, mesh.material.alpha, 1, 0, this.ease);
+                    if(mesh.name != "All_clonedChild")
+                        BABYLON.Animation.CreateAndStartAnimation("", mesh.material, "alpha", 30,4, mesh.material.alpha, 1, 0, this.ease);
                 });
             }));
 
@@ -102,8 +104,8 @@ class Component {
     }
 
     colorMesh(mesh,color){
-        if(mesh.material && mesh.name != "Face-0")
-            mesh.material.albedoColor = BABYLON.Color3.FromHexString(color);
+        if(mesh.material && this.name != "Kleiner Rückdisplay" && this.name != "Großer Rückdisplay" )
+            mesh.material.albedoColor = BABYLON.Color3.FromHexString(color); 
     }
 
 }

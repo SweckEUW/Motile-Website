@@ -10,7 +10,7 @@ import 'swiper/swiper.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
 import {CSSTransition} from 'react-transition-group';
 
-const Configurations = (props) => {
+const Configurations = () => {
     const [state, setState] = useContext(Context);
     const [inShoppingCart, setShoppingCartItems] = useContext(ShoppingCartContext);
     const [configurations, setConfigurations] = useState([]);

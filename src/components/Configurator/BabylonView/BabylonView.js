@@ -23,9 +23,8 @@ function BabylonView(props){
   const [trashbin, setTrashbin] = useState(null);
   const globalEngine = useRef(null);
   const globalScene = useRef(null);
-
-  let motilePartsNodes = [];
-  let myRef = React.useRef(null)
+  const canvas = useRef(null)
+  const motilePartsNodes =  useRef([]);
 
   useEffect(() => {
     document.title = "Motile - Konfigurator"
@@ -50,7 +49,7 @@ function BabylonView(props){
 
   async function initialize(){
     // init engine
-    let engine = new BABYLON.Engine(myRef.current, true);
+    let engine = new BABYLON.Engine(canvas.current, true);
     globalEngine.current = engine;
     engine.enableOfflineSupport = true;
     BABYLON.Database.IDBStorageEnabled = true;
@@ -72,7 +71,7 @@ function BabylonView(props){
     
     // init camera
     let camera = new BABYLON.ArcRotateCamera("Camera", -1, 0.7, 0 ,new BABYLON.Vector3(0,0,0),scene); 
-		camera.attachControl(myRef.current,false,false,4);
+		camera.attachControl(canvas.current,false,false,4);
     camera.lowerRadiusLimit = props.tabletSelected ? 300: 250; // Stop zooming in
     camera.upperRadiusLimit = props.tabletSelected ? 300: 250; // Stop zooming out
     camera.upperBetaLimit = 1.5;
@@ -135,14 +134,14 @@ function BabylonView(props){
 
   function addComponentToScene(e){
     if(e.detail.name != "Display" && e.detail.name != "Hörmuschel"){
-      let component = motilePartsNodes.find(part => part.name === e.detail.name); 
+      let component = motilePartsNodes.current.find(part => part.name === e.detail.name); 
       component.place(e.detail.color,e.detail.position);
     }
   }
 
   function removeComponentFromScene(e){
     // Update Scene
-    let compnentNode = motilePartsNodes.find(part => part.name === e.detail.name);
+    let compnentNode = motilePartsNodes.current.find(part => part.name === e.detail.name);
     if(compnentNode){
       let ease = new BABYLON.CubicEase();
       ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
@@ -154,7 +153,7 @@ function BabylonView(props){
 
   function rotatePhone(e){
     if(globalScene.current.getNodeByName("Phone"))
-    globalScene.current.getNodeByName("Phone").rotation.z = e.detail.side == "Front" ? Math.PI : 0;
+      globalScene.current.getNodeByName("Phone").rotation.z = e.detail.side == "Front" ? Math.PI : 0;
   }
 
   async function loadMotileParts(scene,shadowGenerator){
@@ -168,7 +167,7 @@ function BabylonView(props){
     console.log(motilePartsResponse.data.message);
     if(motilePartsResponse.data.success){
       motilePartsResponse.data.parts.forEach((motilePart) => {
-        motilePartsNodes.push(new Component(scene, assetsManager, shadowGenerator, motilePart));
+        motilePartsNodes.current.push(new Component(scene, assetsManager, shadowGenerator, motilePart));
       });
     }
     new Base(scene,assetsManager,shadowGenerator,props.tabletSelected);
@@ -201,13 +200,17 @@ function BabylonView(props){
       setStartingPoint(current);
     }
 
-    // TODO: Hover over trashbin animation
-    // if(trashbin && currentMesh && trashbin.detectionArea.intersectsPoint(currentMesh.position)) {
-    //   let ease = new BABYLON.CubicEase();
-    //   ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
-    //   BABYLON.Animation.CreateAndStartAnimation("", trashbin.detectionArea, "scaling", 30,4, trashbin.detectionArea.scaling, trashbin.detectionArea.scaling.scale(2), 0);
-    // }
-
+    if(trashbin && currentMesh){
+      if(trashbin.detectionArea.intersectsPoint(currentMesh.position)) {
+        let ease = new BABYLON.CubicEase();
+        ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
+        BABYLON.Animation.CreateAndStartAnimation("", trashbin.parent, "scaling", 30,4, trashbin.parent.scaling, new BABYLON.Vector3(1.2,1.2,1.2), 0);
+      }else if(trashbin.parent.scaling.x == 1.2){
+        let ease = new BABYLON.CubicEase();
+        ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
+        BABYLON.Animation.CreateAndStartAnimation("", trashbin.parent, "scaling", 30,4, trashbin.parent.scaling, BABYLON.Vector3.One(), 0);
+      }
+    }
   }
 
   function onPointerDown(evt){
@@ -222,28 +225,36 @@ function BabylonView(props){
 
   function onPointerUp(){
     if(startingPoint){
-      globalScene.current.activeCamera.attachControl(myRef.current);
+      globalScene.current.activeCamera.attachControl(canvas.current);
       setStartingPoint(null);
 
       for(let snapBox of snapBoxes){
-        let componentState = state.components.find(component => component.component.name == currentMesh.name.split('_')[0])
+        let componentState = state.components.find(component => component.component.name == currentMesh.name)
         if(snapBox.mesh.intersectsPoint(currentMesh.position) && snapBox.allowsFor.includes(componentState.component.metaData.size) && snapBox.posRequirements.includes(componentState.component.metaData.requiredPos)) {
           currentMesh.position = new BABYLON.Vector3(snapBox.mesh.position._x, 6, snapBox.mesh.position._z);
           componentState.position = currentMesh.position; // save snap position
           currentMesh.parent = globalScene.current.getNodeByName("Phone");
+          setState(prevState => ({...prevState,configuratorErrorMessage: ""}));
           return;
-        }else{
+        }
+        else if (snapBox.mesh.intersectsPoint(currentMesh.position)) {
+          setState(prevState => ({...prevState,configuratorErrorMessage: "Der ausgesuchte Spot ist für diese Komponente nicht verfügbar!"}));
+          componentState.position =  null; // remove snap position
+          currentMesh.parent = null;
+        }
+        else {
           componentState.position =  null; // remove snap position
           currentMesh.parent = null;
         }
       }
 
       if(trashbin.detectionArea.intersectsPoint(currentMesh.position)){
-        let ease = new BABYLON.CubicEase();
-        ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
-        BABYLON.Animation.CreateAndStartAnimation("", currentMesh, "scaling", 30,4, currentMesh.scaling, new BABYLON.Vector3(0, 0, 0), 0, ease, () => {
-          removeComponentFromScene({detail:{name: currentMesh.name.split('_')[0]}});
-        });
+        // Update State
+        let components = state.components.filter(component => component.component.name !== currentMesh.name);
+        setState(prevState => ({...prevState,components: components}));
+        
+        // Update Scene
+        removeComponentFromScene({detail:{name: currentMesh.name}});
       }
 
       return;
@@ -255,7 +266,7 @@ function BabylonView(props){
       <CSSTransition in={state.configuratorErrorMessage != null} classNames="fade" timeout={400}>
         <div className='bv-error'>{state.configuratorErrorMessage}</div>
       </CSSTransition>
-      <canvas className="bv-canvas" ref={myRef} onPointerMove={(ev)=> onPointerMove(ev)} onPointerDown={(ev)=> onPointerDown(ev)} onPointerUp={(ev)=> onPointerUp(ev)}/>
+      <canvas className="bv-canvas" ref={canvas} onPointerMove={(ev)=> onPointerMove(ev)} onPointerDown={(ev)=> onPointerDown(ev)} onPointerUp={(ev)=> onPointerUp(ev)}/>
     </div>
   );
 

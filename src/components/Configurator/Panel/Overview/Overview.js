@@ -4,7 +4,7 @@ import {Context} from '../../../../Store'
 import ServerRequest from '../../../../services/ServerRequest'
 import history from '../../../../services/RouterHistory';
 
-function Overview(){
+function Overview(props){
   const [state, setState] = useContext(Context);
   const [configName, setConfigName] = useState("Meine Konfiguration");
   const [configNameEditEnabled, setConfigNameEditEnabled] = useState(false);
@@ -19,11 +19,10 @@ function Overview(){
       state.components.forEach(component => {
         if(!component.position && component.component.name != "Display"&& component.component.name != "Hörmuschel"){
           allComponentsPlaced = false;
-          setState(prevState => ({...prevState,configuratorErrorMessage: "Du hast nicht alle Komponenten auf das Handy platziert!"}));
+          setState(prevState => ({...prevState,configuratorErrorMessage: "Du hast nicht alle Komponenten auf dem Handy platziert!"}));
           setTimeout(() => {
             setState(prevState => ({...prevState,configuratorErrorMessage: null}));
           }, 8000);
-          console.log("after timeout")
         }
       });
 
@@ -37,7 +36,8 @@ function Overview(){
           deliveryDate: new Date().addDays(7).toLocaleDateString('de-DE', {year: 'numeric', month: 'long', day: 'numeric' }),
           price: getPrice(),
           bought:  false,
-          parts: state.components
+          parts: state.components,
+          isTablet: props.tabletSelected
         }
 
         let saveResponse = await ServerRequest.saveUserConfiguration(data); 
@@ -91,11 +91,9 @@ function Overview(){
             <span className="material-icons">{component.component.metaData.icon}</span>
             <span className="ov-component-details">
               <div className="ov-component-name">{component.component.name}</div>
-              {component.settings.map(setting =>{return(
-                setting.selectedOptions.map((selectedOption, index) => 
-                  <div key={index} className="ov-component-setting">{selectedOption}</div>
-                )
-              )})}
+              {component.settings.map((setting,index) =>
+                <div key={index} className="ov-component-setting">{setting.selectedOptions[0]}</div>
+              )}
             </span>
             <span className="ov-component-price">{component.component.metaData.price}</span>
           </div>
@@ -108,7 +106,7 @@ function Overview(){
             <span className="ov-component-details">
               <div className="ov-component-name">{component.component.name}</div>
               {component.settings.map(setting =>{return(
-                setting.selectedOptions.map((selectedOption, index) => 
+                setting.selectedOptions.map((selectedOption,index) => 
                   <div key={index} className="ov-component-setting">{selectedOption}</div>
                 )
               )})}

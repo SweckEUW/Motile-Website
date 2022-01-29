@@ -93,7 +93,7 @@ function PanelElement(props){
         if(option.type === "switch")
           option.selectedOptions = Array(option.selections.length);
         if(option.type === "rows")
-          option.selectedOptions = [option.selections[0].additionalInfo,option.selections[0].motilePart];
+          option.selectedOptions = [option.selections[0].additionalInfo ? option.selections[0].additionalInfo : option.selections[0].head, option.selections[0].motilePart];
         if(option.type === "addon")
           option.selectedOptions = [""];
         newCurrentSettings[index].push(option);

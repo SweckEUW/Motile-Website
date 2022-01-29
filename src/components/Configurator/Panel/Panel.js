@@ -7,7 +7,7 @@ import Overview from './Overview/Overview';
 import PanelElement from "./PanelElement/PanelElement"
 import history from '../../../services/RouterHistory';
 
-function Panel(){
+function Panel(props){
   const [swiper, setSwiper] = useState(null);
   const [ignoreSwiperLimits, setIgnoreSwiperLimits] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -83,7 +83,7 @@ function Panel(){
             <PanelElement side="Front" swiper={swiper} availableSwipes={availableSwipesFront} setAvailableSwipes={setAvailableSwipesFront} setMaxAvailableSwipes={setMaxAvailableSwipesFront} ignoreSwiperLimits={ignoreSwiperLimits}/>  
           </div>
           <div className="swiper-slide">
-            <Overview/>  
+            <Overview  tabletSelected={props.tabletSelected}/>  
           </div> 
         </div>
       </div>

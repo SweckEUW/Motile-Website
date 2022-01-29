@@ -15,7 +15,7 @@ class Trashbin {
 
     loadMesh() {
         let trashbinTask = this.assetsManager.addMeshTask("", "", "", this.path);
-        this.detectionArea = BABYLON.MeshBuilder.CreateBox(`trashbin_detection_box`, {width: 40, height: 10, depth: 40}, this.scene);
+        this.detectionArea = BABYLON.MeshBuilder.CreateBox(`trashbin_detection_box`, {width: 50, height: 10, depth: 50}, this.scene);
         this.detectionArea.position = new BABYLON.Vector3(this.isTablet ? -130 : -90,5,20);
         this.detectionArea.isPickable = false;
         this.detectionArea.visibility = false;

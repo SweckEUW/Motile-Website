@@ -3,7 +3,7 @@ import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
 import Login from './components/Login/Login';
 import Loadingscreen from './components/Loadingscreen/Loadingscreen';
 import Navbar from './components/Navbar/Navbar';
-import Header from './components/Home/Header/Header';
+import Home from './components/Home/Home';
 import Footer from './components/Footer/Footer';
 import Configurator from './components/Configurator/Configurator';
 import Configurations from './components/Profile/Configurations/Configurations';
@@ -27,7 +27,7 @@ const App = () => {
         {/* Home */}
         <Route exact path="/" render={() => (
           <div className='pagewrapper'>
-            <Header/>
+            <Home/>
             <Footer/>
           </div>
         )}/>

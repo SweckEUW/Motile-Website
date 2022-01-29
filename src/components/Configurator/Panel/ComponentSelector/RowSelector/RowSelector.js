@@ -19,7 +19,7 @@ const RowSelector = (props) => {
         <div className="rowSelector">
             {props.options.map((item,index) => (
                 <label className="rs-button-container" key={index}>
-                    <input className="rs-button-input" type="radio" name={id} defaultChecked={index == 0} onChange={e => updateCurrentSettings(e.target.checked ? item.additionalInfo : "",e.target.checked ? item.motilePart : "")}/>
+                    <input className="rs-button-input" type="radio" name={id} defaultChecked={index == 0} onChange={e => updateCurrentSettings(e.target.checked ? item.additionalInfo ? item.additionalInfo : item.head : "" ,e.target.checked ? item.motilePart : "")}/>
                     <span className="rs-button">
                         <div className='row-img-wrapper'>
                             <img src={item.img ? item.img : ''} alt=""/>

@@ -147,7 +147,6 @@ function PanelElement(props){
   }
 
   function removeComponent(motilePart,rowSettings){
-
     if(rowSettings){
       rowSettings.selections.forEach(selection => {
         // Update State
@@ -167,7 +166,6 @@ function PanelElement(props){
       // Update Scene
       document.dispatchEvent(new CustomEvent("removeComponentFromScene", {detail:{name: motilePart.name}}));
     }
-    
   }
 
   function addComponent(motilePart,index,optional){

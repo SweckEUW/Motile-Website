@@ -5,8 +5,10 @@ import {Link} from "react-router-dom";
 import {CSSTransition} from 'react-transition-group';
 import {Context} from '../../Store'
 import { useHistory } from 'react-router-dom'
+import {ShoppingCartContext} from '../../ShoppingCartStore'
 
 const Navbar = () => {
+    const [inShoppingCart, setShoppingCartItems] = useContext(ShoppingCartContext);
     const [state, setState] = useContext(Context);
     const [dropDownVisible, setDropDownVisible] = useState(false);
     const [userData, setUserData] = useState(null);
@@ -67,7 +69,14 @@ const Navbar = () => {
                 <CSSTransition in={showConfigurationButton} classNames="fade" timeout={400} unmountOnExit>
                     <Link to="/Konfigurator"><button>Konfigurieren</button></Link>
                 </CSSTransition>
-                <Link to="/Warenkorb" className="material-icons-outlined nav-shopping">shopping_cart</Link>
+                <Link to="/Warenkorb" className="material-icons-outlined nav-shopping">
+                    shopping_cart
+                    {(function() {
+                    if (inShoppingCart.length > 0) {
+                        return <div className="itemcounter">{inShoppingCart.length}</div>
+                    } 
+                    })()}
+                </Link>
                 <div className="nav-account-container" onClick={() =>{toggleLoginDialogue()}}>
                 <span className="material-icons-outlined nav-account">account_circle</span>
                     <CSSTransition in={state.loggedIn} classNames="slide-right" timeout={400} unmountOnExit>                        

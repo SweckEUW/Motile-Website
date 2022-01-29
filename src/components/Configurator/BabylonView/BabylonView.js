@@ -231,8 +231,15 @@ function BabylonView(props){
           currentMesh.position = new BABYLON.Vector3(snapBox.mesh.position._x, 6, snapBox.mesh.position._z);
           componentState.position = currentMesh.position; // save snap position
           currentMesh.parent = globalScene.current.getNodeByName("Phone");
+          setState(prevState => ({...prevState,configuratorErrorMessage: ""}));
           return;
-        }else{
+        }
+        else if (snapBox.mesh.intersectsPoint(currentMesh.position)) {
+          setState(prevState => ({...prevState,configuratorErrorMessage: "Der ausgesuchte Spot ist für diese Komponente nicht verfügbar!"}));
+          componentState.position =  null; // remove snap position
+          currentMesh.parent = null;
+        }
+        else {
           componentState.position =  null; // remove snap position
           currentMesh.parent = null;
         }

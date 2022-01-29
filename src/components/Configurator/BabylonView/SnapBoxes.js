@@ -234,7 +234,7 @@ class SnapBoxes {
         const list = this.isTablet ? this.tabletPositions : this.phonePositions;
 
         for (let i = 0; i < list.length; i++) {
-            const snapBox = BABYLON.MeshBuilder.CreateBox(`snapBox_${i}`, {width: 10, height: 5, depth: 20}, this.scene);
+            const snapBox = BABYLON.MeshBuilder.CreateBox(`snapBox_${i}`, {width: 22, height: 5, depth: 36.5}, this.scene);
             snapBox.position = list[i].position;
             snapBox.showBoundingBox = true;
             snapBox.visibility = false;

@@ -31,7 +31,7 @@ class Component {
             
             var boxCollider = BABYLON.MeshBuilder.CreateBox("Collider", {height: 3, width: this.size == "m" ? 47 : this.size == "s" ? 23 : 70 , depth: 38});
             boxCollider.position.y = 1.5;
-            boxCollider.position.x = this.size == "m" ? -11 : 0;
+            boxCollider.position.x = this.size == "m" ? 11 : 0;
             boxCollider.visibility = 0;
             boxCollider.parent = this.parent;
 

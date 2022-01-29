@@ -23,6 +23,7 @@ function Overview(){
           setTimeout(() => {
             setState(prevState => ({...prevState,configuratorErrorMessage: null}));
           }, 8000);
+          console.log("after timeout")
         }
       });
 
@@ -85,7 +86,7 @@ function Overview(){
       <div className="ov-box">
 
         <span className="ov-side">Rückseite</span> 
-        {state.components.filter(component => component.component.side === "Back").map((component,index) =>{return(
+        {state.components.filter(component => component.component.side !== "Front").map((component,index) =>{return(
           <div key={index} className="ov-component">
             <span className="material-icons">{component.component.metaData.icon}</span>
             <span className="ov-component-details">

@@ -31,7 +31,7 @@ class Component {
             
             var boxCollider = BABYLON.MeshBuilder.CreateBox("Collider", {height: 3, width: this.size == "m" ? 47 : this.size == "s" ? 23 : 70 , depth: 38});
             boxCollider.position.y = 1.5;
-            boxCollider.position.x = this.size == "m" ? -11 : 0;
+            boxCollider.position.x = this.size == "m" ? 11 : 0;
             boxCollider.visibility = 0;
             boxCollider.parent = this.parent;
 
@@ -80,11 +80,12 @@ class Component {
 
     place(color,position){
         this.parent.setEnabled(true);
-        console.log(position);
 
-        if(position)
+        if(position){
             this.parent.position = new BABYLON.Vector3(position._x,position._y,position._z);
-        
+            this.parent.parent = this.scene.getNodeByName("Phone");
+        }
+            
         this.mesh.getChildMeshes().forEach(mesh => {
             this.colorMesh(mesh,color);
             BABYLON.Animation.CreateAndStartAnimation("", mesh, "visibility", 30,15, 0, 1, 0, this.ease);
@@ -94,16 +95,15 @@ class Component {
     }
 
     reset() {
+        this.parent.parent = null;
         this.parent.position = new BABYLON.Vector3(80,0,20);
-        this.parent.setEnabled(false);
         this.parent.scaling = new BABYLON.Vector3(1,1,1);
+        this.parent.setEnabled(false);
     }
 
     colorMesh(mesh,color){
-        if(mesh.material){
-            if(mesh.name != "Face-0")
-                mesh.material.albedoColor = BABYLON.Color3.FromHexString(color);
-        }
+        if(mesh.material && mesh.name != "Face-0")
+            mesh.material.albedoColor = BABYLON.Color3.FromHexString(color);
     }
 
 }

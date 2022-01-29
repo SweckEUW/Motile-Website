@@ -9,6 +9,6 @@ ReactDOM.render(
     <ShoppingCartStore>
       <App/>
     </ShoppingCartStore>
-  </Store>,
+  </Store>, 
   document.getElementById('root')
 );

@@ -169,7 +169,7 @@ function Login(){
                 <div className="li-error">{errorMessageTree.loginError}</div>
               </CSSTransition>
 
-              <button className="li-form-button" onClick={() =>{login()}}>Login</button>
+              <button className="li-form-button btn-grad" onClick={() =>{login()}}>Login</button>
 
               <p className="li-register-toggle" onClick={() => {toggleRegister(true)}}>Noch kein Account? Jetzt registrieren</p>
             </div>
@@ -222,7 +222,7 @@ function Login(){
                 <div className="li-error">{errorMessageTree.registerError}</div>
               </CSSTransition>
 
-              <button className="li-form-button" onClick={() =>{register()}}>Registrieren</button>
+              <button className="li-form-button btn-grad" onClick={() =>{register()}}>Registrieren</button>
 
               <p className="li-register-toggle" onClick={() => {toggleRegister(false)}}>Schon einen Account? Jetzt Einloggen</p>
 

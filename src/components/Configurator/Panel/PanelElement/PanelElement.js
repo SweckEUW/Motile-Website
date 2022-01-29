@@ -54,7 +54,7 @@ function PanelElement(props){
   }
 
   function changeSwiperPageNextIndex(){
-    props.setAvailableSwipes(props.availableSwipes + 1);
+    props.setAvailableSwipes(currentPage + 1);
     if(currentPage != motileParts.length - 1){
       setCurrentPage(currentPage + 1);
       swiper.slideTo(currentPage + 1);
@@ -114,25 +114,94 @@ function PanelElement(props){
     setCurrentColors(newCurrentColors);
   }
 
+  function handleNewComponent(motilePart,index,optional){
+    let rowSettings = currentSettings[index].find(setting => setting.type === "rows");
+
+    if(rowSettings){
+      motilePart = allMotileParts.find(part => part.name === rowSettings.selectedOptions[1]);
+      let isPlaced = false;
+      rowSettings.selections.forEach(selection => {
+        if(state.components.find(component => component.component.name === selection.motilePart))
+          isPlaced = true;
+      });
+
+      if(isPlaced){
+        removeComponent(motilePart,rowSettings);
+        setTimeout(() => {
+          addComponent(motilePart,index,optional);
+        }, 300);
+      }else{
+        addComponent(motilePart,index,optional);
+      }
+
+    }else{
+      if(state.components.find(component => component.component.name === motilePart.name)){
+        removeComponent(motilePart);
+        setTimeout(() => {
+          addComponent(motilePart,index,optional);
+        }, 300);
+      }else{
+        addComponent(motilePart,index,optional);
+      }
+    }
+  }
+
+  function removeComponent(motilePart,rowSettings){
+
+    if(rowSettings){
+      rowSettings.selections.forEach(selection => {
+        // Update State
+        if(state.components.find(component => component.component.name == selection.motilePart)){
+          let components = state.components.splice(state.components.indexOf(state.components.find(component => component.component.name == selection.motilePart)), 1); 
+          setState(prevState => ({...prevState,components: components}));
+        }
+      
+        // Update Scene
+        document.dispatchEvent(new CustomEvent("removeComponentFromScene", {detail:{name: selection.motilePart}}));
+      });
+    }else{
+      // Update State
+      let components = state.components.splice(state.components.indexOf(state.components.find(component => component.component.name == motilePart.name)), 1); 
+      setState(prevState => ({...prevState,components: components}));
+
+      // Update Scene
+      document.dispatchEvent(new CustomEvent("removeComponentFromScene", {detail:{name: motilePart.name}}));
+    }
+    
+  }
+
   function addComponent(motilePart,index,optional){
     if(props.side === "Back" && index === motileParts.length-1 && !optional){
       changeSwiperPageNextIndex();
       return
     }
+    
+    if(!optional)
+      changeSwiperPageNextIndex();
 
-    currentSettings[index].forEach(setting => {
-      if(setting.type == "rows")
-        motilePart = allMotileParts.find(part => part.name === setting.selectedOptions[1]);
-    });
-
-    document.dispatchEvent(new CustomEvent("spawnComponent", {detail:{name: motilePart.name, settings: currentSettings[index], color: currentColors[index]}}));
+    // Update State
     let component = {component: motilePart, settings: currentSettings[index], color: currentColors[index]}
     let components = state.components;
     components.push(component);
     setState(prevState => ({...prevState,components: components}));
     
-    if(!optional)
-      changeSwiperPageNextIndex();
+    // Update Scene
+    document.dispatchEvent(new CustomEvent("addComponentToScene", {detail:{name: motilePart.name, settings: currentSettings[index], color: currentColors[index]}}));
+  }
+
+  function getButtonText(index,motilePart){
+    if(currentSettings)
+      currentSettings[index].forEach(setting => {
+        if(setting.type == "rows")
+          motilePart = allMotileParts.find(part => part.name === setting.selectedOptions[1]);
+      });
+
+    if(state.components.find(component => component.component.name === motilePart.name))
+      return "Update"
+    if(props.side === "Back" && index === motileParts.length-1)
+      return "Weiter"
+    
+    return "Einbauen"
   }
 
   return (
@@ -174,7 +243,7 @@ function PanelElement(props){
                   })}
                 </div>
               </div>
-              <div className="mp-button" onClick={() =>{addComponent(motilePart,index)}}>{props.side === "Back" && index === motileParts.length-1 ? "Weiter" : "Einbauen"}</div>
+              <div className="mp-button" onClick={() =>{handleNewComponent(motilePart,index)}}>{getButtonText(index,motilePart)}</div>
             </div>
           )})}
         </div>

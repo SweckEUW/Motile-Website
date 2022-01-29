@@ -91,11 +91,9 @@ function Overview(props){
             <span className="material-icons">{component.component.metaData.icon}</span>
             <span className="ov-component-details">
               <div className="ov-component-name">{component.component.name}</div>
-              {component.settings.map(setting =>{return(
-                setting.selectedOptions.map((selectedOption, index) => 
-                  <div key={index} className="ov-component-setting">{selectedOption}</div>
-                )
-              )})}
+              {component.settings.map((setting,index) =>
+                <div key={index} className="ov-component-setting">{setting.selectedOptions[0]}</div>
+              )}
             </span>
             <span className="ov-component-price">{component.component.metaData.price}</span>
           </div>
@@ -108,7 +106,7 @@ function Overview(props){
             <span className="ov-component-details">
               <div className="ov-component-name">{component.component.name}</div>
               {component.settings.map(setting =>{return(
-                setting.selectedOptions.map((selectedOption, index) => 
+                setting.selectedOptions.map((selectedOption,index) => 
                   <div key={index} className="ov-component-setting">{selectedOption}</div>
                 )
               )})}

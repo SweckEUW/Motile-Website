@@ -19,7 +19,7 @@ function Overview(props){
       state.components.forEach(component => {
         if(!component.position && component.component.name != "Display"&& component.component.name != "Hörmuschel"){
           allComponentsPlaced = false;
-          setState(prevState => ({...prevState,configuratorErrorMessage: "Du hast nicht alle Komponenten auf das Handy platziert!"}));
+          setState(prevState => ({...prevState,configuratorErrorMessage: "Du hast nicht alle Komponenten auf dem Handy platziert!"}));
           setTimeout(() => {
             setState(prevState => ({...prevState,configuratorErrorMessage: null}));
           }, 8000);

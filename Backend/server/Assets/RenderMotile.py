@@ -4,8 +4,6 @@ argv = sys.argv
 argv = argv[argv.index("--") + 1:]
 settings = json.loads(argv[0])
 
-phone = bpy.data.objects['Phone']
-
 def changeColor(mesh,color):
     def recurse(mesh,color):
         if mesh.active_material:
@@ -21,7 +19,14 @@ for component in settings["components"]:
     if "position" in component and component["position"]:
         componentNode = bpy.data.objects[component["name"]]
         componentNode.location = (component["position"]["_x"] / 1000, component["position"]["_z"]  / 1000, component["position"]["_y"]  / 1000)
-        changeColor(componentNode,component["color"])
+        if component["name"] is not "KleinerRückdisplay" and component["name"] is not "GroßerRückdisplay":
+            changeColor(componentNode,component["color"])
+
+if settings["isTablet"]:
+    bpy.data.objects['Tablet'].location = (0, 0, 0)
+    bpy.data.objects['Camera'].location = (0, 0, 0.4)
+else:
+    bpy.data.objects['Phone'].location = (0, 0, 0)
 
 # Change Rendering filepath
 bpy.context.scene.render.filepath = settings["exportPath"]

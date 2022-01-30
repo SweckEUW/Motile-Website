@@ -43,7 +43,6 @@
     width: 10px;
 }
 .Panel ::-webkit-scrollbar-track {
-    background-color: rgb(206, 206, 206);
     border-radius: 20px;
 }
 .Panel ::-webkit-scrollbar-thumb {

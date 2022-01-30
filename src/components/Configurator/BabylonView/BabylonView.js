@@ -5,7 +5,7 @@ import * as Materials from 'babylonjs-materials';
 // import * as cannon from "cannon";
 // import { CannonJSPlugin} from "babylonjs";
 import SnapBoxes from './SnapBoxes';
-import React, {useEffect,useState,useContext,useRef} from 'react';
+import React, {useEffect,useContext,useRef} from 'react';
 import Base from './Base';
 import Trashbin from './Trashbin';
 import Bridges from './Bridges';
@@ -17,12 +17,13 @@ import {CSSTransition} from 'react-transition-group';
 
 function BabylonView(props){
   const [state, setState] = useContext(Context);
-  const [currentMesh, setCurrentMesh] =  useState(null);
-  const [startingPoint, setStartingPoint] = useState(null);
-  const [ground, setGround] = useState(null);
-  const [snapBoxes, setSnapBoxes] = useState(null);
-  const [trashbin, setTrashbin] = useState(null);
+
+  const currentMesh = useRef(null);
+  const startingPoint = useRef(null);
+  const ground = useRef(null);
+  const snapBoxes = useRef(null);
   const bridges = useRef(null);
+  const trashbin = useRef(null);
   const motileParts = useRef([]);;
   const globalEngine = useRef(null);
   const globalScene = useRef(null);
@@ -47,7 +48,16 @@ function BabylonView(props){
       addComponentToScene({detail:{name: part.component.name, color: part.color, position: part.position}});
       components.push(part);
     });
-    setState(prevState => ({...prevState,components: components}));    
+    setState(prevState => ({...prevState,components: components}));  
+    
+    motilePartsNodes.current.forEach(motilePart => {  
+      for (let i = 0; i < snapBoxes.current.length; i++) {
+        let componentState = components.find(component => component.component.name == motilePart.name);
+        if(snapBoxes.current[i].mesh.intersectsPoint(motilePart.parent.position) && snapBoxes.current[i].allowsFor.includes(componentState.component.metaData.size) && snapBoxes.current[i].posRequirements.includes(componentState.component.metaData.requiredPos))
+          bridges.current.cloneAndPlace(snapBoxes.current[i].type,componentState.component.metaData.size,motilePart.parent,snapBoxes.current[i+1],snapBoxes.current[i-1]); // Add Bridge
+      }
+    });
+
   }
 
   async function initialize(){
@@ -111,14 +121,12 @@ function BabylonView(props){
     scene.environmentTexture = hdrTexture;
     scene.clearColor = new BABYLON.Color3(0.98,0.98,0.97);
 
-    let ground = BABYLON.Mesh.CreateGround("Ground", 20000, 20000, 1, scene, false);
-    ground.material = new Materials.ShadowOnlyMaterial('shadowOnly', scene);
-    ground.receiveShadows = true;
-    setGround(ground);
+    ground.current = BABYLON.Mesh.CreateGround("Ground", 20000, 20000, 1, scene, false);
+    ground.current.material = new Materials.ShadowOnlyMaterial('shadowOnly', scene);
+    ground.current.receiveShadows = true;
     
     let phoneNode = new BABYLON.TransformNode("Phone");
-    let snapBoxes = new SnapBoxes(scene, phoneNode, props.tabletSelected)
-    setSnapBoxes(snapBoxes.boxes);
+    snapBoxes.current = new SnapBoxes(scene, phoneNode, props.tabletSelected).boxes;
 
     // Start rendering
     engine.runRenderLoop(() => {
@@ -130,8 +138,8 @@ function BabylonView(props){
     document.addEventListener("rotatePhone", rotatePhone);
     document.addEventListener("removeComponentFromScene", removeComponentFromScene);
     document.addEventListener("changeBridgeColor", changeBridgeColor);
-    document.addEventListener("placeDummys", (e) => addDummys(e, snapBoxes.boxes));
-
+    document.addEventListener("placeDummys", (e) => addDummys(e, snapBoxes.current.boxes));
+    
     if(history.location.state && history.location.state.editMode)
       loadConfiguration(history.location.state.configuration);
   }
@@ -257,8 +265,7 @@ function BabylonView(props){
       });
     }
     new Base(scene,assetsManager,shadowGenerator,props.tabletSelected);
-    let trashbinPlate = new Trashbin(scene, assetsManager, props.tabletSelected);
-    setTrashbin(trashbinPlate)
+    trashbin.current = new Trashbin(scene, assetsManager, props.tabletSelected);
 
     bridges.current = new Bridges(scene, assetsManager, shadowGenerator);
 
@@ -280,31 +287,31 @@ function BabylonView(props){
  }
 
   function getGroundPosition(){
-    var pickinfo = globalScene.current.pick(globalScene.current.pointerX, globalScene.current.pointerY, function (mesh) { return mesh === ground; });
+    var pickinfo = globalScene.current.pick(globalScene.current.pointerX, globalScene.current.pointerY, function (mesh) { return mesh === ground.current; });
     return pickinfo.hit ? pickinfo.pickedPoint: null
   }
 
   function onPointerMove(evt){
-    if(startingPoint){
+    if(startingPoint.current){
       var current = getGroundPosition(evt);
       if(!current) 
         return;
 
-      var diff = current.subtract(startingPoint);
-      currentMesh.position.addInPlace(diff);
+      var diff = current.subtract(startingPoint.current);
+      currentMesh.current.position.addInPlace(diff);
 
-      setStartingPoint(current);
+      startingPoint.current = current;
     }
 
-    if(trashbin && currentMesh){
-      if(trashbin.detectionArea.intersectsPoint(currentMesh.position)) {
+    if(trashbin.current && currentMesh.current){
+      if(trashbin.current.detectionArea.intersectsPoint(currentMesh.current.position)) {
         let ease = new BABYLON.CubicEase();
         ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
-        BABYLON.Animation.CreateAndStartAnimation("", trashbin.parent, "scaling", 30,4, trashbin.parent.scaling, new BABYLON.Vector3(1.2,1.2,1.2), 0);
-      }else if(trashbin.parent.scaling.x == 1.2){
+        BABYLON.Animation.CreateAndStartAnimation("", trashbin.current.parent, "scaling", 30,4, trashbin.current.parent.scaling, new BABYLON.Vector3(1.2,1.2,1.2), 0);
+      }else if(trashbin.current.parent.scaling.x == 1.2){
         let ease = new BABYLON.CubicEase();
         ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
-        BABYLON.Animation.CreateAndStartAnimation("", trashbin.parent, "scaling", 30,4, trashbin.parent.scaling, BABYLON.Vector3.One(), 0);
+        BABYLON.Animation.CreateAndStartAnimation("", trashbin.current.parent, "scaling", 30,4, trashbin.current.parent.scaling, BABYLON.Vector3.One(), 0);
       }
     }
   }
@@ -312,8 +319,8 @@ function BabylonView(props){
   function onPointerDown(evt){
     var pickInfo = globalScene.current.pick(globalScene.current.pointerX, globalScene.current.pointerY);
     if(pickInfo.hit && pickInfo.pickedMesh.name !== "SkyBox" && pickInfo.pickedMesh.name !== "Ground" && !pickInfo.pickedMesh.name.includes('snapBox') && !pickInfo.pickedMesh.name.includes('Trashbin')){
-      setCurrentMesh(pickInfo.pickedMesh.parent);
-      setStartingPoint(getGroundPosition(evt));
+      currentMesh.current = pickInfo.pickedMesh.parent;
+      startingPoint.current = getGroundPosition(evt);
       globalScene.current.activeCamera.detachControl(); 
 
       //remove Bridge
@@ -324,38 +331,38 @@ function BabylonView(props){
   } 
 
   function onPointerUp(){
-    if(startingPoint){
+    if(startingPoint.current){
       globalScene.current.activeCamera.attachControl(canvas.current);
-      setStartingPoint(null);
-
-      for (let i = 0; i < snapBoxes.length; i++) {
-        let componentState = state.components.find(component => component.component.name == currentMesh.name);
-        if(snapBoxes[i].mesh.intersectsPoint(currentMesh.position) && snapBoxes[i].allowsFor.includes(componentState.component.metaData.size) && snapBoxes[i].posRequirements.includes(componentState.component.metaData.requiredPos)) {
-          currentMesh.position = new BABYLON.Vector3(snapBoxes[i].mesh.position._x, 6, snapBoxes[i].mesh.position._z);
-          componentState.position = currentMesh.position; // save snap position
-          currentMesh.parent = globalScene.current.getNodeByName("Phone");
+      startingPoint.current = null;
+      
+      for (let i = 0; i < snapBoxes.current.length; i++) {
+        let componentState = state.components.find(component => component.component.name == currentMesh.current.name);
+        if(snapBoxes.current[i].mesh.intersectsPoint(currentMesh.current.position) && snapBoxes.current[i].allowsFor.includes(componentState.component.metaData.size) && snapBoxes.current[i].posRequirements.includes(componentState.component.metaData.requiredPos)) {
+          currentMesh.current.position = new BABYLON.Vector3(snapBoxes.current[i].mesh.position._x, 6, snapBoxes.current[i].mesh.position._z);
+          componentState.position = currentMesh.current.position; // save snap position
+          currentMesh.current.parent = globalScene.current.getNodeByName("Phone");
           setState(prevState => ({...prevState,configuratorErrorMessage: ""}));
-          bridges.current.cloneAndPlace(snapBoxes[i].type,componentState.component.metaData.size,currentMesh,snapBoxes[i+1],snapBoxes[i-1]); // Add Bridge
+          bridges.current.cloneAndPlace(snapBoxes.current[i].type,componentState.component.metaData.size,currentMesh.current,snapBoxes.current[i+1],snapBoxes.current[i-1]); // Add Bridge
           return;
         }
-        else if (snapBoxes[i].mesh.intersectsPoint(currentMesh.position)) {
+        else if (snapBoxes.current[i].mesh.intersectsPoint(currentMesh.current.position)) {
           setState(prevState => ({...prevState,configuratorErrorMessage: "Der ausgesuchte Spot ist für diese Komponente nicht verfügbar!"}));
           componentState.position =  null; // remove snap position
-          currentMesh.parent = null;
+          currentMesh.current.parent = null;
         }
         else {
           componentState.position =  null; // remove snap position
-          currentMesh.parent = null;
+          currentMesh.current.parent = null;
         }
       }
 
-      if(trashbin.detectionArea.intersectsPoint(currentMesh.position)){
+      if(trashbin.current.detectionArea.intersectsPoint(currentMesh.current.position)){
         // Update State
-        let components = state.components.filter(component => component.component.name !== currentMesh.name);
+        let components = state.components.filter(component => component.component.name !== currentMesh.current.name);
         setState(prevState => ({...prevState,components: components}));
         
         // Update Scene
-        removeComponentFromScene({detail:{name: currentMesh.name}});
+        removeComponentFromScene({detail:{name: currentMesh.current.name}});
       }
 
       return;

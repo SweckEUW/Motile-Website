@@ -38,7 +38,7 @@ const Configurations = () => {
     
     function initSwipers(){
         setTimeout(() => {
-            let swiper1 = new Swiper('#cf-Swiper-owned',{
+            new Swiper('#cf-Swiper-owned',{
                 modules: [Pagination],
                 spaceBetween: 50,
                 allowTouchMove: false,
@@ -48,7 +48,6 @@ const Configurations = () => {
                 },
                 observer: true
             });
-            console.log(swiper1);
 
             new Swiper('#cf-Swiper-saved',{
                 modules: [Pagination],

@@ -11,19 +11,19 @@ const ComponentSelector = (props) => {
 
     switch(props.type) {
         case 'columns':
-            component = <ColumnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings}/>
+            component = <ColumnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings} updateCurrentPrices={props.updateCurrentPrices}/>
             break;
         case 'switch': 
-            component = <SwitchSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings}/> 
+            component = <SwitchSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings} updateCurrentPrices={props.updateCurrentPrices}/> 
             break;
         case 'rows': 
-            component = <RowSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings}/> 
+            component = <RowSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings} updateCurrentPrices={props.updateCurrentPrices}/> 
             break;
         case 'addon': 
-            component = <AddOnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings} addComponent={props.addComponent} motileParts={props.motileParts}/> 
+            component = <AddOnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings} addComponent={props.addComponent} motileParts={props.motileParts} updateCurrentPrices={props.updateCurrentPrices}/> 
             break;
         default: 
-            component = <ColumnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings}/>
+            component = <ColumnSelector options={props.options} heading={props.heading} index1={props.index1} index2={props.index2} updateCurrentSettings={props.updateCurrentSettings} updateCurrentPrices={props.updateCurrentPrices}/>
             break;
     }
 

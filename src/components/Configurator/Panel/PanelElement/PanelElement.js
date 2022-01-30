@@ -1,5 +1,5 @@
 import './PanelElement.css';
-import React, {useContext,useEffect,useState} from 'react';
+import React, {useContext,useEffect,useState,useReducer} from 'react';
 import ServerRequest from '../../../../services/ServerRequest';
 import ComponentSelector from '../ComponentSelector/ComponentSelector'
 import Swiper from 'swiper';
@@ -15,6 +15,8 @@ function PanelElement(props){
   const [swiper, setSwiper] = useState(null);
   const [currentSettings, setCurrentSettings] = useState(null);
   const [currentColors, setCurrentColors] = useState(null);
+  const [currentPrices, setCurrentPrices] = useState(null);
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   useEffect(() =>{ 
     getMotileParts();
@@ -71,6 +73,7 @@ function PanelElement(props){
       setMotileParts(localMotileParts);
       setupCurrentSettings(localMotileParts);
       setupCurrentColors(localMotileParts);
+      setupCurrentPrices(localMotileParts);
       props.setMaxAvailableSwipes(localMotileParts.length);
     }
   }
@@ -81,6 +84,14 @@ function PanelElement(props){
       newCurrentColors.push(motilePart.metaData.colorways[0]);
     });
     setCurrentColors(newCurrentColors);
+  }
+
+  function setupCurrentPrices(localMotileParts){
+    let newCurrentPrices = [];
+    localMotileParts.forEach(motilePart => {
+      newCurrentPrices.push(Array(motilePart.metaData.options.length));
+    });
+    setCurrentPrices(newCurrentPrices);
   }
 
   function setupCurrentSettings(localMotileParts){
@@ -102,10 +113,17 @@ function PanelElement(props){
     setCurrentSettings(newCurrentSettings);
   }
 
-  function updateCurrentSettings(index1, index2,index3,selectedOption){
+  function updateCurrentSettings(index1,index2,index3,selectedOption){
     let newCurrentSettings = currentSettings;
     newCurrentSettings[index1][index2].selectedOptions[index3] = selectedOption;
     setCurrentSettings(newCurrentSettings);
+  }
+
+  function updateCurrentPrices(index1,index2,price){
+    let newCurrentPrices = currentPrices;
+    newCurrentPrices[index1][index2] = price;
+    setCurrentPrices(newCurrentPrices);
+    forceUpdate();
   }
 
   function updateCurrentColors(index,color){
@@ -175,14 +193,14 @@ function PanelElement(props){
     }
     
     if(!optional)
-      changeSwiperPageNextIndex();
+      changeSwiperPageNextIndex();  
 
     // Update State
-    let component = {component: motilePart, settings: currentSettings[index], color: currentColors[index]}
+    let component = {component: motilePart, settings: currentSettings[index], color: currentColors[index], price: getPriceOfComponent(index)}
     let components = state.components;
     components.push(component);
     setState(prevState => ({...prevState,components: components}));
-    
+
     // Update Scene
     document.dispatchEvent(new CustomEvent("addComponentToScene", {detail:{name: motilePart.name, settings: currentSettings[index], color: currentColors[index]}}));
   }
@@ -200,6 +218,17 @@ function PanelElement(props){
       return "Weiter"
     
     return "Einbauen"
+  }
+
+  function getPriceOfComponent(index){
+    if(currentPrices && motileParts){  
+      let price = parseInt(motileParts[index].metaData.price);
+      currentPrices[index].forEach(currentPrice => {
+        price += currentPrice;
+      });
+      return price + " €";
+    } 
+    return ""
   }
 
   return (
@@ -227,9 +256,9 @@ function PanelElement(props){
               <div className="mp-settings">
                 <div className="mp-info" style={{backgroundImage: "url("+motilePart.metaData.thumbnail+")"}}>
                   <h2 className="mp-name">{motilePart.name}</h2>
-                  <p className="mp-price">{motilePart.metaData.price}</p>
+                  <p className="mp-price">{getPriceOfComponent(index)}</p>
                   <div className="mp-colors">
-                    {motilePart.metaData.colorways.map((colorway,index2) =>{return(
+                    {motilePart.metaData.colorways.map((colorway,index2) => {return(
                       <input type="radio" name={motilePart.name+"_Radio"} key={index2} className="mp-dot" defaultChecked={index2 === 0} style={{background: colorway}} onClick={() =>{updateCurrentColors(index,colorway)}}/>
                     )})}
                   </div>
@@ -237,7 +266,7 @@ function PanelElement(props){
                 <div className="mp-description">{motilePart.metaData.description}</div>
                 <div className='mp-selectors'>
                   {motilePart.metaData.options.map((option, index2) => {
-                    return <ComponentSelector key={index2} type={option.type} options={option.selections} heading={option.name} index1={index} index2={index2} updateCurrentSettings={updateCurrentSettings} addComponent={addComponent} motileParts={allMotileParts}/>
+                    return <ComponentSelector key={index2} type={option.type} options={option.selections} heading={option.name} index1={index} index2={index2} updateCurrentSettings={updateCurrentSettings} addComponent={addComponent} updateCurrentPrices={updateCurrentPrices} motileParts={allMotileParts}/>
                   })}
                 </div>
               </div>

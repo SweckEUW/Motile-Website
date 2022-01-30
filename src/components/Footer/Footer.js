@@ -1,4 +1,5 @@
 import './Footer.css';
+import {Link} from "react-router-dom";
 import React from 'react';
 
 const Footer = () => {
@@ -9,11 +10,10 @@ const Footer = () => {
             <div className="grid-container">
             <hr className="ft-line"></hr>
             <div className="ft-content">
-                <span className="ft-item">Hilfe</span>
-                <span className="ft-item">Kontakt</span>
-                <span className="ft-item">Datenschutz</span>
-                <span className="ft-item">Nutzungsbedingungen</span>
-                <span className="ft-item">Impressum</span>
+                <span className="ft-item"><Link to="/Kontakt" textDecoration="none !important">Kontakt</Link></span>
+                <span className="ft-item"><Link to="/Datenschutz">Datenschutz</Link></span>
+                <span className="ft-item"><Link to="/Nutzungsbedingungen">Nutzungsbedingungen</Link></span>
+                <span className="ft-item"><Link to="/Impressum">Impressum</Link></span>
             </div>
             </div>
         </div>

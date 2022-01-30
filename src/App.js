@@ -12,6 +12,10 @@ import Orders from './components/Profile/Orders/Orders';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import Checkout from './components/Checkout/Checkout';
 import BuyConfirmation from './components/Checkout/BuyConfirmation/BuyConfirmation';
+import Kontakt from './components/Footer/FooterPages/Kontakt';
+import Datenschutz from './components/Footer/FooterPages/Datenschutz';
+import Nutzungsbedingungen from './components/Footer/FooterPages/Nutzungsbedingungen';
+import Impressum from './components/Footer/FooterPages/Impressum';
 
 import React from 'react';
 
@@ -83,6 +87,42 @@ const App = () => {
         <Route exact path="/Kaufbestätigung" render={() => (
           <div className='pagewrapper'>
             <BuyConfirmation/>
+            <Footer/>
+          </div>
+        )}/>
+
+          {/* Kontakt */}
+        <Route exact path="/Kontakt" render={() => (
+          <div className='pagewrapper'>
+            <Navbar/>
+            <Kontakt/>
+            <Footer/>
+          </div>
+        )}/>
+
+        {/* Datenschutz */}
+        <Route exact path="/Datenschutz" render={() => (
+          <div className='pagewrapper'>
+            <Navbar/>
+            <Datenschutz/>
+            <Footer/>
+          </div>
+        )}/>
+
+        {/* Nutzungsbedingungen */}
+        <Route exact path="/Nutzungsbedingungen" render={() => (
+          <div className='pagewrapper'>
+            <Navbar/>
+            <Nutzungsbedingungen/>
+            <Footer/>
+          </div>
+        )}/>
+
+        {/* Impressum */}
+        <Route exact path="/Impressum" render={() => (
+          <div className='pagewrapper'>
+            <Navbar/>
+            <Impressum/>
             <Footer/>
           </div>
         )}/>

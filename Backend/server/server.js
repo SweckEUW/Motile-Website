@@ -11,7 +11,6 @@ import UserConfigsCollection from "./userConfigsCollection.js"
 import userDataCollection from "./userDataCollection.js"
 import Middleware from "./middleware.js"
 import ImageUploadHandler from "./ImageUploadHandler.js"
-import { Zoom } from "swiper"
 
 const app = express();
 

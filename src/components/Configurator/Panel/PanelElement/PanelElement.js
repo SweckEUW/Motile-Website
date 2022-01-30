@@ -89,7 +89,7 @@ function PanelElement(props){
       newCurrentSettings.push([]);
       motilePart.metaData.options.forEach(option => {
         if(option.type === "columns")
-          option.selectedOptions = [option.selections[0]];
+          option.selectedOptions = [option.selections[0].name];
         if(option.type === "switch")
           option.selectedOptions = Array(option.selections.length);
         if(option.type === "rows")

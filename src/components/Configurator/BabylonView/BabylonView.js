@@ -8,6 +8,7 @@ import SnapBoxes from './SnapBoxes';
 import React, {useEffect,useState,useContext,useRef} from 'react';
 import Base from './Base';
 import Trashbin from './Trashbin';
+import Bridges from './Bridges';
 import Component from './Component';
 import ServerRequest from '../../../services/ServerRequest';
 import history from '../../../services/RouterHistory';
@@ -21,6 +22,7 @@ function BabylonView(props){
   const [ground, setGround] = useState(null);
   const [snapBoxes, setSnapBoxes] = useState(null);
   const [trashbin, setTrashbin] = useState(null);
+  const [bridges, setBridges] = useState(null);
   const globalEngine = useRef(null);
   const globalScene = useRef(null);
   const canvas = useRef(null)
@@ -112,7 +114,6 @@ function BabylonView(props){
     ground.material = new Materials.ShadowOnlyMaterial('shadowOnly', scene);
     ground.receiveShadows = true;
     setGround(ground);
-
     
     let phoneNode = new BABYLON.TransformNode("Phone");
     let snapBoxes = new SnapBoxes(scene, phoneNode, props.tabletSelected)
@@ -174,6 +175,9 @@ function BabylonView(props){
     let trashbinPlate = new Trashbin(scene, assetsManager, props.tabletSelected);
     setTrashbin(trashbinPlate)
 
+    let brigdes = new Bridges(scene, assetsManager, shadowGenerator);
+    setBridges(brigdes);
+
     assetsManager.load();
 
     return new Promise(function(resolve, reject) {
@@ -215,11 +219,15 @@ function BabylonView(props){
 
   function onPointerDown(evt){
     var pickInfo = globalScene.current.pick(globalScene.current.pointerX, globalScene.current.pointerY);
-    if(pickInfo.hit && pickInfo.pickedMesh.name !== "SkyBox" && pickInfo.pickedMesh.name !== "Ground" && !pickInfo.pickedMesh.name.includes('snapBox')
-        && !pickInfo.pickedMesh.name.includes('Trashbin')){
+    if(pickInfo.hit && pickInfo.pickedMesh.name !== "SkyBox" && pickInfo.pickedMesh.name !== "Ground" && !pickInfo.pickedMesh.name.includes('snapBox') && !pickInfo.pickedMesh.name.includes('Trashbin')){
       setCurrentMesh(pickInfo.pickedMesh.parent);
       setStartingPoint(getGroundPosition(evt));
       globalScene.current.activeCamera.detachControl(); 
+
+      //remove Bridge
+      let bridge = pickInfo.pickedMesh.parent.getChildren().find(node => node.name.includes("Bridge")); 
+      if(bridge) 
+        bridge.dispose();
     }
   } 
 
@@ -228,16 +236,17 @@ function BabylonView(props){
       globalScene.current.activeCamera.attachControl(canvas.current);
       setStartingPoint(null);
 
-      for(let snapBox of snapBoxes){
-        let componentState = state.components.find(component => component.component.name == currentMesh.name)
-        if(snapBox.mesh.intersectsPoint(currentMesh.position) && snapBox.allowsFor.includes(componentState.component.metaData.size) && snapBox.posRequirements.includes(componentState.component.metaData.requiredPos)) {
-          currentMesh.position = new BABYLON.Vector3(snapBox.mesh.position._x, 6, snapBox.mesh.position._z);
+      for (let i = 0; i < snapBoxes.length; i++) {
+        let componentState = state.components.find(component => component.component.name == currentMesh.name);
+        if(snapBoxes[i].mesh.intersectsPoint(currentMesh.position) && snapBoxes[i].allowsFor.includes(componentState.component.metaData.size) && snapBoxes[i].posRequirements.includes(componentState.component.metaData.requiredPos)) {
+          currentMesh.position = new BABYLON.Vector3(snapBoxes[i].mesh.position._x, 6, snapBoxes[i].mesh.position._z);
           componentState.position = currentMesh.position; // save snap position
           currentMesh.parent = globalScene.current.getNodeByName("Phone");
           setState(prevState => ({...prevState,configuratorErrorMessage: ""}));
+          bridges.cloneAndPlace(snapBoxes[i].type,componentState.component.metaData.size,currentMesh,snapBoxes[i+1],snapBoxes[i-1]); // Add Bridge
           return;
         }
-        else if (snapBox.mesh.intersectsPoint(currentMesh.position)) {
+        else if (snapBoxes[i].mesh.intersectsPoint(currentMesh.position)) {
           setState(prevState => ({...prevState,configuratorErrorMessage: "Der ausgesuchte Spot ist für diese Komponente nicht verfügbar!"}));
           componentState.position =  null; // remove snap position
           currentMesh.parent = null;

@@ -82,15 +82,18 @@ class Component {
     }
 
     place(color,position){
-        if (this.name.toLowerCase().includes("dummy")) {
-            let clone = null;
-            let parent = new BABYLON.TransformNode("Dummy_" + position._x)
+        if(this.name.toLowerCase().includes("dummy")){
+            let parent = new BABYLON.TransformNode(this.name);
             parent.position = new BABYLON.Vector3(position._x,position._y,position._z);
             parent.parent = this.scene.getNodeByName("Phone");
-            parent.scaling = new BABYLON.Vector3(1000, 1000, 1000)
+
+            let localMesh = new BABYLON.TransformNode(this.name+"_Meshes");
+            localMesh.scaling = new BABYLON.Vector3(1000, 1000, 1000);
+            localMesh.parent = parent;
+           
             this.mesh.getChildMeshes().forEach(mesh => {
-                clone = mesh.createInstance(mesh.name + '_' + position._x);
-                clone.parent = parent;
+                let clone = mesh.createInstance(mesh.name + '_' + position._x);
+                clone.parent = localMesh;
                 clone.sourceMesh.receiveShadows = true;
                 clone.sourceMesh.visibility = 1;
                 clone.isPickable = false;
@@ -98,8 +101,7 @@ class Component {
                 this.shadowGenerator.getShadowMap().renderList.push(clone);
             })
             BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30,15, 30, 5.3, 0, this.ease);
-        }
-        else {
+        }else{
             this.parent.setEnabled(true);
             if(position){
                 this.parent.position = new BABYLON.Vector3(position._x,position._y,position._z);

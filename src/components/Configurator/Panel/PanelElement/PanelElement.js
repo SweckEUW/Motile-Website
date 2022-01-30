@@ -275,7 +275,7 @@ function PanelElement(props){
                   <h2 className="mp-name">{motilePart.name}</h2>
                   <p className="mp-price">{getPriceOfComponent(index)}</p>
                   <div className="mp-colors">
-                    {motilePart.metaData.colorways.map((colorway,index2) => {return(
+                    {props.side != "Front" && motilePart.metaData.colorways.map((colorway,index2) => {return(
                       <input type="radio" name={motilePart.name+"_Radio"} key={index2} className="mp-dot" defaultChecked={index2 === 0} style={{background: colorway}} onClick={() =>{updateCurrentColors(index,colorway)}}/>
                     )})}
                   </div>

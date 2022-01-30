@@ -127,7 +127,6 @@ function BabylonView(props){
     
     let phoneNode = new BABYLON.TransformNode("Phone");
     snapBoxes.current = new SnapBoxes(scene, phoneNode, props.tabletSelected).boxes;
-    console.log(snapBoxes);
 
     // Start rendering
     engine.runRenderLoop(() => {

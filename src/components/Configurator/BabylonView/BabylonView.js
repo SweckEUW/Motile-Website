@@ -224,8 +224,8 @@ function BabylonView(props){
     }
     const dominantColor = getDominantColor(allColors);
 
-    const smallDummy = motileParts.current.filter(component => component.name === "Dummy Small")[0];
-    const mediumDummy = motileParts.current.filter(component => component.name === "Dummy Medium")[0];
+    const smallDummy = motileParts.current.filter(component => component.name === "Kleiner Dummy")[0];
+    const mediumDummy = motileParts.current.filter(component => component.name === "Großer Dummy")[0];
 
     for (let val of dummySpotIdxs) {
       if (dummySpotIdxs.includes(val + 1) && !breakList.includes(val + 1)) {

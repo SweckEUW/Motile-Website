@@ -105,13 +105,13 @@ class Component {
                 this.parent.position = new BABYLON.Vector3(position._x,position._y,position._z);
                 this.parent.parent = this.scene.getNodeByName("Phone");
             }
-                
+            
             this.mesh.getChildMeshes().forEach(mesh => {
                 this.colorMesh(mesh,color);
                 BABYLON.Animation.CreateAndStartAnimation("", mesh, "visibility", 30,15, 0, 1, 0, this.ease);
             });
     
-            BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30,15, 30, 2.5, 0, this.ease);
+            BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30,15, 30, 5.3, 0, this.ease);
         }
     }
 
@@ -123,7 +123,7 @@ class Component {
     }
 
     colorMesh(mesh,color){
-        if(mesh.material && this.name != "Kleiner Rückdisplay" && this.name != "Großer Rückdisplay"){
+        if(mesh.material && this.name != "Kleines Rückdisplay" && this.name != "Großes Rückdisplay"){ // && mesh.material.name == "Soft Touch Black"
             color = this.hexToRgb(color);
             mesh.material.albedoColor = new BABYLON.Color3(color.r,color.g,color.b); 
         }

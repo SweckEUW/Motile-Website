@@ -13,74 +13,74 @@ class SnapBoxes {
 
     phonePositions = [
         {
-            position: new BABYLON.Vector3(-23,5,57), 
+            position: new BABYLON.Vector3(-23,7,57), 
             allowsFor: ['s', 'm'],
             posRequirements: ['none', 'side'],
             type: "top-left"
         },
         {
-            position: new BABYLON.Vector3(0,5,57), 
+            position: new BABYLON.Vector3(0,7,57), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "top-side"
         },
         {
-            position: new BABYLON.Vector3(23,5,57), 
+            position: new BABYLON.Vector3(23,7,57), 
             allowsFor: ['s'],
             posRequirements: ['none', 'side'],
             type: "top-right"
         },
         {
-            position: new BABYLON.Vector3(-23,5,19), 
+            position: new BABYLON.Vector3(-23,7,19), 
             allowsFor: ['s', 'm'],
             posRequirements: ['none', 'side'],
             type: "left-side"
         },
         {
-            position: new BABYLON.Vector3(0,5,19), 
+            position: new BABYLON.Vector3(0,7,19), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(23,5,19), 
+            position: new BABYLON.Vector3(23,7,19), 
             allowsFor: ['s'],
             posRequirements: ['none', 'side'],
             type: "right-side"
         },
         {
-            position: new BABYLON.Vector3(-23,5,-19), 
+            position: new BABYLON.Vector3(-23,7,-19), 
             allowsFor: ['s', 'm'],
             posRequirements: ['none', 'side'],
             type: "left-side"
         },
         {
-            position: new BABYLON.Vector3(0,5,-19), 
+            position: new BABYLON.Vector3(0,7,-19), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(23,5,-19), 
+            position: new BABYLON.Vector3(23,7,-19), 
             allowsFor: ['s'],
             posRequirements: ['none', 'side'],
             type: "right-side"
         },
         {
-            position: new BABYLON.Vector3(-23,5,-57), 
+            position: new BABYLON.Vector3(-23,7,-57), 
             allowsFor: ['s', 'm'],
             posRequirements: ['none', 'side', 'bottom'],
             type: "bottom-left"
         },
         {
-            position: new BABYLON.Vector3(0,5,-57), 
+            position: new BABYLON.Vector3(0,7,-57), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none', 'bottom'],
             type: "bottom-side"    
 
         },
         {
-            position: new BABYLON.Vector3(23,5,-57), 
+            position: new BABYLON.Vector3(23,7,-57), 
             allowsFor: ['s'],
             posRequirements: ['none', 'side', 'bottom'],
             type: "bottom-right"
@@ -89,181 +89,181 @@ class SnapBoxes {
 
     tabletPositions = [
         {
-            position: new BABYLON.Vector3(-57.4,5,76), 
+            position: new BABYLON.Vector3(-57.4,7,76), 
             allowsFor: ['s', 'm'],
             posRequirements: ['none', 'side'],
             type: "top-left"
         },
         {
-            position: new BABYLON.Vector3(-34.4,5,76), 
+            position: new BABYLON.Vector3(-34.4,7,76), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "top-side"
         },
         {
-            position: new BABYLON.Vector3(-11.4,5,76), 
+            position: new BABYLON.Vector3(-11.4,7,76), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "top-side"
         },
         {
-            position: new BABYLON.Vector3(11.6,5,76), 
+            position: new BABYLON.Vector3(11.6,7,76), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "top-side"
         },
         {
-            position: new BABYLON.Vector3(34.6,5,76), 
+            position: new BABYLON.Vector3(34.6,7,76), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "top-side"
         },
         {
-            position: new BABYLON.Vector3(57.6,5,76), 
+            position: new BABYLON.Vector3(57.6,7,76), 
             allowsFor: ['s'],
             posRequirements: ['none', 'side'],
             type: "top-right"
         },
         {
-            position: new BABYLON.Vector3(-57.4,5,38), 
+            position: new BABYLON.Vector3(-57.4,7,38), 
             allowsFor: ['s', 'm'],
             posRequirements: ['none', 'side'],
             type: "left-side"
         },
         {
-            position: new BABYLON.Vector3(-34.4,5,38), 
+            position: new BABYLON.Vector3(-34.4,7,38), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(-11.4,5,38), 
+            position: new BABYLON.Vector3(-11.4,7,38), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(11.6,5,38), 
+            position: new BABYLON.Vector3(11.6,7,38), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(34.6,5,38), 
+            position: new BABYLON.Vector3(34.6,7,38), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(57.6,5,38), 
+            position: new BABYLON.Vector3(57.6,7,38), 
             allowsFor: ['s'],
             posRequirements: ['none', 'side'],
             type: "right-side"
         },
         {
-            position: new BABYLON.Vector3(-57.4,5,0), 
+            position: new BABYLON.Vector3(-57.4,7,0), 
             allowsFor: ['s', 'm'],
             posRequirements: ['none', 'side'],
             type: "left-side"
         },
         {
-            position: new BABYLON.Vector3(-34.4,5,0), 
+            position: new BABYLON.Vector3(-34.4,7,0), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(-11.4,5,0), 
+            position: new BABYLON.Vector3(-11.4,7,0), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(11.6,5,0), 
+            position: new BABYLON.Vector3(11.6,7,0), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(34.6,5,0), 
+            position: new BABYLON.Vector3(34.6,7,0), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle" 
         },
         {
-            position: new BABYLON.Vector3(57.6,5,0), 
+            position: new BABYLON.Vector3(57.6,7,0), 
             allowsFor: ['s'],
             posRequirements: ['none', 'side'],
             type: "right-side"
         },
         {
-            position: new BABYLON.Vector3(-57.4,5,-38), 
+            position: new BABYLON.Vector3(-57.4,7,-38), 
             allowsFor: ['s', 'm'],
             posRequirements: ['none', 'side'],
             type: "left-side"
         },
         {
-            position: new BABYLON.Vector3(-34.4,5,-38), 
+            position: new BABYLON.Vector3(-34.4,7,-38), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(-11.4,5,-38), 
+            position: new BABYLON.Vector3(-11.4,7,-38), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(11.6,5,-38), 
+            position: new BABYLON.Vector3(11.6,7,-38), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(34.6,5,-38), 
+            position: new BABYLON.Vector3(34.6,7,-38), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none'],
             type: "middle"
         },
         {
-            position: new BABYLON.Vector3(57.6,5,-38), 
+            position: new BABYLON.Vector3(57.6,7,-38), 
             allowsFor: ['s'],
             posRequirements: ['none', 'side'],
             type: "right-side"
         },
         {
-            position: new BABYLON.Vector3(-57.4,5,-76), 
+            position: new BABYLON.Vector3(-57.4,7,-76), 
             allowsFor: ['s', 'm'],
             posRequirements: ['none', 'side', 'bottom'],
             type: "bottom-left"
         },
         {
-            position: new BABYLON.Vector3(-34.4,5,-76), 
+            position: new BABYLON.Vector3(-34.4,7,-76), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none', 'bottom'],
             type: "bottom-side"
         },
         {
-            position: new BABYLON.Vector3(-11.4,5,-76), 
+            position: new BABYLON.Vector3(-11.4,7,-76), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none', 'bottom'],
             type: "bottom-side"
         },
         {
-            position: new BABYLON.Vector3(11.6,5,-76), 
+            position: new BABYLON.Vector3(11.6,7,-76), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none', 'bottom'],
             type: "bottom-side"
         },
         {
-            position: new BABYLON.Vector3(34.6,5,-76), 
+            position: new BABYLON.Vector3(34.6,7,-76), 
             allowsFor: ['s', 'm', 'l'],
             posRequirements: ['none', 'bottom'],
             type: "bottom-side"
         },
         {
-            position: new BABYLON.Vector3(57.6,5,-76), 
+            position: new BABYLON.Vector3(57.6,7,-76), 
             allowsFor: ['s'],
             posRequirements: ['none', 'side', 'bottom'],
             type: "bottom-right"

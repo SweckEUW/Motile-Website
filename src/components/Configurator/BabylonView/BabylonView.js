@@ -338,7 +338,7 @@ function BabylonView(props){
       for (let i = 0; i < snapBoxes.current.length; i++) {
         let componentState = state.components.find(component => component.component.name == currentMesh.current.name);
         if(snapBoxes.current[i].mesh.intersectsPoint(currentMesh.current.position) && snapBoxes.current[i].allowsFor.includes(componentState.component.metaData.size) && snapBoxes.current[i].posRequirements.includes(componentState.component.metaData.requiredPos)) {
-          currentMesh.current.position = new BABYLON.Vector3(snapBoxes.current[i].mesh.position._x, 6, snapBoxes.current[i].mesh.position._z);
+          currentMesh.current.position = new BABYLON.Vector3(snapBoxes.current[i].mesh.position._x, 5.3, snapBoxes.current[i].mesh.position._z);
           componentState.position = currentMesh.current.position; // save snap position
           currentMesh.current.parent = globalScene.current.getNodeByName("Phone");
           setState(prevState => ({...prevState,configuratorErrorMessage: ""}));

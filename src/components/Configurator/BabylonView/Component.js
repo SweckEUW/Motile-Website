@@ -48,19 +48,19 @@ class Component {
             // Hover-over
             boxCollider.actionManager = new BABYLON.ActionManager(this.scene);
             boxCollider.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger,() => {  
-                BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30,4, this.parent.position.y, 6, 0, this.ease);
+                BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30, 4, this.parent.position.y, 9, 0, this.ease);
                 this.mesh.getChildMeshes().forEach(mesh => {
                     if(mesh.name != "All_clonedChild")
-                        BABYLON.Animation.CreateAndStartAnimation("", mesh.material, "alpha", 30,4, mesh.material.alpha, 0.8, 0, this.ease);
+                        BABYLON.Animation.CreateAndStartAnimation("", mesh.material, "alpha", 30, 4, mesh.material.alpha, 0.8, 0, this.ease);
                 });
             }));
             
             // Hover-out
             boxCollider.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger,() => {
-                BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30,4, this.parent.position.y, 2.5, 0, this.ease);
+                BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30, 4, this.parent.position.y, 5.3, 0, this.ease);
                 this.mesh.getChildMeshes().forEach(mesh => {
                     if(mesh.name != "All_clonedChild")
-                        BABYLON.Animation.CreateAndStartAnimation("", mesh.material, "alpha", 30,4, mesh.material.alpha, 1, 0, this.ease);
+                        BABYLON.Animation.CreateAndStartAnimation("", mesh.material, "alpha", 30, 4, mesh.material.alpha, 1, 0, this.ease);
                 });
             }));
 

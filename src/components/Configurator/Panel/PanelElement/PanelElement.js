@@ -161,6 +161,10 @@ function PanelElement(props){
       }else{
         addComponent(motilePart,index,optional);
       }
+
+    if(props.side === "Back" && index === motileParts.length-1) {
+      document.dispatchEvent(new CustomEvent("placeDummys", {detail:{stateOutside: state}}));
+    }
     }
   }
 

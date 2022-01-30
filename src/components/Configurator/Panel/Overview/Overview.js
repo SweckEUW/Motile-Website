@@ -122,7 +122,7 @@ function Overview(props){
           <span className="ov-price-number">{getPrice()}</span>
         </span>
       </div>
-      <span className="ov-button" onClick={() =>{saveConfiguration()}}>Speichern</span>
+      <button className="btn-grad" onClick={() =>{saveConfiguration()}}>Speichern</button>
 
     </div>
   );

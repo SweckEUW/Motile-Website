@@ -78,6 +78,10 @@ a.anchor {
   padding: 48px 0;
 }
 
+.Home #hd-pagination {
+  margin-top: 24px;
+}
+
 /* Hintergrundfarbe */
 .hd-section1, .hd-section3, .hd-section5, .hd-section7, .hd-section9{
   background-color: #FCFBF9;
@@ -117,7 +121,7 @@ a.anchor {
     left: 0;
     top: 0;
     width: unset;
-    margin: 24px;
+    margin: -24px 24px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -171,7 +175,7 @@ section.hd-section2 {
   font-weight: bold;
   font-family: 'AvantGarde';
   margin-top: 0;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .hd-link2 {
@@ -250,7 +254,6 @@ a.col-3.col-m-6:hover {
 }
 .hd-section4 {
   background-size: cover;
-  background-attachment: fixed;
 }
 
 @media only screen and (min-width: 500px) {

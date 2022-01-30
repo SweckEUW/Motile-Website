@@ -41,7 +41,7 @@ function Home(){
             <div className="section1-container">
                 <h2>Nachhaltig, individuell und aufrüstbar.</h2>
                 <div className="section1-text">
-                  <p>Ein vollständig modulares Smartphone. Ganz nach deinen eigenen Bedürfnissen und Vorlieben. Wähle aus verschiedenen Bestandteilen diejenigen aus, die perfekt zu deinen Vorstellungen passen. Und das beste: Wenn du dein Smartphone zukünftig aufrüsten möchtest, ist dies durch die modulare Bauweise problemlos möglich, ohne gleich das ganze Gerät austauschen zu müssen. Sei dabei!</p>
+                  <p>Ein vollständig modulares Smartphone. Ganz nach deinen Bedürfnissen und Vorlieben. Wähle Module aus, die perfekt zu deinen Vorstellungen passen. Und das beste: Durch die modulare Bauweise ist es problemlos möglich dein Smartphone zukünftig aufzurüsten, ohne das ganze Gerät austauschen zu müssen.</p>
                   <Link to="/Konfigurator" className="hd-link1"><button className="btn-grad">Jetzt konfigurieren</button></Link>
                 </div>
             </div>

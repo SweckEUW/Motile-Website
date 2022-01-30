@@ -61,9 +61,9 @@ const Navbar = () => {
     return (
         <nav className="navbar">
         <div className="nav-container">
-                <Link className="nav-logo" to="/">
-                    <img src={process.env.PUBLIC_URL+'/Assets/Logo.svg'}  className="nav-img" alt="" />
-                </Link>
+            <Link className="nav-logo" to="/">
+                <img src={process.env.PUBLIC_URL+'/Assets/Logo.svg'}  className="nav-img" alt="" />
+            </Link>
             
             <div className="nav-links">
                 <CSSTransition in={showConfigurationButton} classNames="fade" timeout={400} unmountOnExit>
@@ -86,7 +86,8 @@ const Navbar = () => {
             </div>
 
             <CSSTransition in={dropDownVisible} classNames="slide-down" timeout={400} unmountOnExit>
-                <div className="nav-dropDown">
+                <div className="grid-container nav-dropDown">
+                <div className="col-4">
                     <div className="nav-dropDown-arrow"/>
                     <div className="nav-user">
                         <img className="nav-user-img" src={userData ? userData.profilePic : ''} alt="" />
@@ -115,6 +116,7 @@ const Navbar = () => {
                             Abmelden
                         </p>
                     </div>
+                </div>
                 </div>
             </CSSTransition>
             </div>

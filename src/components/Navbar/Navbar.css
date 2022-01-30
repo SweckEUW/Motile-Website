@@ -112,24 +112,12 @@ img.nav-user-img.pfp.slide-right-enter-done:hover {
 .nav-dropDown{
     position: absolute;
     top: 75px;
-    left: calc(50% + 209px);
-    border-radius: 24px;
     overflow: hidden;
     text-align: left;
+    width: 100%;
+    justify-content: right;
+    margin-left: -24px;
 }
-
-@media only screen and (max-width: 1124px) {
-    .nav-dropDown{
-        left:unset;
-        right: 12px;
-    }
-}
-@media only screen and (max-width: 499px) {
-    .nav-dropDown{
-        left:12px;
-        right:12px;
-    }
-  }
 
 .nav-dropDown-links {
     background: #EEE;

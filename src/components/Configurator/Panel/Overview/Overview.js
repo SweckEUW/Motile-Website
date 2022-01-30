@@ -82,18 +82,17 @@ function Overview(props){
       <p className='ov-title'>Übersicht</p>
 
       <span className="ov-header" onClick={() =>{toggleNameEdit()}}>  
-        <input id='ov-header-input' className="ov-header-input" type="text" value={configName} onChange={e => updateConfigurationName(e)}/>
-        <span className="material-icons">edit</span>
+        <input id='ov-header-input' maxlength="26" className="ov-header-input" type="text" value={configName} onChange={e => updateConfigurationName(e)}/>
+        <span className="material-icons-outlined">edit</span>
       </span>
       
       <div className="ov-box">
-
         <span className="ov-side">Rückseite</span> 
         {state.components.filter(component => component.component.side !== "Front").map((component,index) =>{return(
           <div key={index} className="ov-component">
-            <span className="material-icons">{component.component.metaData.icon}</span>
+            <span className="material-icons-outlined">{component.component.metaData.icon}</span>
             <span className="ov-component-details">
-              <div className="ov-component-name">{component.component.name}</div>
+              <h4 className="ov-component-name">{component.component.name}</h4>
               {component.settings.map((setting,index) =>
                 <div key={index} className="ov-component-setting">{setting.selectedOptions[0]}</div>
               )}
@@ -105,9 +104,9 @@ function Overview(props){
         <span className="ov-side">Vorderseite</span> 
         {state.components.filter(component => component.component.side === "Front").map((component,index) =>{return(
           <div key={index} className="ov-component">
-            <span className="material-icons">{component.component.metaData.icon}</span>
+            <span className="material-icons-outlined">{component.component.metaData.icon}</span>
             <span className="ov-component-details">
-              <div className="ov-component-name">{component.component.name}</div>
+              <h4 className="ov-component-name">{component.component.name}</h4>
               {component.settings.map(setting =>{return(
                 setting.selectedOptions.map((selectedOption,index) => 
                   <div key={index} className="ov-component-setting">{selectedOption}</div>

@@ -52,6 +52,9 @@
     flex: 1;
     overflow: auto;
     margin-bottom: 20px;
+    border-bottom: 12px solid #FFF;
+    border-top: 12px solid #FFF;
+    border-right: 12px solid #FFF;
 }
 .ov-side{
     font-size: 20px;
@@ -79,9 +82,10 @@
     margin-left: 10px;
 }
 .ov-component-setting{
-    font-size: 15px;
+    font-size: 16px;
     font-weight: lighter;
-    color: gray;
+    color: #666;
+    line-height: 24px;
 }
 .ov-component-price{
     margin-left: auto;
@@ -110,4 +114,9 @@
 }
 .ov-button:hover{
     background: #333333;
+}
+.Overview h4, .ov-component-price {
+    margin-bottom: 0!important;
+    font-size: 18px;
+    font-family: 'AvantGarde';
 }

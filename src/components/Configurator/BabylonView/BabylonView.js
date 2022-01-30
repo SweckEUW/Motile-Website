@@ -51,11 +51,12 @@ function BabylonView(props){
     setState(prevState => ({...prevState,components: components}));  
     
     motilePartsNodes.current.forEach(motilePart => {  
-      for (let i = 0; i < snapBoxes.current.length; i++) {
-        let componentState = components.find(component => component.component.name == motilePart.name);
-        if(snapBoxes.current[i].mesh.intersectsPoint(motilePart.parent.position) && snapBoxes.current[i].allowsFor.includes(componentState.component.metaData.size) && snapBoxes.current[i].posRequirements.includes(componentState.component.metaData.requiredPos))
-          bridges.current.cloneAndPlace(snapBoxes.current[i].type,componentState.component.metaData.size,motilePart.parent,snapBoxes.current[i+1],snapBoxes.current[i-1]); // Add Bridge
-      }
+      if(motilePart.name != "Hörmuschel" && motilePart.name != "Display")
+        for (let i = 0; i < snapBoxes.current.length; i++) {
+          let componentState = components.find(component => component.component.name == motilePart.name);
+          if(snapBoxes.current[i].mesh.intersectsPoint(motilePart.parent.position) && snapBoxes.current[i].allowsFor.includes(componentState.component.metaData.size) && snapBoxes.current[i].posRequirements.includes(componentState.component.metaData.requiredPos))
+            bridges.current.cloneAndPlace(snapBoxes.current[i].type,componentState.component.metaData.size,motilePart.parent,snapBoxes.current[i+1],snapBoxes.current[i-1]); // Add Bridge
+        }
     });
 
   }

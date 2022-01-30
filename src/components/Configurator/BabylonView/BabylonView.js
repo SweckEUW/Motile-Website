@@ -55,7 +55,7 @@ function BabylonView(props){
       let motilePart = components.find(component => component.component.name == child.name);
       if(motilePart)
         for (let i = 0; i < snapBoxes.current.length; i++) 
-          if(snapBoxes.current[i].mesh.intersectsPoint(motilePart.position))
+          if(motilePart && snapBoxes.current[i].mesh.intersectsPoint(child.position))
             bridges.current.cloneAndPlace(snapBoxes.current[i].type,motilePart.component.metaData.size,child,snapBoxes.current[i+1],snapBoxes.current[i-1]);
     });
 

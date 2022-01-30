@@ -22,6 +22,7 @@ function BabylonView(props){
   const [ground, setGround] = useState(null);
   const [snapBoxes, setSnapBoxes] = useState(null);
   const [trashbin, setTrashbin] = useState(null);
+  const motileParts = useRef([]);;
   const [bridges, setBridges] = useState(null);
   const globalEngine = useRef(null);
   const globalScene = useRef(null);
@@ -128,6 +129,7 @@ function BabylonView(props){
     document.addEventListener("addComponentToScene", addComponentToScene);
     document.addEventListener("rotatePhone", rotatePhone);
     document.addEventListener("removeComponentFromScene", removeComponentFromScene);
+    document.addEventListener("placeDummys", (e) => addDummys(e, snapBoxes.boxes));
 
     if(history.location.state && history.location.state.editMode)
       loadConfiguration(history.location.state.configuration);
@@ -152,6 +154,83 @@ function BabylonView(props){
     }
   }
 
+  function addDummys(e, boxes) {
+    const intersectionIndexes = [];
+    for (let idx = 0; idx < boxes.length; idx++) {
+      for (let components of e.detail.stateOutside.components) {
+        if(boxes[idx].mesh.intersectsPoint(components.position)) {
+          intersectionIndexes.push({
+            idx,
+            size: components.component.metaData.size
+          });
+          break;
+        };
+      }
+    }
+
+    const dummySpotIdxs = [...Array(boxes.length).keys()];
+    for (let intersection of intersectionIndexes) {
+      if (intersection.size === 's') {
+        const index = dummySpotIdxs.indexOf(intersection.idx);
+        if (index > -1) {
+          dummySpotIdxs.splice(index, 1); 
+        }
+      }
+      else if (intersection.size === 'm') {
+        const index = dummySpotIdxs.indexOf(intersection.idx);
+        if (index > -1) {
+          dummySpotIdxs.splice(index, 1); 
+        }
+
+        const indexForward = dummySpotIdxs.indexOf(intersection.idx + 1);
+        if (indexForward > -1) {
+          dummySpotIdxs.splice(indexForward, 1); 
+        }
+      }
+      else if (intersection.size === 'l') {
+        const index = dummySpotIdxs.indexOf(intersection.idx);
+        if (index > -1) {
+          dummySpotIdxs.splice(index, 1); 
+        }
+
+        const indexForward = dummySpotIdxs.indexOf(intersection.idx + 1);
+        if (indexForward > -1) {
+          dummySpotIdxs.splice(indexForward, 1); 
+        }
+
+        const indexBackward = dummySpotIdxs.indexOf(intersection.idx - 1);
+        if (indexBackward > -1) {
+          dummySpotIdxs.splice(indexBackward, 1); 
+        }
+      }
+    }
+
+
+    const components = [...e.detail.stateOutside.components];
+    const breakList = props.tabletSelected ? [6, 12, 18, 24, 30] : [3, 6, 9, 12];
+    const allColors = [];
+    for (let component of components){
+      allColors.push(component.color);
+    }
+    const dominantColor = getDominantColor(allColors);
+
+    const smallDummy = motileParts.current.filter(component => component.name === "Dummy Small")[0];
+    const mediumDummy = motileParts.current.filter(component => component.name === "Dummy Medium")[0];
+
+    for (let val of dummySpotIdxs) {
+      if (dummySpotIdxs.includes(val + 1) && !breakList.includes(val + 1)) {
+        addComponentToScene({detail:{name: mediumDummy.name, color: dominantColor, position: boxes[val].mesh.position}});
+        dummySpotIdxs.splice(dummySpotIdxs.indexOf(val + 1), 1);
+        components.push({component: mediumDummy, settings: [], color: dominantColor, position: boxes[val].mesh.position})
+      }
+      else {
+        addComponentToScene({detail:{name: smallDummy.name, color: dominantColor, position: boxes[val].mesh.position}});
+        components.push({component: smallDummy, settings: [], color: dominantColor, position: boxes[val].mesh.position})
+      }
+    }
+    setState(prevState => ({...prevState,components: components})); 
+  }
+
   function rotatePhone(e){
     if(globalScene.current.getNodeByName("Phone"))
       globalScene.current.getNodeByName("Phone").rotation.z = e.detail.side == "Front" ? Math.PI : 0;
@@ -169,6 +248,7 @@ function BabylonView(props){
     if(motilePartsResponse.data.success){
       motilePartsResponse.data.parts.forEach((motilePart) => {
         motilePartsNodes.current.push(new Component(scene, assetsManager, shadowGenerator, motilePart));
+        motileParts.current.push(motilePart);
       });
     }
     new Base(scene,assetsManager,shadowGenerator,props.tabletSelected);
@@ -186,6 +266,14 @@ function BabylonView(props){
       }
     });
   }
+
+  function getDominantColor(colors) {
+    const colorTable = colors.reduce( (acc, value) => {
+      acc[value] = (acc[value] || 0 ) + 1
+      return acc
+    },{})
+    return Object.keys(colorTable).reduce((a, b) => colorTable[a] > colorTable[b] ? a : b)
+ }
 
   function getGroundPosition(){
     var pickinfo = globalScene.current.pick(globalScene.current.pointerX, globalScene.current.pointerY, function (mesh) { return mesh === ground; });

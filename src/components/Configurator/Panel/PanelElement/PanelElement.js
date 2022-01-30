@@ -133,38 +133,51 @@ function PanelElement(props){
   }
 
   function handleNewComponent(motilePart,index,optional){
-    let rowSettings = currentSettings[index].find(setting => setting.type === "rows");
 
-    if(rowSettings){
-      motilePart = allMotileParts.find(part => part.name === rowSettings.selectedOptions[1]);
-      let isPlaced = false;
-      rowSettings.selections.forEach(selection => {
-        if(state.components.find(component => component.component.name === selection.motilePart))
-          isPlaced = true;
-      });
-
-      if(isPlaced){
-        removeComponent(motilePart,rowSettings);
+    let allComponentsPlaced = true;
+    state.components.forEach(component => {
+      if(!component.position && component.component.name != "Display" && component.component.name != "Hörmuschel"){
+        allComponentsPlaced = false;
+        setState(prevState => ({...prevState,configuratorErrorMessage: "Du musst alle Komponenten auf dem Gerät platzierten, bevor du ein neues hinzufügen kannst!"}));
         setTimeout(() => {
-          addComponent(motilePart,index,optional);
-        }, 300);
-      }else{
-        addComponent(motilePart,index,optional);
+          setState(prevState => ({...prevState,configuratorErrorMessage: null}));
+        }, 8000);
       }
+    });
 
-    }else{
-      if(state.components.find(component => component.component.name === motilePart.name)){
-        removeComponent(motilePart);
-        setTimeout(() => {
+    if(allComponentsPlaced){
+      let rowSettings = currentSettings[index].find(setting => setting.type === "rows");
+      if(rowSettings){
+        motilePart = allMotileParts.find(part => part.name === rowSettings.selectedOptions[1]);
+        let isPlaced = false;
+        rowSettings.selections.forEach(selection => {
+          if(state.components.find(component => component.component.name === selection.motilePart))
+            isPlaced = true;
+        });
+
+        if(isPlaced){
+          removeComponent(motilePart,rowSettings);
+          setTimeout(() => {
+            addComponent(motilePart,index,optional);
+          }, 300);
+        }else{
           addComponent(motilePart,index,optional);
-        }, 300);
-      }else{
-        addComponent(motilePart,index,optional);
-      }
+        }
 
-    if(props.side === "Back" && index === motileParts.length-1) {
-      document.dispatchEvent(new CustomEvent("placeDummys", {detail:{stateOutside: state}}));
-    }
+      }else{
+        if(state.components.find(component => component.component.name === motilePart.name)){
+          removeComponent(motilePart);
+          setTimeout(() => {
+            addComponent(motilePart,index,optional);
+          }, 300);
+        }else{
+          addComponent(motilePart,index,optional);
+        }
+
+        if(props.side === "Back" && index === motileParts.length-1) {
+          document.dispatchEvent(new CustomEvent("placeDummys", {detail:{stateOutside: state}}));
+        }
+      }
     }
   }
 

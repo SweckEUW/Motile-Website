@@ -8,11 +8,13 @@ export default class blenderJobs{
     static async renderThumbnail(request,response){
         let filename = fileURLToPath(import.meta.url);
         let dirname = path.dirname(filename);
-        let exportPath = dirname + '/public/UserThumbnails/' + request.user.firstName + "_" + request.user.lastName + "_" + request.user._id + '/' + request.body.config.number + '.png';
+        let exportPath = dirname + '/public/UserThumbnails/' + request.user._id + '/' + request.body.config.number + '.png';
         let blenderFilePath = dirname + '/Assets/Motile.blend';
         let blenderPath = config.blender.path;
         let pythonFilePath = dirname + '/Assets/RenderMotile.py';
         let drive = blenderPath.split("/")[0];
+
+        console.log(request.user.firstName);
 
         let renderPositions = []
         request.body.config.parts.forEach(part => {
@@ -27,7 +29,7 @@ export default class blenderJobs{
             exportPath: exportPath,
             components: renderPositions,
             isTablet: request.body.config.isTablet
-        }    
+        }
         console.log(settings);
         settings = JSON.stringify(JSON.stringify(settings));
 
@@ -44,7 +46,7 @@ export default class blenderJobs{
           
         blenderJob.on('exit', () => { 
             console.log("BlenderJob Done");
-            let thumbnailPath = 'http://localhost:5000/UserThumbnails/' + request.user.firstName + "_" + request.user.lastName + "_" + request.user._id + '/' + request.body.config.number + '.png';
+            let thumbnailPath = 'http://localhost:5000/UserThumbnails/' + request.user._id + '/' + request.body.config.number + '.png';
             let updteResponse = UserConfigsCollection.setUserConfigThumbnail(request.user,request.body.config.number,thumbnailPath);
             response.json({success: true , message: 'Rendering done, thumbnail set'});
         });

@@ -158,7 +158,7 @@ function BabylonView(props){
 
   function removeComponentFromScene(e){
     let compnentNode = motilePartsNodes.current.find(part => part.name == e.detail.name);
-    if(compnentNode){
+    if(compnentNode && e.detail.name != "Display" && e.detail.name != "Hörmuschel"){
       let ease = new BABYLON.CubicEase();
       ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
       if(e.detail.currentMesh){

@@ -82,7 +82,7 @@ class Component {
     }
 
     place(color,position){
-        if(this.name.toLowerCase().includes("dummy")){
+        if (this.name.toLowerCase().includes("dummy")) {
             let parent = new BABYLON.TransformNode(this.name);
             parent.position = new BABYLON.Vector3(position._x,position._y,position._z);
             parent.parent = this.scene.getNodeByName("Phone");
@@ -126,8 +126,9 @@ class Component {
                         BABYLON.Animation.CreateAndStartAnimation("", mesh.material, "alpha", 30, 4, mesh.material.alpha, 1, 0, this.ease);
                 });
             }));
-
-        }else{
+            document.dispatchEvent(new CustomEvent("addClonedDummy", {detail:{parent: parent}}));
+            
+        }else {
             this.parent.setEnabled(true);
             if(position){
                 this.parent.position = new BABYLON.Vector3(position._x,position._y,position._z);

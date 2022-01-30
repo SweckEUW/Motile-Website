@@ -75,7 +75,7 @@ function Home(){
                 </div>
                 <div className="swiper-slide col-12">
                 <div className="grid-container">
-                <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/presets/Basic.jpg'} alt=""/>
+                <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/presets/Basic.png'} alt=""/>
                   <div className="col-4 section2-container">
                     <h3>Einsteiger</h3>
                     <p>Schonend für den Geldbeutel und trotzdem leistungsfähig: Unser Basismodell bietet alles, was du brauchst. Kein Schnickschnack, kein wenn und aber. </p>

@@ -22,12 +22,8 @@ function BabylonView(props){
   const [ground, setGround] = useState(null);
   const [snapBoxes, setSnapBoxes] = useState(null);
   const [trashbin, setTrashbin] = useState(null);
-<<<<<<< HEAD
   const bridges = useRef(null);
-=======
   const motileParts = useRef([]);;
-  const [bridges, setBridges] = useState(null);
->>>>>>> 67a836761ac1c722ba9bb5ca56687b0e5505a1b0
   const globalEngine = useRef(null);
   const globalScene = useRef(null);
   const canvas = useRef(null)
@@ -133,11 +129,8 @@ function BabylonView(props){
     document.addEventListener("addComponentToScene", addComponentToScene);
     document.addEventListener("rotatePhone", rotatePhone);
     document.addEventListener("removeComponentFromScene", removeComponentFromScene);
-<<<<<<< HEAD
     document.addEventListener("changeBridgeColor", changeBridgeColor);
-=======
     document.addEventListener("placeDummys", (e) => addDummys(e, snapBoxes.boxes));
->>>>>>> 67a836761ac1c722ba9bb5ca56687b0e5505a1b0
 
     if(history.location.state && history.location.state.editMode)
       loadConfiguration(history.location.state.configuration);

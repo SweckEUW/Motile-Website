@@ -53,7 +53,7 @@ function Home(){
               <div className="swiper-wrapper">
                 <div className="swiper-slide col-12">
                 <div className="grid-container">
-                  <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/presets/Kickstand.jpg'} alt=""/>
+                  <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/presets/Kickstand.png'} alt=""/>
                   <div className="col-4 section2-container">
                     <h3>Entertainment</h3>
                     <p>Ausgestattet mit einem hochauflösenden Display, großen kraftvollen Lautsprechern sowie einem robusten Standfuß. Die beste Art, um sich entspannt zurückzulehnen und die Unterhaltung zu genießen.</p>
@@ -64,7 +64,7 @@ function Home(){
                 </div>
                 <div className="swiper-slide col-12">
                 <div className="grid-container">
-                <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/presets/Camera.jpg'} alt=""/>
+                <img className="col-8" src={process.env.PUBLIC_URL+'/Assets/presets/Camera.png'} alt=""/>
                   <div className="col-4 section2-container">
                     <h3>Erlebnis</h3>
                     <p>Unermüdliche Laufzeit, maximaler Platz sowie die ausgetüfteltste Kamera im Gepäck. Die beste Ausstattung, um unterwegs zu sein und unzählige Erinnerungen zu schaffen.</p>

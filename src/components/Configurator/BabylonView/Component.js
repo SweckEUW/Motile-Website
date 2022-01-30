@@ -15,7 +15,9 @@ class Component {
         this.parent = null; 
         this.ease = new BABYLON.CubicEase();
         this.ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
-        this.loadMesh();
+        
+        if(this.name != "Hörmuschel" && this.name != "Display")
+            this.loadMesh();
     }
 
     loadMesh() {

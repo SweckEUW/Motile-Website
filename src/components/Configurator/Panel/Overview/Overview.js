@@ -82,7 +82,7 @@ function Overview(props){
       <p className='ov-title'>Übersicht</p>
 
       <span className="ov-header" onClick={() =>{toggleNameEdit()}}>  
-        <input id='ov-header-input' maxlength="26" className="ov-header-input" type="text" value={configName} onChange={e => updateConfigurationName(e)}/>
+        <input id='ov-header-input' maxLength="26" className="ov-header-input" type="text" value={configName} onChange={e => updateConfigurationName(e)}/>
         <span className="material-icons-outlined">edit</span>
       </span>
       

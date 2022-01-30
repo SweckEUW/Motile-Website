@@ -123,10 +123,12 @@ class Bridges {
         this.instances++;       
     }
 
-    colorBridge(color){
+    changeBridgeColor(color){
         this.bridges.forEach(bridge => {
-            if(bridge.mesh.material)
-                bridge.mesh.material.albedoColor = BABYLON.Color3.FromHexString(color);
+            bridge.mesh.getChildMeshes().forEach(mesh => {
+                if(mesh.material)
+                    mesh.material.albedoColor = BABYLON.Color3.FromHexString(color);  
+            });
         });
     }
 

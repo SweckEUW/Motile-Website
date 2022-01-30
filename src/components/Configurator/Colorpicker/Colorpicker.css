@@ -14,6 +14,11 @@
     height: 24px;
     background: aquamarine;
     border-radius: 100%;
+    cursor: pointer;
+    transition: transform .2s ease;
+}
+.Color:hover {
+    transform: scale(1.3);
 }
 .Colorpicker * {
     margin-right: 24px;

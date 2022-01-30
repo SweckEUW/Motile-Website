@@ -127,6 +127,7 @@ function BabylonView(props){
     
     let phoneNode = new BABYLON.TransformNode("Phone");
     snapBoxes.current = new SnapBoxes(scene, phoneNode, props.tabletSelected).boxes;
+    console.log(snapBoxes);
 
     // Start rendering
     engine.runRenderLoop(() => {
@@ -138,7 +139,7 @@ function BabylonView(props){
     document.addEventListener("rotatePhone", rotatePhone);
     document.addEventListener("removeComponentFromScene", removeComponentFromScene);
     document.addEventListener("changeBridgeColor", changeBridgeColor);
-    document.addEventListener("placeDummys", (e) => addDummys(e, snapBoxes.current.boxes));
+    document.addEventListener("placeDummys", (e) => addDummys(e, snapBoxes.current));
     
     if(history.location.state && history.location.state.editMode)
       loadConfiguration(history.location.state.configuration);

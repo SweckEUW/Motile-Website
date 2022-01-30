@@ -54,6 +54,7 @@ const Navbar = () => {
         }
 
         setState(prevState => ({...prevState,loggedIn: false}));
+        setShoppingCartItems([]);
         localStorage.removeItem('token');
         console.log("Logout");
     }

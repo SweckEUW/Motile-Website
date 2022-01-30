@@ -95,7 +95,7 @@ class Component {
                 this.colorMesh(clone.sourceMesh,color);
                 this.shadowGenerator.getShadowMap().renderList.push(clone);
             })
-            BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30,15, 30, 2.5, 0, this.ease);
+            BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30,15, 30, 5.3, 0, this.ease);
         }
         else {
             this.parent.setEnabled(true);

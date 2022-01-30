@@ -1,3 +1,13 @@
-.Footerpages {
+.FooterPages {
     text-align: left;
+}
+
+.FooterPages h1 {
+    color: #5C258D;
+}
+
+.FooterPages a:-webkit-any-link {
+    color: #5C258D;
+    font-weight: bold;
+    text-decoration: none;
 }

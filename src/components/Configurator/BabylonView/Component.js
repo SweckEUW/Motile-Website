@@ -90,6 +90,12 @@ class Component {
             let localMesh = new BABYLON.TransformNode(this.name+"_Meshes");
             localMesh.scaling = new BABYLON.Vector3(1000, 1000, 1000);
             localMesh.parent = parent;
+
+            var boxCollider = BABYLON.MeshBuilder.CreateBox("Collider", {height: 3, width: this.size == "m" ? 47 : this.size == "s" ? 23 : 70 , depth: 38});
+            boxCollider.position.y = 1.5;
+            boxCollider.position.x = this.size == "m" ? 11 : 0;
+            boxCollider.visibility = 0;
+            boxCollider.parent = parent;
            
             this.mesh.getChildMeshes().forEach(mesh => {
                 let clone = mesh.createInstance(mesh.name + '_' + position._x);
@@ -101,6 +107,26 @@ class Component {
                 this.shadowGenerator.getShadowMap().renderList.push(clone);
             })
             BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30,15, 30, 5.3, 0, this.ease);
+
+            // Hover-over
+            boxCollider.actionManager = new BABYLON.ActionManager(this.scene);
+            boxCollider.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger,() => {  
+                BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30, 4, parent.position.y, 9, 0, this.ease);
+                this.mesh.getChildMeshes().forEach(mesh => {
+                    if(mesh.name != "All_clonedChild")
+                        BABYLON.Animation.CreateAndStartAnimation("", mesh.material, "alpha", 30, 4, mesh.material.alpha, 0.8, 0, this.ease);
+                });
+            }));
+            
+            // Hover-out
+            boxCollider.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger,() => {
+                BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30, 4, parent.position.y, 5.3, 0, this.ease);
+                this.mesh.getChildMeshes().forEach(mesh => {
+                    if(mesh.name != "All_clonedChild")
+                        BABYLON.Animation.CreateAndStartAnimation("", mesh.material, "alpha", 30, 4, mesh.material.alpha, 1, 0, this.ease);
+                });
+            }));
+
         }else{
             this.parent.setEnabled(true);
             if(position){

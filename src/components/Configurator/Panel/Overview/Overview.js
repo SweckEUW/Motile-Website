@@ -67,7 +67,12 @@ function Overview(props){
   }
 
   function getPrice(){
-    return state.components.reduce((pv, component) => pv + parseInt(component.component.metaData.price), 0) + " €"
+    let price = 0;
+    state.components.forEach(component => {
+      if(component.price)
+        price += parseInt(component.price);
+    });
+    return price + " €";
   }
 
   Date.prototype.addDays = function(days) {

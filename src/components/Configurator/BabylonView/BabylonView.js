@@ -152,14 +152,20 @@ function BabylonView(props){
   }
 
   function removeComponentFromScene(e){
-    // Update Scene
-    let compnentNode = motilePartsNodes.current.find(part => part.name === e.detail.name);
+    let compnentNode = motilePartsNodes.current.find(part => part.name == e.detail.name);
     if(compnentNode){
       let ease = new BABYLON.CubicEase();
       ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
-      BABYLON.Animation.CreateAndStartAnimation("", compnentNode.parent, "scaling", 30,4, compnentNode.parent.scaling, new BABYLON.Vector3(0, 0, 0), 0, ease, () => {
-        compnentNode.reset();
-      });
+      if(e.detail.currentMesh){
+        let mesh = e.detail.currentMesh.current;
+        BABYLON.Animation.CreateAndStartAnimation("", mesh, "scaling", 30,4, mesh.scaling, new BABYLON.Vector3(0, 0, 0), 0, ease, () => {
+          mesh.dispose();
+        });
+      }else{
+        BABYLON.Animation.CreateAndStartAnimation("", compnentNode.parent, "scaling", 30,4, compnentNode.parent.scaling, new BABYLON.Vector3(0, 0, 0), 0, ease, () => {
+          compnentNode.reset();
+        });
+      }
     }
   }
 
@@ -334,7 +340,7 @@ function BabylonView(props){
     if(startingPoint.current){
       globalScene.current.activeCamera.attachControl(canvas.current);
       startingPoint.current = null;
-      
+
       for (let i = 0; i < snapBoxes.current.length; i++) {
         let componentState = state.components.find(component => component.component.name == currentMesh.current.name);
         if(snapBoxes.current[i].mesh.intersectsPoint(currentMesh.current.position) && snapBoxes.current[i].allowsFor.includes(componentState.component.metaData.size) && snapBoxes.current[i].posRequirements.includes(componentState.component.metaData.requiredPos)) {
@@ -358,11 +364,12 @@ function BabylonView(props){
 
       if(trashbin.current.detectionArea.intersectsPoint(currentMesh.current.position)){
         // Update State
-        let components = state.components.filter(component => component.component.name !== currentMesh.current.name);
+        let components = state.components;
+        components.splice(components.findIndex(component => component.component.name === currentMesh.current.name),1);
         setState(prevState => ({...prevState,components: components}));
         
         // Update Scene
-        removeComponentFromScene({detail:{name: currentMesh.current.name}});
+        removeComponentFromScene({detail:{name: currentMesh.current.name, currentMesh: currentMesh.current.name == "Kleiner Dummy" || currentMesh.current.name == "Großer Dummy" ? currentMesh: null}});
       }
 
       return;

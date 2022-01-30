@@ -269,8 +269,10 @@ function BabylonView(props){
   }
 
   function rotatePhone(e){
-    if(globalScene.current.getNodeByName("Phone"))
+    if(globalScene.current.getNodeByName("Phone")){
+      globalScene.current.getNodeByName("Phone").position.y = e.detail.side == "Front" ? 8 : 0;
       globalScene.current.getNodeByName("Phone").rotation.z = e.detail.side == "Front" ? Math.PI : 0;
+    }
   }
 
   function changeBridgeColor(e){

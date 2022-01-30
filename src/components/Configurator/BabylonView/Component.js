@@ -81,19 +81,37 @@ class Component {
     }
 
     place(color,position){
-        this.parent.setEnabled(true);
-
-        if(position){
-            this.parent.position = new BABYLON.Vector3(position._x,position._y,position._z);
-            this.parent.parent = this.scene.getNodeByName("Phone");
+        if (this.name.toLowerCase().includes("dummy")) {
+            let clone = null;
+            let parent = new BABYLON.TransformNode("Dummy_" + position._x)
+            parent.position = new BABYLON.Vector3(position._x,position._y,position._z);
+            parent.parent = this.scene.getNodeByName("Phone");
+            parent.scaling = new BABYLON.Vector3(1000, 1000, 1000)
+            this.mesh.getChildMeshes().forEach(mesh => {
+                clone = mesh.createInstance(mesh.name + '_' + position._x);
+                clone.parent = parent;
+                clone.sourceMesh.receiveShadows = true;
+                clone.sourceMesh.visibility = 1;
+                clone.isPickable = false;
+                this.colorMesh(clone.sourceMesh,color);
+                this.shadowGenerator.getShadowMap().renderList.push(clone);
+            })
+            BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30,15, 30, 2.5, 0, this.ease);
         }
-            
-        this.mesh.getChildMeshes().forEach(mesh => {
-            this.colorMesh(mesh,color);
-            BABYLON.Animation.CreateAndStartAnimation("", mesh, "visibility", 30,15, 0, 1, 0, this.ease);
-        });
-
-        BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30,15, 30, 2.5, 0, this.ease);
+        else {
+            this.parent.setEnabled(true);
+            if(position){
+                this.parent.position = new BABYLON.Vector3(position._x,position._y,position._z);
+                this.parent.parent = this.scene.getNodeByName("Phone");
+            }
+                
+            this.mesh.getChildMeshes().forEach(mesh => {
+                this.colorMesh(mesh,color);
+                BABYLON.Animation.CreateAndStartAnimation("", mesh, "visibility", 30,15, 0, 1, 0, this.ease);
+            });
+    
+            BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30,15, 30, 2.5, 0, this.ease);
+        }
     }
 
     reset() {

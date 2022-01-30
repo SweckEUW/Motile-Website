@@ -97,7 +97,7 @@ function Overview(props){
                 <div key={index} className="ov-component-setting">{setting.selectedOptions[0]}</div>
               )}
             </span>
-            <span className="ov-component-price">{component.component.metaData.price}</span>
+            <span className="ov-component-price">{component.price}</span>
           </div>
         )})}
 
@@ -113,7 +113,7 @@ function Overview(props){
                 )
               )})}
             </span>
-            <span className="ov-component-price">{component.component.metaData.price}</span>
+            <span className="ov-component-price">{component.price}</span>
           </div>
         )})}
 

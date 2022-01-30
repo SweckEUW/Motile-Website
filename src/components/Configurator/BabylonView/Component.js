@@ -13,7 +13,8 @@ class Component {
         this.size = motilePart.metaData.size;
         this.mesh = null;
         this.parent = null; 
-        this.ease = null;
+        this.ease = new BABYLON.CubicEase();
+        this.ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
         this.loadMesh();
     }
 
@@ -45,8 +46,6 @@ class Component {
             });
 
             // Hover-over
-            this.ease = new BABYLON.CubicEase();
-            this.ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);
             boxCollider.actionManager = new BABYLON.ActionManager(this.scene);
             boxCollider.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger,() => {  
                 BABYLON.Animation.CreateAndStartAnimation("", this.parent, "position.y", 30,4, this.parent.position.y, 6, 0, this.ease);

@@ -68,8 +68,8 @@ function Panel(props){
           <div key={index} onClick={() =>{changeSwiperPageToIndex(index)}} style={{
             opacity: index === currentPage || maxAvailableSwipesBack - 1 < availableSwipesBack && index <= 1 || maxAvailableSwipesFront - 1 < availableSwipesFront && index <= 2 || ignoreSwiperLimits ? '1' : '0.1',
             cursor: index === currentPage || maxAvailableSwipesBack - 1 < availableSwipesBack && index <= 1 || maxAvailableSwipesFront - 1 < availableSwipesFront && index <= 2 || ignoreSwiperLimits ? 'pointer' : '',
-            width: index === currentPage ? '18px' : '14px',
-            height: index === currentPage ? '18px' : '14px',
+            width: index === currentPage ? '16px' : '10px',
+            height: index === currentPage ? '16px' : '10px',
           }}/>
         )}
       </div>

@@ -22,7 +22,7 @@ function Overview(props){
       state.components.forEach(component => {
         if(!component.position && component.component.name != "Display"&& component.component.name != "Hörmuschel"){
           allComponentsPlaced = false;
-          setState(prevState => ({...prevState,configuratorErrorMessage: "Du hast nicht alle Komponenten auf dem Handy platziert!"}));
+          setState(prevState => ({...prevState,configuratorErrorMessage: "Du hast nicht alle Komponenten auf dem Gerät platziert!"}));
           setTimeout(() => {
             setState(prevState => ({...prevState,configuratorErrorMessage: null}));
           }, 8000);
@@ -82,39 +82,38 @@ function Overview(props){
       <p className='ov-title'>Übersicht</p>
 
       <span className="ov-header" onClick={() =>{toggleNameEdit()}}>  
-        <input id='ov-header-input' className="ov-header-input" type="text" value={configName} onChange={e => updateConfigurationName(e)}/>
-        <span className="material-icons">edit</span>
+        <input id='ov-header-input' maxlength="26" className="ov-header-input" type="text" value={configName} onChange={e => updateConfigurationName(e)}/>
+        <span className="material-icons-outlined">edit</span>
       </span>
       
       <div className="ov-box">
-
         <span className="ov-side">Rückseite</span> 
         {state.components.filter(component => component.component.side !== "Front").map((component,index) =>{return(
           <div key={index} className="ov-component">
-            <span className="material-icons">{component.component.metaData.icon}</span>
+            <span className="material-icons-outlined">{component.component.metaData.icon}</span>
             <span className="ov-component-details">
-              <div className="ov-component-name">{component.component.name}</div>
+              <h4 className="ov-component-name">{component.component.name}</h4>
               {component.settings.map((setting,index) =>
                 <div key={index} className="ov-component-setting">{setting.selectedOptions[0]}</div>
               )}
             </span>
-            <span className="ov-component-price">{component.component.metaData.price}</span>
+            <span className="ov-component-price">{component.price}</span>
           </div>
         )})}
 
         <span className="ov-side">Vorderseite</span> 
         {state.components.filter(component => component.component.side === "Front").map((component,index) =>{return(
           <div key={index} className="ov-component">
-            <span className="material-icons">{component.component.metaData.icon}</span>
+            <span className="material-icons-outlined">{component.component.metaData.icon}</span>
             <span className="ov-component-details">
-              <div className="ov-component-name">{component.component.name}</div>
+              <h4 className="ov-component-name">{component.component.name}</h4>
               {component.settings.map(setting =>{return(
                 setting.selectedOptions.map((selectedOption,index) => 
                   <div key={index} className="ov-component-setting">{selectedOption}</div>
                 )
               )})}
             </span>
-            <span className="ov-component-price">{component.component.metaData.price}</span>
+            <span className="ov-component-price">{component.price}</span>
           </div>
         )})}
 
@@ -123,7 +122,7 @@ function Overview(props){
           <span className="ov-price-number">{getPrice()}</span>
         </span>
       </div>
-      <span className="ov-button" onClick={() =>{saveConfiguration()}}>Speichern</span>
+      <button className="btn-grad" onClick={() =>{saveConfiguration()}}>Speichern</button>
 
     </div>
   );

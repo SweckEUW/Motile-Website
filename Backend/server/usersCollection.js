@@ -78,7 +78,7 @@ export default class usersCollection{
 
         if(user[0]){
             console.log("Registrierung nicht erfolgreich!")
-            response.json({success: false , message: 'Registrierung nicht erfolgreich, Nutzer existiert bereits!'})
+            response.json({success: false , message: 'Ein Nutzer mit dieser E-Mail-Adresse existiert bereits!'})
         }else{
             // Hash password
             let salt = await bcrypt.genSalt(10);
@@ -121,7 +121,7 @@ export default class usersCollection{
             try {
                 await transporter.sendMail(mailOptions);
                 await users.insertOne(newUser);
-                response.json({success: true , message: 'Registrierung erfolgreich!'})
+                response.json({success: true , message: 'Registrierung erfolgreich - Bitte E-Mail-Adresse bestätigen'})
                 console.log("Registrierung erfolgreich!")
             }catch (error) {
                 console.log(error);

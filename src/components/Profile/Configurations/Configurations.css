@@ -39,6 +39,7 @@
     font-family: 'AvantGarde';
     margin-top: 5px;
     margin-bottom: 5px;
+    word-break: break-word;
 }
 .cf-thumbnail{
     height: 250px;

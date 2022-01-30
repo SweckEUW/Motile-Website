@@ -8,6 +8,7 @@
     bottom: -65px;
 }
 
+
 .ft-line {
     width: 100vw;
     color: #707070;
@@ -22,14 +23,15 @@
     padding: 24px;
 }
 
-.ft-item {
+.ft-item a{
     font-size: 12px;
-    color: #707070;
+    text-decoration: none !important;
+    color: #707070 !important;
 }
 
 @media screen and (max-width: 425px) {
     .ft-content {
-    flex-direction: column;
-    align-items: center;
-}
+        flex-direction: column;
+        align-items: center;
+    }
 }

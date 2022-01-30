@@ -35,10 +35,10 @@ const ColumnSelector = (props) => {
     return (
         <div className="columnSelector">
             {props.options.map((item,index) => (
-                <label className="cs-button-container" key={item} style={itemSize}>
-                    <input className="cs-button-input" type="radio" name={id} defaultChecked={index == 0} onChange={e => props.updateCurrentSettings(props.index1, props.index2, 0, e.target.checked ? item : "")}/>
+                <label className="cs-button-container" key={item.name} style={itemSize}>
+                    <input className="cs-button-input" type="radio" name={id} defaultChecked={index == 0} onChange={e => props.updateCurrentSettings(props.index1, props.index2, 0, e.target.checked ? item.name : "")}/>
                     <span className="cs-button">
-                        {item}
+                        {item.name}
                     </span> 
                 </label>
             ))}

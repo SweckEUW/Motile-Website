@@ -85,7 +85,7 @@ function BabylonView(props){
     let light0 = new BABYLON.DirectionalLight("MainLight", new BABYLON.Vector3(0, -1, 0), scene);
     light0.position = new BABYLON.Vector3(-200,100,0);
     light0.shadowMaxZ = 1000;
-    light0.intensity = 8;
+    light0.intensity = 2;
 
     let shadowGenerator = new BABYLON.ShadowGenerator(2048, light0);
     shadowGenerator.useExponentialShadowMap = true;

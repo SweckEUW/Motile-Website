@@ -22,8 +22,8 @@ function BabylonView(props){
   const [ground, setGround] = useState(null);
   const [snapBoxes, setSnapBoxes] = useState(null);
   const [trashbin, setTrashbin] = useState(null);
+  const bridges = useRef(null);
   const motileParts = useRef([]);;
-  const [bridges, setBridges] = useState(null);
   const globalEngine = useRef(null);
   const globalScene = useRef(null);
   const canvas = useRef(null)
@@ -85,7 +85,7 @@ function BabylonView(props){
     let light0 = new BABYLON.DirectionalLight("MainLight", new BABYLON.Vector3(0, -1, 0), scene);
     light0.position = new BABYLON.Vector3(-200,100,0);
     light0.shadowMaxZ = 1000;
-    light0.intensity = 8;
+    light0.intensity = 2;
 
     let shadowGenerator = new BABYLON.ShadowGenerator(2048, light0);
     shadowGenerator.useExponentialShadowMap = true;
@@ -129,6 +129,7 @@ function BabylonView(props){
     document.addEventListener("addComponentToScene", addComponentToScene);
     document.addEventListener("rotatePhone", rotatePhone);
     document.addEventListener("removeComponentFromScene", removeComponentFromScene);
+    document.addEventListener("changeBridgeColor", changeBridgeColor);
     document.addEventListener("placeDummys", (e) => addDummys(e, snapBoxes.boxes));
 
     if(history.location.state && history.location.state.editMode)
@@ -236,6 +237,10 @@ function BabylonView(props){
       globalScene.current.getNodeByName("Phone").rotation.z = e.detail.side == "Front" ? Math.PI : 0;
   }
 
+  function changeBridgeColor(e){
+    bridges.current.changeBridgeColor(e.detail.color);
+  }
+
   async function loadMotileParts(scene,shadowGenerator){
     let assetsManager = new BABYLON.AssetsManager(scene);
     assetsManager.useDefaultLoadingScreen = false;
@@ -255,8 +260,7 @@ function BabylonView(props){
     let trashbinPlate = new Trashbin(scene, assetsManager, props.tabletSelected);
     setTrashbin(trashbinPlate)
 
-    let brigdes = new Bridges(scene, assetsManager, shadowGenerator);
-    setBridges(brigdes);
+    bridges.current = new Bridges(scene, assetsManager, shadowGenerator);
 
     assetsManager.load();
 
@@ -331,7 +335,7 @@ function BabylonView(props){
           componentState.position = currentMesh.position; // save snap position
           currentMesh.parent = globalScene.current.getNodeByName("Phone");
           setState(prevState => ({...prevState,configuratorErrorMessage: ""}));
-          bridges.cloneAndPlace(snapBoxes[i].type,componentState.component.metaData.size,currentMesh,snapBoxes[i+1],snapBoxes[i-1]); // Add Bridge
+          bridges.current.cloneAndPlace(snapBoxes[i].type,componentState.component.metaData.size,currentMesh,snapBoxes[i+1],snapBoxes[i-1]); // Add Bridge
           return;
         }
         else if (snapBoxes[i].mesh.intersectsPoint(currentMesh.position)) {

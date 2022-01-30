@@ -123,11 +123,23 @@ class Bridges {
         this.instances++;       
     }
 
-    colorBridge(color){
+    changeBridgeColor(color){
+        color = this.hexToRgb(color);
         this.bridges.forEach(bridge => {
-            if(bridge.mesh.material)
-                bridge.mesh.material.albedoColor = BABYLON.Color3.FromHexString(color);
+            bridge.mesh.getChildMeshes().forEach(mesh => {
+                if(mesh.material)
+                    mesh.material.albedoColor = new BABYLON.Color3(color.r,color.g,color.b); 
+            });
         });
+    }
+
+    hexToRgb(hex) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+          r: parseInt(result[1], 16)/255 - 0.07,
+          g: parseInt(result[2], 16)/255 - 0.07,
+          b: parseInt(result[3], 16)/255 - 0.07
+        } : null;
     }
 
 }

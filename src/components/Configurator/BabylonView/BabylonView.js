@@ -19,6 +19,7 @@ function BabylonView(props){
   const [state, setState] = useContext(Context);
 
   const currentMesh = useRef(null);
+  const clonedDummyMeshes = useRef([]);
   const startingPoint = useRef(null);
   const ground = useRef(null);
   const snapBoxes = useRef(null);
@@ -127,7 +128,6 @@ function BabylonView(props){
     
     let phoneNode = new BABYLON.TransformNode("Phone");
     snapBoxes.current = new SnapBoxes(scene, phoneNode, props.tabletSelected).boxes;
-    console.log(snapBoxes);
 
     // Start rendering
     engine.runRenderLoop(() => {
@@ -140,7 +140,11 @@ function BabylonView(props){
     document.addEventListener("removeComponentFromScene", removeComponentFromScene);
     document.addEventListener("changeBridgeColor", changeBridgeColor);
     document.addEventListener("placeDummys", (e) => addDummys(e, snapBoxes.current));
-    
+    document.addEventListener("addClonedDummy", (e) => {
+        clonedDummyMeshes.current.push(e.detail.parent);
+      }
+    );
+     
     if(history.location.state && history.location.state.editMode)
       loadConfiguration(history.location.state.configuration);
   }
@@ -164,11 +168,11 @@ function BabylonView(props){
     }
   }
 
-  function addDummys(e, boxes) {
+  function getFreeIndices(stateComponents, boxes) {
     const intersectionIndexes = [];
     for (let idx = 0; idx < boxes.length; idx++) {
-      for (let components of e.detail.stateOutside.components) {
-        if(boxes[idx].mesh.intersectsPoint(components.position)) {
+      for (let components of stateComponents.components) {
+        if(components.position && boxes[idx].mesh.intersectsPoint(components.position)) {
           intersectionIndexes.push({
             idx,
             size: components.component.metaData.size
@@ -215,6 +219,12 @@ function BabylonView(props){
       }
     }
 
+    return dummySpotIdxs;
+  }
+
+  function addDummys(e, boxes) {
+  
+    const dummySpotIdxs = getFreeIndices(e.detail.stateOutside, boxes);
 
     const components = [...e.detail.stateOutside.components];
     const breakList = props.tabletSelected ? [6, 12, 18, 24, 30] : [3, 6, 9, 12];
@@ -232,10 +242,21 @@ function BabylonView(props){
         addComponentToScene({detail:{name: mediumDummy.name, color: dominantColor, position: boxes[val].mesh.position}});
         dummySpotIdxs.splice(dummySpotIdxs.indexOf(val + 1), 1);
         components.push({component: mediumDummy, settings: [], color: dominantColor, position: boxes[val].mesh.position})
+
+        // const clonedMesh = clonedDummyMeshes.current.filter(mesh => mesh.position === boxes[val].mesh.position)[0];
+        const clonedMesh = clonedDummyMeshes.current.filter(mesh => boxes[val].mesh.intersectsPoint(mesh.position))[0];
+        console.log(clonedMesh);
+
+        bridges.current.cloneAndPlace(boxes[val].type,"m",clonedMesh,boxes[val + 1],boxes[val - 1]); // Add Bridge
       }
       else {
         addComponentToScene({detail:{name: smallDummy.name, color: dominantColor, position: boxes[val].mesh.position}});
         components.push({component: smallDummy, settings: [], color: dominantColor, position: boxes[val].mesh.position})
+
+        const clonedMesh = clonedDummyMeshes.current.filter(mesh => boxes[val].mesh.intersectsPoint(mesh.position))[0];
+        console.log(clonedMesh);
+
+        bridges.current.cloneAndPlace(boxes[val].type,"s",clonedMesh,boxes[val + 1],boxes[val - 1]); // Add Bridge
       }
     }
     setState(prevState => ({...prevState,components: components})); 
@@ -338,7 +359,9 @@ function BabylonView(props){
       
       for (let i = 0; i < snapBoxes.current.length; i++) {
         let componentState = state.components.find(component => component.component.name == currentMesh.current.name);
-        if(snapBoxes.current[i].mesh.intersectsPoint(currentMesh.current.position) && snapBoxes.current[i].allowsFor.includes(componentState.component.metaData.size) && snapBoxes.current[i].posRequirements.includes(componentState.component.metaData.requiredPos)) {
+        const freeIndices = getFreeIndices(state, snapBoxes.current);
+        if(snapBoxes.current[i].mesh.intersectsPoint(currentMesh.current.position) && snapBoxes.current[i].allowsFor.includes(componentState.component.metaData.size) && snapBoxes.current[i].posRequirements.includes(componentState.component.metaData.requiredPos)
+        && freeIndices.includes(i)) {
           currentMesh.current.position = new BABYLON.Vector3(snapBoxes.current[i].mesh.position._x, 5.3, snapBoxes.current[i].mesh.position._z);
           componentState.position = currentMesh.current.position; // save snap position
           currentMesh.current.parent = globalScene.current.getNodeByName("Phone");
@@ -348,6 +371,7 @@ function BabylonView(props){
         }
         else if (snapBoxes.current[i].mesh.intersectsPoint(currentMesh.current.position)) {
           setState(prevState => ({...prevState,configuratorErrorMessage: "Der ausgesuchte Spot ist für diese Komponente nicht verfügbar!"}));
+          currentMesh.current.position = new BABYLON.Vector3(80,0,20);
           componentState.position =  null; // remove snap position
           currentMesh.current.parent = null;
         }

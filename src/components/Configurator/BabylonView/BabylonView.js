@@ -51,12 +51,12 @@ function BabylonView(props){
     });
     setState(prevState => ({...prevState,components: components}));  
     
-    motilePartsNodes.current.forEach(motilePart => {  
-      for (let i = 0; i < snapBoxes.current.length; i++) {
-        let componentState = components.find(component => component.component.name == motilePart.name);
-        if(snapBoxes.current[i].mesh.intersectsPoint(motilePart.parent.position) && snapBoxes.current[i].allowsFor.includes(componentState.component.metaData.size) && snapBoxes.current[i].posRequirements.includes(componentState.component.metaData.requiredPos))
-          bridges.current.cloneAndPlace(snapBoxes.current[i].type,componentState.component.metaData.size,motilePart.parent,snapBoxes.current[i+1],snapBoxes.current[i-1]); // Add Bridge
-      }
+    globalScene.current.getNodeByName("Phone").getChildren().forEach(child => { 
+      let motilePart = components.find(component => component.component.name == child.name);
+      if(motilePart)
+        for (let i = 0; i < snapBoxes.current.length; i++) 
+          if(snapBoxes.current[i].mesh.intersectsPoint(motilePart.position))
+            bridges.current.cloneAndPlace(snapBoxes.current[i].type,motilePart.component.metaData.size,child,snapBoxes.current[i+1],snapBoxes.current[i-1]);
     });
 
   }
@@ -234,8 +234,8 @@ function BabylonView(props){
     }
     const dominantColor = getDominantColor(allColors);
 
-    const smallDummy = motileParts.current.filter(component => component.name === "Dummy Small")[0];
-    const mediumDummy = motileParts.current.filter(component => component.name === "Dummy Medium")[0];
+    const smallDummy = motileParts.current.filter(component => component.name === "Kleiner Dummy")[0];
+    const mediumDummy = motileParts.current.filter(component => component.name === "Großer Dummy")[0];
 
     for (let val of dummySpotIdxs) {
       if (dummySpotIdxs.includes(val + 1) && !breakList.includes(val + 1)) {

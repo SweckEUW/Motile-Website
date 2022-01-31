@@ -120,7 +120,15 @@ class Bridges {
 
         // BABYLON.Animation.CreateAndStartAnimation("", parent, "position.y", 30,15, 30, 2.5, 0, this.ease);
         
-        this.instances++;       
+        this.instances++;     
+        
+        return {
+            name: mesh.name.replace("_Bridge","") + "_" + size, 
+            scale: {
+                x: parent.scaling.x /1000,
+                z: -parent.scaling.z /1000
+            }
+        }
     }
 
     changeBridgeColor(color){

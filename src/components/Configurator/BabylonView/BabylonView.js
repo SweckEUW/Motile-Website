@@ -55,8 +55,10 @@ function BabylonView(props){
       let motilePart = components.find(component => component.component.name == child.name);
       if(motilePart)
         for (let i = 0; i < snapBoxes.current.length; i++) 
-          if(motilePart && snapBoxes.current[i].mesh.intersectsPoint(child.position))
-            bridges.current.cloneAndPlace(snapBoxes.current[i].type,motilePart.component.metaData.size,child,snapBoxes.current[i+1],snapBoxes.current[i-1]);
+          if(motilePart && snapBoxes.current[i].mesh.intersectsPoint(child.position)){
+            let bridgeData = bridges.current.cloneAndPlace(snapBoxes.current[i].type,motilePart.component.metaData.size,child,snapBoxes.current[i+1],snapBoxes.current[i-1]);
+            motilePart.bridge = bridgeData;
+          }
     });
 
   }
@@ -79,8 +81,8 @@ function BabylonView(props){
 
     // init scene
     let scene = new BABYLON.Scene(engine);
-    globalScene.current = scene;
     scene.clearColor = BABYLON.Color3.White();
+    globalScene.current = scene;
     // scene.debugLayer.show();
     
     // init camera
@@ -247,22 +249,20 @@ function BabylonView(props){
       if (dummySpotIdxs.includes(val + 1) && !breakList.includes(val + 1)) {
         addComponentToScene({detail:{name: mediumDummy.name, color: dominantColor, position: boxes[val].mesh.position}});
         dummySpotIdxs.splice(dummySpotIdxs.indexOf(val + 1), 1);
-        components.push({component: mediumDummy, settings: [], color: dominantColor, position: boxes[val].mesh.position})
 
-        // const clonedMesh = clonedDummyMeshes.current.filter(mesh => mesh.position === boxes[val].mesh.position)[0];
         const clonedMesh = clonedDummyMeshes.current.filter(mesh => boxes[val].mesh.intersectsPoint(mesh.position))[0];
-        console.log(clonedMesh);
 
-        bridges.current.cloneAndPlace(boxes[val].type,"m",clonedMesh,boxes[val + 1],boxes[val - 1]); // Add Bridge
+        let bridgeData = bridges.current.cloneAndPlace(boxes[val].type,"m",clonedMesh,boxes[val + 1],boxes[val - 1]); // Add Bridge
+        components.push({component: mediumDummy, settings: [], color: dominantColor, position: boxes[val].mesh.position, bridge: bridgeData})
       }
       else {
         addComponentToScene({detail:{name: smallDummy.name, color: dominantColor, position: boxes[val].mesh.position}});
-        components.push({component: smallDummy, settings: [], color: dominantColor, position: boxes[val].mesh.position})
 
         const clonedMesh = clonedDummyMeshes.current.filter(mesh => boxes[val].mesh.intersectsPoint(mesh.position))[0];
-        console.log(clonedMesh);
 
-        bridges.current.cloneAndPlace(boxes[val].type,"s",clonedMesh,boxes[val + 1],boxes[val - 1]); // Add Bridge
+        let bridgeData = bridges.current.cloneAndPlace(boxes[val].type,"s",clonedMesh,boxes[val + 1],boxes[val - 1]); // Add Bridge
+
+        components.push({component: smallDummy, settings: [], color: dominantColor, position: boxes[val].mesh.position, bridge: bridgeData})
       }
     }
     setState(prevState => ({...prevState,components: components})); 
@@ -373,8 +373,9 @@ function BabylonView(props){
           currentMesh.current.position = new BABYLON.Vector3(snapBoxes.current[i].mesh.position._x, 5.3, snapBoxes.current[i].mesh.position._z);
           componentState.position = currentMesh.current.position; // save snap position
           currentMesh.current.parent = globalScene.current.getNodeByName("Phone");
+          let bridgeData = bridges.current.cloneAndPlace(snapBoxes.current[i].type,componentState.component.metaData.size,currentMesh.current,snapBoxes.current[i+1],snapBoxes.current[i-1]); // Add Bridge
+          componentState.bridge = bridgeData;
           setState(prevState => ({...prevState,configuratorErrorMessage: ""}));
-          bridges.current.cloneAndPlace(snapBoxes.current[i].type,componentState.component.metaData.size,currentMesh.current,snapBoxes.current[i+1],snapBoxes.current[i-1]); // Add Bridge
           return;
         }
         else if (snapBoxes.current[i].mesh.intersectsPoint(currentMesh.current.position)) {

@@ -73,9 +73,9 @@ class ServerRequest{
         return await AxiosHelper.post('/StayAlive', getData());
     }
 
-    async saveUserConfiguration(data){
+    async saveUserConfiguration(config){
         let sendData = getData();
-        sendData.config = data;
+        sendData.config = config;
         let saveResponse = await AxiosHelper.post('/User/Configs/Add', sendData);
         let generateThumbnailRespone = await AxiosHelper.post('/User/Configs/GenerateThumbnail', sendData);
         return generateThumbnailRespone;

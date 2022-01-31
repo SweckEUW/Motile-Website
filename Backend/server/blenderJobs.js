@@ -14,14 +14,13 @@ export default class blenderJobs{
         let pythonFilePath = dirname + '/Assets/RenderMotile.py';
         let drive = blenderPath.split("/")[0];
 
-        console.log(request.user.firstName);
-
         let renderPositions = []
         request.body.config.parts.forEach(part => {
             renderPositions.push({
                 name: part.component.name.replaceAll(" ",""),
                 position: part.position,
-                color: part.color
+                color: part.color,
+                bridge: part.bridge
             })
         });
 
@@ -30,7 +29,7 @@ export default class blenderJobs{
             components: renderPositions,
             isTablet: request.body.config.isTablet
         }
-        console.log(settings);
+       
         settings = JSON.stringify(JSON.stringify(settings));
 
         console.log("Start Blender rendering");

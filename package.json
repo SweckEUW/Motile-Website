@@ -32,7 +32,7 @@
   "scripts": {
     "serve": "concurrently --kill-others  \"react-scripts start\" \"nodemon Backend/server/server.js\" \"mongod --dbpath=Backend/Data\" ",
     "express": "nodemon Backend/server/server.js",
-    "react": "HOST=0.0.0.0 react-scripts start",
+    "react": "react-scripts start",
     "mongodb": "mongod --dbpath=Backend/Data",
     "fixmongodb": "mongod --dbpath=Backend/Data --repair",
     "build": "react-scripts build",

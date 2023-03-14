@@ -20,7 +20,7 @@ app.use(express.json());
 // Connect to Database
 const MongoClient = mongodb.MongoClient
 MongoClient.connect(
-    'mongodb://localhost:27017/Motile', 
+    'mongodb://0.0.0.0/Motile', 
     {useNewUrlParser: true},
 )
 .catch(error => { 

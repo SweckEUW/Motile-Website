@@ -30,10 +30,10 @@ export default class blenderJobs{
             isTablet: request.body.config.isTablet
         }
        
-        settings = JSON.stringify(JSON.stringify(settings));
+        settings = JSON.stringify(settings);
 
         console.log("Start Blender rendering");
-        let blenderJob = exec((drive != "C:" ? drive : "") + 'cd "' + config.blender.path + '" & blender -b "' + blenderFilePath + '" -P "' + pythonFilePath + '" -- "' + settings);
+        let blenderJob = exec((drive != "C:" ? drive : "") + 'cd "' + config.blender.path + '" & blender -b "' + blenderFilePath + '" -P "' + pythonFilePath + '" -- "' + settings.replace(/[\\"]/g, "\\$&") );
        
         blenderJob.stdout.on('data', function (data) {
             console.log('stdout: ' + data.toString());

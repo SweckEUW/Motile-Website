@@ -35,7 +35,7 @@
     "react": "react-scripts --openssl-legacy-provider start",
     "mongodb": "mongod --dbpath=Backend/Data",
     "fixmongodb": "mongod --dbpath=Backend/Data --repair",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "build": "CI=false && react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

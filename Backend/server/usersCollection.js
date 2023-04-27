@@ -93,8 +93,8 @@ export default class usersCollection{
                 requireTLS: true,
                 service: 'gmail',
                 auth: {
-                user: 'motilecvd@gmail.com',
-                pass: 'motilecvd1234'
+                    user: 'motilecvd@gmail.com',
+                    pass: 'motilecvd1234'
                 }
             });
 

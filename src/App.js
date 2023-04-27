@@ -22,7 +22,7 @@ import React from 'react';
 const App = () => {
 
   return (
-    <Router>
+    <Router basename={'/Motile-Website'}>
       <Loadingscreen/>
       <Navbar/>
       <Login/>

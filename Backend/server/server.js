@@ -15,7 +15,7 @@ import mongodb from "mongodb"
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+// app.use(express.json());
 
 // Connect to Database
 const MongoClient = mongodb.MongoClient

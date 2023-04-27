@@ -16,10 +16,17 @@ import Kontakt from './components/Footer/FooterPages/Kontakt';
 import Datenschutz from './components/Footer/FooterPages/Datenschutz';
 import Nutzungsbedingungen from './components/Footer/FooterPages/Nutzungsbedingungen';
 import Impressum from './components/Footer/FooterPages/Impressum';
-
+import history from './services/RouterHistory';
 import React from 'react';
 
 const App = () => {
+
+  let path = localStorage.getItem('path');
+  if(path){
+    console.log(path);
+    localStorage.removeItem('path');
+    history.push({pathname: path});
+  }
 
   return (
     <Router basename={'/Motile-Website'}>

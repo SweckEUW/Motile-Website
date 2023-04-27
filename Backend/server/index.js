@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import mongodb from "mongodb"
+import {MongoClient, ServerApiVersion} from "mongodb"
 import multer from "multer"
 import motilePartsCollection from "./motilePartsCollection.js"
 import UsersCollection from "./usersCollection.js"
@@ -11,6 +11,9 @@ import UserConfigsCollection from "./userConfigsCollection.js"
 import userDataCollection from "./userDataCollection.js"
 import Middleware from "./middleware.js"
 import ImageUploadHandler from "./ImageUploadHandler.js"
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
@@ -18,28 +21,31 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to Database
-// const MongoClient = mongodb.MongoClient
-// MongoClient.connect(
-//     'mongodb://0.0.0.0/Motile', 
-//     {useNewUrlParser: true},
-// )
-// .catch(error => { 
-//     console.error(error);
-//     process.exit(1);
-// }).then(async client =>{
-//     console.log("Connected to Database")
-//     await motilePartsCollection.retrieveMotilePartsCollection(client);
-//     await UsersCollection.retrieveUsersCollection(client);
-//     await UserConfigsCollection.retrieveConfigsCollection(client);
-//     await userDataCollection.retrieveUserDataCollection(client);
-//     app.listen(5000,() =>{
-//         console.log('Server started')
-//     });
-// })
-
-app.listen(5000,() =>{
-    console.log('Server started')
+const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORT}@cluster0.wpwuaak.mongodb.net/?retryWrites=true&w=majority`;
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
 });
+
+client.connect()
+.catch(error => { 
+  console.error(error);
+  process.exit(1);
+}).then(async client =>{
+    console.log("Connected to Database")
+
+    await motilePartsCollection.retrieveMotilePartsCollection(client);
+    await UsersCollection.retrieveUsersCollection(client);
+    await UserConfigsCollection.retrieveConfigsCollection(client);
+    await userDataCollection.retrieveUserDataCollection(client);
+
+    app.listen(5000,() =>{
+        console.log('Server started')
+    });
+})
 
 app.get('/', (req, res) => {
     res.send("Server Online");

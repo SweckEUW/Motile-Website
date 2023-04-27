@@ -1,4 +1,4 @@
-import jwt, { decode } from "jsonwebtoken"
+import jwt from "jsonwebtoken"
 import UsersCollection from "./usersCollection.js";
 
 export default class middleware{

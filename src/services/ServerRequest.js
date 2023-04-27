@@ -77,8 +77,9 @@ class ServerRequest{
         let sendData = getData();
         sendData.config = config;
         let saveResponse = await AxiosHelper.post('/User/Configs/Add', sendData);
-        let generateThumbnailRespone = await AxiosHelper.post('/User/Configs/GenerateThumbnail', sendData);
-        return generateThumbnailRespone;
+        // let generateThumbnailRespone = await AxiosHelper.post('/User/Configs/GenerateThumbnail', sendData);
+        // return generateThumbnailRespone;
+        return saveResponse;
     }
 
     async removeUserConfiguration(data){

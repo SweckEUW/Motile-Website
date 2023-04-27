@@ -18,24 +18,32 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to Database
-const MongoClient = mongodb.MongoClient
-MongoClient.connect(
-    'mongodb://0.0.0.0/Motile', 
-    {useNewUrlParser: true},
-)
-.catch(error => { 
-    console.error(error);
-    process.exit(1);
-}).then(async client =>{
-    console.log("Connected to Database")
-    await motilePartsCollection.retrieveMotilePartsCollection(client);
-    await UsersCollection.retrieveUsersCollection(client);
-    await UserConfigsCollection.retrieveConfigsCollection(client);
-    await userDataCollection.retrieveUserDataCollection(client);
-    app.listen(5000,() =>{
-        console.log('Server started')
-    });
-})
+// const MongoClient = mongodb.MongoClient
+// MongoClient.connect(
+//     'mongodb://0.0.0.0/Motile', 
+//     {useNewUrlParser: true},
+// )
+// .catch(error => { 
+//     console.error(error);
+//     process.exit(1);
+// }).then(async client =>{
+//     console.log("Connected to Database")
+//     await motilePartsCollection.retrieveMotilePartsCollection(client);
+//     await UsersCollection.retrieveUsersCollection(client);
+//     await UserConfigsCollection.retrieveConfigsCollection(client);
+//     await userDataCollection.retrieveUserDataCollection(client);
+//     app.listen(5000,() =>{
+//         console.log('Server started')
+//     });
+// })
+
+app.listen(5000,() =>{
+    console.log('Server started')
+});
+
+app.get('/test', (req, res) => {
+    res.json("Hello");
+});
 
 // MotileParts
 app.get('/MotileParts', motilePartsCollection.getMotileParts);

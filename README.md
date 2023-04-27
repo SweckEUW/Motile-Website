@@ -1,8 +1,10 @@
 
 # Motile
 
-## Tasklist
-Link: https://trello.com/b/sfPJkjaK/tasks 
+More Information: https://simonweck.de/work/Motile
+
+Visit the Website: https://sweckeuw.github.io/Motile-Website/
+
 
 ## Prerequisites
 You will need [Node.js](https://nodejs.org) installed on your system.

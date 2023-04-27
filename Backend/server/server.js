@@ -41,8 +41,8 @@ app.listen(5000,() =>{
     console.log('Server started')
 });
 
-app.get('/test', (req, res) => {
-    res.json("Hello");
+app.get('/', (req, res) => {
+    res.send("Server Online");
 });
 
 // MotileParts

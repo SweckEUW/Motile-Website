@@ -37,7 +37,7 @@ function Home(){
 
   return (
       <div className="Home">
-        <section className="hd-section1" style={{backgroundImage: "url(" + process.env.PUBLIC_URL + "'/Assets/Home.png')"}}>
+        <section className="hd-section1" style={{backgroundImage: "url('/Assets/Home.png')"}}>
             <div className="section1-container">
                 <h2>Nachhaltig, individuell und aufrüstbar.</h2>
                 <div className="section1-text">

@@ -8,9 +8,9 @@
 </head>
 <body>
     <script>
-        const path = window.location.pathname.slice(1);
+        const path = window.location.pathname.replace("/Motile-Website/","");
         localStorage.setItem('path', path);
-        window.location.href='../Motile-Website/'; // redirect to home 
+        window.location.href = 'https://sweckeuw.github.io/Motile-Website/'; // redirect to home 
     </script>
 </body>
 </html>

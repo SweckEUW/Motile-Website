@@ -29,7 +29,7 @@ const App = () => {
   }
 
   return (
-    <Router basename={'/Motile-Website'}>
+    <Router basename={'/Motile-Website'} history={history}>
       <Loadingscreen/>
       <Navbar/>
       <Login/>

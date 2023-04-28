@@ -1,14 +1,16 @@
 import './Home.css'
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import {Link} from "react-router-dom";
 import Swiper , { Pagination } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/modules/pagination/pagination.min.css';
-import history from '../../services/RouterHistory';
 
 function Home(){
+  const [presetConfigurations, setPresetConfigurations] = useState([]);
+
   useEffect(() =>{ 
-    document.title = "Motile"
+    document.title = "Motile";
+    loadPresetConfigurations();
     setTimeout(() => {
       new Swiper('#hd-swiper', {
         modules: [Pagination],
@@ -22,17 +24,9 @@ function Home(){
       }, 25);    
     }, 10);
   }, []);
-
-  async function loadPreset(type){
-    let configuration = await (await fetch('https://motile-website.vercel.app/Presets.json')).json();
-
-    history.push({
-      pathname: '/Konfigurator',
-      state: {
-        editMode: true,
-        configuration: configuration[type]
-      }
-    })
+  
+  async function loadPresetConfigurations(){
+    setPresetConfigurations(await (await fetch('https://motile-website.vercel.app/Presets.json')).json());  
   }
 
   return (
@@ -58,7 +52,7 @@ function Home(){
                     <h3>Entertainment</h3>
                     <p>Ausgestattet mit einem hochauflösenden Display, großen kraftvollen Lautsprechern sowie einem robusten Standfuß. Die beste Art, um sich entspannt zurückzulehnen und die Unterhaltung zu genießen.</p>
                     <p className="hd-price">ab 350€</p>
-                    <div className="hd-link2" onClick={() =>{loadPreset(0)}}>Preset öffnen</div>
+                    <Link to={{pathname: "/Konfigurator", state: {editMode: true, configuration: presetConfigurations[0]} }} className="hd-link2">Preset öffnen</Link>
                   </div>
                   </div>
                 </div>
@@ -69,7 +63,7 @@ function Home(){
                     <h3>Erlebnis</h3>
                     <p>Unermüdliche Laufzeit, maximaler Platz sowie die ausgetüfteltste Kamera im Gepäck. Die beste Ausstattung, um unterwegs zu sein und unzählige Erinnerungen zu schaffen.</p>
                     <p className="hd-price">ab 350€</p>
-                    <div className="hd-link2" onClick={() =>{loadPreset(1)}}>Preset öffnen</div>
+                    <Link to={{pathname: "/Konfigurator", state: {editMode: true, configuration: presetConfigurations[1]} }} className="hd-link2">Preset öffnen</Link>
                   </div>
                 </div>
                 </div>
@@ -80,7 +74,7 @@ function Home(){
                     <h3>Einsteiger</h3>
                     <p>Schonend für den Geldbeutel und trotzdem leistungsfähig: Unser Basismodell bietet alles, was du brauchst. Kein Schnickschnack, kein wenn und aber. </p>
                     <p className="hd-price">ab 350€</p>
-                    <div className="hd-link2" onClick={() =>{loadPreset(2)}}>Preset öffnen</div>
+                    <Link to={{pathname: "/Konfigurator", state: {editMode: true, configuration: presetConfigurations[2]} }} className="hd-link2">Preset öffnen</Link>
                   </div>
                 </div>
                 </div>

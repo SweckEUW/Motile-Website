@@ -9,6 +9,7 @@ import Swiper , { Pagination } from 'swiper';
 import 'swiper/swiper.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
 import {CSSTransition} from 'react-transition-group';
+import {Link} from "react-router-dom";
 
 const Configurations = () => {
     const [state, setState] = useContext(Context);
@@ -68,16 +69,6 @@ const Configurations = () => {
         setShoppingCartItems([...inShoppingCart, configuration])
     }
 
-    function editeConfiguration(configuration){
-        history.push({
-            pathname: '/Konfigurator',
-            state: {
-                editMode: true,
-                configuration: configuration
-            }
-        })
-    }
-
     async function deleteConfiguration(configuration){
         let removeConfigurationResponse = await ServerRequest.removeUserConfiguration(configuration);
         console.log(removeConfigurationResponse.data.message);
@@ -105,7 +96,7 @@ const Configurations = () => {
                                         <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "https://motile-website.vercel.app/Placeholder/phone_placeholder.png"} alt=""/>
                                         <div className="cf-name">{configuration.name}</div>
                                         <div className="cf-info">{'gekauft '+configuration.orderDate}</div>
-                                        <div className="cf-button cf-upgrade" onClick={() =>{editeConfiguration(configuration)}}>Upgrade</div>
+                                        <Link to={{pathname: "/Konfigurator", state: {editMode: true, configuration: configuration} }}><div className="cf-button cf-upgrade">Upgrade</div></Link>            
                                         <div className="cf-link" onClick={()=>{history.push({pathname: '/Profil/Bestellungen'})}}>Details anzeigen &gt;</div>
                                     </div>
                                 )})}
@@ -129,7 +120,7 @@ const Configurations = () => {
                                     <div className="cf-info">{configuration.price}</div>
                                     <div className="cf-button" onClick={() => addToShoppingCart(configuration)}>In den Warenkorb</div>
                                     <div className="cf-link-container">
-                                        <span className="cf-link" onClick={() =>{editeConfiguration(configuration)}}>bearbeiten</span>
+                                        <Link to={{pathname: "/Konfigurator", state: {editMode: true, configuration: configuration} }}><div className="cf-link">bearbeiten</div></Link>
                                         <span className="cf-link" onClick={() =>{deleteConfiguration(configuration)}}>löschen</span>  
                                     </div>
                                 </div>

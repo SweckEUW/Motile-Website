@@ -11,9 +11,9 @@ import Trashbin from './Trashbin';
 import Bridges from './Bridges';
 import Component from './Component';
 import ServerRequest from '../../../services/ServerRequest';
-import history from '../../../services/RouterHistory';
 import {Context} from '../../../Store'
 import {CSSTransition} from 'react-transition-group';
+import { useLocation } from "react-router-dom";
 
 function BabylonView(props){
   const [state, setState] = useContext(Context);
@@ -31,6 +31,8 @@ function BabylonView(props){
   const canvas = useRef(null)
   const motilePartsNodes =  useRef([]);
 
+  const location = useLocation();
+  
   useEffect(() => {
     document.title = "Motile - Konfigurator"
     initialize();
@@ -39,7 +41,7 @@ function BabylonView(props){
     return () => {
       globalScene.current.dispose();
       globalEngine.current.dispose();
-      history.location.state = null;
+      location.state = null;
     }
   }, []);
 
@@ -60,9 +62,8 @@ function BabylonView(props){
             motilePart.bridge = bridgeData;
           }
     });
-
   }
-
+  
   async function initialize(){
     // init engine
     let engine = new BABYLON.Engine(canvas.current, true);
@@ -147,8 +148,8 @@ function BabylonView(props){
       }
     );
      
-    if(history.location.state && history.location.state.editMode)
-      loadConfiguration(history.location.state.configuration);
+    if(location.state && location.state.editMode)
+      loadConfiguration(location.state.configuration);
   }
 
   function addComponentToScene(e){

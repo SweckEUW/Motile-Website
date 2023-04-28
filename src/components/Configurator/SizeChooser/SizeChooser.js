@@ -1,11 +1,13 @@
 import './SizeChooser.css';
 import React, {useEffect} from 'react';
-import history from '../../../services/RouterHistory';
+import { useLocation } from "react-router-dom";
 
 function SizeChooser(props){
 
+  const location = useLocation();
+  
   useEffect(() =>{ 
-    if(history.location.state && history.location.state.editMode)
+    if(location.state && location.state.editMode)
       props.setSizeChooserVisible(false);
       
   }, []);

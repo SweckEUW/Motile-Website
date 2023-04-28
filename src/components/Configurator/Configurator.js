@@ -1,19 +1,21 @@
 import './Configurator.css';
 import React, {useState, useEffect} from 'react';
+import { useLocation } from "react-router-dom";
 import {CSSTransition} from 'react-transition-group';
 import SizeChooser from './SizeChooser/SizeChooser';
 import BabylonView from './/BabylonView/BabylonView';
 import Panel from './Panel/Panel';
 import Colorpicker from './Colorpicker/Colorpicker';
-import history from '../../services/RouterHistory';
 
 function Configurator(){
     const [sizeChooserVisible, setSizeChooserVisible] = useState(true);
     const [tabletSelected, setTabletSelected] = useState(false);
 
+    const location = useLocation();
+
     useEffect(() =>{ 
-        if(history.location.state && history.location.state.editMode)
-            setTabletSelected(history.location.state.configuration.isTablet)
+        if(location.state && location.state.editMode)
+            setTabletSelected(location.state.configuration.isTablet)
             
         return () => {
             setSizeChooserVisible(true);

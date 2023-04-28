@@ -5,7 +5,7 @@ import 'swiper/swiper.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
 import Overview from './Overview/Overview';
 import PanelElement from "./PanelElement/PanelElement"
-import history from '../../../services/RouterHistory';
+import { useLocation } from "react-router-dom";
 
 function Panel(props){
   const [swiper, setSwiper] = useState(null);
@@ -15,6 +15,8 @@ function Panel(props){
   const [maxAvailableSwipesBack, setMaxAvailableSwipesBack] = useState(0);
   const [availableSwipesFront, setAvailableSwipesFront] = useState(0);
   const [maxAvailableSwipesFront, setMaxAvailableSwipesFront] = useState(0);
+
+  const location = useLocation();
 
   useEffect(() =>{ 
     // Works only with Timeout?
@@ -37,7 +39,7 @@ function Panel(props){
       
       setSwiper(swiper);
 
-      if(history.location.state && history.location.state.editMode){
+      if(location.state && location.state.editMode){
         setIgnoreSwiperLimits(true);
         swiper.slideTo(2);
       }

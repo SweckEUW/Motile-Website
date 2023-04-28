@@ -2,6 +2,7 @@ import './Overview.css';
 import React, {useContext,useEffect,useState} from 'react';
 import {Context} from '../../../../Store'
 import ServerRequest from '../../../../services/ServerRequest'
+import { useLocation } from "react-router-dom";
 import history from '../../../../services/RouterHistory';
 
 function Overview(props){
@@ -9,11 +10,13 @@ function Overview(props){
   const [configName, setConfigName] = useState("Meine Konfiguration");
   const [configNameEditEnabled, setConfigNameEditEnabled] = useState(false);
 
+  const location = useLocation();
+
   useEffect(() =>{ 
     setState(prevState => ({...prevState,components: []}));
 
-    if(history.location.state && history.location.state.editMode)
-      setConfigName(history.location.state.configuration.name)  
+    if(location.state && location.state.editMode)
+      setConfigName(location.state.configuration.name)  
   },[]);
 
   async function saveConfiguration(){

@@ -16,7 +16,7 @@
                     "description": "Das Computing Modul beinhaltet das SoC (System on Chip) sowie den Arbeitsspeicher und ist damit das Herzstück des Smartphones.",
                     "size": "m",
                     "icon": "memory",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/computing/computing.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/computing/computing.jpg",
                     "requiredPos": "none",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -50,7 +50,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/core/core.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/core/core.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -101,7 +101,7 @@
                     "description": "Das Wireless-Modul beinhaltet den SIM-Kartenslot, die Antennen für Mobilfunk, WLAN-, Bluetooth sowie wahlweise auch GPS und NFC.",
                     "size": "s",
                     "icon": "wifi",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/wireless/wireless.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/wireless/wireless.jpg",
                     "requiredPos": "side",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -131,7 +131,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/Wireless/wireless.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/Wireless/wireless.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -178,7 +178,7 @@
                     "description": "Bei der Wahl der Speicherkapazität ist zu beachten, dass das Betriebssystem etwa 30 GB benötigt. Auch die Größe des Moduls ist von der Auswahl abhängig.",
                     "size": "s",
                     "icon": "storage",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/memory/memory-1.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/memory/memory-1.jpg",
                     "requiredPos": "side",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -210,7 +210,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/storage/storage-sd.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/storage/storage-sd.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -265,7 +265,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/battery/battery.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/battery/battery.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -326,7 +326,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/camera/camera-small.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/camera/camera-small.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -337,20 +337,20 @@
                     "head": "Basic",
                     "addPrice": "0",
                     "additionalInfo": "12 MP 20mm ƒ/4.8",
-                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_1.svg",
+                    "img": "https://motile-website.vercel.app/MotileParts/Icons/Camera/camera_1.svg",
                     "motilePart": "Kamera Standard"
                 }, {
                     "head": "Dual",
                     "addPrice": "25",
                     "additionalInfo": "25 MP 23mm ƒ/1.8",
-                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_2.svg",
+                    "img": "https://motile-website.vercel.app/MotileParts/Icons/Camera/camera_2.svg",
                     "motilePart": "Kamera Dual"
                 }, {
                     "head": "Pro",
                     "addPrice": "125",
                     "motilePart": "Kamera Pro",
                     "additionalInfo": "48 MP 23mm ƒ/1.8",
-                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_3.svg"
+                    "img": "https://motile-website.vercel.app/MotileParts/Icons/Camera/camera_3.svg"
                 }],
                 "selectedOptions": ["12 MP 20mm ƒ/4.8", "Kamera Standard"]
             }],
@@ -378,7 +378,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/optional/audio-dac.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/optional/audio-dac.glb",
                     "scale": [1000, 1000, 1000]
                 },
                 "optional": "true"
@@ -431,7 +431,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/optional/kickstand.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/optional/kickstand.glb",
                     "scale": [1000, 1000, 1000]
                 },
                 "optional": "true"
@@ -484,7 +484,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/dummys/dummy-l.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/dummys/dummy-l.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -506,7 +506,7 @@
                     "description": "Das Display hat eine Größe von 6,5\". Bei der Auswahl von High-End-Optionen wird empfohlen, einen entsprechend leistungsfähigen Akku einzubauen.",
                     "size": "xl",
                     "icon": "light_mode",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/Display.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/Display.jpg",
                     "requiredPos": "none",
                     "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -557,7 +557,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/front/screen-phone.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/front/screen-phone.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -619,7 +619,7 @@
                     "description": "In der Hörmuschel befindet sich der Lautsprecher zum telefonieren, ein Näherungssensor sowie die Frontkamera, falls gewünscht.",
                     "size": "s",
                     "icon": "volume_up",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/earpiece.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/earpiece.jpg",
                     "requiredPos": "none",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -636,7 +636,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/front/earpiece.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/front/earpiece.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -656,7 +656,7 @@
             "price": "20 €"
         }],
         "isTablet": false,
-        "thumbnail": "http://localhost:5000/UserThumbnails/undefined_undefined_61f587201050e34eac3329bd/464203018.png"
+        "thumbnail": "https://motile-website.vercel.app/UserThumbnails/undefined_undefined_61f587201050e34eac3329bd/464203018.png"
     },
 
 
@@ -677,7 +677,7 @@
                     "description": "Das Computing Modul beinhaltet das SoC (System on Chip) sowie den Arbeitsspeicher und ist damit das Herzstück des Smartphones.",
                     "size": "m",
                     "icon": "memory",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/computing/computing.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/computing/computing.jpg",
                     "requiredPos": "none",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -711,7 +711,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/core/core.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/core/core.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -762,7 +762,7 @@
                     "description": "Das Wireless-Modul beinhaltet den SIM-Kartenslot, die Antennen für Mobilfunk, WLAN-, Bluetooth sowie wahlweise auch GPS und NFC.",
                     "size": "s",
                     "icon": "wifi",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/wireless/wireless.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/wireless/wireless.jpg",
                     "requiredPos": "side",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -792,7 +792,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/Wireless/wireless.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/Wireless/wireless.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -839,7 +839,7 @@
                     "description": "Bei der Wahl der Speicherkapazität ist zu beachten, dass das Betriebssystem etwa 30 GB benötigt. Auch die Größe des Moduls ist von der Auswahl abhängig.",
                     "size": "s",
                     "icon": "storage",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/memory/memory-1.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/memory/memory-1.jpg",
                     "requiredPos": "side",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -871,7 +871,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/storage/storage-sd.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/storage/storage-sd.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -926,7 +926,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/battery/battery-3.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/battery/battery-3.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -987,7 +987,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/camera/Camera-large.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/camera/Camera-large.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -998,20 +998,20 @@
                     "head": "Basic",
                     "addPrice": "0",
                     "additionalInfo": "12 MP 20mm ƒ/4.8",
-                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_1.svg",
+                    "img": "https://motile-website.vercel.app/MotileParts/Icons/Camera/camera_1.svg",
                     "motilePart": "Kamera Standard"
                 }, {
                     "head": "Dual",
                     "addPrice": "25",
                     "additionalInfo": "25 MP 23mm ƒ/1.8",
-                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_2.svg",
+                    "img": "https://motile-website.vercel.app/MotileParts/Icons/Camera/camera_2.svg",
                     "motilePart": "Kamera Dual"
                 }, {
                     "head": "Pro",
                     "addPrice": "125",
                     "motilePart": "Kamera Pro",
                     "additionalInfo": "48 MP 23mm ƒ/1.8",
-                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_3.svg"
+                    "img": "https://motile-website.vercel.app/MotileParts/Icons/Camera/camera_3.svg"
                 }],
                 "selectedOptions": ["48 MP 23mm ƒ/1.8", "Kamera Pro"]
             }],
@@ -1039,7 +1039,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/optional/screen-l.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/optional/screen-l.glb",
                     "scale": [1000, 1000, 1000]
                 },
                 "optional": "true"
@@ -1092,7 +1092,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/dummys/dummy-s.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/dummys/dummy-s.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1114,7 +1114,7 @@
                     "description": "Das Display hat eine Größe von 6,5\". Bei der Auswahl von High-End-Optionen wird empfohlen, einen entsprechend leistungsfähigen Akku einzubauen.",
                     "size": "xl",
                     "icon": "light_mode",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/Display.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/Display.jpg",
                     "requiredPos": "none",
                     "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -1165,7 +1165,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/front/screen-phone.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/front/screen-phone.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1227,7 +1227,7 @@
                     "description": "In der Hörmuschel befindet sich der Lautsprecher zum telefonieren, ein Näherungssensor sowie die Frontkamera, falls gewünscht.",
                     "size": "s",
                     "icon": "volume_up",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/earpiece.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/earpiece.jpg",
                     "requiredPos": "none",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -1244,7 +1244,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/front/earpiece.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/front/earpiece.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1264,7 +1264,7 @@
             "price": "20 €"
         }],
         "isTablet": false,
-        "thumbnail": "http://localhost:5000/UserThumbnails/undefined_undefined_61f587201050e34eac3329bd/78338530.png"
+        "thumbnail": "https://motile-website.vercel.app/UserThumbnails/undefined_undefined_61f587201050e34eac3329bd/78338530.png"
     },
 
     {
@@ -1284,7 +1284,7 @@
                     "description": "Das Computing Modul beinhaltet das SoC (System on Chip) sowie den Arbeitsspeicher und ist damit das Herzstück des Smartphones.",
                     "size": "m",
                     "icon": "memory",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/computing/computing.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/computing/computing.jpg",
                     "requiredPos": "none",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -1318,7 +1318,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/core/core.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/core/core.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1369,7 +1369,7 @@
                     "description": "Das Wireless-Modul beinhaltet den SIM-Kartenslot, die Antennen für Mobilfunk, WLAN-, Bluetooth sowie wahlweise auch GPS und NFC.",
                     "size": "s",
                     "icon": "wifi",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/wireless/wireless.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/wireless/wireless.jpg",
                     "requiredPos": "side",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -1399,7 +1399,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/Wireless/wireless.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/Wireless/wireless.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1446,7 +1446,7 @@
                     "description": "Bei der Wahl der Speicherkapazität ist zu beachten, dass das Betriebssystem etwa 30 GB benötigt. Auch die Größe des Moduls ist von der Auswahl abhängig.",
                     "size": "s",
                     "icon": "storage",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/memory/memory-1.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/memory/memory-1.jpg",
                     "requiredPos": "side",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -1478,7 +1478,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/storage/storage-sd.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/storage/storage-sd.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1533,7 +1533,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/battery/battery.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/battery/battery.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1594,7 +1594,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/camera/camera-small-2.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/camera/camera-small-2.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1605,20 +1605,20 @@
                     "head": "Basic",
                     "addPrice": "0",
                     "additionalInfo": "12 MP 20mm ƒ/4.8",
-                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_1.svg",
+                    "img": "https://motile-website.vercel.app/MotileParts/Icons/Camera/camera_1.svg",
                     "motilePart": "Kamera Standard"
                 }, {
                     "head": "Dual",
                     "addPrice": "25",
                     "additionalInfo": "25 MP 23mm ƒ/1.8",
-                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_2.svg",
+                    "img": "https://motile-website.vercel.app/MotileParts/Icons/Camera/camera_2.svg",
                     "motilePart": "Kamera Dual"
                 }, {
                     "head": "Pro",
                     "addPrice": "125",
                     "motilePart": "Kamera Pro",
                     "additionalInfo": "48 MP 23mm ƒ/1.8",
-                    "img": "http://localhost:5000/MotileParts/Icons/Camera/camera_3.svg"
+                    "img": "https://motile-website.vercel.app/MotileParts/Icons/Camera/camera_3.svg"
                 }],
                 "selectedOptions": ["25 MP 23mm ƒ/1.8", "Kamera Dual"]
             }],
@@ -1646,7 +1646,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/optional/audio-dac.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/optional/audio-dac.glb",
                     "scale": [1000, 1000, 1000]
                 },
                 "optional": "true"
@@ -1699,7 +1699,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/dummys/dummy-l.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/dummys/dummy-l.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1727,7 +1727,7 @@
                     "options": []
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/back/modules/dummys/dummy-l.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/back/modules/dummys/dummy-l.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1749,7 +1749,7 @@
                     "description": "Das Display hat eine Größe von 6,5\". Bei der Auswahl von High-End-Optionen wird empfohlen, einen entsprechend leistungsfähigen Akku einzubauen.",
                     "size": "xl",
                     "icon": "light_mode",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/Display.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/Display.jpg",
                     "requiredPos": "none",
                     "colorways": ["#000000", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -1800,7 +1800,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/front/screen-phone.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/front/screen-phone.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1862,7 +1862,7 @@
                     "description": "In der Hörmuschel befindet sich der Lautsprecher zum telefonieren, ein Näherungssensor sowie die Frontkamera, falls gewünscht.",
                     "size": "s",
                     "icon": "volume_up",
-                    "thumbnail": "http://localhost:5000/MotileParts/Thumbnails/earpiece.jpg",
+                    "thumbnail": "https://motile-website.vercel.app/MotileParts/Thumbnails/earpiece.jpg",
                     "requiredPos": "none",
                     "colorways": ["#111111", "#AFD7CE", "#82353F", "#D43536", "#D4ACAA", "#E9EC67", "#4D7A91", "#AFB0B4"],
                     "options": [{
@@ -1879,7 +1879,7 @@
                     }]
                 },
                 "3DData": {
-                    "path": "http://localhost:5000/MotileParts/Models/front/earpiece.glb",
+                    "path": "https://motile-website.vercel.app/MotileParts/Models/front/earpiece.glb",
                     "scale": [1000, 1000, 1000]
                 }
             },
@@ -1899,6 +1899,6 @@
             "price": "20 €"
         }],
         "isTablet": false,
-        "thumbnail": "http://localhost:5000/UserThumbnails/undefined_undefined_61f587201050e34eac3329bd/163419832.png"
+        "thumbnail": "https://motile-website.vercel.app/UserThumbnails/undefined_undefined_61f587201050e34eac3329bd/163419832.png"
     }
 ]

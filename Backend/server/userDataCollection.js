@@ -10,7 +10,7 @@ export default class userDataCollection {
         let template = await db.collection("UserData").insertOne({
             firstName: user.firstName,
             lastName: user.lastName,
-            profilePic: "http://localhost:5000/Placeholder/profile_placeholder.png",
+            profilePic: "https://motile-website.vercel.app/Placeholder/profile_placeholder.png",
             telephone: '+49 1575 0456123',
             paymentMethods: [
                 {
@@ -84,7 +84,7 @@ export default class userDataCollection {
         const updateDoc = {
             $set: {
                 ...{
-                    profilePic: 'http://localhost:5000/ProfilePics/' + request.file.filename
+                    profilePic: 'https://motile-website.vercel.app/ProfilePics/' + request.file.filename
                 }
             }
         }

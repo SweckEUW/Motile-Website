@@ -102,7 +102,7 @@ const Configurations = () => {
                             <div className="swiper-wrapper">
                                 {configurations.filter(configuration => configuration.bought).map((configuration,index) =>{return(
                                     <div key={index} className="cf-configuration swiper-slide">
-                                        <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "http://localhost:5000/Placeholder/phone_placeholder.png"} alt=""/>
+                                        <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "https://motile-website.vercel.app/Placeholder/phone_placeholder.png"} alt=""/>
                                         <div className="cf-name">{configuration.name}</div>
                                         <div className="cf-info">{'gekauft '+configuration.orderDate}</div>
                                         <div className="cf-button cf-upgrade" onClick={() =>{editeConfiguration(configuration)}}>Upgrade</div>
@@ -124,7 +124,7 @@ const Configurations = () => {
                         <div className="swiper-wrapper">
                             {configurations.filter(configuration => !configuration.bought).map((configuration,index) =>{return(
                                 <div key={index} className="cf-configuration cf-saved-configuration swiper-slide">
-                                    <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "http://localhost:5000/Placeholder/phone_placeholder.png"} alt=""/>
+                                    <img className="cf-thumbnail" src={configuration.thumbnail ? configuration.thumbnail : "https://motile-website.vercel.app/Placeholder/phone_placeholder.png"} alt=""/>
                                     <div className="cf-name">{configuration.name}</div> 
                                     <div className="cf-info">{configuration.price}</div>
                                     <div className="cf-button" onClick={() => addToShoppingCart(configuration)}>In den Warenkorb</div>

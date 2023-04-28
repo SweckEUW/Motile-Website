@@ -7,17 +7,17 @@ class Bridges {
         this.shadowGenerator = shadowGenerator;
 
         this.bridges = [
-            {path: "http://localhost:5000/MotileParts/Models/back/frames/large-corner.glb", types: ["top-left","top-right","bottom-left","bottom-right"], size: "m"},
-            {path: "http://localhost:5000/MotileParts/Models/back/frames/large-side.glb", types: ["left-side","right-side"], size: "m"},
-            {path: "http://localhost:5000/MotileParts/Models/back/frames/large-top.glb", types: ["top-side","bottom-side"], size: "m"},
-            {path: "http://localhost:5000/MotileParts/Models/back/frames/large-all.glb", types: ["middle"], size: "m"},
-            {path: "http://localhost:5000/MotileParts/Models/back/frames/small-corner.glb", types: ["top-left","top-right","bottom-left","bottom-right"], size: "s"},
-            {path: "http://localhost:5000/MotileParts/Models/back/frames/small-side.glb",  types: ["left-side","right-side"], size: "s"},
-            {path: "http://localhost:5000/MotileParts/Models/back/frames/small-top.glb", types: ["top-side","bottom-side"], size: "s"},
-            {path: "http://localhost:5000/MotileParts/Models/back/frames/small-all.glb", types: ["middle"], size: "s"},
-            {path: "http://localhost:5000/MotileParts/Models/back/frames/xlarge-corner.glb", types: ["special1"], size: "l"},
-            {path: "http://localhost:5000/MotileParts/Models/back/frames/wide.glb", types: ["special2"], size: "l"},
-            {path: "http://localhost:5000/MotileParts/Models/back/frames/xlarge-top.glb", types: ["bottom-side"], size: "l"}
+            {path: "https://motile-website.vercel.app/MotileParts/Models/back/frames/large-corner.glb", types: ["top-left","top-right","bottom-left","bottom-right"], size: "m"},
+            {path: "https://motile-website.vercel.app/MotileParts/Models/back/frames/large-side.glb", types: ["left-side","right-side"], size: "m"},
+            {path: "https://motile-website.vercel.app/MotileParts/Models/back/frames/large-top.glb", types: ["top-side","bottom-side"], size: "m"},
+            {path: "https://motile-website.vercel.app/MotileParts/Models/back/frames/large-all.glb", types: ["middle"], size: "m"},
+            {path: "https://motile-website.vercel.app/MotileParts/Models/back/frames/small-corner.glb", types: ["top-left","top-right","bottom-left","bottom-right"], size: "s"},
+            {path: "https://motile-website.vercel.app/MotileParts/Models/back/frames/small-side.glb",  types: ["left-side","right-side"], size: "s"},
+            {path: "https://motile-website.vercel.app/MotileParts/Models/back/frames/small-top.glb", types: ["top-side","bottom-side"], size: "s"},
+            {path: "https://motile-website.vercel.app/MotileParts/Models/back/frames/small-all.glb", types: ["middle"], size: "s"},
+            {path: "https://motile-website.vercel.app/MotileParts/Models/back/frames/xlarge-corner.glb", types: ["special1"], size: "l"},
+            {path: "https://motile-website.vercel.app/MotileParts/Models/back/frames/wide.glb", types: ["special2"], size: "l"},
+            {path: "https://motile-website.vercel.app/MotileParts/Models/back/frames/xlarge-top.glb", types: ["bottom-side"], size: "l"}
         ];
         this.ease = new BABYLON.CubicEase();
         this.ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEIN);

@@ -10,7 +10,7 @@ class Base {
     }
 
     loadMesh() {
-        let plateTask = this.assetsManager.addMeshTask("", "", "", this.isTablet ? "http://localhost:5000/MotileParts/Models/plate-tablet.glb" : "http://localhost:5000/MotileParts/Models/plate.glb");
+        let plateTask = this.assetsManager.addMeshTask("", "", "", this.isTablet ? "https://motile-website.vercel.app/MotileParts/Models/plate-tablet.glb" : "https://motile-website.vercel.app/MotileParts/Models/plate.glb");
         plateTask.onSuccess = (task) => {     
             let plate = task.loadedMeshes[0];
             plate.name = "Base";

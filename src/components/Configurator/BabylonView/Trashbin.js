@@ -5,7 +5,7 @@ class Trashbin {
         this.name = "Trashbin"
         this.scene = scene;
         this.assetsManager = assetsManager;
-        this.path = "http://localhost:5000/MotileParts/Models/TrashbinPlaneRounded.glb"
+        this.path = "https://motile-website.vercel.app/MotileParts/Models/TrashbinPlaneRounded.glb"
         this.mesh = null;
         this.detectionArea = null;
         this.isTablet = isTablet;

@@ -21,6 +21,8 @@ class Component {
     }
 
     loadMesh() {
+        this.path = this.path.replace("http://localhost:5000/","https://motile-website.vercel.app/"); // remove localhost from path
+        
         let componentTask = this.assetsManager.addMeshTask("", "", "", this.path);
         componentTask.onSuccess = (task) => {     
             this.parent = new BABYLON.TransformNode(this.name);

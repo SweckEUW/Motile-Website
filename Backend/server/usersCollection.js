@@ -87,7 +87,7 @@ export default class usersCollection{
             newUser.active = false;
             newUser.emailID = rand;
 
-            let link = "http://localhost:5000/VerifyEmail?emailID="+rand;
+            let link = "https://motile-website.vercel.app/VerifyEmail?emailID="+rand;
             let mailOptions = {
                 from: 'motilecvd@gmail.com',
                 to : newUser.email,

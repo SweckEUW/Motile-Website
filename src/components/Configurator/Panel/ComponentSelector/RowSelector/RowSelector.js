@@ -23,7 +23,7 @@ const RowSelector = (props) => {
                     <input className="rs-button-input" type="radio" name={id} defaultChecked={index == 0} onClick={e => update(item.additionalInfo ? item.additionalInfo : item.head, item.motilePart, item.addPrice)}/>
                     <span className="rs-button">
                         <div className='row-img-wrapper'>
-                            <img src={item.img ? item.img : ''} alt=""/>
+                            <img src={item.img ? item.img.replace("http://localhost:5000/","https://motile-website.vercel.app/") : ''} alt=""/>
                         </div>
                         <div className='rs-info'>
                             <p className="rs-info-head">{item.head}</p>

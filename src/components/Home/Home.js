@@ -24,7 +24,7 @@ function Home(){
   }, []);
 
   async function loadPreset(type){
-    let configuration = await (await fetch('http://localhost:5000/Presets.json')).json();
+    let configuration = await (await fetch('https://motile-website.vercel.app/Presets.json')).json();
 
     history.push({
       pathname: '/Konfigurator',

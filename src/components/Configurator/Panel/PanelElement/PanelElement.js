@@ -271,7 +271,7 @@ function PanelElement(props){
           {motileParts.map((motilePart,index) =>{return(
             <div key={index} className='swiper-slide'>
               <div className="mp-settings">
-                <div className="mp-info" style={{backgroundImage: "url("+motilePart.metaData.thumbnail+")"}}>
+                <div className="mp-info" style={{backgroundImage: "url(" + motilePart.metaData.thumbnail.replace("http://localhost:5000/","https://motile-website.vercel.app/") + ")"}}>
                   <h2 className="mp-name">{motilePart.name}</h2>
                   <p className="mp-price">{getPriceOfComponent(index)}</p>
                   <div className="mp-colors">

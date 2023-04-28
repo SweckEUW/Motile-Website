@@ -79,7 +79,7 @@ export default class usersCollection{
                 service: 'gmail',
                 auth: {
                     user: 'motilecvd@gmail.com',
-                    pass: 'motilecvd1234'
+                    pass: 'jwvfymfnusecomct' //'motilecvd1234'
                 }
             });
 

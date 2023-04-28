@@ -24,12 +24,11 @@ const App = () => {
   let path = localStorage.getItem('path');
   if(path){
     localStorage.removeItem('path');
-    console.log(path);
     history.push({pathname: path});
   }
 
   return (
-    <Router basename={'/Motile-Website'}>
+    <Router basename={'/Motile-Website'} history={history}>
       <Loadingscreen/>
       <Navbar/>
       <Login/>

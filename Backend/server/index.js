@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import {MongoClient, Db, ServerapiVersion} from "mongodb"
+import {MongoClient, Db, ServerApiVersion} from "mongodb"
 import multer from "multer"
 import motilePartsCollection from "./motilePartsCollection.js"
 import UsersCollection from "./usersCollection.js"

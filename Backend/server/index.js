@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import {MongoClient, Db, ServerApiVersion} from "mongodb"
+import {MongoClient, Db, Server/apiVersion} from "mongodb"
 import multer from "multer"
 import motilePartsCollection from "./motilePartsCollection.js"
 import UsersCollection from "./usersCollection.js"
@@ -23,8 +23,8 @@ app.use(express.json());
 // Connect to Database
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORT}@cluster0.zpdterx.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
+  server/api: {
+    version: Server/apiVersion.v1,
     strict: true,
     deprecationErrors: true,
   }
@@ -51,28 +51,28 @@ app.get('/', (req, res) => {
 });
 
 // MotileParts
-app.get('api/MotileParts', motilePartsCollection.getMotileParts);
+app.get('/api/MotileParts', motilePartsCollection.getMotileParts);
 
 // Login/Register
-app.post('api/Login', UsersCollection.login);
-app.post('api/LoginJWT', Middleware.verifyJWT, UsersCollection.loginJWT);
-app.post('api/StayAlive', Middleware.verifyJWT, UsersCollection.stayAlive);
-app.post('api/Register', UsersCollection.addUser);
-app.get('api/VerifyEmail', UsersCollection.verifyUser);
+app.post('/api/Login', UsersCollection.login);
+app.post('/api/LoginJWT', Middleware.verifyJWT, UsersCollection.loginJWT);
+app.post('/api/StayAlive', Middleware.verifyJWT, UsersCollection.stayAlive);
+app.post('/api/Register', UsersCollection.addUser);
+app.get('/api/VerifyEmail', UsersCollection.verifyUser);
 
 // UserData
-app.post('api/User/Data', Middleware.verifyJWT, UsersCollection.getUserDataFromUser);
-app.post('api/User/Data/AddAddress', Middleware.verifyJWT, userDataCollection.addAddress);
-app.post('api/User/Data/RemoveAddress', Middleware.verifyJWT, userDataCollection.removeAddress);
-app.post('api/User/Data/UploadProfilePic',  multer({ storage: ImageUploadHandler.getStorage() }).single('file'), Middleware.verifyJWT, userDataCollection.updateProfilePic);
-app.post('api/User/Data/Modify', Middleware.verifyJWT, userDataCollection.modifyUserData);
+app.post('/api/User/Data', Middleware.verifyJWT, UsersCollection.getUserDataFromUser);
+app.post('/api/User/Data/AddAddress', Middleware.verifyJWT, userDataCollection.addAddress);
+app.post('/api/User/Data/RemoveAddress', Middleware.verifyJWT, userDataCollection.removeAddress);
+app.post('/api/User/Data/UploadProfilePic',  multer({ storage: ImageUploadHandler.getStorage() }).single('file'), Middleware.verifyJWT, userDataCollection.updateProfilePic);
+app.post('/api/User/Data/Modify', Middleware.verifyJWT, userDataCollection.modifyUserData);
 
 // UserConfigurations
-app.post('api/User/Configs', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
-app.post('api/User/Configs/Remove', Middleware.verifyJWT, UserConfigsCollection.removeUserConfiguration);
-app.post('api/User/Configs/Add', Middleware.verifyJWT, UserConfigsCollection.addUserConfiguration);
-app.post('api/User/Configs/GenerateThumbnail', Middleware.verifyJWT, BlenderJobs.renderThumbnail);
-app.post('api/User/Configs/Buy', Middleware.verifyJWT, UserConfigsCollection.setUserConfigToBought)
+app.post('/api/User/Configs', Middleware.verifyJWT, UsersCollection.getConfigFromUser);
+app.post('/api/User/Configs/Remove', Middleware.verifyJWT, UserConfigsCollection.removeUserConfiguration);
+app.post('/api/User/Configs/Add', Middleware.verifyJWT, UserConfigsCollection.addUserConfiguration);
+app.post('/api/User/Configs/GenerateThumbnail', Middleware.verifyJWT, BlenderJobs.renderThumbnail);
+app.post('/api/User/Configs/Buy', Middleware.verifyJWT, UserConfigsCollection.setUserConfigToBought)
 
 // static assets - public folder
 let filename = fileURLToPath(import.meta.url);

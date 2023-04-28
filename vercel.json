@@ -17,7 +17,7 @@
             "dest": "Backend/server/index.js"
         },
         {
-            "src": "/(.+)",
+            "src": "/(?!api)(.*)",
             "dest": "Backend/server/public/$1"
         }
     ]

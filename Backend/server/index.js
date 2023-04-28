@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import {MongoClient, Db, Server/apiVersion} from "mongodb"
+import {MongoClient, Db, ServerapiVersion} from "mongodb"
 import multer from "multer"
 import motilePartsCollection from "./motilePartsCollection.js"
 import UsersCollection from "./usersCollection.js"
@@ -23,8 +23,8 @@ app.use(express.json());
 // Connect to Database
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORT}@cluster0.zpdterx.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
-  server/api: {
-    version: Server/apiVersion.v1,
+  serverApi: {
+    version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
   }

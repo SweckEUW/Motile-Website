@@ -4,7 +4,12 @@
         {
             "src": "Backend/server/index.js",
             "use": "@vercel/node"
+        },
+        {
+            "src": "Backend/server/public/**",
+            "use": "@vercel/static"
         }
+
     ],
     "routes": [
         {

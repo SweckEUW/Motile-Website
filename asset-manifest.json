@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/Motile-Website/static/css/main.37e2947f.chunk.css",
-    "main.js": "/Motile-Website/static/js/main.de5e7d1a.chunk.js",
-    "main.js.map": "/Motile-Website/static/js/main.de5e7d1a.chunk.js.map",
+    "main.js": "/Motile-Website/static/js/main.b16f5438.chunk.js",
+    "main.js.map": "/Motile-Website/static/js/main.b16f5438.chunk.js.map",
     "runtime-main.js": "/Motile-Website/static/js/runtime-main.0eb52d50.js",
     "runtime-main.js.map": "/Motile-Website/static/js/runtime-main.0eb52d50.js.map",
     "static/css/2.22c9f91f.chunk.css": "/Motile-Website/static/css/2.22c9f91f.chunk.css",
-    "static/js/2.7495dd53.chunk.js": "/Motile-Website/static/js/2.7495dd53.chunk.js",
-    "static/js/2.7495dd53.chunk.js.map": "/Motile-Website/static/js/2.7495dd53.chunk.js.map",
+    "static/js/2.b7f7f1e6.chunk.js": "/Motile-Website/static/js/2.b7f7f1e6.chunk.js",
+    "static/js/2.b7f7f1e6.chunk.js.map": "/Motile-Website/static/js/2.b7f7f1e6.chunk.js.map",
     "index.html": "/Motile-Website/index.html",
     "static/css/2.22c9f91f.chunk.css.map": "/Motile-Website/static/css/2.22c9f91f.chunk.css.map",
     "static/css/main.37e2947f.chunk.css.map": "/Motile-Website/static/css/main.37e2947f.chunk.css.map",
-    "static/js/2.7495dd53.chunk.js.LICENSE.txt": "/Motile-Website/static/js/2.7495dd53.chunk.js.LICENSE.txt",
+    "static/js/2.b7f7f1e6.chunk.js.LICENSE.txt": "/Motile-Website/static/js/2.b7f7f1e6.chunk.js.LICENSE.txt",
     "static/media/App.css": "/Motile-Website/static/media/ITCAvantGardeStd-Md.bd78cd24.otf"
   },
   "entrypoints": [
     "static/js/runtime-main.0eb52d50.js",
     "static/css/2.22c9f91f.chunk.css",
-    "static/js/2.7495dd53.chunk.js",
+    "static/js/2.b7f7f1e6.chunk.js",
     "static/css/main.37e2947f.chunk.css",
-    "static/js/main.de5e7d1a.chunk.js"
+    "static/js/main.b16f5438.chunk.js"
   ]
 }

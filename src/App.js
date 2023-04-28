@@ -1,5 +1,5 @@
 import './App.css';
-import {HashRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
 import Login from './components/Login/Login';
 import Loadingscreen from './components/Loadingscreen/Loadingscreen';
 import Navbar from './components/Navbar/Navbar';
@@ -17,11 +17,19 @@ import Datenschutz from './components/Footer/FooterPages/Datenschutz';
 import Nutzungsbedingungen from './components/Footer/FooterPages/Nutzungsbedingungen';
 import Impressum from './components/Footer/FooterPages/Impressum';
 import React from 'react';
+import history from './services/RouterHistory';
 
 const App = () => {
 
+  let path = localStorage.getItem('path');
+  if(path){
+    localStorage.removeItem('path');
+    console.log(path);
+    history.push({pathname: path});
+  }
+
   return (
-    <HashRouter basename={'/Motile-Website'}>
+    <Router basename={'/Motile-Website'}>
       <Loadingscreen/>
       <Navbar/>
       <Login/>
@@ -134,7 +142,7 @@ const App = () => {
         )}/>
       </Switch>
 
-    </HashRouter>
+    </Router>
   );
 }
 

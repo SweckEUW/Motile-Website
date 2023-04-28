@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Login from './components/Login/Login';
 import Loadingscreen from './components/Loadingscreen/Loadingscreen';
 import Navbar from './components/Navbar/Navbar';
@@ -28,7 +28,7 @@ const App = () => {
   }
 
   return (
-    <Router basename={'/Motile-Website'} history={history}>
+    <BrowserRouter basename={'/Motile-Website'} history={history}>
       <Loadingscreen/>
       <Navbar/>
       <Login/>
@@ -140,8 +140,8 @@ const App = () => {
           </div>
         )}/>
       </Switch>
-
-    </Router>
+      
+    </BrowserRouter>
   );
 }
 

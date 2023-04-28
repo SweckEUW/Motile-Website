@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Motile-Website/static/css/main.37e2947f.chunk.css",
-    "main.js": "/Motile-Website/static/js/main.bb62b2e1.chunk.js",
-    "main.js.map": "/Motile-Website/static/js/main.bb62b2e1.chunk.js.map",
+    "main.js": "/Motile-Website/static/js/main.9b4ea0a4.chunk.js",
+    "main.js.map": "/Motile-Website/static/js/main.9b4ea0a4.chunk.js.map",
     "runtime-main.js": "/Motile-Website/static/js/runtime-main.0eb52d50.js",
     "runtime-main.js.map": "/Motile-Website/static/js/runtime-main.0eb52d50.js.map",
     "static/css/2.22c9f91f.chunk.css": "/Motile-Website/static/css/2.22c9f91f.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.22c9f91f.chunk.css",
     "static/js/2.1dd7b103.chunk.js",
     "static/css/main.37e2947f.chunk.css",
-    "static/js/main.bb62b2e1.chunk.js"
+    "static/js/main.9b4ea0a4.chunk.js"
   ]
 }

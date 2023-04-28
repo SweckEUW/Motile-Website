@@ -21,12 +21,6 @@ import history from './services/RouterHistory';
 
 const App = () => {
 
-  let path = localStorage.getItem('path');
-  if(path){
-    localStorage.removeItem('path');
-    history.push({pathname: path});
-  }
-
   return (
     <BrowserRouter basename={'/Motile-Website'} history={history}>
       <Loadingscreen/>

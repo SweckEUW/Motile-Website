@@ -4,31 +4,16 @@ import UserConfigsCollection from "./userConfigsCollection.js";
 import jwt from "jsonwebtoken"
 import UserDataCollection from "./userDataCollection.js";
 import { ObjectId } from "bson";
-
-let users;
+import {db} from "./index.js"
 
 export default class usersCollection{
-    static async retrieveUsersCollection(conn){
-        if(users)
-            return 
-        
-        try{
-            users = await conn.db('Motile').collection("Users");
-            if(users)
-                console.log("Retrieved usersCollection")
-            else
-                console.error("Error retrieving usersCollection")
-        }catch(error){
-            console.error("cant connect to usersCollection database" + error);
-        }
-    }
 
     static async login(request, response) {
         let email = request.body.email;
         let password = request.body.password;
         
         // Look for user with same E-Mail
-        let user = await users.find({"email": {$eq: email}}).toArray();
+        let user = await db.collection("Users").find({"email": {$eq: email}}).toArray();
         if(user[0]){
             let validation = await bcrypt.compare(password,user[0].password);
             if(validation){
@@ -68,13 +53,13 @@ export default class usersCollection{
     }
 
     static async getUser(id) {
-        let user = await users.find({"_id": {$eq: ObjectId.createFromHexString(id)}}).toArray();
+        let user = await db.collection("Users").find({"_id": {$eq: ObjectId.createFromHexString(id)}}).toArray();
         return user[0];
     }
 
     static async addUser(request,response) {
         let newUser = request.body;
-        let user = await users.find({"email": {$eq: newUser.email}}).toArray();
+        let user = await db.collection("Users").find({"email": {$eq: newUser.email}}).toArray();
 
         if(user[0]){
             console.log("Registrierung nicht erfolgreich!")
@@ -120,7 +105,7 @@ export default class usersCollection{
             
             try {
                 await transporter.sendMail(mailOptions);
-                await users.insertOne(newUser);
+                await db.collection("Users").insertOne(newUser);
                 response.json({success: true , message: 'Registrierung erfolgreich - Bitte E-Mail-Adresse bestätigen'})
                 console.log("Registrierung erfolgreich!")
             }catch (error) {
@@ -133,9 +118,9 @@ export default class usersCollection{
 
     static async verifyUser(request, response) {
         let emailID = parseInt(request.query.emailID)
-        let user = await users.find({"emailID": {$eq: emailID}}).toArray();
+        let user = await db.collection("Users").find({"emailID": {$eq: emailID}}).toArray();
         if(user[0]){
-            users.updateOne({_id:user[0]._id}, {$set :{active : true}, $unset :{emailID}});
+            db.collection("Users").updateOne({_id:user[0]._id}, {$set :{active : true}, $unset :{emailID}});
             console.log(user[0].email+" Verified");
             response.send('<h1>E-Mail bestätigt: ' + user[0].email + '</h1>')
         }else{
@@ -164,7 +149,7 @@ export default class usersCollection{
                 ...updateData
             }
         }
-        const result = await users.updateOne(filter, updateDoc);
+        const result = await db.collection("Users").updateOne(filter, updateDoc);
     }
 
     static async getUserDataFromUser(request, response) {

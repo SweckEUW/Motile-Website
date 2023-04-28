@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import {MongoClient, ServerApiVersion} from "mongodb"
+import {MongoClient, Db, ServerApiVersion} from "mongodb"
 import multer from "multer"
 import motilePartsCollection from "./motilePartsCollection.js"
 import UsersCollection from "./usersCollection.js"
@@ -30,6 +30,8 @@ const client = new MongoClient(uri, {
   }
 });
 
+export let db;
+
 client.connect()
 .catch(error => { 
   console.error(error);
@@ -37,18 +39,15 @@ client.connect()
 }).then(async client =>{
     console.log("Connected to Database")
 
-    await motilePartsCollection.retrieveMotilePartsCollection(client);
-    await UsersCollection.retrieveUsersCollection(client);
-    await UserConfigsCollection.retrieveConfigsCollection(client);
-    await userDataCollection.retrieveUserDataCollection(client);
+    db = client.db('Motile');
 
     app.listen(5000,() =>{
-        console.log('Server started')
+      console.log('Server started')
     });
 })
 
 app.get('/', (req, res) => {
-    res.send("Server Online");
+  res.send("Server Online");
 });
 
 // MotileParts
@@ -79,5 +78,3 @@ app.post('/User/Configs/Buy', Middleware.verifyJWT, UserConfigsCollection.setUse
 let filename = fileURLToPath(import.meta.url);
 let dirname = path.dirname(filename);
 app.use(express.static(path.join(dirname, 'public')));
-
-export default app

@@ -1,29 +1,13 @@
 import { ObjectId } from "bson";
 import UsersCollection from './usersCollection.js'
-
-let userData;
+import {db} from "./index.js"
 
 export default class userDataCollection {
-
-    static async retrieveUserDataCollection(conn){
-        if(userData)
-            return 
-        
-        try{
-            userData = await conn.db('Motile').collection("UserData");
-            if(userData)
-                console.log("Retrieved userDataCollection")
-            else
-                console.error("Error retrieving userDataCollection")
-        }catch(error){
-            console.error("cant connect to userDataCollection database" + error);
-        }
-    }
 
     static async initializeUserData(user) {
         
         // Adding Mock-Data
-        let template = await userData.insertOne({
+        let template = await db.collection("UserData").insertOne({
             firstName: user.firstName,
             lastName: user.lastName,
             profilePic: "http://localhost:5000/Placeholder/profile_placeholder.png",
@@ -76,7 +60,7 @@ export default class userDataCollection {
                 ...request.body.userData
             }
         }
-        const result = await userData.updateOne(filter, updateDoc);
+        const result = await db.collection("UserData").updateOne(filter, updateDoc);
         if (result) {
             response.json({success: true , message: 'updated userData', result: result})
         }
@@ -92,7 +76,7 @@ export default class userDataCollection {
                 ...updateData
             }
         }
-        const result = await userData.updateOne(filter, updateDoc);
+        const result = await db.collection("UserData").updateOne(filter, updateDoc);
     }
 
     static async updateProfilePic(request, response, next) {
@@ -104,7 +88,7 @@ export default class userDataCollection {
                 }
             }
         }
-        const result = await userData.updateOne(filter, updateDoc);
+        const result = await db.collection("UserData").updateOne(filter, updateDoc);
         if(result.acknowledged)
             response.json({success: true , message: "Picture uploaded and set"})
         else
@@ -112,18 +96,18 @@ export default class userDataCollection {
     }
 
     static async addAddress(request, response) {
-        userData.updateOne({"_id": ObjectId.createFromHexString(request.user.userData)}, {$push: {adresses: request.body.address}});
+        db.collection("UserData").updateOne({"_id": ObjectId.createFromHexString(request.user.userData)}, {$push: {adresses: request.body.address}});
         response.json({success: true , message: "added Adress to userData"})
     }
 
     static async removeAddress(request, response) {
         console.log(request.user.userData);
-        userData.updateOne({"_id": ObjectId.createFromHexString(request.user.userData)},  { $pull: { adresses: { id:  request.body.addressId } } });
+        db.collection("UserData").updateOne({"_id": ObjectId.createFromHexString(request.user.userData)},  { $pull: { adresses: { id:  request.body.addressId } } });
         response.json({success: true , message: "removed Adress from userData"})
     }
 
     static async getUserData(user) {
-        let uD = await userData.find({"_id": {$eq: ObjectId.createFromHexString(user.userData)}}).toArray();
+        let uD = await db.collection("UserData").find({"_id": {$eq: ObjectId.createFromHexString(user.userData)}}).toArray();
         return uD[0];
     }
 }

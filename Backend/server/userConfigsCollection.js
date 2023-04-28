@@ -1,27 +1,11 @@
 import { ObjectId } from "bson";
 import UserConfigsCollection from "./userConfigsCollection.js"; 
-
-let configs;
+import {db} from "./index.js"
 
 export default class userConfigsCollection {
 
-    static async retrieveConfigsCollection(conn){
-        if(configs)
-            return 
-        
-        try{
-            configs = await conn.db('Motile').collection("UserConfigurations");
-            if(configs)
-                console.log("Retrieved configsCollection")
-            else
-                console.error("Error retrieving configsCollection")
-        }catch(error){
-            console.error("cant connect to configsCollection database" + error);
-        }
-    }
-
     static async initializeUserConfigurations(user) {
-        let template = await configs.insertOne({
+        let template = await db.collection("UserConfigurations").insertOne({
             configs: []
         });
         
@@ -29,7 +13,7 @@ export default class userConfigsCollection {
     }
 
     static async getConfig(user) {
-        let config = await configs.find({"_id": {$eq: ObjectId.createFromHexString(user.configs)}}).toArray();
+        let config = await db.collection("UserConfigurations").find({"_id": {$eq: ObjectId.createFromHexString(user.configs)}}).toArray();
         return config[0];
     }
 
@@ -38,7 +22,7 @@ export default class userConfigsCollection {
         if(userConfigs){
             let config = userConfigs.configs.find(config => config.number == number);
             config.thumbnail = thumbnail;
-            return await configs.updateOne({"_id": {$eq: ObjectId.createFromHexString(user.configs)}}, {$set: userConfigs});
+            return await db.collection("UserConfigurations").updateOne({"_id": {$eq: ObjectId.createFromHexString(user.configs)}}, {$set: userConfigs});
         }
     }
 
@@ -47,7 +31,7 @@ export default class userConfigsCollection {
         if(user){
             let userConfigs = await UserConfigsCollection.getConfig(user);
             if(userConfigs){
-                await configs.updateOne(userConfigs, {$push: { "configs": request.body.config }});      
+                await db.collection("UserConfigurations").updateOne(userConfigs, {$push: { "configs": request.body.config }});      
                 response.json({success: true, message: 'Konfiguration gespeichert'});
             }else{
                 response.json({success: false, message: 'Keine Nutzer Konfigurationen gefunden'});
@@ -62,7 +46,7 @@ export default class userConfigsCollection {
         if(user){
             let userConfigs = await UserConfigsCollection.getConfig(user);
             if(userConfigs){
-                await configs.updateOne(userConfigs, {$pull: {configs: {number: request.body.config.number}}});    
+                await db.collection("UserConfigurations").updateOne(userConfigs, {$pull: {configs: {number: request.body.config.number}}});    
                 response.json({success: true, message: 'Konfiguration gelöscht'});
             }else{
                 response.json({success: false, message: 'Keine Nutzer Konfigurationen gefunden'});
@@ -79,7 +63,7 @@ export default class userConfigsCollection {
             let userConfigs = await UserConfigsCollection.getConfig(user);
             let config = userConfigs.configs.find(config => config.number == request.body.number);
             config.bought = true;
-            let result = await configs.updateOne({"_id": {$eq: ObjectId.createFromHexString(user.configs)}}, {$set: userConfigs});
+            let result = await db.collection("UserConfigurations").updateOne({"_id": {$eq: ObjectId.createFromHexString(user.configs)}}, {$set: userConfigs});
             
             response.json({success: true, message: 'Kauf erfolgreich'});
         }else{
